@@ -74,6 +74,11 @@ if (!defined('DS')) {
 }
 
 /**
+ * 定义用户ID 测试用
+ */
+define('USER_ID', 1);
+
+/**
  * Locate and load Lithium core library files.  Throws a fatal error if the core can't be found.
  * If your Lithium core directory is named something other than `lithium`, change the string below.
  */

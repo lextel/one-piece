@@ -9,7 +9,7 @@ $this->styles($this->resLoader->css('product_list.css'));
 <div class="list_class">
     <dl>
         <dt>分类</dt>
-        <dd id="ddBrandList" style="height:78px;">
+        <dd id="ddBrandList">
             <ul>
                 <li><a href="/products/index" class="ClassCur">全部</a></li>
                 <?php 
@@ -25,7 +25,13 @@ $this->styles($this->resLoader->css('product_list.css'));
 <div class="list_Sort">
     <dl>
         <dt>排序</dt>
-        <dd> <a href="/products/index/?orderby=showed&sort=desc" class="SortCur">即将揭晓</a> <a href="/products/index/?orderby=hit&sort=desc" class="">人气</a> <a href="/products/index/?orderby=remain&sort=desc" class="">剩余人次</a> <a href="/products/index/?orderby=created&sort=desc" class="">最新</a> <a href="/products/index/?orderby=price&sort=desc" class="Price_Sort">价格 <i></i></a> </dd>
+        <dd>
+            <?php
+                foreach($orderByList as $list) {
+                    echo $list;
+                }
+            ?>
+        </dd>
     </dl>
 </div>
 <!--列表开始-->

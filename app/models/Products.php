@@ -9,6 +9,7 @@ class Products extends \lithium\data\Model {
 
     protected $_schema = [
         '_id' => ['type' => 'id', 'length' => 10, 'null' => false, 'default' => null],
+        'id' => ['type' => 'integer', 'length' => 10],
         'cat_id' => ['type' => 'integer', 'length' => 5, 'null' => false, 'default' => 0],
         'title' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null],
         'feature' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null],
@@ -17,6 +18,7 @@ class Products extends \lithium\data\Model {
         'person' => ['type' => 'integer', 'length' => 5, 'null' => false, 'default' => 0],
         'remain' => ['type' => 'integer', 'length' => 5, 'null' => false, 'default' => 0],
         'images' => ['type' => 'array', 'length' => null, 'null' => false, 'default' => null],
+        'periods' => ['type' => 'array', 'length' => null, 'null' => false, 'default' => null],
         'hit' => ['type' => 'integer', 'length' => 10, 'null' => false, 'default' => 0],
         'status' => ['type' => 'integer', 'length' => 1, 'null' => false, 'default' => 0],
         'showed' => ['type' => 'date'],
@@ -35,6 +37,23 @@ class Products extends \lithium\data\Model {
             // 'images'      => ['array', 'message' => '商品图片不能为空'],
             'content'     => ['notEmpty', 'message' => '请填写商品详情'],
            ];
+
+    /**
+     * 获取预插入ID
+     *
+     * @return int 自增的ID
+     */
+    public static function autoId() {
+        $product = Products::first(['conditions' => ['order' => ['id' => 'desc']]]);
+
+        if(empty($product)) {
+            $id = 1;
+        } else {
+            $id = $product->id++;
+        }
+
+        return $id;
+    }
 
     /**
      * 商品添加前预处理
@@ -91,26 +110,23 @@ class Products extends \lithium\data\Model {
      */
     public static function _perLists($options) {
 
-        if(
-            isset($options['data']['orderby']) && 
-            isset($options['data']['sort']) && 
-            in_array($options['data']['sort'], ['asc', 'desc'])
-          ) {
-            switch ($options['data']['orderby']) {
+        if( isset($options['orderby']) && isset($options['sort']) ) {
+            $options['sort'] = $sort == 'asc' ? 'asc' : 'desc';
+            switch ($options['orderby']) {
                 case 'showed':
-                    $options['order'] = ['showed' => $options['data']['sort']];
+                    $options['order'] = ['showed' => $options['sort']];
                     break;
                 case 'hit':
-                    $options['order'] = ['hit' => $options['data']['sort']];
+                    $options['order'] = ['hit' => $options['sort']];
                     break;
                 case 'remain':
-                    $options['order'] = ['remain' => $options['data']['sort']];
+                    $options['order'] = ['remain' => $options['sort']];
                     break;
                 case 'created':
-                    $options['order'] = ['created' => $options['data']['sort']];
+                    $options['order'] = ['created' => $options['sort']];
                     break;
                 case 'price':
-                    $options['order'] = ['price' => $options['data']['sort']];
+                    $options['order'] = ['price' => $options['sort']];
                     break;
                 default:
                     $options['order'] = [];

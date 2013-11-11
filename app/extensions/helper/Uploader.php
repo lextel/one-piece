@@ -36,17 +36,17 @@ class Uploader {
      * 上传目录
      *
      * @param: $filename string       文件名
-     * @param: $typedir  string       类型(products,shares)
+     * @param: $dirType  string       类型(products,shares)
      * @param: $size     array|string 生成大小
      * 
      * @return string
      */
-    public function uploadPath($filename, $typedir) {
+    public function uploadPath($filename, $dirType) {
         $md5 = MD5($filename);
         $firstDir  = substr($md5, 0, 1);
         $secondDir = substr($md5, 1, 1);
 
-        $dir = UPLOAD_PATH . DS . $typedir . DS .$firstDir . DS . $secondDir;
+        $dir = UPLOAD_PATH . DS . $dirType . DS .$firstDir . DS . $secondDir;
 
         $dirs = explode(DS, $dir);
         $dir = '';

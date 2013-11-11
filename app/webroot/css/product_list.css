@@ -6,7 +6,7 @@
 .list_Curtit h1 {font-size: 18px;line-height: 22px;color: #F60;font-family: 微软雅黑,宋体;font-weight: bold;padding: 8px 10px 0 10px;_padding: 9px 10px 0 10px;}
 .list_Curtit span {font-family: 微软雅黑,宋体;padding: 11px 10px 0 10px;_padding: 12px 10px 0 10px;display: block;color: #999;}
 .list_Curtit span em {margin: 0 5px;}
-.listContent {zoom: 1;padding-bottom: 28px;}
+.listContent {zoom: 1; overflow:hidden;}
 .listContent::after {display: block;height: 0;clear: both;}
 .item {margin: 0 0 0 -13px;width: 102%;zoom: 1;}
 .goods-iten {width: 233px;border: 1px solid #E4E4E4;float: left;display: _block;display: inline;margin: 13px 0 0 13px;position: relative;background: white;}
@@ -79,7 +79,13 @@ background: url(../img/goods_tj.png) no-repeat;}
 }
 a.go_Shopping:hover {color: white;background: #F40;}
 .go_cart:hover {background: #FDD395;}
-.pages {overflow: hidden;height: 60px;clear: both;border-top: 1px solid #E4E4E4;}
+.pages {overflow: hidden;height: 40px;clear: both; margin:20px 0;}
+.pages ul{float:right;}
+.pages ul li { float:left; width:60px;  height:30px; line-height:30px; text-align:center; margin-right:10px;}
+.pages ul li a{color:#333; font-size:14px;}
+.pages ul li a:hover{color:#f60; text-decoration:underline;}
+.pages ul li.active{background:#f60; border: solid #ed6003 1px ;border-radius:5px; width:30px; }
+.pages ul li.active a{color:#fff;}
 .pages ul.pageULEx {float: right;padding:15px 0 0 0;margin-right:20px;display: inline;}
 .pages ul.pageULEx li {float: left;list-style: none;margin: 0 0 0 5px;text-align: center; line-height:32px;}
 .pages ul.pageULEx li.curr_page {

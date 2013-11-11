@@ -8,6 +8,7 @@ class ProductsTest extends \lithium\test\Unit {
 
     private $_request;
     private $_product;
+    private $_id;
     private $_rules;
 
     public function setUp() {
@@ -18,10 +19,23 @@ class ProductsTest extends \lithium\test\Unit {
         Validator::add('array', function($value) {
             return is_array($value);
         });
-
     }
 
-    public function tearDown() {}
+    public function tearDown() {
+
+        Products::first(['conditions' => ['id' => $this->_id]])->remoce();
+    }
+
+    public function testAutoId() {
+
+        $this->_id = Products::autoId();
+        Products::create(['id'=>$this->_id, 'title' => 'test auto id']);
+        $product = Products::first(['conditions' => ['id' => $this->_id]]);
+        $this->assertTrue(!empty($product));
+
+        $newId = Prodcuts::autoId();
+        $this->assertEqual($this->_id+1, $newId);
+    }
 
     public function test_perAdd() {
 
@@ -47,9 +61,67 @@ class ProductsTest extends \lithium\test\Unit {
         $this->assertEqual($rs['content'][0], '请填写商品详情');
 
         $this->assertFalse(Validator::isArray($data['errorImages']['images']));
-
     }
 
+    public function test_perLists() {
+
+        $data = [
+            'orderby' => '',
+            'sort'    => '',
+        ];
+        $options = $this->_product->_perLists($data);
+        $this->assertEqual($options['order'], []);
+
+
+        $data = [
+            'orderby' => 'clicked',
+            'sort'    => 'desc',
+        ];
+        $options = $this->_product->_perLists($data);
+        $this->assertEqual($options['order'], []);
+
+        $data = [
+            'orderby' => 'remain',
+            'sort'    => 'zesc',
+        ];
+        $options = $this->_product->_perLists($data);
+        $this->assertEqual($options['order'], ['remain' => 'desc']);
+
+        $data = [
+            'orderby' => 'hit',
+            'sort'    => 'desc',
+        ];
+        $options = $this->_product->_perLists($data);
+        $this->assertEqual($options['order'], ['hit' => 'desc']);
+
+        $data = [
+            'orderby' => 'remain',
+            'sort'    => 'asc',
+        ];
+        $options = $this->_product->_perLists($data);
+        $this->assertEqual($options['order'], ['remain' => 'asc']);
+
+        $data = [
+            'orderby' => 'created',
+            'sort'    => 'asc',
+        ];
+        $options = $this->_product->_perLists($data);
+        $this->assertEqual($options['order'], ['created' => 'asc']);
+
+        $data = [
+            'orderby' => 'price',
+            'sort'    => 'asc',
+        ];
+        $options = $this->_product->_perLists($data);
+        $this->assertEqual($options['order'], ['price' => 'asc']);
+
+        $data = [
+            'orderby' => 'showed',
+            'sort'    => 'desc',
+        ];
+        $options = $this->_product->_perLists($data);
+        $this->assertEqual($options['order'], ['showed' => 'desc']);
+    }
 }
 
 ?>

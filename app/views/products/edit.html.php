@@ -27,20 +27,20 @@ $this->scripts($this->resLoader->script('umeditor/lang/zh-cn/zh-cn.js'));
                 <li><a href="#">日记</a></li>
                 <li><a href="#">喜欢</a></li>
                 <li><a href="#">豆列</a></li>
-                <li><a href="#">设置</a></li>
+                <li><a href="/products/dashboard">商品管理</a></li>
              </ul>
         </div>
     </div>
   </div>
   <div class="add_product">
-      <h2>编辑商品</h2>
+      <h2>编辑商品<a href="/products/dashboard" class="return_list">返回列表</a></h2>
           <?=$this->form->create($product, ['id' => 'addProduct']); ?>
           <ul>
               <li class="text_nums">
-                  <?=$this->form->field(['title' => '名称']); ?>
+                  <?=$this->form->field(['title' => '名称'], ['style' => 'width:400px']); ?>
               </li>
               <li class="text_nums">
-                  <?=$this->form->field(['feature' => '特性']); ?>
+                  <?=$this->form->field(['feature' => '特性'], ['style' => 'width:400px']); ?>
               </li>
               <li class="text_nums">
                   <?=$this->form->field(['cat_id' => '分类'], ['type' => 'select', 'list' => $cats]); ?>
@@ -53,9 +53,9 @@ $this->scripts($this->resLoader->script('umeditor/lang/zh-cn/zh-cn.js'));
                     <label for="ProductsImages">图片</label>
                     <dl class="add_p_img">
                     <?php
-                    foreach($product->images as $image) {
-                      echo '<dd><img src="'.$image.'"><s class="close"></s><input type="hidden" name="images[]" value="'.$image.'"></dd>';
-                    }
+                      foreach($product->images as $image) {
+                        echo '<dd><img src="'.$image.'"><s class="close"></s><input type="hidden" name="images[]" value="'.$image.'"></dd>';
+                      }
                     ?>
                       <dd class="insert_bottom">添加<input id="upload" type="file" name="file" multiple></dd>
                     </dl>
@@ -63,7 +63,7 @@ $this->scripts($this->resLoader->script('umeditor/lang/zh-cn/zh-cn.js'));
                   </div>
               </li>
               <li class="content_li">
-                  <?=$this->form->field(['content' => '详情'], ['type' => 'textarea', 'id' => 'content']); ?>
+                  <?=$this->form->field(['content' => '详情'], ['type' => 'textarea', 'id' => 'content', 'style'=>'height:600px;width:750px']); ?>
               </li>
               <li></li>
               <li></li>
