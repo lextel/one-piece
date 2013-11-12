@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * 分类工具
+ *
+ * @author weelion<weelion@qq.com>
+ * @version 1.0
+ */
 namespace app\extensions\helper;
 
 class Cats {
@@ -10,20 +15,37 @@ class Cats {
 	 * @var array
 	 */
 	static $cats = [
-		'1' => ['name' => '手机'],
-		'2' => ['name' => '数码相机'],
-		'3' => ['name' => '电脑'],
+		'1' => [
+            'name' => '手机',
+            'children' => [
+                '7' => ['name' => '手机'],
+            ],
+        ],
+		'2' => [
+            'name' => '数码相机',
+            'children' => [
+                '8' => ['name' => '单反'],
+                '9' => ['name' => '卡片'],
+            ]
+        ],
+		'3' => [
+            'name' => '电脑',
+            'children' => [
+                '10' => ['name' => '台式'],
+                '11' => ['name' => '品牌'],
+            ]
+        ],
 		'4' => ['name' => '平板电视'],
 		'5' => ['name' => '钟表首饰'],
 		'6' => ['name' => '其他商品'],
 	];
 
 	/**
-	 * 分类列表
+	 * 一级分类
 	 *
 	 * @return array 返回 $array[1] = 手机 形式
 	 */
-	static function cats() {
+	public static function cats() {
 
 		$array = [];
 		foreach(self::$cats as $key => $cat) {

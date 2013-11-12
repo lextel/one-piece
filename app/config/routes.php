@@ -92,6 +92,13 @@ if (!Environment::is('production')) {
  * In almost all cases, custom routes should be added above this one, since route-matching works in
  * a top-down fashion.
  */
+
+Router::connect('/products/index/{:cat_id:[0-9]+}/{:brand_id:[0-9]+}/{:args}', 'Products::index');
+Router::connect('/products/index/{:cat_id:[0-9]+}/page:{:page:[0-9]+}/{:args}', 'Products::index');
+Router::connect('/products/index/{:cat_id:[0-9]+}/{:args}', 'Products::index');
+Router::connect('/products/index/{:cat_id:[0-9]+}/{:brand_id:[0-9]+}/page:{:page:[0-9]+}/{:args}', 'Products::index');
+Router::connect('/products/view/{:id}', 'Products::view');
+Router::connect('/products/edit/{:id}', 'Products::edit');
 Router::connect('/{:controller}/{:action}/page:{:page:[0-9]+}/{:args}');
 Router::connect('/{:controller}/{:action}/{:args}');
 

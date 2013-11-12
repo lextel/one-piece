@@ -9,7 +9,19 @@
 .listContent {zoom: 1; overflow:hidden;}
 .listContent::after {display: block;height: 0;clear: both;}
 .item {margin: 0 0 0 -13px;width: 102%;zoom: 1;}
-.goods-iten {width: 233px;border: 1px solid #E4E4E4;float: left;display: _block;display: inline;margin: 13px 0 0 13px;position: relative;background: white;}
+.goods-iten {width: 233px;border: 1px solid #E4E4E4;float: left;margin: 13px 0 0 13px;position: relative;background: white;}
+.goods-iten .goods_Curbor {
+	width: 230px;
+	height: 381px;
+	text-align: center;
+	top: 0;
+	left: -1px;
+	position: absolute;
+	border: 3px solid #FFD7BC;
+	background: none;
+	z-index: 9999;
+	display: none;
+}
 .goods-iten .pic {text-align: center;height: 220px;overflow: hidden;position: relative;}
 .goods-iten .pic a {display: inline-block;margin-top: 10px;}
 .goods-iten .goods_xs {width: 49px;height: 45px;display: inline-block;background-position: right -192px;position: absolute;right: 0;_right: -1px;top: 0;z-index: 1;}
@@ -81,7 +93,17 @@ a.go_Shopping:hover {color: white;background: #F40;}
 .go_cart:hover {background: #FDD395;}
 .pages {overflow: hidden;height: 40px;clear: both; margin:20px 0;}
 .pages ul{float:right;}
-.pages ul li { float:left; width:60px;  height:30px; line-height:30px; text-align:center; margin-right:10px;}
+.pages ul li {
+	 float:left; 
+	 height:30px; 
+	 line-height:30px; 
+	 text-align:center; 
+	 margin-right:10px;
+	 border: solid #ddd 1px ;
+	 border-radius:5px;
+	 min-width: 28px;
+	padding: 0 5px;
+}
 .pages ul li a{color:#333; font-size:14px;}
 .pages ul li a:hover{color:#f60; text-decoration:underline;}
 .pages ul li.active{background:#f60; border: solid #ed6003 1px ;border-radius:5px; width:30px; }
@@ -644,46 +666,14 @@ background: url(../img/new-class-icon.png);
 .AllRecordT_Tit span {font-size: 12px;color: #A6A6A6;}
 .goods_loding {font-size: 18px;color: #666;font-family: 微软雅黑,宋体;height: 80px;min-height: 80px;text-align: center;vertical-align: middle;padding: 30px 0 0 0;}
 .AllRecordCon {width: 920px;margin: 0 auto 15px;padding: 38px 0 15px;}
-.AllRecTime {height: 16px;position: relative;}
-.AllRecW {width: 920px;margin: 0 auto;zoom: 1;background: url(../img/AllRecord_1.png) 0 repeat-y;}
-.AllRecTime p {font-family: 微软雅黑,宋体;font-size: 24px;color: #999;display: inline-block;position: absolute;left: 124px;top: -18px;}
-.AllRecTime b {
-	width: 36px;
-	height: 1px;
-	background: #E4E4E4;
-	overflow: hidden;
-	display: inline-block;
-	position: absolute;
-	left: 265px;
-	top: 0;
-}
-.AllReclist {padding-top: 6px;}
-.AllRecW {width: 920px;margin: 0 auto;zoom: 1;background: url(../img/AllRecord_1.png) 0 repeat-y; height:40px;}
-.AllRecW .AllRecL {width: 292px;text-align: right;position: relative;padding-right: 22px;margin-top: 7px;color: #9A9A9A;}
-.AllRecW .AllRecL i {
-	width: 16px;
-	height: 5px;
-	overflow: hidden;
-	background-position: -98px 0;
-	display: inline-block;
-	position: absolute;
-	right: 0;
-	top: 7px;
-}
-.AllRecW .AllRecR {width: 600px;margin: 1px;}
-.AllRecW .AllRecR .AllRecR_T {height: 25px;color: #9A9A9A;padding-left: 4px;padding-top: 7px;}
-.AllRecW .AllRecR .AllRecR_T img {vertical-align: middle;margin-right: 8px;}
-.AllRecW .AllRecR .AllRecR_T a.blue {margin-right: 5px;}
-.AllRecW .AllRecR .AllRecR_T em.orange {margin: 0 5px;font-family: Arial;}
-.AllRecW .AllRecR .AllRecR_T i {
-	width: 10px;
-	height: 15px;
-	overflow: hidden;
-	display: inline-block;
-	background-position: -122px 0;
-	vertical-align: -3px;
-	margin: 0 2px 0 5px;
-}
+.AllRecordCon {margin:0 auto 15px;padding: 38px 0 15px; overflow:hidden;width:900px;}
+.AllRecordCon dl{ overflow:hidden; margin:0 auto; border:1px solid #ddd; }
+.AllRecordCon dl dd{ height:33px; line-height:33px;border-bottom:1px solid #ddd; }
+.AllRecordCon dl dd ul li{ height:33px; line-height:33px; float:left; width:298px; text-align:center; border-right: 1px solid #DDD;}
+.AllRecordCon dl dd ul li a{ color:#333;display:inline-block;}
+.AllRecordCon dl dd ul li a.name{color:#2af; display:block; float:left}
+.AllRecordCon dl dd ul li a.head_pic{width:24px; height:24px; overflow:hidden; text-align:center; display:block; float:left; margin:5px 10px 0 50px;} 
+.last{ border:0;}
 /*已抢光*/
 .Immediate {color: #999;border: 1px solid #FFE4C2;background: #FFFDE8;height: 40px;margin-top: -1px;position: relative;font-family: 宋体;}
 .Immediate span {float: right;color: #F60;top: 12px;right: 8px;position: absolute;}

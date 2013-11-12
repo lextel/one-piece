@@ -10,23 +10,31 @@ use app\extensions\helper\Uploader;
 use app\extensions\helper\Page;
 use app\extensions\helper\Cats;
 use app\extensions\helper\Sort;
+use app\extensions\helper\Brands;
 
 class ProductsController extends \lithium\action\Controller {
 
     // 商品列表
     public function index() {
-        $limit = Page::$page;
-        $page  = $this->request->page ? : 1;
-        $cats = Cats::cats();
-        $orderBy = isset($this->request->query['orderby']) ? $this->request->query['orderby'] : '';
-        $sort = isset($this->request->query['sort']) ? $this->request->query['sort'] : '';
+        $request  = $this->request;
+        $limit    = Page::$page;
+        $cats     = Cats::cats();
+        $page     = $request->page ? : 1;
+        $cat_id   = $request->cat_id;
+        $brand_id = $request->brand_id;
+        $orderBy  = isset($request->query['orderby']) ? $request->query['orderby'] : '';
+        $sort     = isset($request->query['sort']) ? $request->query['sort'] : '';
 
-        $total = Products::lists()->count();
-        $products = Products::lists(compact('limit', 'page', 'orderBy', 'sort'));
+        $total = Products::lists(compact('cat_id', 'brand_id'))->count();
+        $products = Products::lists(compact('limit', 'page', 'cat_id', 'brand_id', 'orderBy', 'sort'));
 
-        $orderByList = Sort::sort('products', $orderBy, $sort);
+        // 排序LIST
+        $orderByList = Sort::sort('products',$cat_id, $brand_id, $orderBy, $sort);
 
-        return compact('products', 'limit', 'page', 'total', 'cats', 'orderByList');
+        // 品牌
+        $brands = Brands::lists($cat_id);
+
+        return compact('products', 'limit', 'page', 'total', 'cats', 'orderByList', 'cat_id', 'brand_id', 'brands');
     }
 
     // 商品管理
@@ -86,20 +94,20 @@ class ProductsController extends \lithium\action\Controller {
     // 编辑商品
     public function edit() {
 
-        $id = isset($this->request->query['id']) ? $this->request->query['id'] : 0;
+        $id = $this->request->id;
         if(empty($id)) $this->redirect('Products::index');
 
         $data = $this->request->data;
         $cats = Cats::cats();
 
         $product = Products::first(['conditions' => ['_id' => $id]]);
-        if(empty($product)) $this->redirect('Products::notfound');
+        if(empty($product)) return $this->redirect('Products::notfound');
 
         if($this->request->is('put')) {
             $productModel = new Products();
             $rs = $productModel->edit($id, $data);
 
-            $this->redirect('Products::dashboard');
+            return $this->redirect('Products::dashboard');
         }
 
         return compact('product', 'cats');
@@ -108,13 +116,14 @@ class ProductsController extends \lithium\action\Controller {
     // 浏览商品
     public function view() {
 
-        $id = isset($this->request->query['id']) ? $this->request->query['id'] : 0;
-        if(empty($id)) $this->redirect('Products::index');
+        $id = $this->request->id;
+        if(empty($id))
+            return $this->redirect('Products::index');
 
         $product = Products::first(['conditions' => ['_id' => $id]]);
 
         if(empty($product)) {
-            $this->redirect('Products::notfound');
+            return $this->redirect('Products::notfound');
         }
 
         $this->set(compact('product'));

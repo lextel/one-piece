@@ -8,7 +8,6 @@ class ProductsTest extends \lithium\test\Unit {
 
     private $_request;
     private $_product;
-    private $_id;
     private $_rules;
 
     public function setUp() {
@@ -21,21 +20,7 @@ class ProductsTest extends \lithium\test\Unit {
         });
     }
 
-    public function tearDown() {
-
-        Products::first(['conditions' => ['id' => $this->_id]])->remoce();
-    }
-
-    public function testAutoId() {
-
-        $this->_id = Products::autoId();
-        Products::create(['id'=>$this->_id, 'title' => 'test auto id']);
-        $product = Products::first(['conditions' => ['id' => $this->_id]]);
-        $this->assertTrue(!empty($product));
-
-        $newId = Prodcuts::autoId();
-        $this->assertEqual($this->_id+1, $newId);
-    }
+    public function tearDown() {}
 
     public function test_perAdd() {
 
@@ -63,63 +48,88 @@ class ProductsTest extends \lithium\test\Unit {
         $this->assertFalse(Validator::isArray($data['errorImages']['images']));
     }
 
-    public function test_perLists() {
+    public function test_preList() {
 
         $data = [
-            'orderby' => '',
+            'cat_id' => 0,
+            'brand_id' => 0
+        ];
+        $options = Products::_perLists($data);
+        $this->assertTrue(empty($options['conditions']));
+
+        $data = ['cat_id' => 1];
+        $options = Products::_perLists($data);
+        $this->assertEqual($data, $options['conditions']);
+
+        $data = ['brand_id' => 1];
+        $options = Products::_perLists($data);
+        $this->assertEqual($data, $options['conditions']);
+
+        $data = [
+            'cat_id' => 1,
+            'brand_id' => 2
+        ];
+        $options = Products::_perLists($data);
+        $this->assertEqual($data, $options['conditions']);
+    }
+
+    public function testhandleOrderBy() {
+
+        $data = [
+            'orderBy' => '',
             'sort'    => '',
         ];
-        $options = $this->_product->_perLists($data);
-        $this->assertEqual($options['order'], []);
+        $options = $this->_product->handleOrderBy($data);
+        $this->assertEqual($options['order'], ['showed' => 'asc']);
 
 
         $data = [
-            'orderby' => 'clicked',
+            'orderBy' => 'clicked',
             'sort'    => 'desc',
         ];
-        $options = $this->_product->_perLists($data);
-        $this->assertEqual($options['order'], []);
+        $options = $this->_product->handleOrderBy($data);
+        $this->assertEqual($options['order'], ['showed' => 'asc']);
 
         $data = [
-            'orderby' => 'remain',
+            'orderBy' => 'remain',
             'sort'    => 'zesc',
         ];
-        $options = $this->_product->_perLists($data);
+        $options = $this->_product->handleOrderBy($data);
         $this->assertEqual($options['order'], ['remain' => 'desc']);
 
         $data = [
-            'orderby' => 'hit',
+            'orderBy' => 'hit',
             'sort'    => 'desc',
         ];
-        $options = $this->_product->_perLists($data);
+        $options = $this->_product->handleOrderBy($data);
         $this->assertEqual($options['order'], ['hit' => 'desc']);
 
         $data = [
-            'orderby' => 'remain',
+            'orderBy' => 'remain',
             'sort'    => 'asc',
         ];
-        $options = $this->_product->_perLists($data);
+        $options = $this->_product->handleOrderBy($data);
         $this->assertEqual($options['order'], ['remain' => 'asc']);
 
         $data = [
-            'orderby' => 'created',
+            'orderBy' => 'created',
             'sort'    => 'asc',
         ];
-        $options = $this->_product->_perLists($data);
+        $options = $this->_product->handleOrderBy($data);
         $this->assertEqual($options['order'], ['created' => 'asc']);
 
         $data = [
-            'orderby' => 'price',
+            'orderBy' => 'price',
             'sort'    => 'asc',
         ];
-        $options = $this->_product->_perLists($data);
+        $options = $this->_product->handleOrderBy($data);
         $this->assertEqual($options['order'], ['price' => 'asc']);
 
         $data = [
-            'orderby' => 'showed',
+            'orderBy' => 'showed',
             'sort'    => 'desc',
         ];
-        $options = $this->_product->_perLists($data);
+        $options = $this->_product->handleOrderBy($data);
         $this->assertEqual($options['order'], ['showed' => 'desc']);
     }
 }

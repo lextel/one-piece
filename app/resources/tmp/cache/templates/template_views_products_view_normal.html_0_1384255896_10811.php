@@ -13,14 +13,14 @@ $this->title($product->title);
     <!--商品期数结束-->
     <!--商品简要开始-->
     <div class="Pro_Details">
-        <h1><span>(第78期)</span><?=$product->title;?> <span class="red"><?=$product->feature;?></span></h1>
+        <h1><span>(第78期)</span><?php echo $h($product->title); ?> <span class="red"><?php echo $h($product->feature); ?></span></h1>
         <div class="Pro_Detleft">
             <div class="detail-itemsummary-imageviewer">
                 <div id="middlePicRemark" class="middlePicRemark"></div>
-                <img id="imgGoodsPic" alt="" src="<?=$product->images[0];?>" style="width:396px; height:396px; display:none;">
+                <img id="imgGoodsPic" alt="" src="<?php echo $h($product->images[0]); ?>" style="width:396px; height:396px; display:none;">
                 <div id="middlePicBox" class="middlePicBox" style="position: relative; ">
                     <span id="BigViewImage" class="jqzoom" style="outline-style: none; cursor: crosshair; display: block; position: relative; height: 396px; width: 396px; ">
-                        <img id="" style="width: 396px; height: 396px; position: absolute; top: 0px; left: 0px; " src="<?=$product->images[0];?>">
+                        <img id="" style="width: 396px; height: 396px; position: absolute; top: 0px; left: 0px; " src="<?php echo $h($product->images[0]); ?>">
                     </span>
                 </div>
                 <div class="smallPicList">
@@ -55,12 +55,12 @@ $this->title($product->title);
             </div>
         </div>
         <div class="Pro_Detright">
-                <p class="Det_money">价值：<span class="rmbgray"><?=$product->price;?></span></p>
+                <p class="Det_money">价值：<span class="rmbgray"><?php echo $h($product->price); ?></span></p>
                 <div class="Progress_side">
                     <p title="已完成5.45%"><span style="width:24px; display:;"></span></p>
                     <ul class="Pro_sid_li">
                         <li class="P_bar01"><em>201</em>已参与人次</li>
-                        <li class="P_bar02"><em id="CodeQuantity"><?=$product->person;?></em>总需人次</li>
+                        <li class="P_bar02"><em id="CodeQuantity"><?php echo $h($product->person); ?></em>总需人次</li>
                         <li class="P_bar03"><em id="CodeLift">3487</em>剩余人次</li>
                     </ul>
                 </div>

@@ -34,19 +34,19 @@ $this->scripts($this->resLoader->script('umeditor/lang/zh-cn/zh-cn.js'));
   </div>
   <div class="add_product">
       <h2>编辑商品<a href="/products/dashboard" class="return_list">返回列表</a></h2>
-          <?=$this->form->create($product, ['id' => 'addProduct']); ?>
+          <?php echo $this->form->create($product, ['id' => 'addProduct']); ?>
           <ul>
               <li class="text_nums">
-                  <?=$this->form->field(['title' => '名称'], ['style' => 'width:400px']); ?>
+                  <?php echo $this->form->field(['title' => '名称'], ['style' => 'width:400px']); ?>
               </li>
               <li class="text_nums">
-                  <?=$this->form->field(['feature' => '特性'], ['style' => 'width:400px']); ?>
+                  <?php echo $this->form->field(['feature' => '特性'], ['style' => 'width:400px']); ?>
               </li>
               <li class="text_nums">
-                  <?=$this->form->field(['cat_id' => '分类'], ['type' => 'select', 'list' => $cats]); ?>
+                  <?php echo $this->form->field(['cat_id' => '分类'], ['type' => 'select', 'list' => $cats]); ?>
               </li>
               <li class="text_nums">
-                  <?=$this->form->field(['price' => '价格']); ?>
+                  <?php echo $this->form->field(['price' => '价格']); ?>
               </li>
               <li class="text_nums">
                   <div>
@@ -63,18 +63,18 @@ $this->scripts($this->resLoader->script('umeditor/lang/zh-cn/zh-cn.js'));
                   </div>
               </li>
               <li class="content_li">
-                  <?=$this->form->field(['content' => '详情'], ['type' => 'textarea', 'id' => 'content', 'style'=>'height:600px;width:750px']); ?>
+                  <?php echo $this->form->field(['content' => '详情'], ['type' => 'textarea', 'id' => 'content', 'style'=>'height:600px;width:750px']); ?>
               </li>
               <li></li>
               <li></li>
               <li>
                 <div class="bottom_side">
-                    <?=$this->form->submit('提交', ['class' => 'published']); ?>
-                    <?=$this->form->reset('重置', ['class' => 'canal']); ?>
+                    <?php echo $this->form->submit('提交', ['class' => 'published']); ?>
+                    <?php echo $this->form->reset('重置', ['class' => 'canal']); ?>
                 </div>
                </li>
             </ul>
-            <?=$this->form->end(); ?>
+            <?php echo $this->form->end(); ?>
     </div>
     <script type="text/javascript">
       // 添加验证方式

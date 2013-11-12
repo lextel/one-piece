@@ -33,7 +33,11 @@ class SortTest extends \lithium\test\Unit {
         $orderByList = Sort::sort($index, $order, $sort);
         $htmlSort = $sort == 'desc' ? 'asc' : 'desc';
         $orderBy = '<a href="/'.$index.'/index/?orderby='.$order.'&sort='.$htmlSort.'" class="SortCur">'.$this->_sorts[$index][$order].'</a>';
-        $this->assertTrue(in_array($orderBy, $orderByList), '指定created desc排序');
+        $this->assertTrue(in_array($orderBy, $orderByList), '选定created desc排序');
+
+        $order = 'hit';
+        $orderBy = '<a href="/'.$index.'/index/?orderby='.$order.'&sort=desc" class="">人气</a>';
+        $this->assertTrue(in_array($orderBy, $orderByList), '选定created desc排序时hit desc排序');
 
     }
 }

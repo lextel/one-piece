@@ -1,6 +1,9 @@
 <?php
 /**
- * 排序工具
+ * 前端排序工具
+ *
+ * @author weelion<weelion@qq.com>
+ * @version 1.0
  */
 namespace app\extensions\helper;
 
@@ -32,12 +35,12 @@ class Sort {
      * 获取排序title
      *
      * @param $index  string self::$sorts索引
-     * @param $order string 排序字段
-     * @param $sort  string 排序方式
+     * @param $order  string 排序字段
+     * @param $sort   string 排序方式
      *
-     * @return array
+     * @return array 排序方式列表
      */
-    public static function sort($index, $order = '', $sort = '') {
+    public static function sort($index, $cat_id = 0, $brand_id = 0, $order = '', $sort = '') {
 
         $orderByList = [];
 
@@ -48,10 +51,15 @@ class Sort {
             $htmlSort = 'desc';
             if($order == $idx || ($order == '' && $name == $first) ) {
                 $class = 'SortCur';
-                $htmlSort = 'asc';
+                $htmlSort = $sort == 'asc' ? 'desc' : 'asc';
             }
 
-            $orderByList[] = '<a href="/'.$index.'/index/?orderby='.$idx.'&sort='.$htmlSort.'" class="'.$class.'">'.$name.'</a>';
+            $params = !empty($cat_id) ? '/'.$cat_id ? '';
+
+            if(!empty($cat_id) && !empty($brand_id))
+                $params = '/'.$cat_id . '/'. $brand_id;
+
+            $orderByList[] = '<a href="/'.$index.'/index'.$params.'/?orderby='.$idx.'&sort='.$htmlSort.'" class="'.$class.'">'.$name.'</a>';
         }
 
         return $orderByList;
