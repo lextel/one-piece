@@ -35,42 +35,42 @@ $this->scripts($this->resLoader->script('umeditor/lang/zh-cn/zh-cn.js'));
   </div>
   <div class="add_product">
            <h2>添加商品<a href="/products/dashboard" class="return_list">返回列表</a></h2>
-          <?=$this->form->create($product, ['id' => 'addProduct']); ?>
+          <?php echo $this->form->create($product, ['id' => 'addProduct']); ?>
           <ul>
               <li class="text_nums">
-                  <?=$this->form->field(['title' => '名称'], ['style' => 'width: 400px']); ?>
+                  <?php echo $this->form->field(['title' => '名称'], ['style' => 'width: 400px']); ?>
               </li>
               <li class="text_nums">
-                  <?=$this->form->field(['feature' => '特性'], ['style' => 'width:400px']); ?>
+                  <?php echo $this->form->field(['feature' => '特性'], ['style' => 'width:400px']); ?>
               </li>
               <li class="text_nums">
                   <?php
                   $cats = ['' => '--请选择--'] + $cats;
                   ?>
-                  <?=$this->form->field(['cat_id' => '分类'], ['type' => 'select', 'list' => $cats] ); ?>
+                  <?php echo $this->form->field(['cat_id' => '分类'], ['type' => 'select', 'list' => $cats] ); ?>
               </li>
               <li class="text_nums brand" style="display:none">
-                  <?=$this->form->field(['brand_id' => '品牌'], ['type' => 'select', 'list' => ['' => '--请选择--']]); ?>
+                  <?php echo $this->form->field(['brand_id' => '品牌'], ['type' => 'select', 'list' => ['' => '--请选择--']]); ?>
               </li>
               <li class="text_nums">
-                  <?=$this->form->field(['price' => '价格'], ['template' => '<div tips="如:1999.99">{:label}{:input}{:error}</div>']); ?>
+                  <?php echo $this->form->field(['price' => '价格'], ['template' => '<div tips="如:1999.99">{:label}{:input}{:error}</div>']); ?>
               </li>
               <li class="text_nums">
-                  <?=$this->form->field(['images' => '图片'], ['template' =>'<div>{:label}<dl class="add_p_img"><dd class="insert_bottom">添加<input id="upload" type="file" name="file"></dd></dl><input id="ProductsImages" name="images[]" style="width:1px;height:1px;opacity: 0;-ms-filter: \'alpha(opacity=0)\';"></div>']); ?>
+                  <?php echo $this->form->field(['images' => '图片'], ['template' =>'<div>{:label}<dl class="add_p_img"><dd class="insert_bottom">添加<input id="upload" type="file" name="file"></dd></dl><input id="ProductsImages" name="images[]" style="width:1px;height:1px;opacity: 0;-ms-filter: \'alpha(opacity=0)\';"></div>']); ?>
               </li>
               <li class="content_li">
-                  <?=$this->form->field(['content' => '详情'], ['type' => 'textarea', 'id' => 'content', 'style'=>'height:600px;width:750px;margin-left:30px']); ?>
+                  <?php echo $this->form->field(['content' => '详情'], ['type' => 'textarea', 'id' => 'content', 'style'=>'height:600px;width:750px;margin-left:30px']); ?>
               </li>
               <li></li>
               <li></li>
               <li>
                 <div class="bottom_side">
-                    <?=$this->form->submit('提交', ['class' => 'published']); ?>
-                    <?=$this->form->reset('重置', ['class' => 'canal']); ?>
+                    <?php echo $this->form->submit('提交', ['class' => 'published']); ?>
+                    <?php echo $this->form->reset('重置', ['class' => 'canal']); ?>
                 </div>
                </li>
             </ul>
-            <?=$this->form->end(); ?>
+            <?php echo $this->form->end(); ?>
     </div>
     <script type="text/javascript">
         // 编辑器
@@ -141,7 +141,7 @@ $this->scripts($this->resLoader->script('umeditor/lang/zh-cn/zh-cn.js'));
             $('#ProductsCatId').change(function() {
                 var cat_id = $(this).val();
                 $.ajax({
-                    url: '<?=$this->url('Products::brand')?>/'+cat_id,
+                    url: '<?php echo $this->url('Products::brand'); ?>/'+cat_id,
                     dataType: 'json',
                     success: function(data) {
                         if(data.length != 0) {
@@ -160,7 +160,7 @@ $this->scripts($this->resLoader->script('umeditor/lang/zh-cn/zh-cn.js'));
             });
 
             // 图片上传
-            var url = '<?=$this->url('Products::upload')?>';
+            var url = '<?php echo $this->url('Products::upload'); ?>';
             $('#upload').fileupload({
                 url: url,
                 dataType: 'json',

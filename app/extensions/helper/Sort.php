@@ -54,12 +54,12 @@ class Sort {
                 $htmlSort = $sort == 'asc' ? 'desc' : 'asc';
             }
 
-            $params = !empty($cat_id) ? '/'.$cat_id ? '';
+            $params = !empty($cat_id) ? '/'.$cat_id : '';
 
             if(!empty($cat_id) && !empty($brand_id))
                 $params = '/'.$cat_id . '/'. $brand_id;
 
-            $orderByList[] = '<a href="/'.$index.'/index'.$params.'/?orderby='.$idx.'&sort='.$htmlSort.'" class="'.$class.'">'.$name.'</a>';
+            $orderByList[] = '<a href="/'.$index.'/index'.$params.'/?orderby='.$idx.'&sort='.$htmlSort.'" class="'.$class.'">'.$name.'<i></i></a>';
         }
 
         return $orderByList;

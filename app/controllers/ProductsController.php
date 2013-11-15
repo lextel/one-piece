@@ -26,7 +26,7 @@ class ProductsController extends \lithium\action\Controller {
         $sort     = isset($request->query['sort']) ? $request->query['sort'] : '';
 
         $total = Products::lists(compact('cat_id', 'brand_id'))->count();
-        $products = Products::lists(compact('limit', 'page', 'cat_id', 'brand_id', 'orderBy', 'sort'));
+        $products = Products::lists(compact('limit', 'page', 'cat_id', 'brand_id', 'orderBy', 'sort'), true);
 
         // 排序LIST
         $orderByList = Sort::sort('products',$cat_id, $brand_id, $orderBy, $sort);
@@ -41,10 +41,11 @@ class ProductsController extends \lithium\action\Controller {
     public function dashboard() {
         $limit = Page::$page;
         $page  = $this->request->page ? : 1;
-        $data = $this->request->data;
+        $orderBy = 'created';
+        $sort = 'desc';
 
-        $total = Products::lists($data)->count();
-        $products = Products::lists(compact('limit', 'page', 'data'));
+        $total = Products::lists()->count();
+        $products = Products::lists(compact('limit', 'page','orderBy', 'sort'), true);
 
         return compact('products', 'limit', 'page', 'total');
     }
@@ -130,6 +131,15 @@ class ProductsController extends \lithium\action\Controller {
         $view =  $this->render(['type' => 'html', 'template' => 'view_normal']);
 
         return $view;
+    }
+
+    // 分类ID获取品牌
+    public function brand() {
+        $cat_id = $this->request->cat_id;
+
+        $brands = Brands::lists($cat_id);
+
+        return $this->render(['type' => 'json', 'data' => $brands]);
     }
 
     // 没有商品

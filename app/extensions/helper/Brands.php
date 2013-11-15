@@ -30,6 +30,9 @@ class Brands {
             9 => ['name' => '佳能(Canon)'],
             10 => ['name' => 'LG(LG)'],
         ],
+        3 => [
+            11 => ['name' => '苹果(Apple)'],
+        ]
     ];
 
     /**

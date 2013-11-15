@@ -7,21 +7,28 @@ namespace app\models;
 
 class Products extends \lithium\data\Model {
 
+    /**
+     * mongodb products数据结构
+     *
+     * @var array
+     */
     protected $_schema = [
-        '_id' => ['type' => 'id', 'length' => 10, 'null' => false, 'default' => null],
-        'cat_id' => ['type' => 'integer', 'length' => 5, 'null' => false, 'default' => 0],
-        'title' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null],
-        'feature' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null],
-        'content' => ['type' => 'string', 'length' => 10000, 'null' => false, 'default' => null],
-        'price' => ['type' => 'float', 'length' => 10, 'null' => false, 'default' => 0],
-        'person' => ['type' => 'integer', 'length' => 5, 'null' => false, 'default' => 0],
-        'remain' => ['type' => 'integer', 'length' => 5, 'null' => false, 'default' => 0],
-        'images' => ['type' => 'array', 'length' => null, 'null' => false, 'default' => null],
-        'periods' => ['type' => 'array', 'length' => null, 'null' => false, 'default' => null],
-        'hit' => ['type' => 'integer', 'length' => 10, 'null' => false, 'default' => 0],
-        'status' => ['type' => 'integer', 'length' => 1, 'null' => false, 'default' => 0],
-        'showed' => ['type' => 'date'],
-        'created' => ['type' => 'date'],
+        '_id' => ['type' => 'id', 'length' => 10, 'null' => false, 'default' => null],               // UUID
+        'cat_id' => ['type' => 'integer', 'length' => 5, 'null' => false, 'default' => 0],            // 分类ID
+        'brand_id' => ['type' => 'integer', 'length' => 5, 'default' => 0],                            // 品牌ID
+        'type_id' => ['type' => 'integer', 'length' => 5],                                             // 类型
+        'tag_id' => ['type' => 'integer', 'length' => 5],                                              // 标识
+        'title' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null],        // 标题
+        'feature' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null],      // 特性
+        'price' => ['type' => 'float', 'length' => 10, 'null' => false, 'default' => 0],              // 当期价格
+        'person' => ['type' => 'integer', 'length' => 10, 'null' => false, 'default' => 0],           // 当期需要人次
+        'remain' => ['type' => 'integer', 'length' => 10, 'null' => false, 'default' => 0],           // 当期剩余人次
+        'content' => ['type' => 'string', 'length' => 10000, 'null' => false, 'default' => null],    // 详情
+        'images' => ['type' => 'array', 'length' => null, 'null' => false, 'default' => null],       // 图片
+        'periods' => ['type' => 'array', 'length' => null, 'null' => false, 'default' => null],      // 期数数据
+        'hit' => ['type' => 'integer', 'length' => 10, 'null' => false, 'default' => 0],              // 当期人气
+        'status' => ['type' => 'integer', 'length' => 1, 'null' => false, 'default' => 0],            // 上下架
+        'created' => ['type' => 'date'],                                                               // 添加时间
     ];
 
     /**
@@ -33,7 +40,7 @@ class Products extends \lithium\data\Model {
             'cat_id'      => ['notEmpty', 'message' => '请选择分类'],
             'title'       => ['notEmpty', 'message' => '请填写商品名'],
             'price'       => ['decimal', 'message' => '价格格式不正确'],
-            // 'images'      => ['array', 'message' => '商品图片不能为空'],
+            // 'images'      => ['array', 'message' => '商品图片不能为空'],  // TODO 图片Model验证
             'content'     => ['notEmpty', 'message' => '请填写商品详情'],
            ];
 
@@ -54,9 +61,6 @@ class Products extends \lithium\data\Model {
      *                 $data['feature'] 特性
      *                 $data['cat_id']  分类ID
      *                 $data['brand_id'] 品牌ID
-     *                 $data['price']   价格
-     *                 $data['person']  人次
-     *                 $data['remain']  剩余人次
      *                 $data['images']  图片
      *                 $data['content'] 详情
      *                 $data['status']  上架状态
@@ -65,12 +69,14 @@ class Products extends \lithium\data\Model {
      */
     public function _perAdd($data) {
 
-        $data['price'] = sprintf('%.2f',$data['price']);
-        $data['person'] = intval($data['price']);
-        $data['remain'] = intval($data['price']);
         $data['hit'] = 0;
         $data['status'] = 0;
         $data['created'] = date('Y-m-d H:i:s');
+        $data['price'] = sprintf('%.2f',$data['price']);
+        $data['person'] = intval($data['price']);
+        $data['remain'] = $data['person'];
+
+        $data = Periods::init($data);
 
         return $data;
     }
@@ -165,13 +171,51 @@ class Products extends \lithium\data\Model {
     /**
      * 商品列表
      *
+     * @param $options array 过滤条件
+     *                        $options['page']      页码
+     *                        $options['cat_id']    分类
+     *                        $options['brand_id']  品牌
+     *                        $options['limit']     条数限制
+     *                        $options['orderBy']   排序字段
+     *                        $options['sort']      排序方式
+     *
+     * @param $output boolean 是否是输出
+     *
      * @return object 结果对象
      */
-    public static function lists($options = []) {
+    public static function lists($options = [], $output = false) {
 
         $options = self::_perLists($options);
+        $data = Products::all($options);
 
-        return Products::all($options);
+        return $output ? self::_afterLists($data) : $data;
+    }
+
+    /**
+     * 列表转成输出数组
+     *
+     * @param $data object 列表对象
+     *
+     * @return array
+     */
+    public static function _afterLists($data) {
+
+        $newData = [];
+        foreach($data as $item) {
+            $newData[] = [
+                'id'        => $item->_id,
+                'title'     => $item->title,
+                'images'    => $item->images,
+                'price'     => $item->price,
+                'remain'    => $item->remain,
+                'person'    => $item->person,
+                'period_id' => count($item->periods),
+                'status'    => $item->status == 1 ? true : false,
+                'created'   => $item->created,
+            ];
+        }
+
+        return $newData;
     }
 
     /**
@@ -195,6 +239,13 @@ class Products extends \lithium\data\Model {
         $rs = $product->save($data);
 
         return $rs;
+    }
+
+    public function view($id, $period_id) {
+        $product = Products::first(['conditions' => ['_id' => $id]]);
+
+
+
     }
 }
 

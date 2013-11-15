@@ -9,6 +9,7 @@ class ProductsTest extends \lithium\test\Unit {
     private $_request;
     private $_product;
     private $_rules;
+    private $_id;
 
     public function setUp() {
         $this->_request = new Request();
@@ -131,6 +132,111 @@ class ProductsTest extends \lithium\test\Unit {
         ];
         $options = $this->_product->handleOrderBy($data);
         $this->assertEqual($options['order'], ['showed' => 'desc']);
+    }
+
+    public function testAfterLists() {
+        $options = ['limit' => 1]; // 列表只取一个产品
+        $rs = Products::all($options);
+
+        // 期数是否处理通过
+        $afterData = Products::_afterLists($rs);
+        foreach($afterData as $r ) {
+            $this->assertTrue(isset($r['id']), '列表UUID没有调用');
+            $this->assertTrue(isset($r['period_id']), '列表期数ID没有调用');
+            $this->assertTrue(isset($r['title']), '列表标题没有调用');
+            $this->assertTrue(isset($r['status']), '列表状态没有调用');
+        }
+    }
+
+    public function test_afterView() {
+
+        // 创建一条普通商品
+        $data = [
+            'cat_id'   => 1,
+            'brand_id' => 1,
+            'tag_id'   => 1,
+            'type_id'  => 1,
+            'title'    => 'test periods auto id',
+            'price'    => '99.00',
+            'person'   => '99',
+            'remain'   => '99',
+            'content'  => 'test content',
+            'images'   =>['test.jpg'],
+        ];
+
+        $product = $this->_product->add($data);
+        $this->_id = $product->_id;
+
+        $info = [];
+        $info['title']      = $product->title;
+        $info['feature']    = $product->feature;
+        $info['price']      = $product->price;
+        $info['remain']     = $product->remain;
+        $info['person']     = $product->person;
+        $info['content']    = $product->content;
+        $info['finalAward'] = false;
+        $info['isShowed']   = false;
+        $info['type_id']    = $product->type_id;
+        $info['images']     = $product->images;
+        $info['isShare']    = false;
+        $info['orders']     = $product->orders;
+
+        $onlyPeriod = $this->_product->_afterView($this->_id, 1);
+        $this->assertEqual($info, $onlyPeriod);
+
+        // 添加第二期
+        $addPeriod = [
+            [
+                'id'      => 1,
+                'price'   => '99.00',
+                'remain'  => '99',
+                'person'  => '99',
+                'code'    => '',
+                'created' => strtotime(date(), '-1 days'),
+                'showed'  => strtotime(date(), '-1 days'),
+                'status'  => 1,
+                'result'  => [],
+                'orders'  => []
+            ],
+            [
+                'id'      => 2,
+                'price'   => '99.00',
+                'remain'  => '99',
+                'person'  => '99',
+                'code'    => '',
+                'created' => date('Y-m-d H:i:s'),
+                'showed'  => date('Y-m-d H:i:s'),
+                'status'  => 1,
+                'result'  => [],
+                'orders'  => []
+            ],
+        ];
+        $priduct->periods = $addPeriod;
+        $product->save();
+
+        $info = [];
+        $info['title']      = $product->title;
+        $info['feature']    = $product->feature;
+        $info['price']      = $product->price;
+        $info['remain']     = $product->remain;
+        $info['person']     = $product->person;
+        $info['content']    = $product->content;
+        $info['finalAward'] = false;
+        $info['isShowed']   = true;
+        $info['type_id']    = $product->type_id;
+        $info['images']     = $product->images;
+        $info['isShare']    = false;
+        $info['orders']     = $product->orders;
+
+        $firstPeriod = $this->_product_afterView($this->_id, 1);
+        $this->assertEqual($info, $firstPeriod);
+
+
+
+
+
+
+
     }
 }
 

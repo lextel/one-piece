@@ -102,7 +102,8 @@ a.go_Shopping:hover {color: white;background: #F40;}
 	 border: solid #ddd 1px ;
 	 border-radius:5px;
 	 min-width: 28px;
-	padding: 0 5px;
+	 padding: 0 5px;
+	 cursor:pointer;
 }
 .pages ul li a{color:#333; font-size:14px;}
 .pages ul li a:hover{color:#f60; text-decoration:underline;}
@@ -251,17 +252,38 @@ display: block;
 .show_Period {width: 978px;overflow: hidden;zoom: 1;position: relative; margin:0 auto;}
 .show_Period .Period_list {width: 985px;border-bottom: 1px solid #E4E4E4;height: 32px;background: #FCFCFC;}
 .show_Period .Period_list li {float: left;width: 108px;height: 32px;border-right: 1px solid #E4E4E4;}
-.show_Period li .period_ArrowCur {
-	width: 108px;
-	font-family: 微软雅黑,宋体,Arial;
+show_Period .Period_list a.period_Ongoing {
+	width: 98px;
+	padding-left: 10px;
+	padding-top: 1px;
+	overflow: hidden;
+	font-size: 12px;
+	position: relative;
+	font-weight:bold;
+	color: #F60;
+	display: inline-block;
+}
+.show_Period li .period_Ongoing i {
+	width: 46px;
+	height: 16px;
+	display: inline-block;
+	background: url(../img/Announced_8.gif) no-repeat;
+	vertical-align: -3px;
+	margin-left: 3px;
+}
+.show_Period .Period_list {width: 985px;border-bottom: 1px solid #E4E4E4;height: 32px;background: #FCFCFC;}
+.show_Period .Period_list li {float: left;width: 108px;height: 32px;border-right: 1px solid #E4E4E4;}
+.show_Period .Period_list li a.period_ArrowCur {
 	font-size: 16px;
-	line-height: 32px;
-	height: 32px;
 	background: #F60;
 	color: white;
-	text-align: center;
-	display: inline-block;
-	font-weight: normal;
+	font-weight: bold;
+}
+.show_Period .Period_list li a.period_ArrowCur:hover {
+	font-size: 16px;
+	background: #F60;
+	color: white;
+	font-weight: bold;
 }
 .show_Period .Period_list li a {
 	width: 108px;

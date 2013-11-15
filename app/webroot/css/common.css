@@ -26,7 +26,25 @@ a.list_classMore {border: 1px solid #EEE;display: inline-block;position: absolut
 .list_Sort dt {float: left;width: 53px;text-align: center;padding-top: 4px;color: #BBB;}
 .list_Sort dd {float: left;padding-left: 1px;height: 28px;}
 .list_Sort dd a.SortCur {border: 2px solid #F60;color: #666;margin-right: 10px;margin-top: 1px;margin-left: -1px;margin-bottom: 0;}
-.list_Sort dd a {border: 1px solid #CCC;margin-right: 10px;padding: 2px 20px 2px 20px;_padding: 2px 20px 2px 20px;margin-left: 1px;margin-top: 2px;margin-bottom: 1px;color: #999;display: inline-block;float: left;}
+.list_Sort dd a {
+	border: 1px solid #CCC;
+	margin:2px 10px 1px 1px;
+	padding: 2px 20px 2px 20px;
+	color: #999;
+	display: inline-block;
+	float: left;
+}
+.list_Sort dl dd a i{
+	background-position: 0 -170px;
+	width:7px;
+	height:9px;
+	display:inline-block;
+	cursor:pointer;
+	margin-left:8px;
+}
+.goods_tj, .goods_xp, .goods_rq, .goods_xs, .list_classMore i, .MoreClick i, .list_Sort dd a i, .SortCur b, .SortCur s {
+background: url(../img/goods_tj.png) no-repeat;
+}
 /*用户信息*/
 .user_content{width:980px;margin:40px auto 0;overflow:hidden;}
 .wrap h2{ height: 30px;font-size: 18px;border-top: 1px dashed #DBDBDB;line-height: 30px;padding: 10px 0;}
@@ -117,7 +135,7 @@ h1 {font-size: 25px;font-weight: bold;color: #494949;margin: 0;}
 }
 .edui-editor{ height:250px; overflow:hidden;}
 .add_product ul li h4{ margin-left:44px;}
-.add_product ul li div label{font-size:14px;}
+.add_product ul li div label{font-size:14px; }
 .text_nums div input{height:30px; border:1px solid #dbdbdb; width:200px;float:left; margin-left:5px; text-indent:10px; }
 .text_nums div label{display: block;float: left;height: 30px;line-height: 30px;text-align: right; width:80px; font-size:14px;}
 .add_product ul .radio_nums input{height:30px; padding-top:8px; float:left; margin:0 10px;}
@@ -125,7 +143,8 @@ h1 {font-size: 25px;font-weight: bold;color: #494949;margin: 0;}
 .add_product ul .radio_nums { margin-left:65px;}
 .add_product ul .radio_nums label{ float:left; height:30px; line-height:30px;}
 .add_product ul .radio_select label{ float:left; height:30px; line-height:30px;}
-.bottom_side{height:36px; width:100%; margin-left:50px;}
+.bottom_side{height:36px; width:100%; margin:10px 0 0 65px;}
+.content_li .error{ margin-left:30px;color:red;}
 .bottom_side  input{
 	display:block; 
 	width:60px; 
@@ -904,7 +923,9 @@ background: url(../img/login_new.png) no-repeat;
 	margin-left: -1px;
 	margin-bottom: 0;
 }
-
+.list_Sort dd a.SortCur i{
+	background-position:-22px -170px;
+}
 .share_list {width: 980px;padding: 0 0 20px 0;background: #F7F7F7;overflow: hidden;zoom: 1;}
 .goods_share_listC {width: 980px;overflow: hidden;padding: 0 0 10px 0;}
 .goods_share_listC ul {width: 980px;}

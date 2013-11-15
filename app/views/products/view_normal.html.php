@@ -7,13 +7,18 @@ $this->title($product->title);
     <!--商品期数开始-->
     <div id="divPeriodList" class="show_Period">
         <ul class="Period_list">
+            <?php
+                for($product) {
+
+                }
+            ?>
             <li><a href="javascript:void(0);" class="gray02">第1期</a></li>
          </ul>
      </div>
     <!--商品期数结束-->
     <!--商品简要开始-->
     <div class="Pro_Details">
-        <h1><span>(第78期)</span><?=$product->title;?> <span class="red"><?=$product->feature;?></span></h1>
+        <h1><span>(第78期)</span><?=$product['title'];?> <span class="red"><?=$product['feature'];?></span></h1>
         <div class="Pro_Detleft">
             <div class="detail-itemsummary-imageviewer">
                 <div id="middlePicRemark" class="middlePicRemark"></div>
