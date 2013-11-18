@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="78634931-07fb-48b4-996b-6fc5233778c8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/extensions/helper/Tags.php" />
       <change type="DELETED" beforePath="D:\www\pp\app\resources\tmp\cache\templates\template_mustache_products_dashboard.html_0_1384083465_204.php" afterPath="" />
       <change type="DELETED" beforePath="D:\www\pp\app\resources\tmp\cache\templates\template_mustache_products_dashboard.html_0_1384156082_360.php" afterPath="" />
       <change type="DELETED" beforePath="D:\www\pp\app\resources\tmp\cache\templates\template_mustache_products_dashboard.html_0_1384247665_349.php" afterPath="" />
@@ -18,22 +17,9 @@
       <change type="DELETED" beforePath="D:\www\pp\app\resources\tmp\cache\templates\template_views_products_index.html_0_1384104190_1698.php" afterPath="" />
       <change type="DELETED" beforePath="D:\www\pp\app\resources\tmp\cache\templates\template_views_products_index.html_0_1384166289_1384.php" afterPath="" />
       <change type="DELETED" beforePath="D:\www\pp\app\resources\tmp\cache\templates\template_views_products_view_normal.html_0_1384169466_11488.php" afterPath="" />
-      <change type="DELETED" beforePath="D:\www\pp\app\tests\cases\models\CatsTest.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/webroot/img/goods_tj.png" afterPath="$PROJECT_DIR$/app/webroot/img/goods_tj.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/extensions/helper/Brands.php" afterPath="$PROJECT_DIR$/app/extensions/helper/Brands.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Periods.php" afterPath="$PROJECT_DIR$/app/models/Periods.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Products.php" afterPath="$PROJECT_DIR$/app/models/Products.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/ProductsController.php" afterPath="$PROJECT_DIR$/app/controllers/ProductsController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/tests/cases/models/ProductsTest.php" afterPath="$PROJECT_DIR$/app/tests/cases/models/ProductsTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/extensions/helper/Sort.php" afterPath="$PROJECT_DIR$/app/extensions/helper/Sort.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/products/add.html.php" afterPath="$PROJECT_DIR$/app/views/products/add.html.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/resources/tmp/cache/b24581042a89a9475ee2be0dfa4493be.core.libraries" afterPath="$PROJECT_DIR$/app/resources/tmp/cache/b24581042a89a9475ee2be0dfa4493be.core.libraries" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/webroot/css/common.css" afterPath="$PROJECT_DIR$/app/webroot/css/common.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/bootstrap/connections.php" afterPath="$PROJECT_DIR$/app/config/bootstrap/connections.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/mustache/products/dashboard.html.php" afterPath="$PROJECT_DIR$/app/views/mustache/products/dashboard.html.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/webroot/css/product_list.css" afterPath="$PROJECT_DIR$/app/webroot/css/product_list.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/routes.php" afterPath="$PROJECT_DIR$/app/config/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/products/view_normal.html.php" afterPath="$PROJECT_DIR$/app/views/products/view_normal.html.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pp.iws" />
@@ -60,7 +46,7 @@
       <file leaf-file-name="Periods.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/Periods.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="41" selection-start="400" selection-end="400" vertical-scroll-proportion="0.0" vertical-offset="304" max-vertical-offset="1843">
+            <state line="17" column="41" selection-start="438" selection-end="438" vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="1957">
               <folding />
             </state>
           </provider>
@@ -69,7 +55,7 @@
       <file leaf-file-name="PeriodsTest.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/tests/cases/models/PeriodsTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="43" selection-start="902" selection-end="902" vertical-scroll-proportion="0.0" vertical-offset="684" max-vertical-offset="1254">
+            <state line="35" column="43" selection-start="857" selection-end="857" vertical-scroll-proportion="0.0" vertical-offset="665" max-vertical-offset="1235">
               <folding />
             </state>
           </provider>
@@ -110,7 +96,7 @@
       <file leaf-file-name="Products.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/Products.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="102" selection-start="333" selection-end="333" vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="4902">
+            <state line="24" column="102" selection-start="1249" selection-end="1249" vertical-scroll-proportion="0.0" vertical-offset="456" max-vertical-offset="5529">
               <folding />
             </state>
           </provider>
@@ -119,7 +105,7 @@
       <file leaf-file-name="ProductsTest.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/tests/cases/models/ProductsTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="170" column="0" selection-start="5117" selection-end="5117" vertical-scroll-proportion="0.3827839" vertical-offset="2983" max-vertical-offset="4066">
+            <state line="171" column="0" selection-start="5248" selection-end="5248" vertical-scroll-proportion="-0.06959707" vertical-offset="3249" max-vertical-offset="4598">
               <folding />
             </state>
           </provider>
@@ -601,13 +587,13 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="options.splitter.main.proportions" value="0.3" />
     <property name="full.screen.before.presentation.mode" value="true" />
+    <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="options.lastSelected" value="IntelliLang.Configuration" />
     <property name="FullScreen" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -710,9 +696,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24961948" sideWeight="0.49914238" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="true" weight="0.2435312" sideWeight="0.86645466" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -775,21 +761,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/Periods.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="41" selection-start="400" selection-end="400" vertical-scroll-proportion="0.0" vertical-offset="304" max-vertical-offset="1843">
+        <state line="17" column="41" selection-start="438" selection-end="438" vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="1957">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/tests/cases/models/PeriodsTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="43" selection-start="902" selection-end="902" vertical-scroll-proportion="0.0" vertical-offset="684" max-vertical-offset="1254">
+        <state line="35" column="43" selection-start="857" selection-end="857" vertical-scroll-proportion="0.0" vertical-offset="665" max-vertical-offset="1235">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/Products.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="102" selection-start="333" selection-end="333" vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="4902">
+        <state line="24" column="102" selection-start="1249" selection-end="1249" vertical-scroll-proportion="0.0" vertical-offset="456" max-vertical-offset="5529">
           <folding />
         </state>
       </provider>
@@ -838,7 +824,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/tests/cases/models/ProductsTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="170" column="0" selection-start="5117" selection-end="5117" vertical-scroll-proportion="0.3827839" vertical-offset="2983" max-vertical-offset="4066">
+        <state line="171" column="0" selection-start="5248" selection-end="5248" vertical-scroll-proportion="-0.06959707" vertical-offset="3249" max-vertical-offset="4598">
           <folding />
         </state>
       </provider>

@@ -15,10 +15,6 @@ class ProductsTest extends \lithium\test\Unit {
         $this->_request = new Request();
         $this->_product = new Products();
         $this->_rules = $this->_product->validates;
-
-        Validator::add('array', function($value) {
-            return is_array($value);
-        });
     }
 
     public function tearDown() {}
@@ -171,17 +167,21 @@ class ProductsTest extends \lithium\test\Unit {
         $info['title']      = $product->title;
         $info['feature']    = $product->feature;
         $info['price']      = $product->price;
-        $info['remain']     = $product->remain;
         $info['person']     = $product->person;
+        $info['remain']     = $product->remain;
         $info['content']    = $product->content;
+        $info['typeId']     = $product->type_id;
+        $info['images']     = $product->images;
+        $info['orders']     = [];
+        $info['results']    = [];
+        $info['period_ids'] = ['1'];
         $info['finalAward'] = false;
         $info['isShowed']   = false;
-        $info['type_id']    = $product->type_id;
-        $info['images']     = $product->images;
-        $info['isShare']    = false;
-        $info['orders']     = $product->orders;
+        $info['active']     = false;
 
-        $onlyPeriod = $this->_product->_afterView($this->_id, 1);
+        $product = $this->_product->view($this->_id, 1);
+
+        $onlyPeriod = $this->_product->_afterView($product, 1);
         $this->assertEqual($info, $onlyPeriod);
 
         // 添加第二期
@@ -191,19 +191,28 @@ class ProductsTest extends \lithium\test\Unit {
                 'price'   => '99.00',
                 'remain'  => '99',
                 'person'  => '99',
-                'code'    => '',
-                'created' => strtotime(date(), '-1 days'),
-                'showed'  => strtotime(date(), '-1 days'),
+                'code'    => '1000010',
+                'created' => date('Y-m-d H:i:s', strtotime(date(), '-1 days')),
+                'showed'  => date('Y-m-d H:i:s', strtotime(date(), '-1 days')),
                 'status'  => 1,
-                'result'  => [],
-                'orders'  => []
+                'result'  => [
+                    'user_id' => 1,
+                    'product_id' => '',
+                    'ordered' => date('Y-m-d H:i:s.u'),
+                ],
+                'orders'  => [
+                    'user_id' => 1,
+                    'product_id' => '',
+                    'ordered' => date('Y-m-d H:i:s.u'),
+                    'ip' => '127.0.0.1',
+                    'total' => 1,
+                ]
             ],
             [
                 'id'      => 2,
                 'price'   => '99.00',
                 'remain'  => '99',
                 'person'  => '99',
-                'code'    => '',
                 'created' => date('Y-m-d H:i:s'),
                 'showed'  => date('Y-m-d H:i:s'),
                 'status'  => 1,
@@ -211,31 +220,28 @@ class ProductsTest extends \lithium\test\Unit {
                 'orders'  => []
             ],
         ];
-        $priduct->periods = $addPeriod;
+        $product->periods = $addPeriod;
         $product->save();
 
         $info = [];
         $info['title']      = $product->title;
         $info['feature']    = $product->feature;
         $info['price']      = $product->price;
-        $info['remain']     = $product->remain;
         $info['person']     = $product->person;
+        $info['remain']     = $product->remain;
         $info['content']    = $product->content;
-        $info['finalAward'] = false;
-        $info['isShowed']   = true;
-        $info['type_id']    = $product->type_id;
+        $info['typeId']     = $product->type_id;
         $info['images']     = $product->images;
-        $info['isShare']    = false;
-        $info['orders']     = $product->orders;
+        $info['orders']     = [];
+        $info['results']    = [];
+        $info['period_ids'] = ['2', '1'];
+        $info['finalAward'] = false;
+        $info['isShowed']   = false;
+        $info['active']     = false;
 
-        $firstPeriod = $this->_product_afterView($this->_id, 1);
+
+        $firstPeriod = $this->_product_afterView($this->_id, 2);
         $this->assertEqual($info, $firstPeriod);
-
-
-
-
-
-
 
     }
 }

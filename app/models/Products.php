@@ -4,6 +4,7 @@
  * @version 1.0
  */
 namespace app\models;
+use lithium\util\Validator;
 
 class Products extends \lithium\data\Model {
 
@@ -13,22 +14,22 @@ class Products extends \lithium\data\Model {
      * @var array
      */
     protected $_schema = [
-        '_id' => ['type' => 'id', 'length' => 10, 'null' => false, 'default' => null],               // UUID
-        'cat_id' => ['type' => 'integer', 'length' => 5, 'null' => false, 'default' => 0],            // 分类ID
-        'brand_id' => ['type' => 'integer', 'length' => 5, 'default' => 0],                            // 品牌ID
-        'type_id' => ['type' => 'integer', 'length' => 5],                                             // 类型
-        'tag_id' => ['type' => 'integer', 'length' => 5],                                              // 标识
-        'title' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null],        // 标题
-        'feature' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null],      // 特性
-        'price' => ['type' => 'float', 'length' => 10, 'null' => false, 'default' => 0],              // 当期价格
-        'person' => ['type' => 'integer', 'length' => 10, 'null' => false, 'default' => 0],           // 当期需要人次
-        'remain' => ['type' => 'integer', 'length' => 10, 'null' => false, 'default' => 0],           // 当期剩余人次
-        'content' => ['type' => 'string', 'length' => 10000, 'null' => false, 'default' => null],    // 详情
-        'images' => ['type' => 'array', 'length' => null, 'null' => false, 'default' => null],       // 图片
-        'periods' => ['type' => 'array', 'length' => null, 'null' => false, 'default' => null],      // 期数数据
-        'hit' => ['type' => 'integer', 'length' => 10, 'null' => false, 'default' => 0],              // 当期人气
-        'status' => ['type' => 'integer', 'length' => 1, 'null' => false, 'default' => 0],            // 上下架
-        'created' => ['type' => 'date'],                                                               // 添加时间
+        '_id'      => ['type' => 'id', 'length' => 10, 'null' => false, 'default' => null],             // UUID
+        'cat_id'   => ['type' => 'integer', 'length' => 5, 'null' => false, 'default' => 0],            // 分类ID
+        'brand_id' => ['type' => 'integer', 'length' => 5, 'default' => 0],                             // 品牌ID
+        'type_id'  => ['type' => 'integer', 'length' => 5],                                             // 类型
+        'tag_id'   => ['type' => 'integer', 'length' => 5],                                             // 标识
+        'title'    => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null],        // 标题
+        'feature'  => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null],        // 特性
+        'price'    => ['type' => 'float', 'length' => 10, 'null' => false, 'default' => 0],             // 当期价格
+        'person'   => ['type' => 'integer', 'length' => 10, 'null' => false, 'default' => 0],           // 当期需要人次
+        'remain'   => ['type' => 'integer', 'length' => 10, 'null' => false, 'default' => 0],           // 当期剩余人次
+        'content'  => ['type' => 'string', 'length' => 10000, 'null' => false, 'default' => null],      // 详情
+        'images'   => ['type' => 'array', 'length' => null, 'null' => false, 'default' => null],        // 图片
+        'periods'  => ['type' => 'array', 'length' => null, 'null' => false, 'default' => null],        // 期数数据
+        'hit'      => ['type' => 'integer', 'length' => 10, 'null' => false, 'default' => 0],           // 当期人气
+        'status'   => ['type' => 'integer', 'length' => 1, 'null' => false, 'default' => 0],            // 上下架
+        'created'  => ['type' => 'date'],                                                               // 添加时间
     ];
 
     /**
@@ -40,7 +41,7 @@ class Products extends \lithium\data\Model {
             'cat_id'      => ['notEmpty', 'message' => '请选择分类'],
             'title'       => ['notEmpty', 'message' => '请填写商品名'],
             'price'       => ['decimal', 'message' => '价格格式不正确'],
-            // 'images'      => ['array', 'message' => '商品图片不能为空'],  // TODO 图片Model验证
+            //'images'      => ['array', 'message' => '商品图片不能为空'],
             'content'     => ['notEmpty', 'message' => '请填写商品详情'],
            ];
 
@@ -57,15 +58,15 @@ class Products extends \lithium\data\Model {
      *                     $data['content']  详情
      *
      * @return array  返回插入数据
-     *                 $data['title']   名称
-     *                 $data['feature'] 特性
-     *                 $data['cat_id']  分类ID
-     *                 $data['brand_id'] 品牌ID
-     *                 $data['images']  图片
-     *                 $data['content'] 详情
-     *                 $data['status']  上架状态
-     *                 $data['periods'] (见Periods Model)
-     *                 $data['created'] 添加时间
+     *                     $data['title']   名称
+     *                     $data['feature'] 特性
+     *                     $data['cat_id']  分类ID
+     *                     $data['brand_id'] 品牌ID
+     *                     $data['images']  图片
+     *                     $data['content'] 详情
+     *                     $data['status']  上架状态
+     *                     $data['periods'] (见Periods Model)
+     *                     $data['created'] 添加时间
      */
     public function _perAdd($data) {
 
@@ -93,15 +94,15 @@ class Products extends \lithium\data\Model {
      *                    $data['images']   图片
      *                    $data['content']  详情
      *
-     * @return array
+     * @return object
      **/
     public function add($data) {
 
         $data = $this->_perAdd($data);
         $product = Products::create($data);
-        $rs = $product->save();
+        $product->save();
 
-        return $rs;
+        return $product;
     }
 
     /**
@@ -241,12 +242,91 @@ class Products extends \lithium\data\Model {
         return $rs;
     }
 
-    public function view($id, $period_id) {
-        $product = Products::first(['conditions' => ['_id' => $id]]);
+    /**
+     * 单个商品详情
+     *
+     * @param $id        mongoId 商品ID
+     * @param $period_id integer 期数ID
+     * @param $output    boolean 是否整理输出
+     *
+     * @return object|array
+     */
+    public function view($id, $period_id, $output = false) {
+        $product = Products::find('first', ['conditions' => ['_id' => $id]]);
+
+        return $output ? $this->_afterView($product, $period_id) : $product;
+    }
+
+    /**
+     * 商品详情输出处理
+     *
+     * @param $product object 商品详情
+     *
+     * @return array
+     */
+    public function _afterView($product, $period_id) {
+
+        $periods = [];
+        $period_ids = [];
+        foreach($porduct->periods as $idx => $period) {
+            $periods[$period->id]['id']      = $period->id;
+            $periods[$period->id]['price']   = $period->price;
+            $periods[$period->id]['person']  = $period->person;
+            $periods[$period->id]['remain']  = $period->remain;
+            $periods[$period->id]['hits']    = $period->hits;
+            $periods[$period->id]['created'] = $period->created;
+            $periods[$period->id]['status']  = $period->status;
+            $period_ids[] = $period_id;
+        }
+
+        $period_ids = array_reverse($period_ids);
+
+        $info = [];
+        $info['title']      = $product->title;
+        $info['feature']    = $product->feature;
+        $info['price']      = $periods[$period_id]['price'];
+        $info['person']     = $periods[$period_id]['person'];
+        $info['remain']     = $periods[$period_id]['remain'];
+        $info['content']    = $product->content;
+        $info['typeId']     = $product->type_id;
+        $info['images']     = $product->images;
+        $info['orders']     = isset($periods[$period_id]['orders']) ? $periods[$period_id]['orders'] : [];
+        $info['results']    = isset($persons[$period_id]['results']) ? $persons[$period_id]['results'] : [];
+        $info['period_ids'] = $period_ids;
+
+        // 只有一期
+        if($total == 1) {
+            $info['finalAward'] = false;
+        }
+
+        // 是否揭晓
+        $info['isShowed'] = isset($periods[$period_id]['showed']) && !empty($periods[$period_id]['showed']) ? true : false;
 
 
+        // 如果不是正在进行的期数
+        $total = count($product->periods);
+        $info['active'] = false;
+        if($total != $period_id) {
+            // 标识进行期数
+            $info['active'] = true;
 
+            /**
+             * 检查期数状态 
+             *
+             * status['0']
+             *
+             */
+
+            // 本期中奖信息
+            $info['code'] = $periods[$period_id][''];
+        }
+        
+        return $info;
     }
 }
 
+// 图片验证规则
+Validator::add('array', function($value) {
+    return is_array($value);
+});
 ?>
