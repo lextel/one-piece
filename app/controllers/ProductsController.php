@@ -118,19 +118,28 @@ class ProductsController extends \lithium\action\Controller {
     public function view() {
 
         $id = $this->request->id;
-        if(empty($id))
+        $periodId = $this->request->periodId;
+        if(empty($id) || empty($periodId))
             return $this->redirect('Products::index');
 
-        $product = Products::first(['conditions' => ['_id' => $id]]);
+        $model = new Products();
+        $product = $model->view($id, $periodId, true);
 
         if(empty($product)) {
             return $this->redirect('Products::notfound');
         }
 
-        $this->set(compact('product'));
-        $view =  $this->render(['type' => 'html', 'template' => 'view_normal']);
+        $keys = [
+            'id', 'periodId', 'title', 'feature', 'price', 'person', 'remain',
+            'join', 'typeId', 'orders', 'results', 'periodIds',
+            'percent', 'width', 'showFeature', 'showWinner', 'shareTotal',
+            'showLimitTime', 'showTimer', 'showResult', 'code','showActive', 'activePeriod'
+        ];
+        foreach($keys as $k) {
+            echo $k  . var_dump($product[$k]);
+        }
 
-        return $view;
+        return compact('product');
     }
 
     // 分类ID获取品牌
@@ -140,6 +149,29 @@ class ProductsController extends \lithium\action\Controller {
         $brands = Brands::lists($cat_id);
 
         return $this->render(['type' => 'json', 'data' => $brands]);
+    }
+
+    // 新增一期
+    public function newPeriod() {
+        $query = [
+                 '$push'=> ['periods'=>[
+                     'id' => 3,
+                     'price' => '5388.00',
+                     'person' => '5388',
+                     'remain' => '5388',
+                     'hits' => '1',
+                     'code' => '',
+                     'created' => time(),
+                     'showed'=> '',
+                     'status' => 0,
+                    ]
+                 ]
+            ];
+        $conditions = ['_id'=>'5289e84eb8fbc3881500003f'];
+        $rs = Products::update($query, $conditions,['atomic' => false]);
+        var_dump($rs);
+
+        exit;
     }
 
     // 没有商品

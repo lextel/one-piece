@@ -97,7 +97,7 @@ Router::connect('/products/index/{:cat_id:[0-9]+}/{:brand_id:[0-9]+}/{:args}', '
 Router::connect('/products/index/{:cat_id:[0-9]+}/page:{:page:[0-9]+}/{:args}', 'Products::index');
 Router::connect('/products/index/{:cat_id:[0-9]+}/{:args}', 'Products::index');
 Router::connect('/products/index/{:cat_id:[0-9]+}/{:brand_id:[0-9]+}/page:{:page:[0-9]+}/{:args}', 'Products::index');
-Router::connect('/products/view/{:id}', 'Products::view');
+Router::connect('/products/view/{:id}/{:periodId}', 'Products::view');
 Router::connect('/products/cat/{:cat_id:[0-9]+}/{:args}', 'Products::cat');
 Router::connect('/products/brand/{:cat_id:[0-9]+}/{:args}', 'Products::brand');
 Router::connect('/products/edit/{:id}', 'Products::edit');

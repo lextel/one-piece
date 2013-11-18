@@ -9,6 +9,7 @@ namespace app\extensions\helper;
 class Tags {
 
     static $tags = [
+        0 => ['class' => '', 'name' => ''],
         1 => ['class' => 'goods_xp', 'name' => '新品'],
         2 => ['class' => 'goods_xs', 'name' => '限时'],
         3 => ['class' => 'goods_tj', 'name' => '推荐'],

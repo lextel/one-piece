@@ -1,43 +1,67 @@
-<?php
-$this->styles($this->resLoader->css('product_list.css'));
-$this->title($product->title);
-?>
-<div class="Current_nav"><a href="/">首页</a> &gt; 所有分类</div>
+{{# product }}
 <div class="show_content">
     <!--商品期数开始-->
     <div id="divPeriodList" class="show_Period">
         <ul class="Period_list">
-            <?php
-                for($product) {
-
-                }
-            ?>
-            <li><a href="javascript:void(0);" class="gray02">第1期</a></li>
+            {{# product.periodIds }}
+                {{# class }}
+                    {{# active }}
+                    <li><a href="/products/view/{{ product.id }}/{{ id }}"><b class="{{ class }}">第{{ id }}期</b><i></i></a></li>
+                    {{/ active}}
+                    {{^ active }}
+                    <li><b class="{{ class }}">第{{ id }}期</b></li>
+                    {{/ active}}
+                {{/ class}}
+                {{^ class }}
+                    <li><a href="/products/view/{{ product.id }}/{{ id }}" class="gray02">第{{ id }}期</a></li>
+                {{/ class }}
+            {{/ product.periodIds }}
          </ul>
      </div>
     <!--商品期数结束-->
     <!--商品简要开始-->
     <div class="Pro_Details">
-        <h1><span>(第78期)</span><?=$product['title'];?> <span class="red"><?=$product['feature'];?></span></h1>
+        <h1><span>(第{{ periodId }}期)</span>{{ title }}{{# showFeature }}<span class="red">{{ feature }}</span>{{/ showFeature }}</h1>
         <div class="Pro_Detleft">
+            {{# showActive }}
+            {{# activePeriod }}
+            <div class="Pro_Detimg">
+				<div class="Pro_pic"><a href="/products/{{ product.id }}/{{ id }}" title="{{ product.title }}"><img width="398" height="398" alt="{{ product.title }}" src="{{ images.0 }}"></a><span>限时揭晓</span></div>
+			</div>
+            <div class="Result_LConduct">
+				<dl>
+                    <dt><span>第{{ id }}期</span>正在进行</dt>
+                    <dd>
+                        <div class="Result_Progress-bar">
+                            <p title="已完成{{ percent }}%"><span style="width:{{ percent }}%;"></span></p>
+                            <ul class="Pro-bar-li">
+                                <li class="P-bar01"><em>{{ join }}</em>已参与人次</li>
+                                <li class="P-bar02"><em>{{ person }}</em>总需人次</li>
+                                <li class="P-bar03"><em>{{ remain }}</em>剩余人次</li>
+                            </ul>
+                        </div>
+                        <p><a href="/products/{{ product.id }}/{{ id }}" target="_blank" class="Result_LConductBut">查看详情</a></p>
+                    </dd>
+                </dl>
+			</div>
+            {{/ activePeriod }}
+            {{/ showActive }}
+            {{^ showActive }}
             <div class="detail-itemsummary-imageviewer">
                 <div id="middlePicRemark" class="middlePicRemark"></div>
-                <img id="imgGoodsPic" alt="" src="<?=$product->images[0];?>" style="width:396px; height:396px; display:none;">
+                <img id="imgGoodsPic" alt="" src="{{ images.0 }}" style="width:396px; height:396px; display:none;">
                 <div id="middlePicBox" class="middlePicBox" style="position: relative; ">
                     <span id="BigViewImage" class="jqzoom" style="outline-style: none; cursor: crosshair; display: block; position: relative; height: 396px; width: 396px; ">
-                        <img id="" style="width: 396px; height: 396px; position: absolute; top: 0px; left: 0px; " src="<?=$product->images[0];?>">
+                        <img id="" style="width: 396px; height: 396px; position: absolute; top: 0px; left: 0px; " src="{{ images.0 }}">
                     </span>
                 </div>
                 <div class="smallPicList">
                     <div class="hidden" style="display: none; "></div>
                     <div class="jcarousel-clip">
                         <ul id="mycarousel" style="width: 378px; left: 0px; display: block; ">
-                            <?php
-                                foreach($product->images as $key => $image) {
-                                    $class = ($key == 0) ? 'curr' : '';
-                                    echo '<li class="'.$class.'"><img width="48" height="48" src="'.$image.'" alt="" name=""></li>';
-                                }
-                            ?>
+                            {{# images }}
+                            <li class="curr"><img width="48" height="48" src="{{ . }}" alt="" name=""></li>
+                            {{/ images }}
                             <div class="hackbox"></div>
                         </ul>
                     </div>
@@ -58,28 +82,55 @@ $this->title($product->title);
                     </dl>
                 </div>
             </div>
+            {{/ showActive }}
         </div>
         <div class="Pro_Detright">
-                <p class="Det_money">价值：<span class="rmbgray"><?=$product->price;?></span></p>
+                <p class="Det_money">价值：<span class="rmbgray">{{ price }}</span></p>
+                {{# showResult }}
+                <div class="Announced_Frame">
+					<div class="Announced_FrameT">揭晓结果</div>
+					<div class="Announced_FrameCode">
+						<ul class="Announced_FrameCodeMal">
+						    <li class="Code_{{ code.0 }}">{{ code.0 }}<b></b></li><li class="Code_{{ code.1 }}">{{ code.1 }}<b></b></li><li class="Code_{{ code.2 }}">{{ code.2 }}<b></b></li><li class="Code_{{ code.3 }}">{{ code.3 }}<b></b></li><li class="Code_{{ code.4 }}">{{ code.4}}<b></b></li><li class="Code_{{ code.5 }}">{{ code.5 }}<b></b></li><li class="Code_{{ code.6 }}">{{ code.6 }}<b></b></li><li class="Code_{{ code.7 }}">{{ code.7 }}<b></b></li>
+						</ul>
+					</div>
+					<div class="Announced_FrameGet">
+						<dl>
+							<dt><a rel="nofollow" href="http://u.1yyg.com/1000093029" target="_blank" title="他妈的在不中不玩啦"><img width="60" height="60" src="http://faceimg.1yyg.com/UserFace/20130524205654556.jpg"></a></dt>
+							<dd class="gray02">
+								<p>恭喜<a href="http://u.1yyg.com/1000093029" target="_blank" class="blue" title="他妈的在不中不玩啦">{{ userId }}</a>获得</p>
+								<p>揭晓时间：{{ showed }}</p>
+								<p>云购时间：{{ ordered }}</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="Announced_FrameBut">
+						<a href="javascript:void(0);" onclick="javascript:if(TabFun!=null){TabFun.showTabFun(1);}" class="Announced_But">本期详细计算结果</a>
+						<a href="javascript:void(0);" onclick="javascript:if(TabFun!=null){TabFun.showTabFun(2);}" class="Announced_But">看看有谁参与了</a>
+						<a href="javascript:void(0);" onclick="javascript:if(TabFun!=null){TabFun.showTabFun(3);}" class="Announced_But">看看有谁晒单</a>
+					</div>
+					<div class="Announced_FrameBm"></div>
+				</div>
+                {{/ showResult }}
+                {{^ showResult }}
                 <div class="Progress_side">
-                    <p title="已完成5.45%"><span style="width:24px; display:;"></span></p>
+                    <p title="已完成{{ percent }}%"><span style="width:{{ width }}px; display:;"></span></p>
                     <ul class="Pro_sid_li">
-                        <li class="P_bar01"><em>201</em>已参与人次</li>
-                        <li class="P_bar02"><em id="CodeQuantity"><?=$product->person;?></em>总需人次</li>
-                        <li class="P_bar03"><em id="CodeLift">3487</em>剩余人次</li>
+                        <li class="P_bar01"><em>{{ join }}</em>已参与人次</li>
+                        <li class="P_bar02"><em id="CodeQuantity">{{ person }}</em>总需人次</li>
+                        <li class="P_bar03"><em id="CodeLift">{{ remain }}</em>剩余人次</li>
                     </ul>
                 </div>
                 <p class="Pro_Detsingle">
-                    <a href="javascript:void(0);" class="gray02" id="btnGoToPost">本商品已有
-                    <span class="Fb blue">50</span>个幸运者晒单   已有
-                    <span class="Fb blue">701</span>条晒单评论</a>
+                    <a href="javascript:void(0);" class="gray02" id="btnGoToPost">本商品已有<span class="Fb blue">{{ shareTotal }}</span>个幸运者晒单<!--已有<span class="Fb blue">701</span>条晒单评论</a> -->
                  </p>
                  <div id="divNumber" class="Pro_number">
                     我要云购 <a href="javascript:void();" class="num_del num_ban">-</a>
                     <input type="text" value="1" maxlength="7" class="num_dig">
                     <a href="javascript:void();" class="num_add">+</a> 人次
                      <span id="chance" class="gray03"><font color="red">获得机率 <b>0.02%</b></font></span>
-                </div><div id="divBuy" class="Det_button">
+                </div>
+                <div id="divBuy" class="Det_button">
                     <a href="javascript:void();" class="Det_Shopbut">立即1元云购</a><a href="javascript:void();" class="Det_Cart"><i></i>加入购物车</a>
                 </div>
                 <div class="Security">
@@ -156,6 +207,7 @@ $this->title($product->title);
                         <p class="MsgIntro1">1元云购以"快乐云购，惊喜无限"为宗旨，力求打造一个100%公平公正、100%正品保障、寄娱乐与购物一体化的新型购物网站。<a href="javascript:void(0);" target="_blank">查看详情&gt;&gt;</a></p>
                     </div>
                 </div>
+                {{/ showResult }}
         </div>
     </div>
     <!--商品简要结束-->
@@ -169,7 +221,7 @@ $this->title($product->title);
                 <li id="liUserBuyAll" class="All_RecordT"><span class="">所有参与记录</span></li>
                 <li class="Single_ConT"><span class="">晒单</span></li>
             </ul>
-            <p><a id="btnAdd2Cart" href="javascript:void()" class="white DetailsT_Cart"><s></s>加入购物车</a></p>
+            <p><a id="btnAdd2Cart" href="javascript:void(0)" class="white DetailsT_Cart"><s></s>加入购物车</a></p>
         </div>
     </div>
 </div>
@@ -177,7 +229,8 @@ $this->title($product->title);
 <!--商品详情 开始-->
 <div id="divContent" class="Product_Content" style="display: block; ">
     <div class="Product_Con">
-        <?php echo $product->content;?>
+        {{& content }}
     </div>
 </div>
 <!--商品详情 结束-->
+{{/ product }}

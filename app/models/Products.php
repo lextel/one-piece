@@ -4,9 +4,15 @@
  * @version 1.0
  */
 namespace app\models;
+
+use app\models\Periods;
+use app\extensions\helper\Tags;
 use lithium\util\Validator;
 
 class Products extends \lithium\data\Model {
+
+    const LIST_WIDTH = 213;
+    const DETAILS_WIDTH = 447;
 
     /**
      * mongodb products数据结构
@@ -27,7 +33,7 @@ class Products extends \lithium\data\Model {
         'content'  => ['type' => 'string', 'length' => 10000, 'null' => false, 'default' => null],      // 详情
         'images'   => ['type' => 'array', 'length' => null, 'null' => false, 'default' => null],        // 图片
         'periods'  => ['type' => 'array', 'length' => null, 'null' => false, 'default' => null],        // 期数数据
-        'hit'      => ['type' => 'integer', 'length' => 10, 'null' => false, 'default' => 0],           // 当期人气
+        'hits'     => ['type' => 'integer', 'length' => 10, 'null' => false, 'default' => 0],           // 当期人气
         'status'   => ['type' => 'integer', 'length' => 1, 'null' => false, 'default' => 0],            // 上下架
         'created'  => ['type' => 'date'],                                                               // 添加时间
     ];
@@ -70,12 +76,13 @@ class Products extends \lithium\data\Model {
      */
     public function _perAdd($data) {
 
-        $data['hit'] = 0;
-        $data['status'] = 0;
+        $data['hits']    = 0;
+        $data['status']  = 0;
+        $data['tag_id']  = 0;
         $data['created'] = date('Y-m-d H:i:s');
-        $data['price'] = sprintf('%.2f',$data['price']);
-        $data['person'] = intval($data['price']);
-        $data['remain'] = $data['person'];
+        $data['price']   = sprintf('%.2f',$data['price']);
+        $data['person']  = intval($data['price']);
+        $data['remain']  = $data['person'];
 
         $data = Periods::init($data);
 
@@ -202,15 +209,21 @@ class Products extends \lithium\data\Model {
     public static function _afterLists($data) {
 
         $newData = [];
+
         foreach($data as $item) {
+            $percent = sprintf('%.2f', ($item->person - $item->remain)/$item->person * 100);
             $newData[] = [
                 'id'        => $item->_id,
                 'title'     => $item->title,
                 'images'    => $item->images,
-                'price'     => $item->price,
-                'remain'    => $item->remain,
+                'price'     => sprintf('%.2f',$item->price),
                 'person'    => $item->person,
-                'period_id' => count($item->periods),
+                'remain'    => $item->remain,
+                'percent'   => $percent,
+                'width'     => self::LIST_WIDTH *  $percent / 100,
+                'join'      => $item->person - $item->remain,
+                'periodId'  => count($item->periods),
+                'tagClass'  => Tags::$tags[$item->tag_id]['class'],
                 'status'    => $item->status == 1 ? true : false,
                 'created'   => $item->created,
             ];
@@ -251,10 +264,10 @@ class Products extends \lithium\data\Model {
      *
      * @return object|array
      */
-    public function view($id, $period_id, $output = false) {
+    public function view($id, $periodId, $output = false) {
         $product = Products::find('first', ['conditions' => ['_id' => $id]]);
 
-        return $output ? $this->_afterView($product, $period_id) : $product;
+        return $output ? $this->_afterView($product, $periodId) : $product;
     }
 
     /**
@@ -264,65 +277,98 @@ class Products extends \lithium\data\Model {
      *
      * @return array
      */
-    public function _afterView($product, $period_id) {
+    public function _afterView($product, $periodId) {
 
-        $periods = [];
-        $period_ids = [];
-        foreach($porduct->periods as $idx => $period) {
-            $periods[$period->id]['id']      = $period->id;
-            $periods[$period->id]['price']   = $period->price;
-            $periods[$period->id]['person']  = $period->person;
-            $periods[$period->id]['remain']  = $period->remain;
-            $periods[$period->id]['hits']    = $period->hits;
-            $periods[$period->id]['created'] = $period->created;
-            $periods[$period->id]['status']  = $period->status;
-            $period_ids[] = $period_id;
-        }
+        list($period, $periodIds) = Periods::period($product->periods, $periodId);
 
-        $period_ids = array_reverse($period_ids);
+        $percent = sprintf('%.2f', ($period['person'] - $period['remain'])/$period['person'] * 100);
 
         $info = [];
-        $info['title']      = $product->title;
-        $info['feature']    = $product->feature;
-        $info['price']      = $periods[$period_id]['price'];
-        $info['person']     = $periods[$period_id]['person'];
-        $info['remain']     = $periods[$period_id]['remain'];
-        $info['content']    = $product->content;
-        $info['typeId']     = $product->type_id;
-        $info['images']     = $product->images;
-        $info['orders']     = isset($periods[$period_id]['orders']) ? $periods[$period_id]['orders'] : [];
-        $info['results']    = isset($persons[$period_id]['results']) ? $persons[$period_id]['results'] : [];
-        $info['period_ids'] = $period_ids;
+        $info['id']          = $product->_id;
+        $info['periodId']    = $periodId;
+        $info['title']       = $product->title;
+        $info['feature']     = $product->feature;
+        $info['price']       = $period['price'];
+        $info['person']      = $period['person'];
+        $info['remain']      = $period['remain'];
+        $info['join']        = $period['person'] - $period['remain'];
+        $info['content']     = $product->content;
+        $info['typeId']      = $product->type_id;
+        $info['images']      = $product->images;
+        $info['orders']      = isset($period['orders']) ? $period['orders'] : [];
+        $info['results']     = isset($period['results']) ? $period['results'] : [];
+        $info['periodIds']   = $periodIds;
+        $info['percent']     = $percent;
+        $info['width']       = self::DETAILS_WIDTH *  $percent / 100;
+        $info['showFeature'] = ($periodId == count($periodIds)) ? true : false;
 
-        // 只有一期
-        if($total == 1) {
-            $info['finalAward'] = false;
+
+        // 如果是正在进行，显示上期获奖者(商品图片下方)
+        $info['showWinner'] = false;
+        $total = count($periodIds);
+        if($periodId > 1 && $periodId == $total) {
+
+            list($prevPeriod, ) = Periods::period($product->periods, $periodId-1);
+
+            if($prevPeriod['status'] == 2) {
+                $info['showWinner'] = true;
+                $info['winner'] = [
+                    'userId'  => $prevPeriod['user_id'],
+                    'code'    => $prevPeriod['code'],
+                    'ordered' => $prevPeriod['ordered'],
+                ];
+            }
+        } 
+
+        // 晒单数目
+        $info['shareTotal'] = count($product->shares);
+
+        // 如果是限时显示揭晓时间
+        $info['showLimitTime'] = false;
+        if($product->typeId == 2) {
+            $info['showLimitTime'] = true;
+            $info['showed'] = $period['showed'];
         }
 
-        // 是否揭晓
-        $info['isShowed'] = isset($periods[$period_id]['showed']) && !empty($periods[$period_id]['showed']) ? true : false;
-
-
         // 如果不是正在进行的期数
-        $total = count($product->periods);
-        $info['active'] = false;
-        if($total != $period_id) {
-            // 标识进行期数
-            $info['active'] = true;
+        if($total != $periodId) {
+            // 剩余两分钟显示倒计时 (计算 &&　限时)
+            $info['showTimer'] = false;
+            if($period['status'] == 1) {
+                $info['showTimer'] = true;
+                $period['showedTime'] = strtotime($period['showed'] , '+2 minutes');
+            }
 
-            /**
-             * 检查期数状态 
-             *
-             * status['0']
-             *
-             */
+            // 显示揭晓结果
+            $info['showResult'] = false;
+            if($period['status'] == 2) {
+                $info['showResult'] = true;
+                $info['code'] = str_split($period['code']);
+                $info['userId'] = $period['user_id'];
+                $info['ordered'] = date('Y-m-d H:i:s', $period['ordered']);
+                $info['showed'] = date('Y-m-d H:i:s', $period['showed']);
+            }
 
-            // 本期中奖信息
-            $info['code'] = $periods[$period_id][''];
+            // 获取正在进行的期数
+            $info['showActive'] = false;
+            if($product->status == 1) {
+                $info['showActive'] = true;
+                list($activePeriod, $activeIds) = Periods::period($product->periods, $total);
+                $info['activePeriod'] = [
+                    'id'      => $activePeriod['id'],
+                    'person'  => $activePeriod['person'],
+                    'remain'  => $activePeriod['remain'],
+                    'join'    => $activePeriod['person'] - $activePeriod['remain'],
+                    'percent' => sprintf('%.2f', ($activePeriod['person'] - $activePeriod['remain'])/$activePeriod['person'] * 100),
+                ];
+            }
+
         }
         
         return $info;
     }
+
+
 }
 
 // 图片验证规则

@@ -2,6 +2,7 @@
 namespace app\tests\cases\models;
 use app\tests\mocks\requests\MockProductsRequest as Request;
 use app\models\Products;
+use app\models\Periods;
 use lithium\util\Validator;
 
 class ProductsTest extends \lithium\test\Unit {
@@ -138,7 +139,7 @@ class ProductsTest extends \lithium\test\Unit {
         $afterData = Products::_afterLists($rs);
         foreach($afterData as $r ) {
             $this->assertTrue(isset($r['id']), '列表UUID没有调用');
-            $this->assertTrue(isset($r['period_id']), '列表期数ID没有调用');
+            $this->assertTrue(isset($r['periodId']), '列表期数ID没有调用');
             $this->assertTrue(isset($r['title']), '列表标题没有调用');
             $this->assertTrue(isset($r['status']), '列表状态没有调用');
         }
@@ -163,49 +164,47 @@ class ProductsTest extends \lithium\test\Unit {
         $product = $this->_product->add($data);
         $this->_id = $product->_id;
 
-        $info = [];
-        $info['title']      = $product->title;
-        $info['feature']    = $product->feature;
-        $info['price']      = $product->price;
-        $info['person']     = $product->person;
-        $info['remain']     = $product->remain;
-        $info['content']    = $product->content;
-        $info['typeId']     = $product->type_id;
-        $info['images']     = $product->images;
-        $info['orders']     = [];
-        $info['results']    = [];
-        $info['period_ids'] = ['1'];
-        $info['finalAward'] = false;
-        $info['isShowed']   = false;
-        $info['active']     = false;
+        $keys = [
+            'id', 'periodId', 'title', 'feature', 'price', 'person', 'remain',
+            'join', 'content', 'typeId', 'images', 'orders', 'results', 'periodIds',
+            'percent', 'width', 'showFeature', 'showWinner', 'shareTotal', 'showLimitTime'
+        ];
 
         $product = $this->_product->view($this->_id, 1);
-
         $onlyPeriod = $this->_product->_afterView($product, 1);
-        $this->assertEqual($info, $onlyPeriod);
 
-        // 添加第二期
-        $addPeriod = [
+        // 简单验证返回的key
+        $this->assertEqual($keys, array_keys($onlyPeriod));
+
+        // 不显示上期获奖者
+        $this->assertTrue(!$onlyPeriod['showWinner']);
+
+        // 获得晒单数目
+        $this->assertTrue(isset($onlyPeriod['shareTotal']));
+
+        // 添加第二期揭晓第一期
+        $data = [
             [
                 'id'      => 1,
                 'price'   => '99.00',
                 'remain'  => '99',
                 'person'  => '99',
                 'code'    => '1000010',
-                'created' => date('Y-m-d H:i:s', strtotime(date(), '-1 days')),
-                'showed'  => date('Y-m-d H:i:s', strtotime(date(), '-1 days')),
-                'status'  => 1,
+                'user_id' => 1,
+                'created' => time() - 84600,
+                'showed'  => time() - 84600,
+                'status'  => 2,
                 'result'  => [
                     'user_id' => 1,
                     'product_id' => '',
+                    'period_id' => '',
                     'ordered' => date('Y-m-d H:i:s.u'),
                 ],
                 'orders'  => [
                     'user_id' => 1,
-                    'product_id' => '',
-                    'ordered' => date('Y-m-d H:i:s.u'),
                     'ip' => '127.0.0.1',
-                    'total' => 1,
+                    'codes' => ['100010'],
+                    'ordered' => date('Y-m-d H:i:s.u'),
                 ]
             ],
             [
@@ -213,35 +212,31 @@ class ProductsTest extends \lithium\test\Unit {
                 'price'   => '99.00',
                 'remain'  => '99',
                 'person'  => '99',
-                'created' => date('Y-m-d H:i:s'),
-                'showed'  => date('Y-m-d H:i:s'),
+                'created' => time(),
+                'showed'  => time(),
                 'status'  => 1,
                 'result'  => [],
                 'orders'  => []
             ],
         ];
-        $product->periods = $addPeriod;
+        $product->periods = $data;
+        $product->status = 1;
         $product->save();
 
-        $info = [];
-        $info['title']      = $product->title;
-        $info['feature']    = $product->feature;
-        $info['price']      = $product->price;
-        $info['person']     = $product->person;
-        $info['remain']     = $product->remain;
-        $info['content']    = $product->content;
-        $info['typeId']     = $product->type_id;
-        $info['images']     = $product->images;
-        $info['orders']     = [];
-        $info['results']    = [];
-        $info['period_ids'] = ['2', '1'];
-        $info['finalAward'] = false;
-        $info['isShowed']   = false;
-        $info['active']     = false;
 
+        // 产品正在上架已经揭晓的期数
+        $keys = [
+            'id', 'periodId', 'title', 'feature', 'price', 'person', 'remain',
+            'join', 'content', 'typeId', 'images', 'orders', 'results', 'periodIds',
+            'percent', 'width', 'showFeature', 'showWinner', 'shareTotal',
+            'showLimitTime', 'showTimer', 'showResult', 'code', 'userId', 'ordered',
+            'showed', 'showActive', 'activePeriod'
+        ];
 
-        $firstPeriod = $this->_product_afterView($this->_id, 2);
-        $this->assertEqual($info, $firstPeriod);
+        $firstPeriod = $this->_product->_afterView($product, 1);
+        $this->assertEqual($keys, array_keys($firstPeriod));
+        $this->assertTrue($firstPeriod['showActive']);
+
 
     }
 }

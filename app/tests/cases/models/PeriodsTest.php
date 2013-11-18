@@ -11,9 +11,9 @@
  *      periods['code']         // 中奖号码
  *      periods['created']      // 开始时间
  *      periods['showed']       // 揭晓时间
- *      periods['status']       // 状态 0进行中 1已揭晓
- *      periods['results']       // 计算结果记录 详见results
- *      periods['orders']        // 参与者记录 详见orders model
+ *      periods['status']       // 状态 0进行中 1计算中 2已揭晓
+ *      periods['results']      // 计算结果记录 详见results
+ *      periods['orders']       // 参与者记录 详见orders model
  */
 namespace app\tests\cases\models;
 
