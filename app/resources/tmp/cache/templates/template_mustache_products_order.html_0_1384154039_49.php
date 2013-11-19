@@ -1,3 +1,0 @@
-{{# orderByList }}
-    {{ }}
-{{/ orderByList }}
