@@ -6,6 +6,7 @@
 namespace app\controllers;
 
 use app\models\Products;
+use app\models\Periods;
 use app\extensions\helper\Uploader;
 use app\extensions\helper\Page;
 use app\extensions\helper\Cats;
@@ -129,17 +130,11 @@ class ProductsController extends \lithium\action\Controller {
             return $this->redirect('Products::notfound');
         }
 
-        $keys = [
-            'id', 'periodId', 'title', 'feature', 'price', 'person', 'remain',
-            'join', 'typeId', 'orders', 'results', 'periodIds',
-            'percent', 'width', 'showFeature', 'showWinner', 'shareTotal',
-            'showLimitTime', 'showTimer', 'showResult', 'code','showActive', 'activePeriod'
-        ];
-        foreach($keys as $k) {
-            echo $k  . var_dump($product[$k]);
-        }
+        ob_start();
+        var_dump($product);
+        $dump = ob_get_clean();
 
-        return compact('product');
+        return compact('product', 'dump');
     }
 
     // 分类ID获取品牌
@@ -153,9 +148,12 @@ class ProductsController extends \lithium\action\Controller {
 
     // 新增一期
     public function newPeriod() {
+
+        $id = '5289e84eb8fbc3881500003f';
+        $periodId = Periods::autoId($id);
         $query = [
                  '$push'=> ['periods'=>[
-                     'id' => 3,
+                     'id' => $periodId,
                      'price' => '5388.00',
                      'person' => '5388',
                      'remain' => '5388',
@@ -167,7 +165,7 @@ class ProductsController extends \lithium\action\Controller {
                     ]
                  ]
             ];
-        $conditions = ['_id'=>'5289e84eb8fbc3881500003f'];
+        $conditions = ['_id'=> $id];
         $rs = Products::update($query, $conditions,['atomic' => false]);
         var_dump($rs);
 

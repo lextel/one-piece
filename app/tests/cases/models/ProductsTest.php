@@ -165,9 +165,11 @@ class ProductsTest extends \lithium\test\Unit {
         $this->_id = $product->_id;
 
         $keys = [
-            'id', 'periodId', 'title', 'feature', 'price', 'person', 'remain',
-            'join', 'content', 'typeId', 'images', 'orders', 'results', 'periodIds',
-            'percent', 'width', 'showFeature', 'showWinner', 'shareTotal', 'showLimitTime'
+            'id', 'title', 'feature', 'content', 'images', 'tyepId',
+            'orders', 'results', 'price', 'person', 'remain', 'join',
+            'periodId', 'periodIds', 'percent', 'width', 'shareTotal',
+            'showFeature', 'showWinner', 'showLimit', 'showSoldOut',
+            'showCounting', 'showResult', 'showActive'
         ];
 
         $product = $this->_product->view($this->_id, 1);
@@ -229,7 +231,7 @@ class ProductsTest extends \lithium\test\Unit {
             'id', 'periodId', 'title', 'feature', 'price', 'person', 'remain',
             'join', 'content', 'typeId', 'images', 'orders', 'results', 'periodIds',
             'percent', 'width', 'showFeature', 'showWinner', 'shareTotal',
-            'showLimitTime', 'showTimer', 'showResult', 'code', 'userId', 'ordered',
+            'showLimitTime', 'showTimer', 'soldOut', 'showResult', 'code', 'userId', 'ordered',
             'showed', 'showActive', 'activePeriod'
         ];
 
@@ -238,6 +240,7 @@ class ProductsTest extends \lithium\test\Unit {
         $this->assertTrue($firstPeriod['showActive']);
 
 
+        Products::remove(['_id' => $this->_id]);
     }
 }
 

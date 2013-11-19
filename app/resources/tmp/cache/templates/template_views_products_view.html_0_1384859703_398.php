@@ -8,4 +8,4 @@ $this->title($product['title']);
 <?php
     echo $dump;
 ?>
-<?= $this->mustache->render('products/view', compact('product')); ?>
+<?php echo $this->mustache->render('products/view', compact('product')); ?>

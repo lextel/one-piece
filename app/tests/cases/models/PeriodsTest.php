@@ -1,7 +1,5 @@
 <?php
 /**
- *
- *
  * 数据存于products表的periods字段中
  * 数据形式:
  *      periods['id']           // 自增ID
@@ -13,6 +11,7 @@
  *      periods['showed']       // 揭晓时间
  *      periods['status']       // 状态 0进行中 1计算中 2已揭晓
  *      periods['results']      // 计算结果记录 详见results
+ *      periods['type_id']      // 类型
  *      periods['orders']       // 参与者记录 详见orders model
  */
 namespace app\tests\cases\models;

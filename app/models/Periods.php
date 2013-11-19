@@ -24,6 +24,7 @@ class Periods extends \lithium\data\Model {
         'orders'  => ['type' => 'array'],                                                                  // 本期订单
         'created' => ['type' => 'date'],                                                                   // 开始时间
         'showed'  => ['type' => 'date'],                                                                   // 揭晓时间
+        'type_id' => ['type' => 'integer', 'length' => 2],                                                 // 本期类型 0普通，1限时
         'status'  => ['type' => 'integer', 'length' => 2],                                                 // 本期状态 0进行中，1 计算中， 2已揭晓
         ];
 
@@ -93,11 +94,12 @@ class Periods extends \lithium\data\Model {
      *
      * @return array
      */
-    public static function period($periods, $periodId) {
+    public static function period($periods, $periodId = 0) {
 
         $data = [];
         $periodIds = [];
         $total = count($periods);
+        $periodId = empty($periodId) ? $total : $periodId;
         foreach($periods as $period) {
             $data[$period->id]['id']      = $period->id;
             $data[$period->id]['price']   = $period->price;
@@ -111,6 +113,7 @@ class Periods extends \lithium\data\Model {
             $data[$period->id]['orders']  = $period->orders ? $period->orders : [];
             $data[$period->id]['created'] = $period->created;
             $data[$period->id]['showed']  = $period->showed;
+            $data[$period->id]['typeId']  = $period->type_id;
             $data[$period->id]['status']  = $period->status;
 
             // 期数处理
@@ -127,10 +130,19 @@ class Periods extends \lithium\data\Model {
                 $ids['active'] = false;
             }
 
+
             $periodIds[] = $ids;
         }
 
         $periodIds = array_reverse($periodIds);
+
+        foreach($periodIds as $k => $v) {
+            if(($k+1)%9 == 0) {
+                $periodIds[$k]['separator'] = true;
+            } else {
+                $periodIds[$k]['separator'] = false;
+            }
+        }
 
         return [$data[$periodId], $periodIds];
     }

@@ -96,7 +96,7 @@ background: url(../img/goods_tj.png) no-repeat;}
 .go_cart:hover {background: #FDD395;}
 /*分页*/
 .pages {overflow: hidden;height: 50px;border-top: 1px solid #E4E4E4; line-height:50px;}
-.pages ul li{float:left; width:30px; text-align:center; height:30px; line-height:30px; border-radius:5px;border: 1px solid #DEDEDE; margin-right:10px;}
+.pages ul li{float:left; width:30px; text-align:center; height:30px; line-height:30px; border-radius:5px;border: 1px solid #DEDEDE; margin-right:10px; cursor:pointer;}
 .pages ul.pageULEx {float: right;margin:10px 10px 0 0; overflow:hidden;}
 .pages ul li a{color:#333;}
 .pages ul.pageULEx li.prev_page,.pages ul.pageULEx li.next_page{
@@ -222,17 +222,16 @@ display: block;
 .show_content {zoom: 1;background: white;border: 1px solid #E4E4E4;width: 978px;position: relative;margin: 0 auto;overflow:hidden;}
 .show_Period {width: 978px;overflow: hidden;zoom: 1;position: relative; margin:0 auto;}
 .show_Period .Period_list .period_Ongoing {
-	width: 98px;
 	padding-left: 10px;
 	padding-top: 1px;
 	overflow: hidden;
-	font-size: 12px;
+	font-size: 14px;
 	position: relative;
 	font-weight:bold;
 	color: #F60;
 	display: inline-block;
 }
-.show_Period li .period_Ongoing i {
+.show_Period .Period_list a i {
 	width: 46px;
 	height: 16px;
 	display: inline-block;
@@ -240,7 +239,8 @@ display: block;
 	vertical-align: -3px;
 	margin-left: 3px;
 }
-.show_Period .Period_list {width: 985px;border-bottom: 1px solid #E4E4E4;height: 32px;background: #FCFCFC;}
+
+.show_Period .Period_list {width: 985px; overflow:hidden; background: #FCFCFC;border-bottom: 1px solid #E4E4E4 }
 .show_Period .Period_list li {float: left;width: 108px;height: 32px;border-right: 1px solid #E4E4E4;}
 .show_Period .Period_list li .period_ArrowCur {
 	font-size: 16px;
@@ -254,6 +254,43 @@ display: block;
 	color: white;
 	text-align: center;
 	display: inline-block;
+}
+.show_Period .period_Open {
+	position: absolute;
+	right: -1px;
+	bottom: 0;
+	background: white;
+	width: 106px;
+	height: 32px;
+	border: 1px solid #E4E4E4;
+}
+.show_Period .period_Open a {
+	width: 70px;
+	height: 32px;
+	line-height: 32px;
+	margin-left: 36px;
+	color: #2AF;
+}
+.show_Period .period_Open i {
+	background-position: -273px 0;
+	display: inline-block;
+	width: 7px;
+	height: 8px;
+	vertical-align: 0;
+	vertical-align: 2px	9;
+	overflow: hidden;
+	margin-left: 3px;
+}
+.show_Period .period_Open s {
+	background-position: -261px 0;
+	display: inline-block;
+	width: 7px;
+	height: 8px;
+	vertical-align: 0;
+	vertical-align: 2px	9;
+	overflow: hidden;
+	margin-left: 3px;
+}
 }
 .show_Period .Period_list li .period_ArrowCur:hover {
 	font-size: 16px;
@@ -341,24 +378,22 @@ background: #F7F7F7;
 .Progress_side .Pro_sid_li li em {display: block;font-size: 18px;font-family: arial;height: 20px;}
 .Pro_Detright .Pro_Detsingle {height: 15px;line-height: 15px;font-family: 宋体;display: block;padding: 13px 0 0;_padding: 13px 0 0;}
 .Pro_Detright .Pro_Detsingle a{color:#999 !important;}
-.Pro_Detright .Pro_number {line-height: 20px;color: #999;text-align: left;margin-top: 13px;margin-bottom: 22px;}
+.Pro_Detright .Pro_number {line-height: 22px;color: #999;text-align:left;margin-top: 13px;margin-bottom: 22px; height:22px;}
+.Pro_Detright .Pro_number a { display:block; float:left; color:#999;}
+.Pro_Detright .Pro_number .gray02{ margin-right:10px;}
 .Pro_Detright .Pro_number .num_ban {color: #CCC;cursor: default;}
-.Pro_Detright .Pro_number .num_dig {width: 65px;background: white;line-height: 24px;border-left: none;border-right: none;font-size: 18px;}
+.Pro_Detright .Pro_number .num_dig {width: 65px;background: white;line-height: 22px;border-left: none;border-right: none;font-size: 18px;}
 .Pro_Detright .Pro_number .num_del, .Pro_Detright .Pro_number .num_add, .Pro_Detright .Pro_number .num_dig {
 	width: 22px;
-	height: 24px;
+	height: 22px;
 	overflow: hidden;
-	display: inline-block;
-	font-family: 宋体;
 	border: 1px solid #CFCFCF;
 	text-align: center;
-	font-size: 18px;
-	color: #999;
-	line-height: 24px;
+	font-size: 16px;
 	vertical-align: middle;
 	background: #F4F4F4;
 }
-.Pro_Detright .Pro_number .num_dig {width: 65px;background: white;line-height: 24px;border-left: none;border-right: none;font-size: 18px;font-family: arial;}
+.Pro_Detright .Pro_number .num_dig {width: 65px;background: white;line-height: 24px;border-left: none;border-right: none;font-size: 18px;font-family: arial; display:block; float:left;}
 .Pro_Detright .Det_button {margin-top: 10px;height: 51px;position: relative;}
 .Det_button .Det_Shopbut {
 	width: 250px;
@@ -375,6 +410,17 @@ background: #F7F7F7;
 	display: inline-block;
 	float: left;
 	margin-right: 6px;
+}
+.pro_detright .pro_number a{
+	color:#999;
+}
+.Det_button .Det_Shopbut:hover{
+	 background:#f40;
+	 color:#fff;
+}
+.Det_button .Det_Cart:hover {
+	background: #FFF4BF;
+	color: #F60;
 }
 .Det_button .Det_Cart {
 	width: 110px;
@@ -433,7 +479,7 @@ background: #F7F7F7;
 	line-height: 32px;
 	cursor: pointer;
 }
-.Pro_Record .Record_tit li.Record_titCur {background: white;color: #666;border-bottom: none;}
+.Pro_Record .Record_tit .current {background: white;color: #666;border-bottom: none;}
 .Pro_Record .Record_tit li.NewestRec {width: 150px;color: #999;}
 .Pro_Record .Record_tit li.MytRec {width: 146px;color: #999;}
 .Pro_Record .Record_tit li.Explain {width: 150px;border-right: none;}
@@ -492,13 +538,13 @@ background: #F7F7F7;
 /*已结束*/
 .End_Detailslist {border: 1px solid #E4E4E4;zoom: 1;padding-bottom: 17px;overflow: hidden;}
 .End_Detailslist .End_DetailsTit {
-height: 32px;
-line-height: 30px;
-text-indent: 1em;
-color: #666;
-border-bottom: 1px solid #E4E4E4;
-font-size: 14px;
-font-family: 微软雅黑,宋体;
+	height: 32px;
+	line-height: 30px;
+	text-indent: 1em;
+	color: #666;
+	border-bottom: 1px solid #E4E4E4;
+	font-size: 14px;
+	font-family: 微软雅黑,宋体;
 }
 .End_Detailslist li {width: 100px;height: 189px;overflow: hidden;float: left;margin: 17px 20px 0 28px;display: inline;}
 .End_Detailslist .pic {text-align: center;width: 100px;height: 100px;overflow: hidden;margin-bottom: 3px;}
@@ -524,15 +570,15 @@ display: inline-block;
 .ProductTabNav .DetailsT_Tit {overflow: visible;top: auto;background: white;z-index: 11;}
 .DetailsT_TitP {border: 1px solid #E4E4E4;height: 35px;width: 978px;background: white;position: relative;z-index: 1;}
 .DetailsT_TitP ul {height: 35px;float: left;margin-top: -1px;z-index: 3;position: absolute;}
-.DetailsT_TitP li.DetailsTCur {
-font-size: 18px;
-height: 34px;
-color: #F60;
-font-weight: bold;
-line-height: 30px;
-border-top: 3px solid #FF6500;
-margin-top: 0;
-background: white;
+.DetailsT_TitP .current {
+	font-size: 18px;
+	height: 34px;
+	color: #F60;
+	font-weight: bold;
+	line-height: 30px;
+	border-top: 3px solid #FF6500;
+	margin-top: 0;
+	background: white;
 }
 .DetailsT_TitP li.Product_DetT {width: 134px;}
 .DetailsT_TitP li.Single_ConT {width: 98px;}
@@ -794,8 +840,15 @@ background: url(../img/new-class-icon.png);
 }
 .Announced_FrameCode li.Code_1 b {background-position: -4px -13px;}
 .Announced_FrameCode li.Code_0 b {background-position: -408px -13px;}
+.Announced_FrameCode li.Code_2 b {background-position: -49px -13px;}
+.Announced_FrameCode li.Code_3 b {background-position: -94px -13px;}
+.Announced_FrameCode li.Code_4 b {background-position: -137px -13px;}
+.Announced_FrameCode li.Code_5 b {background-position: -185px -13px;}
+.Announced_FrameCode li.Code_6 b {background-position: -229px -13px;}
 .Announced_FrameCode li.Code_7 b {background-position: -273px -13px;}
 .Announced_FrameCode li.Code_6 b {background-position: -229px -13px;}
+.Announced_FrameCode li.Code_9 b {background-position: -362px -13px;}
+.Announced_FrameCode li.Code_8 b {background-position: -319px -13px;}
 .Announced_FrameCode, .Announced_FrameGet, .Announced_FrameBm {background: url(../img/Announced_1.png) no-repeat;}
 .Announced_FrameGet {width: 428px;height: 87px;background-position: 0 -87px;}
 .Announced_FrameGet dl {margin-left: 84px;padding: 14px 0 0 12px;zoom: 1;font-family: 宋体;}

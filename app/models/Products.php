@@ -11,8 +11,9 @@ use lithium\util\Validator;
 
 class Products extends \lithium\data\Model {
 
-    const LIST_WIDTH = 213;
-    const DETAILS_WIDTH = 447;
+    const LIST_WIDTH    = 213;  // 列表进度条总宽度
+    const DETAILS_WIDTH = 447;  // 详情进度条总宽度
+    const SHOW_TIME     = 5;    // 到揭晓时间后
 
     /**
      * mongodb products数据结构
@@ -281,91 +282,179 @@ class Products extends \lithium\data\Model {
 
         list($period, $periodIds) = Periods::period($product->periods, $periodId);
 
-        $percent = sprintf('%.2f', ($period['person'] - $period['remain'])/$period['person'] * 100);
+        $join = $period['person'] - $period['remain'];
+        $percent = sprintf('%.2f', $join/$period['person'] * 100);
 
         $info = [];
-        $info['id']          = $product->_id;
-        $info['periodId']    = $periodId;
-        $info['title']       = $product->title;
-        $info['feature']     = $product->feature;
-        $info['price']       = $period['price'];
-        $info['person']      = $period['person'];
-        $info['remain']      = $period['remain'];
-        $info['join']        = $period['person'] - $period['remain'];
-        $info['content']     = $product->content;
-        $info['typeId']      = $product->type_id;
-        $info['images']      = $product->images;
-        $info['orders']      = isset($period['orders']) ? $period['orders'] : [];
-        $info['results']     = isset($period['results']) ? $period['results'] : [];
-        $info['periodIds']   = $periodIds;
-        $info['percent']     = $percent;
-        $info['width']       = self::DETAILS_WIDTH *  $percent / 100;
-        $info['showFeature'] = ($periodId == count($periodIds)) ? true : false;
-
-
-        // 如果是正在进行，显示上期获奖者(商品图片下方)
-        $info['showWinner'] = false;
-        $total = count($periodIds);
-        if($periodId > 1 && $periodId == $total) {
-
-            list($prevPeriod, ) = Periods::period($product->periods, $periodId-1);
-
-            if($prevPeriod['status'] == 2) {
-                $info['showWinner'] = true;
-                $info['winner'] = [
-                    'userId'  => $prevPeriod['user_id'],
-                    'code'    => $prevPeriod['code'],
-                    'ordered' => $prevPeriod['ordered'],
-                ];
-            }
-        } 
-
-        // 晒单数目
-        $info['shareTotal'] = count($product->shares);
-
-        // 如果是限时显示揭晓时间
-        $info['showLimitTime'] = false;
-        if($product->typeId == 2) {
-            $info['showLimitTime'] = true;
-            $info['showed'] = $period['showed'];
-        }
-
-        // 如果不是正在进行的期数
-        if($total != $periodId) {
-            // 剩余两分钟显示倒计时 (计算 &&　限时)
-            $info['showTimer'] = false;
-            if($period['status'] == 1) {
-                $info['showTimer'] = true;
-                $period['showedTime'] = strtotime($period['showed'] , '+2 minutes');
-            }
-
-            // 显示揭晓结果
-            $info['showResult'] = false;
-            if($period['status'] == 2) {
-                $info['showResult'] = true;
-                $info['code'] = str_split($period['code']);
-                $info['userId'] = $period['user_id'];
-                $info['ordered'] = date('Y-m-d H:i:s', $period['ordered']);
-                $info['showed'] = date('Y-m-d H:i:s', $period['showed']);
-            }
-
-            // 获取正在进行的期数
-            $info['showActive'] = false;
-            if($product->status == 1) {
-                $info['showActive'] = true;
-                list($activePeriod, $activeIds) = Periods::period($product->periods, $total);
-                $info['activePeriod'] = [
-                    'id'      => $activePeriod['id'],
-                    'person'  => $activePeriod['person'],
-                    'remain'  => $activePeriod['remain'],
-                    'join'    => $activePeriod['person'] - $activePeriod['remain'],
-                    'percent' => sprintf('%.2f', ($activePeriod['person'] - $activePeriod['remain'])/$activePeriod['person'] * 100),
-                ];
-            }
-
-        }
+        $info['id']           = $product->_id;
+        $info['title']        = $product->title;
+        $info['feature']      = $product->feature;
+        $info['content']      = $product->content;
+        $info['images']       = $product->images;
+        $info['typeId']       = $period['typeId'];
+        $info['orders']       = $period['orders'];
+        $info['results']      = $period['results'];
+        $info['price']        = $period['price'];
+        $info['person']       = $period['person'];
+        $info['remain']       = $period['remain'];
+        $info['join']         = $join;
+        $info['periodId']     = $periodId;
+        $info['periodIds']    = $periodIds;
+        $info['percent']      = $percent;
+        $info['width']        = self::DETAILS_WIDTH * $percent / 100;
+        $info['shareTotal']   = count($product->shares);                                        // 晒单数目
+        $info['showFeature']  = $this->_showFeature($periodId, count($periodIds));              // 显示特性
+        $info['showWinner']   = $this->_showWinner($product->periods, $periodId, $info);        // 上期获奖者
+        $info['showLimit']    = $this->_showLimit($period, $info);                              // 限时揭晓
+        $info['showSoldOut']  = $this->_showSoldOut($period['remain']);                         // 人次是否已满
+        $info['showCounting'] = $this->_showCounting($period['status']);                        // 显示正在计算
+        $info['showResult']   = $this->_showResult($period, $info);                             // 显示揭晓结果
+        $info['showActive']   = $this->_showActive($product->status, $product->periods, $info); // 获取正在进行的期数
         
         return $info;
+    }
+
+    /**
+     * 显示特性
+     *
+     * @param $periodId integer 本期ID
+     * @param $total    integer 总期数
+     *
+     * @return boolean 是否显示
+     */
+    private function _showFeature($periodId, $total) {
+
+        return ($periodId == $total);
+    }
+
+    /**
+     * 是否显示上期获奖者
+     * 如果不是第一期 且 最后一期是当前期 且 上一期已揭晓
+     *
+     * @param $periods   object  商品所有期
+     * @param $periodId  integer 当前期ID
+     * @param &$info     array   附加上期获奖者信息
+     *
+     * @return boolean
+     */
+    private function _showWinner($periods, $periodId, &$info) {
+
+        $show = false;
+        $total = count($periods);
+        if($periodId > 1 && $periodId == $total) {
+
+            list($period, ) = Periods::period($periods, $periodId-1);
+
+            if($period['status'] == 2) {    // 已经揭晓
+                $show = true;
+                $info['winner'] = [
+                    'userId'  => $period['user_id'],
+                    'code'    => $period['code'],
+                    'ordered' => $period['ordered'],
+                ];
+            }
+        }
+
+        return $show;
+    }
+
+    /**
+     * 是否是显示揭晓
+     *
+     * @param $period array 本期信息
+     * @param &$info  array 附加揭晓时间
+     *
+     * @return boolean 是否显示
+     */
+    private function _showLimit($period, &$info) {
+        $show = false;
+        if($period['typeId'] == 1) {
+            $show = true;
+            $leftTime = $period['showed'] - time();
+            $hour = floor($leftTime/3600);
+            $second = $leftTime%3600;
+            $minute = floor($second/60);
+            $second = $second%60;
+            $info['showed'] = $leftTime > 86400 ? date('m月d日H时') : sprintf("<em>%02d</em>时<em>%02d</em>分<em>%02d</em>秒", $hour, $minute, $second);
+            $info['leftTime'] = $leftTime;
+        }
+
+        return $show;
+    }
+
+    /**
+     * 是否已经满人
+     * 
+     * @param $remain integer 剩余人数
+     *
+     * @return boolean 是否显示
+     */
+    private function _showSoldOut($remain) {
+
+        return empty($remain);
+    }
+
+    /**
+     * 是否显示计算中
+     *
+     * @param $status integer 状态
+     *
+     * @return boolean 是否显示
+     */
+    private function _showCounting($status) {
+
+        return ($status == 1);
+    }
+
+    /**
+     * 是否显示开奖结果
+     *
+     * @param $period array 本期信息
+     * @param &$info  array 附加开奖信息
+     *
+     * @return boolean 是否显示
+     */
+    private function _showResult($period, &$info) {
+
+        $show = false;
+        if($period['status'] == 2) {    // 已经揭晓状态
+            $show = true;
+            $info['code']    = str_split($period['code']);
+            $info['userId']  = $period['user_id'];
+            $info['ordered'] = date('Y-m-d H:i:s', $period['ordered']);
+            $info['showed']  = date('Y-m-d H:i:s', $period['showed']);
+        }
+
+        return $show;
+    }
+
+    /**
+     * 是否显示正在进行的期信息
+     *
+     * @param $status  integer 商品上架状态
+     * @param $periods object  本商品的所有期对象
+     * @param &$info   array   附加正在进行期信息
+     * 
+     * @return boolean 是否显示
+     */
+    private function _showActive($status, $periods, &$info) {
+
+        $show = false;
+        if($status == 1) { // 上架状态
+            $show = true;
+            list($period, ) = Periods::period($periods);
+
+            $join = $period['person'] - $period['remain'];
+            $info['activePeriod'] = [
+                'id'      => $period['id'],
+                'person'  => $period['person'],
+                'remain'  => $period['remain'],
+                'join'    => $join,
+                'percent' => sprintf('%.2f', $join / $period['person'] * 100),
+            ];
+        }
+
+        return $show;
     }
 
 
