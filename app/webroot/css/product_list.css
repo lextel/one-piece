@@ -798,8 +798,9 @@ background: url(../img/new-class-icon.png);
 .Result_Progress-bar .Pro-bar-li li.P-bar03 {width: 34%;float: right;text-align: right;}
 .Result_Progress-bar .Pro-bar-li li.P-bar03 em {color: #14A8E4;}
 .Result_Progress-bar .Pro-bar-li li em {display: block;font-size: 12px;font-family: arial;height: 14px;}
-.Announced_Frame {background: url(../img/Announced_2.png);}
-.Announced_FrameT, .Announced_FrameTin {
+.Announced_Frame ,.calculate{background: url(../img/Announced_2.png);}
+
+.Announced_FrameT, .Announced_FrameTin,.announceing_tltle,.calculate_tltle {
 	width: 450px;
 	height: 49px;
 	overflow: hidden;
@@ -816,8 +817,8 @@ background: url(../img/new-class-icon.png);
 	margin: 0 auto;
 	background-position: 0 0;
 }
-.Announced_FrameCode .Announced_FrameCodeMal {margin: 15px 0 0 84px;float: left;display: inline;}
-.Announced_FrameCode li {
+.Announced_FrameCode .Announced_FrameCodeMal,.announceing_mal {margin: 15px 0 0 84px;float: left;display: inline;}
+.Announced_FrameCode li,.announceing_code ul li{
 	width: 40px;
 	height: 55px;
 	float: left;
@@ -830,7 +831,7 @@ background: url(../img/new-class-icon.png);
 	font-size: 60px;
 	color: #F60;
 }
-.Announced_FrameCode li b {
+.Announced_FrameCode li b,.announceing_code ul li b{
 	width: 40px;
 	height: 55px;
 	position: absolute;
@@ -840,17 +841,10 @@ background: url(../img/new-class-icon.png);
 }
 .Announced_FrameCode li.Code_1 b {background-position: -4px -13px;}
 .Announced_FrameCode li.Code_0 b {background-position: -408px -13px;}
-.Announced_FrameCode li.Code_2 b {background-position: -49px -13px;}
-.Announced_FrameCode li.Code_3 b {background-position: -94px -13px;}
-.Announced_FrameCode li.Code_4 b {background-position: -137px -13px;}
-.Announced_FrameCode li.Code_5 b {background-position: -185px -13px;}
-.Announced_FrameCode li.Code_6 b {background-position: -229px -13px;}
 .Announced_FrameCode li.Code_7 b {background-position: -273px -13px;}
 .Announced_FrameCode li.Code_6 b {background-position: -229px -13px;}
-.Announced_FrameCode li.Code_9 b {background-position: -362px -13px;}
-.Announced_FrameCode li.Code_8 b {background-position: -319px -13px;}
-.Announced_FrameCode, .Announced_FrameGet, .Announced_FrameBm {background: url(../img/Announced_1.png) no-repeat;}
-.Announced_FrameGet {width: 428px;height: 87px;background-position: 0 -87px;}
+.Announced_FrameCode, .Announced_FrameGet, .Announced_FrameBm,.announceing_code,.announceing_get {background: url(../img/Announced_1.png) no-repeat;}
+.Announced_FrameGet,.announceing_get {width: 428px;height: 87px;background-position: 0 -87px; margin:0 auto;}
 .Announced_FrameGet dl {margin-left: 84px;padding: 14px 0 0 12px;zoom: 1;font-family: 宋体;}
 .Announced_FrameGet dt {float: left;width: 60px;margin-right: 17px;font-size: 0;}
 .Announced_FrameGet dt img {width: 60px;height: 60px;}
@@ -868,7 +862,36 @@ background: url(../img/new-class-icon.png);
 	margin: 10px 0 0 14px;
 	font-family: 宋体;
 }
+.Announced_But:hover {
+	background: #C42500;
+	color: #FC0;
+}
 .Announced_FrameBm {width: 450px;height: 15px;background-position: 0 -182px;}
+/*揭晓倒计时*/
+.announceing_frame{background: url(../img/Announced_2.png);}
+.announceing_code {
+	width: 428px;
+	height: 87px;
+	margin: 0 auto;
+	background-position: 0 0;
+}
+.announceing_code ul {
+	margin: 15px 0 0 0px;
+	float: left;
+	display: inline;
+}
+.announceing_get img{margin:13px 0 0 12px;}
+.announceing_clock{ background:url(../img/Announced_Clock.gif) no-repeat; float:left; width:60px; height:60px; margin:11px 13px;}
+.announceing_code ul li.colon  b{ margin: 0 10px;background-position: -465px -13px;}
+.announceing_code ul li.Code_1 b {background-position: -4px -13px;}
+.announceing_code ul li.Code_0 b {background-position: -408px -13px;}
+/*正在计算*/
+.calculate{
+	width:450px;
+	overflow:hidden;
+}
+.calculate_c{ text-align:center; padding:30px 0; background:#fff; border-radius:5px;margin:0 20px;}
+
 .MaCenter {border: 1px solid #EDEDED;margin-top: 10px;}
 .MaCenter p {text-align: left;border-bottom: 1px solid #EDEDED;line-height: 30px;color: #999;text-indent: 1em;}
 .MaCenterH {height: 90px;overflow: hidden;padding-top: 1px;}

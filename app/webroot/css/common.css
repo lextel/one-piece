@@ -926,6 +926,9 @@ background: url(../img/login_new.png) no-repeat;
 .list_Sort dd a.SortCur i{
 	background-position:-22px -170px;
 }
+.list_Sort dd a.SortCur s{
+	background-position: -43px -170px;
+} 
 .share_list {width: 980px;padding: 0 0 20px 0;background: #F7F7F7;overflow: hidden;zoom: 1;}
 .goods_share_listC {width: 980px;overflow: hidden;padding: 0 0 10px 0;}
 .goods_share_listC ul {width: 980px;}

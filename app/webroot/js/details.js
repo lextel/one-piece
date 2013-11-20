@@ -61,11 +61,9 @@ $(function(){
     // 限时倒计时
     var rtime = $('#divAutoRTime');
     if(rtime.length > 0) {
-        console.log('I am in!');
         leftTime = rtime.attr('time');
         if(leftTime < 86400) {
-            console.log('some time');
-            var t = setTimeout("countTime()", 1000);
+            countTime();
         }
     }
 });
@@ -77,21 +75,25 @@ function scrollToContent() {
 
 // 倒计时
 function countTime() {
-    // leftTime
 
-            // $leftTime = $period['showed'] - time();
-            // $hour = floor($leftTime/3600);
-            // $second = $leftTime%3600;
-            // $minute = floor($second/60);
-            // $second = $second%60;
+    var hour = showZeroFilled(Math.floor(leftTime/3600));
+    var second = leftTime%3600;
+    var minute = showZeroFilled(Math.floor(second/60));
+    second = showZeroFilled(second%60);
+    $('#divAutoRTime > p').html('剩余时间：<em>'+hour+'</em>时<em>'+minute+'</em>分<em>'+second+'</em>秒');
 
+    leftTime--;
+    
+    setTimeout("countTime()", 1000);
 }
 
-// 时间戳
-function unixtime(){
-    var dt = new Date()();
-    var ux = Date().UTC(dt.getFullYear(),dt.getMonth(),dt.getDay(),dt.getHours(),dt.getMinutes(),dt.getSeconds())/1000;
+// 不足两位补零
+function showZeroFilled(inValue) {
+    if (inValue > 9) {                             
+        return "" + inValue;
+    }
 
-    return ux;
+    return "0" + inValue;
 }
+
 

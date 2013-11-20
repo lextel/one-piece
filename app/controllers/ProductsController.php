@@ -21,21 +21,21 @@ class ProductsController extends \lithium\action\Controller {
         $limit    = Page::$page;
         $cats     = Cats::cats();
         $page     = $request->page ? : 1;
-        $cat_id   = $request->cat_id;
-        $brand_id = $request->brand_id;
+        $catId    = $request->catId;
+        $brandId  = $request->brandId;
         $orderBy  = isset($request->query['orderby']) ? $request->query['orderby'] : '';
         $sort     = isset($request->query['sort']) ? $request->query['sort'] : '';
 
-        $total = Products::lists(compact('cat_id', 'brand_id'))->count();
-        $products = Products::lists(compact('limit', 'page', 'cat_id', 'brand_id', 'orderBy', 'sort'), true);
+        $total = Products::lists(compact('catId', 'brand_id'))->count();
+        $products = Products::lists(compact('limit', 'page', 'catId', 'brandId', 'orderBy', 'sort'), true);
 
         // 排序LIST
-        $orderByList = Sort::sort('products',$cat_id, $brand_id, $orderBy, $sort);
+        $orderByList = Sort::sort('products',$catId, $brandId, $orderBy, $sort);
 
         // 品牌
-        $brands = Brands::lists($cat_id);
+        $brands = Brands::lists($catId);
 
-        return compact('products', 'limit', 'page', 'total', 'cats', 'orderByList', 'cat_id', 'brand_id', 'brands');
+        return compact('products', 'limit', 'page', 'total', 'cats', 'orderByList', 'catId', 'brandId', 'brands');
     }
 
     // 商品管理
@@ -130,18 +130,20 @@ class ProductsController extends \lithium\action\Controller {
             return $this->redirect('Products::notfound');
         }
 
-        ob_start();
-        var_dump($product);
-        $dump = ob_get_clean();
+        // @TODO 页面渲染用
+        $dump = '';
+        // ob_start();
+        // var_dump($product);
+        // $dump = ob_get_clean();
 
         return compact('product', 'dump');
     }
 
     // 分类ID获取品牌
     public function brand() {
-        $cat_id = $this->request->cat_id;
+        $catId = $this->request->catId;
 
-        $brands = Brands::lists($cat_id);
+        $brands = Brands::lists($catId);
 
         return $this->render(['type' => 'json', 'data' => $brands]);
     }

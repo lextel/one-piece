@@ -77,6 +77,7 @@ if (!defined('DS')) {
  * 定义用户ID 测试用
  */
 define('USER_ID', 1);
+define('UNSET_USER_ID', 2);
 
 /**
  * Locate and load Lithium core library files.  Throws a fatal error if the core can't be found.

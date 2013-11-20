@@ -93,13 +93,13 @@ if (!Environment::is('production')) {
  * a top-down fashion.
  */
 
-Router::connect('/products/index/{:cat_id:[0-9]+}/{:brand_id:[0-9]+}/{:args}', 'Products::index');
-Router::connect('/products/index/{:cat_id:[0-9]+}/page:{:page:[0-9]+}/{:args}', 'Products::index');
-Router::connect('/products/index/{:cat_id:[0-9]+}/{:args}', 'Products::index');
-Router::connect('/products/index/{:cat_id:[0-9]+}/{:brand_id:[0-9]+}/page:{:page:[0-9]+}/{:args}', 'Products::index');
+Router::connect('/products/index/{:catId:[0-9]+}/{:brandId:[0-9]+}/{:args}', 'Products::index');
+Router::connect('/products/index/{:catId:[0-9]+}/page:{:page:[0-9]+}/{:args}', 'Products::index');
+Router::connect('/products/index/{:catId:[0-9]+}/{:args}', 'Products::index');
+Router::connect('/products/index/{:catId:[0-9]+}/{:brandId:[0-9]+}/page:{:page:[0-9]+}/{:args}', 'Products::index');
 Router::connect('/products/view/{:id}/{:periodId}', 'Products::view');
-Router::connect('/products/cat/{:cat_id:[0-9]+}/{:args}', 'Products::cat');
-Router::connect('/products/brand/{:cat_id:[0-9]+}/{:args}', 'Products::brand');
+Router::connect('/products/cat/{:catId:[0-9]+}/{:args}', 'Products::cat');
+Router::connect('/products/brand/{:catId:[0-9]+}/{:args}', 'Products::brand');
 Router::connect('/products/edit/{:id}', 'Products::edit');
 Router::connect('/{:controller}/{:action}/page:{:page:[0-9]+}/{:args}');
 Router::connect('/{:controller}/{:action}/{:args}');

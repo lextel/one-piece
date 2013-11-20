@@ -1,20 +1,23 @@
 <?php
 namespace app\tests\cases\models;
-use app\tests\mocks\requests\MockProductsRequest as Request;
 use app\models\Products;
 use app\models\Periods;
 use lithium\util\Validator;
+use app\tests\mocks\models\MockProductsModel as MockProducts;
+use app\tests\mocks\requests\MockProductsRequest as Request;
 
 class ProductsTest extends \lithium\test\Unit {
 
     private $_request;
     private $_product;
+    private $_mockProduct;
     private $_rules;
     private $_id;
 
     public function setUp() {
         $this->_request = new Request();
         $this->_product = new Products();
+        $this->_mockProduct = new MockProducts();
         $this->_rules = $this->_product->validates;
     }
 

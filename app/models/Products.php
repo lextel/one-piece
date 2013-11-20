@@ -280,7 +280,10 @@ class Products extends \lithium\data\Model {
      */
     public function _afterView($product, $periodId) {
 
+
         list($period, $periodIds) = Periods::period($product->periods, $periodId);
+        
+        if(empty($period)) return [];
 
         $join = $period['person'] - $period['remain'];
         $percent = sprintf('%.2f', $join/$period['person'] * 100);
@@ -306,10 +309,11 @@ class Products extends \lithium\data\Model {
         $info['showFeature']  = $this->_showFeature($periodId, count($periodIds));              // 显示特性
         $info['showWinner']   = $this->_showWinner($product->periods, $periodId, $info);        // 上期获奖者
         $info['showLimit']    = $this->_showLimit($period, $info);                              // 限时揭晓
-        $info['showSoldOut']  = $this->_showSoldOut($period['remain']);                         // 人次是否已满
+        $info['showFull']     = $this->_showFull($period['remain']);                            // 人次是否已满
         $info['showCounting'] = $this->_showCounting($period['status']);                        // 显示正在计算
         $info['showResult']   = $this->_showResult($period, $info);                             // 显示揭晓结果
         $info['showActive']   = $this->_showActive($product->status, $product->periods, $info); // 获取正在进行的期数
+        $info['showSoldOut']  = $this->_showSoldOut($product->status, $info);                   // 是否已经下架
         
         return $info;
     }
@@ -375,7 +379,7 @@ class Products extends \lithium\data\Model {
             $second = $leftTime%3600;
             $minute = floor($second/60);
             $second = $second%60;
-            $info['showed'] = $leftTime > 86400 ? date('m月d日H时') : sprintf("<em>%02d</em>时<em>%02d</em>分<em>%02d</em>秒", $hour, $minute, $second);
+            $info['showed'] = $leftTime > 86400 ? sprintf("揭晓时间：<em>%d</em>月<em>%d</em>日<em>%d</em>时", date('m'), date('d'), date('H')) : sprintf("剩余时间：<em>%02d</em>时<em>%02d</em>分<em>%02d</em>秒", $hour, $minute, $second);
             $info['leftTime'] = $leftTime;
         }
 
@@ -389,7 +393,7 @@ class Products extends \lithium\data\Model {
      *
      * @return boolean 是否显示
      */
-    private function _showSoldOut($remain) {
+    private function _showFull($remain) {
 
         return empty($remain);
     }
@@ -452,6 +456,24 @@ class Products extends \lithium\data\Model {
                 'join'    => $join,
                 'percent' => sprintf('%.2f', $join / $period['person'] * 100),
             ];
+        }
+
+        return $show;
+    }
+
+    /**
+     * 商品已经下架
+     *
+     * @param $status integer 商品状态
+     * @param &$info  array   
+     *
+     * @return boolean
+     */
+    private function _showSoldOut($status, &$info) {
+
+        $show = false;
+        if($status == 0) {
+            $show = true;
         }
 
         return $show;

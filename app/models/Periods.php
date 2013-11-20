@@ -96,9 +96,14 @@ class Periods extends \lithium\data\Model {
      */
     public static function period($periods, $periodId = 0) {
 
+        $total = count($periods);
+
+        if($periodId > $total) {
+            return [[], []];
+        }
+
         $data = [];
         $periodIds = [];
-        $total = count($periods);
         $periodId = empty($periodId) ? $total : $periodId;
         foreach($periods as $period) {
             $data[$period->id]['id']      = $period->id;
