@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use app\extensions\helper\Mongo;
+
 class Posts extends \lithium\data\Model {
 
     /**
@@ -14,8 +16,11 @@ class Posts extends \lithium\data\Model {
      * title            标题
      * content          内容
      * images           图片
-     * comment          评论
+     * comment          评论数目
+     * comments         评论
+     * hits             浏览数目
      * good             赞
+     * created          创建时间
      */
     protected $_meta = array(
         'connection' => 'posts',
@@ -26,17 +31,24 @@ class Posts extends \lithium\data\Model {
     /**
      * 我的晒单
      *
-     * @param $userId integer 会员ID
-     * @param $typeId integer 类型 1 已晒单 2未晒单
+     * @param $options['useId']     integer  会员ID
+     *        $options['typeId']    integer  1 已晒单 2未晒单
+     *        $options['getTotal']  boolean  是否是统计总数
+     *        $options['page']      integer     
+     *        $options['limit']     integer  条数
      *
-     * @return array  $data['productId']
-     *                $data['title']
-     *                $data['periodId']
-     *                $data['userId']
+     * @return intger|array  $data['productId']
+     *                       $data['title']
+     *                       $data['periodId']
+     *                       $data['userId']
      */
-    public static function myShare($userId) {
+    public static function myShare($options) {
 
-        $products = Products::find('all', ['conditions' => ['periods.user_id' => $userId]])->to('array');
+        $userId = $options['userId'];
+        $typeId = $options['typeId'];
+
+        $conditions = ['periods.user_id' => $userId];
+        $products = Products::find('all', ['conditions' => $conditions])->to('array');
 
         $shares = [];
         foreach($products as $product) {
@@ -45,17 +57,52 @@ class Posts extends \lithium\data\Model {
                     $data = [
                         'productId' => $product['_id'],
                         'title'     => $product['title'],
+                        'images'    => $product['images'],
                         'periodId'  => $period['id'],
                         'userId'    => $period['user_id'],
                     ];
 
-                    $shares[] = $data;
+                    $rs = Posts::first([
+                                        'conditions' => [
+                                            'from_id' => $userId, 
+                                            'product_id' => $product['_id'], 
+                                            'period_id' => $period['id']
+                                            ]
+                                        ]);
+                    if(($rs && $typeId == 1) || (!$rs && $typeId == 2)) {
+                        $shares[] = $data;
+                    }
                 }
             }
         }
 
-        return $shares;
+        $limit = isset($options['limit']) ? $options['limit'] : 0;
+        $page  = isset($options['page']) ? $options['page'] : 1;
+        $offset = ($page-1)*$limit;
+
+        return isset($options['getTotal']) && $options['getTotal'] ? count($shares) : array_slice($shares, $offset, $limit);
     }
+
+    /**
+     * 获取当前会员可以晒单的信息
+     *
+     * @param $productId string  产品ID
+     * @param $peroidId  integer 期数ID
+     * @param $userId    integer 会员ID
+     *
+     * @return array $data['title']
+     *               $data['periodId']
+     */
+    public static function share($productId, $periodId,  $userId=0) {
+        $userId = empty($userId) ? USER_ID : $userId;
+
+        $conditions = ['_id' => $productId, 'periods.id' => (int)$periodId, 'periods.user_id' => (int)$userId];
+        $shares = Products::find('all', ['conditions' => $conditions, 'fields' => ['title']])->to('array');
+
+        return empty($shares) ? [] : ['title' => $shares[$productId]['title'], 'periodId' => $periodId];
+    }
+
+    
 }
 
 ?>

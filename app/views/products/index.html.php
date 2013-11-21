@@ -1,4 +1,5 @@
 <?php
+$this->title('商品列表');
 $this->styles($this->resLoader->css('product_list.css'));
 ?>
 <div class="Current_nav"><a href="/">首页</a> &gt; 所有分类</div>

@@ -280,6 +280,7 @@ class Products extends \lithium\data\Model {
      */
     public function _afterView($product, $periodId) {
 
+        if(empty($product)) return [];
 
         list($period, $periodIds) = Periods::period($product->periods, $periodId);
         

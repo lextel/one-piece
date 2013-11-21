@@ -7,6 +7,10 @@
  */
 namespace app\extensions\helper;
 
+use Imagine\Image\Box;
+use Imagine\Image\ImageInterface;
+use Imagine\Gd\Imagine;
+
 class Uploader {
 
     /**
@@ -17,6 +21,7 @@ class Uploader {
      * @return string 文件类型
      */
     public function fileType($filename) {
+
         $type = exif_imagetype($filename);
 
         switch ($type){
@@ -47,11 +52,122 @@ class Uploader {
      * @return string
      */
     public function uploadPath($filename, $dirType) {
+
         $md5 = MD5($filename);
         $firstDir  = substr($md5, 0, 1);
         $secondDir = substr($md5, 1, 1);
 
         $dir = UPLOAD_PATH . DS . $dirType . DS .$firstDir . DS . $secondDir;
+
+        $dir = $this->_createPath($dir);
+
+        return $dir . $filename;
+    }
+
+
+
+    /**
+     * 上传文件
+     *
+     * @param: $file        array           文件数组
+     * @param: $typeDir     string          存放文件夹
+     * @param: $fileType    array|string    验证文件类型
+     *
+     * @return array
+     */
+    public function upload($file, $typeDir, $fileType='') {
+
+        $error = $this->errorHandler($file, $fileType);
+
+        if(empty($error)) {
+            $name = $file['name'];
+            $filename = $file['tmp_name'];
+            $path = $this->uploadPath($name, $typeDir);
+            $result = move_uploaded_file($filename, $path);
+
+            // 生成缩略图
+            $this->thumbnail($typeDir, $path);
+
+            if(!$result) {
+                $error = '上传失败';
+            } else {
+                $path = str_replace(UPLOAD_PATH, '', $path);
+                $path = '/images' . str_replace(DS, '/', $path);
+            }
+        }
+   
+        return $error ? ['status' => false, 'data' => $error] : ['status' => true, 'data' => $path];
+    }
+
+    /**
+     * 生成缩略图
+     *
+     * @param: $typeDir string 存放文件夹
+     * @param: $path     string 服务器路径
+     *
+     * @return void
+     */
+    public function thumbnail($typeDir, $path) {
+
+        if(file_exists($path)) {
+            $imagine = new Imagine();
+
+            switch ($typeDir) {
+                case 'products':
+                    $newPath = $this->_thumbPath($path, $typeDir, '200x200');
+
+                    $image = $imagine->open($path);
+                    $image->resize(new Box(200, 200));
+                    $image->save($newPath);
+
+                    $newPath = $this->_thumbPath($path, $typeDir, '400x400');
+                    $image = $imagine->open($path);
+                    $image->resize(new Box(400, 400));
+                    $image->save($newPath);
+
+                    break;
+                case 'shares':
+                    $newPath = $this->_thumbPath($path, $typeDir, '200');
+                    $image = $imagine->open($path);
+                    $image->resize($image->getSize()->widen( 200 ));
+                    $image->save($newPath);
+
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+        }
+    }
+
+    /**
+     * 缩略图路径
+     *
+     * @param $path     string 原图目录
+     * @param $typeDir string 存放文件夹
+     * @param $size    string 尺寸
+     * 
+     * @return string 
+     */
+    private function _thumbPath($path, $typeDir, $size) {
+
+        $info = pathinfo($path);
+
+        $newDir = str_replace($typeDir, $typeDir. DS . $size, $info['dirname']);
+        $newDir = $this->_createPath($newDir);
+
+        return $newDir . $info['basename'];
+    }
+
+    /**
+     * 自动创建文件夹
+     *
+     * @param $dir string 文件夹
+     *
+     * @return string
+     */
+    private function _createPath($dir) {
 
         $dirs = explode(DS, $dir);
         $dir = '';
@@ -64,38 +180,9 @@ class Uploader {
 
         @chmod($dir, 0755);
 
-        return $dir . $filename;
+        return $dir;
     }
 
-    /**
-     * 上传文件
-     *
-     * @param: $file        array           文件数组
-     * @param: $targetname  string          存放文件名
-     * @param: $filetype    array|string    验证文件类型
-     *
-     * @return array
-     */
-    public function upload($file, $typeDir, $fileType='') {
-
-        $error = $this->errorHandler($file, $fileType);
-
-        if(empty($error)) {
-            $name = $file['name'];
-            $filename = $file['tmp_name'];
-            $dir = $this->uploadPath($name, $typeDir);
-            $result = move_uploaded_file($filename, $dir);
-
-            if(!$result) {
-                $error = '上传失败';
-            } else {
-                $dir = str_replace(UPLOAD_PATH, '', $dir);
-                $dir = '/images' . str_replace(DS, '/', $dir);
-            }
-        }
-   
-        return $error ? ['status' => false, 'data' => $error] : ['status' => true, 'data' => $dir];
-    }
 
     /**
      * 错误处理
@@ -105,6 +192,7 @@ class Uploader {
      * @return string
      */
     public function errorHandler($file, $fileType) {
+
         // 文件大小错误
         if(empty($file['size'])) return '文件没有内容';
 

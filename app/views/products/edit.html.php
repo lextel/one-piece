@@ -1,4 +1,5 @@
 <?php
+$this->title('商品管理 > 编辑商品');
 $this->scripts($this->resLoader->script('jquery.validate.js'));
 $this->scripts($this->resLoader->script('additional-methods.min.js'));
 $this->scripts($this->resLoader->script('jquery.ui.widget.js'));

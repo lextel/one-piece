@@ -48,7 +48,7 @@ class ProductsController extends \lithium\action\Controller {
         $total = Products::lists()->count();
         $products = Products::lists(compact('limit', 'page','orderBy', 'sort'), true);
 
-        return compact('products', 'limit', 'page', 'total');
+        return $this->render(['data' => compact('products', 'limit', 'page', 'total'), 'layout' => 'user']);
     }
 
     // 添加商品
@@ -176,9 +176,7 @@ class ProductsController extends \lithium\action\Controller {
 
     // 没有商品
     public function notfound() {
-        echo '产品没找到';
-
-        return $this->render(['type' => 'text']);
+        return $this->render(['template' => '../_errors/404']);
     }
 
 }

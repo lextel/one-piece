@@ -58,7 +58,6 @@ if (!Environment::is('production')) {
 	Router::connect('/test/{:args}', array('controller' => 'lithium\test\Controller'));
 	Router::connect('/test', array('controller' => 'lithium\test\Controller'));
 }
-
 /**
  * ### Database object routes
  *
@@ -101,7 +100,9 @@ Router::connect('/products/view/{:id}/{:periodId}', 'Products::view');
 Router::connect('/products/cat/{:catId:[0-9]+}/{:args}', 'Products::cat');
 Router::connect('/products/brand/{:catId:[0-9]+}/{:args}', 'Products::brand');
 Router::connect('/products/edit/{:id}', 'Products::edit');
+Router::connect('/shares/share/{:typeId:[0-9]+}/{:args}', 'Shares::share');
+Router::connect('/shares/share/{:typeId:[0-9]+}/page:{:page:[0-9]+}/{:args}', 'Shares::share');
+Router::connect('/shares/add/{:productId}/{:periodId}', 'Shares::add');
 Router::connect('/{:controller}/{:action}/page:{:page:[0-9]+}/{:args}');
 Router::connect('/{:controller}/{:action}/{:args}');
-
 ?>
