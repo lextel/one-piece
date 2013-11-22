@@ -4,6 +4,7 @@ namespace app\tests\cases\models;
 
 use app\models\Posts;
 use app\models\Products;
+use app\extension\MongoClient;
 
 class PostsTest extends \lithium\test\Unit {
     private $_userId;
@@ -25,18 +26,35 @@ class PostsTest extends \lithium\test\Unit {
 
     public function testMyShare() {
 
-        $shares = Posts::myShare($this->_userId);
+        // 验证我未晒单的总数
+        $options = [
+            'userId'   => $this->_userId,
+            'typeId'   => 2,
+            'getTotal' => true,
+        ];
 
-        if(count($shares)) {
-            $keys = ['productId', 'images','title', 'periodId', 'userId'];
-            $dataKeys = array_keys($shares[0]);
-            $this->assertEqual($keys, $dataKeys);
-        }
+        $total = Posts::myShare($options);
 
-        // 未晒单
-        $shares = Posts::myShare(['userId' => $this->_userId, 'typeId' => 2, 'getTotal' => true]);
-        $this->assertEqual(1, $shares);
+        $mo = new MongoClient();
+        $count = $mo->count(['periods' => ['$elemMatch' => ['user_id' => $this->_userId]]]);
 
+        $this->assertEqual($total, $count);
+
+        // 验证我已晒单的总数
+        $optiosn = [
+            'userId'   => $this->_userId,
+            'typeId'   => 1,
+            'getTotal' => true,
+        ];
+        $total => Posts::myShare($options);
+
+        $mo = new MongoClient();
+        $count = $mo->count(['shares' => ['$elemMatch' => ['user_id' => $this->_userId]]);
+
+        $this->assertEqual($total, $count);
+
+
+        
         // 空用户 已晒单
         $shares = Posts::myShare(['userId' => $this->_unsetUserId, 'typeId' => 1, 'getTotal' => true]);
         $this->assertTrue(empty($shares));

@@ -46,12 +46,6 @@ Connections::add('default', array(
 	'database' => 'products'
 ));
 
-Connections::add('posts', array(
-    'type' => 'MongoDb',
-    'host' => 'localhost',
-    'database' => 'posts'
-));
-
 /**
  * Uncomment this configuration to use CouchDB as your default database.
  */

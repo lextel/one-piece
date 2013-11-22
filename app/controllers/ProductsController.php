@@ -76,7 +76,7 @@ class ProductsController extends \lithium\action\Controller {
             $file = $data['file'];
 
             $uploader = new Uploader();
-            $result = $uploader->upload($file, 'products', ['jpg', 'png']);
+            $result = $uploader->upload($file, 'products', ['jpg', 'png', 'gif']);
 
         }else{
 

@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use app\extensions\helper\Mongo;
+use app\extensions\helper\MongoClient;
 
 class Posts extends \lithium\data\Model {
 
@@ -20,11 +20,9 @@ class Posts extends \lithium\data\Model {
      * comments         评论
      * hits             浏览数目
      * good             赞
+     * status           状态 0 未审核 1 已审核
      * created          创建时间
      */
-    protected $_meta = array(
-        'connection' => 'posts',
-    );
 
 	public $validates = array();
 
@@ -44,8 +42,54 @@ class Posts extends \lithium\data\Model {
      */
     public static function myShare($options) {
 
-        $userId = $options['userId'];
         $typeId = $options['typeId'];
+
+        switch ($typeId) {
+            case '2':
+                $shares = self::_myUnShare($options);
+                break;
+            default:
+                $shares = self::_myShare($options);
+                break;
+        }
+
+        return $shares;
+
+
+    }
+
+    /**
+     * 已晒单
+     *
+     */
+    private static function _myShare($options) {
+        $userId = $options['userId'];
+
+        $mo = new MongoClient();
+        $rs = $mo->find([], ['shares' => ['$elemMatch' => ['user_id' => $userId]]]);
+
+        return $rs;
+    }
+
+
+    /**
+     * 未晒单
+     *
+     * @param $options 条件
+     *
+     * @return array
+     */
+    private static function _myUnShare($options) {
+
+        $userId = $options['userId'];
+    
+        $mo = new MongoClient();
+        // 所有中奖的
+        $rs = $mo->find([], ['periods' => ['$elemMatch' => ['user_id' => $userId]]]);
+
+        // @TODO: 排除已经晒单的
+
+        /*
 
         $conditions = ['periods.user_id' => $userId];
         $products = Products::find('all', ['conditions' => $conditions])->to('array');
@@ -81,7 +125,9 @@ class Posts extends \lithium\data\Model {
         $offset = ($page-1)*$limit;
 
         return isset($options['getTotal']) && $options['getTotal'] ? count($shares) : array_slice($shares, $offset, $limit);
+        */
     }
+
 
     /**
      * 获取当前会员可以晒单的信息
@@ -100,6 +146,28 @@ class Posts extends \lithium\data\Model {
         $shares = Products::find('all', ['conditions' => $conditions, 'fields' => ['title']])->to('array');
 
         return empty($shares) ? [] : ['title' => $shares[$productId]['title'], 'periodId' => $periodId];
+    }
+
+    /**
+     * 保存晒单
+     *
+     * @param $data array 提交数据
+     *
+     * @return boolean 
+     */
+    public function insert($data) {
+
+        $data['status']    = 0;
+        $data['parent_id'] = 0;
+        $data['from_id']   = USER_ID;
+        $data['created']   = time();
+
+        $conditions = ['_id'=> $data['productId']];
+        unset($data['productId']);
+
+        $query = ['$push' => ['shares' => $data]];
+
+        return Products::update($query, $conditions,['atomic' => false]);
     }
 
     

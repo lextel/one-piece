@@ -4,9 +4,9 @@ namespace app\controllers;
 
 use app\models\Posts;
 use app\extensions\helper\Page;
-use app\extensions\helper\Mongo;
 use app\extensions\helper\Uploader;
 use lithium\action\DispatchException;
+use lithium\storage\Session;
 
 class SharesController extends \lithium\action\Controller {
 
@@ -35,17 +35,31 @@ class SharesController extends \lithium\action\Controller {
         $productId = $request->productId;
         $periodId  = $request->periodId;
 
+        if($request->is('post')) {
+            $postsModel = new Posts();
+            if($postsModel->save($request->data)) {
+                $message = ['status' => 'success', 'message' => '晒单成功，审核后可以得到1000福分哦！'];
+            } else {
+                $message = ['status' => 'fail', 'message' => '晒单失败！'];
+            }
+
+            Session::write('message', $message);
+
+            return $this->redirect('Shares::share');
+        }
+
         if(empty($productId) || empty($periodId)) {
             return $this->redirect('Shares::share');
         }
 
         $share = Posts::share($productId, $periodId, USER_ID);
+        $share['productId'] = $productId;
 
         if(empty($share)) {
             return $this->redirect('Shares::share');
         }
 
-        return $this->render(['data' => compact('share'), 'layout' => 'user']);
+        return $this->render(['data' => compact('share', 'flash'), 'layout' => 'user']);
     }
 
     // 晒单管理
@@ -67,7 +81,7 @@ class SharesController extends \lithium\action\Controller {
             $file = $data['file'];
 
             $uploader = new Uploader();
-            $result = $uploader->upload($file, 'shares', ['jpg', 'png']);
+            $result = $uploader->upload($file, 'shares', ['jpg', 'png', 'gif']);
 
         }else{
 

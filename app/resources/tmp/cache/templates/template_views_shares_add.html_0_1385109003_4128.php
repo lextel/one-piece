@@ -12,7 +12,7 @@ $this->scripts($this->resLoader->script('jquery.fileupload.js'));
     <ul>
       <li class="text_nums">
         <div>
-        <span style="font-size: 14px; padding-left: 84px">(第<?= $share['periodId']?>期) <?= $share['title'];?></span>
+        <span style="font-size: 14px; padding-left: 84px">(第<?php echo $h($share['periodId']); ?>期) <?php echo $h($share['title']); ?></span>
         </div>
       </li>
       <li class="text_nums">
@@ -33,8 +33,8 @@ $this->scripts($this->resLoader->script('jquery.fileupload.js'));
       </li>
       <li>
         <div class="bottom_side">
-            <input type="hidden" value="<?= $share['periodId'] ?>" name="periodId"/>
-            <input type="hidden" value="<?= $share['productId']?>" name="productId"/>
+            <input type="hidden" value="<?php echo $h($share['periodId']); ?>" name="periodId"/>
+            <input type="hidden" value="<?php echo $h($share['productId']); ?>" name="productId"/>
             <input type="submit" class="published" value="提交"/>
             <input type="reset" class="canal" value="重置"/>
         </div>
@@ -80,7 +80,7 @@ $this->scripts($this->resLoader->script('jquery.fileupload.js'));
 
         $(function () {
             // 图片上传
-            var url = '<?=$this->url('Shares::upload')?>';
+            var url = '<?php echo $this->url('Shares::upload'); ?>';
             $('#upload').fileupload({
                 url: url,
                 dataType: 'json',

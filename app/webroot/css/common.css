@@ -133,6 +133,8 @@ h1 {font-size: 25px;font-weight: bold;color: #494949;margin: 0;}
 	overflow: hidden;
 	display: inline-block;
 }
+.share_edit{ margin-left:53px;}
+.share_edit div label{ display:block; float:left; margin-right:5px;}
 .edui-editor{ height:250px; overflow:hidden;}
 .add_product ul li h4{ margin-left:44px;}
 .add_product ul li div label{font-size:14px; }
@@ -157,7 +159,7 @@ h1 {font-size: 25px;font-weight: bold;color: #494949;margin: 0;}
 	border-radius:3px;
 	margin-left:20px;
 }
-.bottom_side input{ float:left;background:#f60; color:#fff;}
+.bottom_side input{ float:left;background:#f60; color:#fff; cursor:pointer}
 .bottom_side input{ float:left;}
 .add_product ul li dl {margin-left:74px;}
 .add_product ul li dl dd{
