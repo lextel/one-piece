@@ -5,50 +5,76 @@
  */
 namespace app\controllers;
 
-use app\models\Products;
 use app\models\Periods;
-use app\extensions\helper\Uploader;
+use app\models\Products;
+use lithium\storage\Session;
 use app\extensions\helper\Page;
 use app\extensions\helper\Cats;
 use app\extensions\helper\Sort;
+use app\extensions\helper\Tags;
 use app\extensions\helper\Brands;
+use app\extensions\helper\Crumbs;
+use app\extensions\helper\Uploader;
 
 class ProductsController extends \lithium\action\Controller {
 
+    private $_navCurr = 'product';
+
     // 商品列表
     public function index() {
+
         $request  = $this->request;
         $limit    = Page::$page;
-        $cats     = Cats::cats();
         $page     = $request->page ? : 1;
         $catId    = $request->catId;
         $brandId  = $request->brandId;
-        $orderBy  = isset($request->query['orderby']) ? $request->query['orderby'] : '';
         $sort     = isset($request->query['sort']) ? $request->query['sort'] : '';
+        $sortBy   = isset($request->query['sortBy']) ? $request->query['sortBy'] : '';
+        $status   = 1;
+        $getTotal = true;
+        $total = Products::lists(compact('catId', 'brandId', 'status', 'getTotal'));
+        $products = Products::lists(compact('limit', 'page', 'catId', 'brandId', 'status', 'sort', 'sortBy'), true);
 
-        $total = Products::lists(compact('catId', 'brand_id'))->count();
-        $products = Products::lists(compact('limit', 'page', 'catId', 'brandId', 'orderBy', 'sort'), true);
+        // 排序标签
+        $sortList = Sort::sort('products', compact('catId', 'brandId', 'sort', 'sortBy'));
 
-        // 排序LIST
-        $orderByList = Sort::sort('products',$catId, $brandId, $orderBy, $sort);
+        // 分类标签
+        $cats = Cats::cats();
 
-        // 品牌
+        // 品牌标签
         $brands = Brands::lists($catId);
 
-        return compact('products', 'limit', 'page', 'total', 'cats', 'orderByList', 'catId', 'brandId', 'brands');
+        // 面包屑
+        $crumbs = Crumbs::get('productList', compact('catId'));
+
+        // 当前导航
+        $navCurr = $this->_navCurr;
+
+        return compact('products', 'limit', 'page', 'total', 'cats', 'sortList', 'catId', 'brandId', 'brands', 'crumbs', 'navCurr');
     }
 
     // 商品管理
     public function dashboard() {
         $limit = Page::$page;
         $page  = $this->request->page ? : 1;
-        $orderBy = 'created';
-        $sort = 'desc';
+        $sort = 'created';
+        $sortBy = 'desc';
 
-        $total = Products::lists()->count();
-        $products = Products::lists(compact('limit', 'page','orderBy', 'sort'), true);
+        $getTotal = true;
+        $total = Products::lists(compact('getTotal'));
+        $products = Products::lists(compact('limit', 'page','sort', 'sortBy'), true);
 
-        return $this->render(['data' => compact('products', 'limit', 'page', 'total'), 'layout' => 'user']);
+        $tags = Tags::$tags;
+
+        // 当前导航
+        $navCurr = $this->_navCurr;
+
+        return $this->render(['data' => compact('products', 'limit', 'page', 'total', 'navCurr', 'tags'), 'layout' => 'user']);
+    }
+
+    // 开奖结果
+    public function lottery() {
+        
     }
 
     // 添加商品
@@ -59,14 +85,79 @@ class ProductsController extends \lithium\action\Controller {
         $product = Products::create($data);
 
         if($this->request->is('post')) {
-            $productModel = new Products();
-            $rs = $productModel->add($data);
+            $rs = Products::add($data);
+
+            if($rs)
+                $message = ['status' => 'success', 'message' => '添加成功！'];
+            else 
+                $message = ['status' => 'success', 'message' => '添加失败！'];
+
+            Session::write('message', $message);
 
             $this->redirect('Products::dashboard');
         }
 
-        return compact('product','cats');
+        $navCurr = $this->_navCurr;
+
+        return $this->render(['data' => compact('product', 'cats', 'navCurr'), 'layout' => 'user']);
     }
+
+    // 编辑商品
+    public function edit() {
+
+        $id = $this->request->id;
+        if(empty($id)) $this->redirect('Products::index');
+
+        $data = $this->request->data;
+        $cats = Cats::cats();
+
+        $product = Products::first(['conditions' => ['_id' => $id]]);
+        if(empty($product)) return $this->redirect('Page::notfound');
+
+        $brands = [];
+        if($product->brand_id) {
+            $brands = Brands::lists($product->cat_id);
+        }
+
+        if($this->request->is('put')) {
+            $productModel = new Products();
+            $rs = $productModel->edit($id, $data);
+
+            return $this->redirect('Products::dashboard');
+        }
+
+        $catId   = $product->cat_id;
+        $brandId = $product->brand_id;
+
+        return $this->render(['data' => compact('product', 'cats', 'brands', 'catId', 'brandId', 'navCurr'), 'layout' => 'user']);
+    }
+
+    // 浏览商品
+    public function view() {
+
+        $id = $this->request->id;
+        $periodId = $this->request->periodId;
+        if(empty($id) || empty($periodId))
+            return $this->redirect('Products::index');
+
+        $model = new Products();
+        $product = $model->view($id, $periodId, true);
+
+        if(empty($product)) {
+            return $this->redirect('Products::notfound');
+        }
+
+        // 添加人气
+
+        // @TODO 页面渲染用
+        $dump = '';
+        // ob_start();
+        // var_dump($product);
+        // $dump = ob_get_clean();
+
+        return compact('product', 'dump');
+    }
+
 
     // 上传商品图片
     public function upload() {
@@ -93,52 +184,6 @@ class ProductsController extends \lithium\action\Controller {
         return $this->render(['json' => $result]);
     }
 
-    // 编辑商品
-    public function edit() {
-
-        $id = $this->request->id;
-        if(empty($id)) $this->redirect('Products::index');
-
-        $data = $this->request->data;
-        $cats = Cats::cats();
-
-        $product = Products::first(['conditions' => ['_id' => $id]]);
-        if(empty($product)) return $this->redirect('Products::notfound');
-
-        if($this->request->is('put')) {
-            $productModel = new Products();
-            $rs = $productModel->edit($id, $data);
-
-            return $this->redirect('Products::dashboard');
-        }
-
-        return compact('product', 'cats');
-    }
-
-    // 浏览商品
-    public function view() {
-
-        $id = $this->request->id;
-        $periodId = $this->request->periodId;
-        if(empty($id) || empty($periodId))
-            return $this->redirect('Products::index');
-
-        $model = new Products();
-        $product = $model->view($id, $periodId, true);
-
-        if(empty($product)) {
-            return $this->redirect('Products::notfound');
-        }
-
-        // @TODO 页面渲染用
-        $dump = '';
-        // ob_start();
-        // var_dump($product);
-        // $dump = ob_get_clean();
-
-        return compact('product', 'dump');
-    }
-
     // 分类ID获取品牌
     public function brand() {
         $catId = $this->request->catId;
@@ -148,35 +193,37 @@ class ProductsController extends \lithium\action\Controller {
         return $this->render(['type' => 'json', 'data' => $brands]);
     }
 
-    // 新增一期
-    public function newPeriod() {
+    // 上下架
+    public function listing() {
 
-        $id = '5289e84eb8fbc3881500003f';
-        $periodId = Periods::autoId($id);
-        $query = [
-                 '$push'=> ['periods'=>[
-                     'id' => $periodId,
-                     'price' => '5388.00',
-                     'person' => '5388',
-                     'remain' => '5388',
-                     'hits' => '1',
-                     'code' => '',
-                     'created' => time(),
-                     'showed'=> '',
-                     'status' => 0,
-                    ]
-                 ]
-            ];
-        $conditions = ['_id'=> $id];
-        $rs = Products::update($query, $conditions,['atomic' => false]);
-        var_dump($rs);
+        $id = $this->request->id;
+        $status = (int)$this->request->status;
+        $tagId = (int) $this->request->tagId;
+        $product = Products::find('first', ['conditions' => ['_id' => $id]]);
 
-        exit;
+        $product->status = $status;
+        if($tagId) {
+            $product->tag_id = $tagId;
+        }
+        $rs = $product->save();
+
+        if($rs) {
+            $result = ['status' => 1];
+        } else {
+            $result = ['status' => 0];
+        }
+
+        return $this->render(['type' => 'json', 'data' => $result]);
     }
 
-    // 没有商品
-    public function notfound() {
-        return $this->render(['template' => '../_errors/404']);
+    // 限时计划
+    public function plan() {
+
+    }
+
+    // 开奖
+    public function count() {
+
     }
 
 }

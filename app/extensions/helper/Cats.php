@@ -54,4 +54,16 @@ class Cats {
 
 		return $array;
 	}
+
+	/**
+	 * 获取一级分类名字
+	 *
+	 * @param $id integer ID
+	 *
+	 * @return string
+	 */
+	public static function name($id) {
+		
+		return self::$cats[$id]['name'];
+	}
 }

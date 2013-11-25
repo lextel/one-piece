@@ -38,6 +38,24 @@ require dirname(__DIR__) . '/config/bootstrap.php';
  * @see lithium\net\http\Router
  * @see lithium\action\Controller
  */
-echo lithium\action\Dispatcher::run(new lithium\action\Request());
+use lithium\core\Environment;
+use lithium\analysis\Logger;
+use lithium\core\ClassNotFoundException;
+use lithium\action\DispatchException;
+if (Environment::is('production')) {
+	try {
+		echo lithium\action\Dispatcher::run(new lithium\action\Request());
+	} catch(ClassNotFoundException $e) {
+		Logger::config(array('error' => array('adapter' => 'File')));
+		Logger::write('error', "ClassNotFoundException\n");
+		header('Location:/page/notfound');
+	} catch (DispatchException $e) {
+		Logger::config(array('error' => array('adapter' => 'File')));
+		Logger::write('error', "DispatchException\n");
+		header('Location:/page/notfound');
+	}
+} else {
+	echo lithium\action\Dispatcher::run(new lithium\action\Request());
+}
 
 ?>

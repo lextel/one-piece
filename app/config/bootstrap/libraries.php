@@ -79,16 +79,6 @@ if (!defined('DS')) {
 define('USER_ID', 1);
 define('UNSET_USER_ID', 2);
 
-// 日志文件
-// use lithium\analysis\Logger;
-// Logger::config(array(
-//     'default' => array('adapter' => 'Syslog'),
-//     'badnews' => array(
-//         'adapter' => 'File',
-//         'priority' => array('user', 'system')
-//     )
-// ));
-
 /**
  * Locate and load Lithium core library files.  Throws a fatal error if the core can't be found.
  * If your Lithium core directory is named something other than `lithium`, change the string below.

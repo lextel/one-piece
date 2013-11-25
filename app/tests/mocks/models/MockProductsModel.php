@@ -3,7 +3,7 @@ namespace app\tests\mocks\models;
 
 class MockProductsModel extends \lithium\data\Model {
 
-    public function find($name) {
+    public static function find($name, array $options= []) {
         switch ($name) {
             case 'first':
                 return [
@@ -16,6 +16,7 @@ class MockProductsModel extends \lithium\data\Model {
                     'person' => 100,
                     'remain' => 50,
                     'content' => '内容 创建时间是2013/11/20',
+                    'showed' => '1384876800',
                     'created' => '2013-11-20',
                     'hits' => 100,
                     'status' => 1,
@@ -63,7 +64,9 @@ class MockProductsModel extends \lithium\data\Model {
                             'type_id' => 0, 
                             'status' => 0,
                         ]
-                    ]
+                    ],
+                    'shares' => [],
+                    'limits' => [],
                 ];
                 break;
             

@@ -931,6 +931,24 @@ background: url(../img/login_new.png) no-repeat;
 .list_Sort dd a.SortCur s{
 	background-position: -43px -170px;
 } 
+.list_Sort dd a s{
+	width: 7px;
+	height: 9px;
+	display: inline-block;
+	overflow: hidden;
+	cursor: pointer;
+	margin-left: 7px;
+	background:	url(../img/goods_tj.png) no-repeat 0px -170px;
+} 
+.list_Sort dd .Price_Sort i, .list_Sort dd .SortCur b, .list_Sort dd .SortCur s {
+	width: 7px;
+	height: 9px;
+	display: inline-block;
+	overflow: hidden;
+	cursor: pointer;
+	margin-left:7px;
+}
+
 .share_list {width: 980px;padding: 0 0 20px 0;background: #F7F7F7;overflow: hidden;zoom: 1;}
 .goods_share_listC {width: 980px;overflow: hidden;padding: 0 0 10px 0;}
 .goods_share_listC ul {width: 980px;}

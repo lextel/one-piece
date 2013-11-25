@@ -32,6 +32,8 @@ if ($locales = Environment::get('locales')) {
 	Router::connect($template, array(), array('continue' => true));
 }
 
+// Environment::set('production');
+
 /**
  * Here, we are connecting `'/'` (the base path) to controller called `'Pages'`,
  * its action called `view()`, and we pass a param to select the view file
@@ -40,7 +42,7 @@ if ($locales = Environment::get('locales')) {
  *
  * @see app\controllers\PagesController
  */
-Router::connect('/', 'Pages::view');
+Router::connect('/', 'index::index');
 
 /**
  * Connect the rest of `PagesController`'s URLs. This will route URLs like `/pages/about` to
@@ -96,9 +98,17 @@ Router::connect('/products/index/{:catId:[0-9]+}/{:brandId:[0-9]+}/{:args}', 'Pr
 Router::connect('/products/index/{:catId:[0-9]+}/page:{:page:[0-9]+}/{:args}', 'Products::index');
 Router::connect('/products/index/{:catId:[0-9]+}/{:args}', 'Products::index');
 Router::connect('/products/index/{:catId:[0-9]+}/{:brandId:[0-9]+}/page:{:page:[0-9]+}/{:args}', 'Products::index');
+
+
+
 Router::connect('/products/view/{:id}/{:periodId}', 'Products::view');
+
 Router::connect('/products/cat/{:catId:[0-9]+}/{:args}', 'Products::cat');
 Router::connect('/products/brand/{:catId:[0-9]+}/{:args}', 'Products::brand');
+
+Router::connect('/products/listing/{:status}/{:tagId}/{:id}', 'Products::listing');
+Router::connect('/products/listing/{:status}/{:id}', 'Products::listing');
+
 Router::connect('/products/edit/{:id}', 'Products::edit');
 Router::connect('/shares/share/{:typeId:[0-9]+}/{:args}', 'Shares::share');
 Router::connect('/shares/share/{:typeId:[0-9]+}/page:{:page:[0-9]+}/{:args}', 'Shares::share');

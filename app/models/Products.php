@@ -6,14 +6,15 @@
 namespace app\models;
 
 use app\models\Periods;
-use app\extensions\helper\Tags;
 use lithium\util\Validator;
+use app\extensions\helper\Tags;
+use app\extensions\helper\MongoClient;
 
 class Products extends \lithium\data\Model {
 
     const LIST_WIDTH    = 213;  // 列表进度条总宽度
     const DETAILS_WIDTH = 447;  // 详情进度条总宽度
-    const SHOW_TIME     = 5;    // 到揭晓时间后
+    const SHOW_TIME     = 5;    // 倒计时揭晓时间
 
     /**
      * mongodb products数据结构
@@ -34,8 +35,11 @@ class Products extends \lithium\data\Model {
         'content'  => ['type' => 'string', 'length' => 10000, 'null' => false, 'default' => null],      // 详情
         'images'   => ['type' => 'array', 'length' => null, 'null' => false, 'default' => null],        // 图片
         'periods'  => ['type' => 'array', 'length' => null, 'null' => false, 'default' => null],        // 期数数据
+        'shares'   => ['type' => 'array', 'length' => null, 'null' => false, 'default' => null],        // 晒单数据
+        'limits'   => ['type' => 'array'],                                                              // 限时计划
         'hits'     => ['type' => 'integer', 'length' => 10, 'null' => false, 'default' => 0],           // 当期人气
-        'status'   => ['type' => 'integer', 'length' => 1, 'null' => false, 'default' => 0],            // 上下架
+        'status'   => ['type' => 'integer', 'length' => 1, 'null' => false, 'default' => 0],            // 上下架 0 未上架 1下架中 2 已上架
+        'showed'   => ['type' => 'integer'],                                                            // 揭晓时间
         'created'  => ['type' => 'date'],                                                               // 添加时间
     ];
 
@@ -75,17 +79,19 @@ class Products extends \lithium\data\Model {
      *                     $data['periods'] (见Periods Model)
      *                     $data['created'] 添加时间
      */
-    public function _perAdd($data) {
+    public static function _beforeAdd($data) {
 
         $data['hits']    = 0;
         $data['status']  = 0;
+        $data['showed']  = 0;
         $data['tag_id']  = 0;
         $data['created'] = date('Y-m-d H:i:s');
         $data['price']   = sprintf('%.2f',$data['price']);
         $data['person']  = intval($data['price']);
         $data['remain']  = $data['person'];
-
-        $data = Periods::init($data);
+        $data['periods'] = [];
+        $data['shares']  = [];
+        $data['limits']  = [];
 
         return $data;
     }
@@ -101,14 +107,18 @@ class Products extends \lithium\data\Model {
      *                    $data['price']    价格
      *                    $data['images']   图片
      *                    $data['content']  详情
+     * @param $isTest boolean 测试用
      *
      * @return object
      **/
-    public function add($data) {
+    public static function add($data, $isTest = false) {
 
-        $data = $this->_perAdd($data);
+        $data = self::_beforeAdd($data);
         $product = Products::create($data);
         $product->save();
+
+        if(!$isTest)
+            Periods::add($product->_id); // 添加第一期
 
         return $product;
     }
@@ -116,23 +126,51 @@ class Products extends \lithium\data\Model {
     /**
      * 商品列表条件处理
      *
-     * @param $options array 排序参数
+     * @param $options array 条件参数
      *
      * @return array
      */
-    public static function _perLists($options) {
+    public static function _beforeLists($options) {
 
-        $options = self::handleOrderBy($options);
+        $options = self::handleConditions($options);
+        $options = self::handleSort($options);
 
-        $options['conditions'] = [];
-        if(isset($options['cat_id']) && !empty($options['cat_id'])) {
-            $options['conditions'] = ['cat_id' => $options['cat_id']];
-            unset($options['cat_id']);
+        return $options;
+    }
+
+    /**
+     * 处理筛选条件
+     *
+     * @param &$options array 条件参数
+     *
+     * @return array
+     */
+    public static function handleConditions($options) {
+
+        // 处理状态
+        if(isset($options['status'])) {
+            $options['conditions'] = ['status' => ['$gte' => $options['status']]];
+            unset($options['status']);
+        }else {
+            $options['conditions'] = [];
+        }
+
+        // 处理分类
+        if(isset($options['catId']) && !empty($options['catId'])) {
+            $options['conditions'] += ['cat_id' => $options['catId']];
+            unset($options['catId']);
         };
 
-        if(isset($options['brand_id']) && !empty($options['brand_id'])) {
-            $options['conditions'] += ['brand_id' => $options['brand_id']];
-            unset($options['brand_id']);
+        // 处理品牌
+        if(isset($options['brandId']) && !empty($options['brandId'])) {
+            $options['conditions'] += ['brand_id' => $options['brandId']];
+            unset($options['brandId']);
+        }
+
+        // 标题搜索
+        if(isset($options['title']) && !empty($options['title'])) {
+            $options['conditions'] += ['title' => "/{$options['title']}/"];
+            unset($options['title']);
         }
 
         return $options;
@@ -141,38 +179,40 @@ class Products extends \lithium\data\Model {
     /**
      * 处理排序
      *
-     * @param $options array 排序数组
+     * @param & $options array 排序数组 添加排序到$options['order']并删除无关字段
      *
-     * @return array 添加排序到$options['order']并删除无关字段
+     * @return viod
      */
-    public static function handleOrderBy(& $options) {
+    public static function handleSort($options) {
 
-        $options['sort'] = isset($options['sort']) && $options['sort'] == 'asc' ? 'asc' : 'desc';
+        $options['sortBy'] = isset($options['sortBy']) && $options['sortBy'] == 'asc' ? 'asc' : 'desc';
 
-        if(isset($options['orderBy'])) {
-            switch ($options['orderBy']) {
+        if(isset($options['sort'])) {
+            switch ($options['sort']) {
                 case 'showed':
-                    $options['order'] = ['showed' => $options['sort']];
+                    $options['order'] = ['sort' => 'showed' ,'sortBy' => $options['sortBy']];
                     break;
-                case 'hit':
-                    $options['order'] = ['hit' => $options['sort']];
+                case 'hits':
+                    $options['order'] = ['sort' => 'hits' ,'sortBy' => $options['sortBy']];
                     break;
                 case 'remain':
-                    $options['order'] = ['remain' => $options['sort']];
+                    $options['order'] = ['sort' => 'remain' ,'sortBy' => $options['sortBy']];
                     break;
                 case 'created':
-                    $options['order'] = ['created' => $options['sort']];
+                    $options['order'] = ['sort' => 'created' ,'sortBy' => $options['sortBy']];
                     break;
                 case 'price':
-                    $options['order'] = ['price' => $options['sort']];
+                    $options['order'] = ['sort' => 'price' ,'sortBy' => $options['sortBy']];
                     break;
                 default:
-                    $options['order'] = ['showed' => 'asc'];
+                    $options['order'] = ['sort' => 'showed' ,'sortBy' => 'asc'];
                     break;
             }
+        } else {
+            $options['order'] = ['sort' => 'showed' ,'sortBy' => 'asc'];
         }
 
-        unset($options['orderBy'], $options['sort']);
+        unset($options['sortBy'], $options['sort']);
 
         return $options;
     }
@@ -194,10 +234,23 @@ class Products extends \lithium\data\Model {
      */
     public static function lists($options = [], $output = false) {
 
-        $options = self::_perLists($options);
-        $data = Products::all($options);
+        $options = self::_beforeLists($options);
 
-        return $output ? self::_afterLists($data) : $data;
+        $data = Products::all($options);
+        $mo = new MongoClient();
+        if(isset($options['getTotal']) && $options['getTotal']) {
+            return $mo->count($options['conditions']);
+        } else {
+            $sortBy = $options['order']['sortBy'] == 'asc' ? 1 : -1;
+
+            $sort = [$options['order']['sort'] => $sortBy];
+            if($options['order']['sort'] == 'showed') $sort += ['remain' => 1];
+
+            $fields = ['periods' => ['$slice' => -1], 'title'=>1, 'images' => 1, 'status' => 1, 'created' => 1, 'tag_id' => 1];
+            $product = $mo->find($options['conditions'], $fields, $sort, $options['limit'], $options['page']);
+        }
+
+        return $output ? self::_afterLists($product) : $product;
     }
 
     /**
@@ -212,21 +265,24 @@ class Products extends \lithium\data\Model {
         $newData = [];
 
         foreach($data as $item) {
-            $percent = sprintf('%.2f', ($item->person - $item->remain)/$item->person * 100);
+            $join    = $item['periods'][0]['person'] - $item['periods'][0]['remain'];
+            $percent = sprintf('%.2f', $join/$item['periods'][0]['person'] * 100);
             $newData[] = [
-                'id'        => $item->_id,
-                'title'     => $item->title,
-                'images'    => $item->images,
-                'price'     => sprintf('%.2f',$item->price),
-                'person'    => $item->person,
-                'remain'    => $item->remain,
+                'id'        => $item['_id'],
+                'title'     => $item['title'],
+                'images'    => $item['images'],
+                'price'     => sprintf('%.2f',$item['periods'][0]['price']),
+                'person'    => $item['periods'][0]['person'],
+                'remain'    => $item['periods'][0]['remain'],
                 'percent'   => $percent,
                 'width'     => self::LIST_WIDTH *  $percent / 100,
-                'join'      => $item->person - $item->remain,
-                'periodId'  => count($item->periods),
-                'tagClass'  => Tags::$tags[$item->tag_id]['class'],
-                'status'    => $item->status == 1 ? true : false,
-                'created'   => $item->created,
+                'join'      => $join,
+                'periodId'  => $item['periods'][0]['id'],
+                'tagClass'  => Tags::$tags[$item['tag_id']]['class'],
+                'isUp'      => $item['status'] == 2 ? true : false,
+                'isDowning' => $item['status'] == 1 ? true : false,
+                'isDown'    => $item['status'] == 0 ? true : false,
+                'created'   => $item['created'],
             ];
         }
 
@@ -248,12 +304,17 @@ class Products extends \lithium\data\Model {
      *
      * @return object
      */
-    public function edit($id, $data) {
+    public static function edit($id, $data) {
 
         $product = Products::find('first', ['conditions' => ['_id' => $id]]);
-        $rs = $product->save($data);
 
-        return $rs;
+        if(isset($data['price'])) {
+            $data['person'] = intval($data['price']);
+            $data['remain'] = intval($data['price']);
+        }
+        $product->save($data);
+
+        return $product;
     }
 
     /**
@@ -266,7 +327,11 @@ class Products extends \lithium\data\Model {
      * @return object|array
      */
     public function view($id, $periodId, $output = false) {
-        $product = Products::find('first', ['conditions' => ['_id' => $id]]);
+
+        $mo = new MongoClient();
+        $offset = $periodId - 1;
+        $product = $mo->find(['_id' => $id], ['periods' => ['$slice' => [(int)$offset, 1]]]);
+        $product = array_shift($product);
 
         return $output ? $this->_afterView($product, $periodId) : $product;
     }
@@ -282,20 +347,22 @@ class Products extends \lithium\data\Model {
 
         if(empty($product)) return [];
 
-        list($period, $periodIds) = Periods::period($product->periods, $periodId);
+        $period = $product['periods'][0];
         
         if(empty($period)) return [];
 
         $join = $period['person'] - $period['remain'];
         $percent = sprintf('%.2f', $join/$period['person'] * 100);
+        $periods = Periods::periods($product['_id']);
+        $periodIds = Periods::periodIds($periods, $periodId, true);
 
         $info = [];
-        $info['id']           = $product->_id;
-        $info['title']        = $product->title;
-        $info['feature']      = $product->feature;
-        $info['content']      = $product->content;
-        $info['images']       = $product->images;
-        $info['typeId']       = $period['typeId'];
+        $info['id']           = $product['_id'];
+        $info['title']        = $product['title'];
+        $info['feature']      = $product['feature'];
+        $info['content']      = $product['content'];
+        $info['images']       = $product['images'];
+        $info['typeId']       = $period['type_id'];
         $info['orders']       = $period['orders'];
         $info['results']      = $period['results'];
         $info['price']        = $period['price'];
@@ -306,15 +373,15 @@ class Products extends \lithium\data\Model {
         $info['periodIds']    = $periodIds;
         $info['percent']      = $percent;
         $info['width']        = self::DETAILS_WIDTH * $percent / 100;
-        $info['shareTotal']   = count($product->shares);                                        // 晒单数目
+        $info['shareTotal']   = count($product['shares']);                                      // 晒单数目
         $info['showFeature']  = $this->_showFeature($periodId, count($periodIds));              // 显示特性
-        $info['showWinner']   = $this->_showWinner($product->periods, $periodId, $info);        // 上期获奖者
+        $info['showWinner']   = $this->_showWinner($product['_id'],$periods, $periodId, $info);                 // 上期获奖者
         $info['showLimit']    = $this->_showLimit($period, $info);                              // 限时揭晓
         $info['showFull']     = $this->_showFull($period['remain']);                            // 人次是否已满
         $info['showCounting'] = $this->_showCounting($period['status']);                        // 显示正在计算
         $info['showResult']   = $this->_showResult($period, $info);                             // 显示揭晓结果
-        $info['showActive']   = $this->_showActive($product->status, $product->periods, $info); // 获取正在进行的期数
-        $info['showSoldOut']  = $this->_showSoldOut($product->status, $info);                   // 是否已经下架
+        $info['showActive']   = $this->_showActive($product['_id'], $product['status'], $product['periods'], $info); // 获取正在进行的期数
+        $info['showSoldOut']  = $this->_showSoldOut($product['status'], $info);                   // 是否已经下架
         
         return $info;
     }
@@ -336,19 +403,20 @@ class Products extends \lithium\data\Model {
      * 是否显示上期获奖者
      * 如果不是第一期 且 最后一期是当前期 且 上一期已揭晓
      *
+     * @param $productId mongoid 商品ID
      * @param $periods   object  商品所有期
      * @param $periodId  integer 当前期ID
      * @param &$info     array   附加上期获奖者信息
      *
      * @return boolean
      */
-    private function _showWinner($periods, $periodId, &$info) {
+    private function _showWinner($productId, $periods, $periodId, &$info) {
 
         $show = false;
         $total = count($periods);
         if($periodId > 1 && $periodId == $total) {
 
-            list($period, ) = Periods::period($periods, $periodId-1);
+            $period = Periods::period($productId, $periodId-1);
 
             if($period['status'] == 2) {    // 已经揭晓
                 $show = true;
@@ -373,7 +441,7 @@ class Products extends \lithium\data\Model {
      */
     private function _showLimit($period, &$info) {
         $show = false;
-        if($period['typeId'] == 1) {
+        if($period['type_id'] == 1) {
             $show = true;
             $leftTime = $period['showed'] - time();
             $hour = floor($leftTime/3600);
@@ -442,12 +510,12 @@ class Products extends \lithium\data\Model {
      * 
      * @return boolean 是否显示
      */
-    private function _showActive($status, $periods, &$info) {
+    private function _showActive($productId, $status, $periods, &$info) {
 
         $show = false;
         if($status == 1) { // 上架状态
             $show = true;
-            list($period, ) = Periods::period($periods);
+            $period = Periods::period($productId);
 
             $join = $period['person'] - $period['remain'];
             $info['activePeriod'] = [

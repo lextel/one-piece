@@ -8,10 +8,10 @@ class MockProductsRequest extends \lithium\action\Request {
 
         $data = [
             'form' => [
-                'cat_id' => '1',
-                'title'       => '添加商品',
+                'cat_id' => '99',
+                'brand_id' => '99',
+                'title'       => '测试商品',
                 'feature'     => '卖点',
-                'type_id'     => '1',
                 'price'       => '999.00',
                 'images'      => ['images/products/b/d/test11.jpg'],
                 'content'     => '详情'

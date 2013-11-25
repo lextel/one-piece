@@ -8,5 +8,5 @@
 namespace app\extensions\helper;
 
 class Page {
-	static $page = 2;
+	static $page = 1;
 }

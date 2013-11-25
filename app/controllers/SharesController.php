@@ -5,7 +5,6 @@ namespace app\controllers;
 use app\models\Posts;
 use app\extensions\helper\Page;
 use app\extensions\helper\Uploader;
-use lithium\action\DispatchException;
 use lithium\storage\Session;
 
 class SharesController extends \lithium\action\Controller {
@@ -59,7 +58,7 @@ class SharesController extends \lithium\action\Controller {
             return $this->redirect('Shares::share');
         }
 
-        return $this->render(['data' => compact('share', 'flash'), 'layout' => 'user']);
+        return $this->render(['data' => compact('share'), 'layout' => 'user']);
     }
 
     // 晒单管理

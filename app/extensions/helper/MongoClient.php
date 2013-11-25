@@ -11,6 +11,7 @@ namespace app\extensions\helper;
 
 use Mongo;
 use MongoId;
+use MongoRegex;
 use lithium\data\Connections;
 
 class MongoClient {
@@ -18,6 +19,11 @@ class MongoClient {
     private $_query;
     private $_types = [
         '_id' => 'MongoId',
+        'title' => 'MongoRegex',
+    ];
+    private $_ints = [
+        'cat_id',
+        'brand_id'
     ];
     
 
@@ -34,15 +40,25 @@ class MongoClient {
     /**
      * 查询
      *
-     * @param $conditions array 查询条件
-     * @param $fields     array 返回
+     * @param $conditions array   查询条件
+     * @param $fields     array   返回字段
+     * @param $sort       arary   排序
+     * @param $limit      integer 显示数目
+     * @param $page       integer 页数
      *
      * @return array
      */
-    public function find($conditions, $fields = []) {
+    public function find($conditions = [], $fields = [], $sort = [], $limit=0, $page=0) {
 
         $this->_conditions($conditions);
-        $rows = $this->_query->find($conditions, $fields);
+        if(!empty($limit) && !empty($page)) {
+            $offset = ($page-1)*$limit;
+            $rows = $this->_query->find($conditions, $fields)->sort($sort)->skip($offset)->limit($limit);
+        } else if(!empty($sort)) {
+            $rows = $this->_query->find($conditions, $fields)->sort($sort);
+        } else {
+            $rows = $this->_query->find($conditions, $fields);
+        }
 
         return iterator_to_array($rows);
     }
@@ -57,6 +73,7 @@ class MongoClient {
     public function count($conditions) {
 
         $this->_conditions($conditions);
+        //var_dump($conditions);
 
         return $this->_query->count($conditions);
     }
@@ -73,6 +90,10 @@ class MongoClient {
         foreach($conditions as $key => $condition) {
             if(in_array($key, array_keys($this->_types))) {
                 $conditions[$key] = new $this->_types[$key]($condition);
+            }
+
+            if(in_array($key, $this->_ints)) {
+                $conditions[$key] = (int) $condition;
             }
         }
     }

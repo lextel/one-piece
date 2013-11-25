@@ -18,6 +18,7 @@ namespace app\tests\cases\models;
 
 use app\models\Products;
 use app\models\Periods;
+use app\tests\mocks\models\MockProductsModel as MockProducts;
 
 class PeriodsTest extends \lithium\test\Unit {
     private $_id;
@@ -29,30 +30,42 @@ class PeriodsTest extends \lithium\test\Unit {
         Products::remove(['_id' => $this->_id]);
     }
 
+    public function testAdd() {
+
+        $info = MockProducts::find('first');
+        $data=[];
+        $data['title'] = $info['title'];
+        $data['feature'] = $info['feature'];
+        $data['cat_id'] = $info['cat_id'];
+        $data['brand_id'] = $info['brand_id'];
+        $data['price']   = $info['price'];
+        $data['images'] = $info['images'];
+        $data['content'] = $info['content'];
+
+        $product = Products::add($data);
+
+        // 已经添加
+        $this->assertEqual(1, count($product->periods));
+
+        $this->_id = $product->_id;
+    }
+
+    /**
+     * @depends testAdd
+     */
     public function testAutoId() {
 
-        // 新建一条产品
-        $data = ['cat_id' => 1, 'title' => 'test periods auto id', 'price' => '99.99', 'content' => 'test content', 'images'=>['test.jpg']];
-        $product = Products::create($data);
-        $product->save();
-        $this->_id = $product->_id;
+        // 获得下个期数ID
+        $periodId = Periods::autoId($this->_id);
+        $this->assertEqual(2, $periodId);
 
-        // 获得一个期数ID
-        $firstId = Periods::autoId($this->_id);
+        // 添加两期
+        $periodModel = new Periods();
+        $periodModel->add($this->_id);
+        $periodModel->add($this->_id);
 
-        // 写入一期并获得第二个期数ID
-        $product->periods = [['id' => $firstId]];
-        $product->save();
-        $secondId = Periods::autoId($this->_id);
-        $this->assertEqual($firstId+1, $secondId);
-
-        // 写入二期获得第三个期数ID
-        $product->periods = [['id' => $firstId],['id' => $secondId]];
-        $product->save();
-        $thirdId = Periods::autoId($this->_id);
-        $this->assertEqual($secondId+1, $thirdId);
-
-        $this->assertEqual($thirdId,Periods::autoId($this->_id));
+        $periodId = Periods::autoId($this->_id);
+        $this->assertEqual(4, $periodId);
     }
 }
 

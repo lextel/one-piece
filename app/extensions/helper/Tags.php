@@ -9,10 +9,11 @@ namespace app\extensions\helper;
 class Tags {
 
     static $tags = [
-        0 => ['class' => '', 'name' => ''],
+        0 => ['class' => '', 'name' => '默认'],
         1 => ['class' => 'goods_xp', 'name' => '新品'],
-        2 => ['class' => 'goods_xs', 'name' => '限时'],
-        3 => ['class' => 'goods_tj', 'name' => '推荐'],
-        4 => ['class' => 'goods_rq', 'name' => '人气'],
+        2 => ['class' => 'goods_tj', 'name' => '推荐'],
+        3 => ['class' => 'goods_rq', 'name' => '人气'],
     ];
+
+    static $limit = ['class' => 'goods_xs', 'name' => '限时'];
 }

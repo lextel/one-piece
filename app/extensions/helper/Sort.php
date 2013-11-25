@@ -12,7 +12,14 @@ class Sort {
     static $orderBy = [
         'products' => [
             'showed'  => '揭晓时间',
-            'hit'     => '人气',
+            'hits'    => '人气',
+            'remain'  => '剩余人次',
+            'created' => '最新',
+            'price'   => '价格'
+        ],
+        'search' => [
+            'showed'  => '揭晓时间',
+            'hits'    => '人气',
             'remain'  => '剩余人次',
             'created' => '最新',
             'price'   => '价格'
@@ -34,13 +41,16 @@ class Sort {
     /**
      * 获取排序title
      *
-     * @param $index  string self::$sorts索引
-     * @param $order  string 排序字段
-     * @param $sort   string 排序方式
+     * @param $index   string self::$sorts索引
+     * @param $options array  参数
+     *                 $options['catId']
+     *                 $options['brandId']
+     *                 $options['sort']
+     *                 $options['sortBy']
      *
      * @return array 排序方式列表
      */
-    public static function sort($index, $cat_id = 0, $brand_id = 0, $order = '', $sort = '') {
+    public static function sort($index, $options) {
 
         $orderByList = [];
 
@@ -49,17 +59,22 @@ class Sort {
         foreach($orderBys as $idx => $name) {
             $class = '';
             $htmlSort = 'desc';
-            if($order == $idx || ($order == '' && $name == $first) ) {
+            $sortTag = '<s></s>';
+            if($options['sort'] == $idx || ($options['sort'] == '' && $name == $first) ) {
                 $class = 'SortCur';
-                $htmlSort = $sort == 'asc' ? 'desc' : 'asc';
+                $htmlSort = ($options['sortBy'] == 'asc') ? 'desc' : 'asc';
+                $sortTag = ($options['sortBy'] == 'asc') ? '<i></i>' : '<s></s>';
             }
 
-            $params = !empty($cat_id) ? '/'.$cat_id : '';
+            $keys = ['sort', 'sortBy'];
+            $params = '';
+            foreach($options as $k => $v) {
+                if(!in_array($k, $keys) && !empty($v)) {
+                    $params .= '/' . $v;
+                }
+            } 
 
-            if(!empty($cat_id) && !empty($brand_id))
-                $params = '/'.$cat_id . '/'. $brand_id;
-
-            $orderByList[] = '<a href="/'.$index.'/index'.$params.'/?orderby='.$idx.'&sort='.$htmlSort.'" class="'.$class.'">'.$name.'<i></i></a>';
+            $orderByList[] = '<a href="/'.$index.'/index'.$params.'/?sort='.$idx.'&sortBy='.$htmlSort.'" class="'.$class.'">'.$name.$sortTag.'</a>';
         }
 
         return $orderByList;

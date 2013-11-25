@@ -9,30 +9,6 @@ $this->scripts($this->resLoader->script('umeditor/ueditor.config.js'));
 $this->scripts($this->resLoader->script('umeditor/ueditor.all.min.js'));
 $this->scripts($this->resLoader->script('umeditor/lang/zh-cn/zh-cn.js'));
 ?>
-<div class="user_content">
-    <div class="user_nav">
-        <div class="user_pic">
-            <a href="#"><img src="http://img3.douban.com/icon/u49925310-4.jpg" alt="weelion"></a>
-        </div>
-        <div class="user_info">
-            <h1>luky
-                <div class="signature">
-                    <span>最爱网购</span>
-                    <span><a href="#">(编辑)</a></span>
-                </div>
-              </h1>
-             <ul>
-                <li><a href="#">我的主页</a></li>
-                <li><a href="#">广播</a></li>
-                <li><a href="#">相册</a></li>
-                <li><a href="#">日记</a></li>
-                <li><a href="#">喜欢</a></li>
-                <li><a href="#">豆列</a></li>
-                <li><a href="/products/dashboard">商品管理</a></li>
-             </ul>
-        </div>
-    </div>
-  </div>
   <div class="add_product">
            <h2>添加商品<a href="/products/dashboard" class="return_list">返回列表</a></h2>
           <?=$this->form->create($product, ['id' => 'addProduct']); ?>

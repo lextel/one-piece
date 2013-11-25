@@ -11,7 +11,15 @@ $(function(){
     $('.num_add').click(function(){
         var val = $(this).prev().val();
 
-        var newVal = showChance(parseInt(val) + 1, productLeft);
+        // 列表补丁
+        if($('#CodeLift').length == 0) {
+            productLeft = parseInt($(this).attr('remain'));
+            var obj = $(this).parent().prev();
+            var newVal = showChance(parseInt(val) + 1, productLeft, obj);
+        } else {
+            var newVal = showChance(parseInt(val) + 1, productLeft);
+        }
+
 
         if(newVal != false) {
             $(this).prev().val(newVal);
@@ -32,8 +40,16 @@ $(function(){
     // 减少数量
     $('.num_del').click(function(){
         var val = $(this).next().val();
+
+        // 列表补丁
+        if($('#CodeLift').length == 0) {
+            productLeft = parseInt($(this).attr('remain'));
+            var obj = $(this).parent().prev();
+            var newVal = showChance(parseInt(val) - 1, productLeft, obj);
+        } else {
+            var newVal = showChance(parseInt(val) - 1, productLeft);
+        }
         
-        var newVal = showChance(parseInt(val) - 1, productLeft);
 
         if(newVal != false) {
             $(this).next().val(newVal);
@@ -60,6 +76,15 @@ $(function(){
             val = 1;
         }
 
+        // 列表补丁
+        if($('#CodeLift').length == 0) {
+            productLeft = parseInt($(this).next().attr('remain'));
+            var obj = $(this).parent().prev();
+            showChance(val, productLeft, obj);
+        } else {
+            showChance(val, productLeft);
+        }
+
         if(val >= productLeft) {
             $(this).val(productLeft);
             $(this).next().addClass('num_ban');
@@ -84,20 +109,52 @@ $(function(){
             }
         }
 
-        showChance(val, productLeft);
+    });
+
+
+    // 立即1元购
+    $('.go_Shopping').click(function() {
+        alert(1);
+    });
+
+    // 列表加入购物车
+    $('.go_cart').click(function(){
+        $('#sCartlist').show(0, function() {
+            $(this).delay(2000).hide(0);
+        });
+    });
+
+    $('#sCart').hover(function() {
+        $('#sCartlist').show();
+    }, function() {
+        $('#sCartlist').hide();
     });
 
 });
 
 // 显示购买几率
-function showChance(val, total) {
+function showChance(val, total, obj) {
     if(val < 1) {
-        $('#chance').html('<font color="ff6600">最少需云购1人次</font>');
+        var html = '<font color="ff6600">最少需云购1人次</font>';
+        if($('#chance').length == 0) {
+            obj.html(html).show();
+            obj.fadeOut(2000);
+        } else {
+            $('#chance').html(html);
+        }
         return false;
     }
 
     if(val > total) {
-        $('#chance').html('<font color="ff6600">本期最多可云购'+total+'人次</font>');
+        var html = '<font color="ff6600">本期最多可云购'+total+'人次</font>';
+        if($('#chance').length == 0) {
+            var html = '<font color="ff6600">最多能云购'+total+'人次</font>';
+            obj.html(html).show();
+            obj.fadeOut(2000);
+        } else {
+            $('#chance').html(html);
+        }
+
         return false;
     }
 

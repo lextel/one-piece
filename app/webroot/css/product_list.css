@@ -46,6 +46,23 @@ background: url(../img/goods_tj.png) no-repeat;}
 .Progress-bar .Pro-bar-li li em {display: block;font-size: 12px;font-family: arial;height: 14px;}
 /*购买*/
 .gl_buybtn {padding: 7px 10px 10px;height: 61px;background: #F9F9F9;border-top: 1px solid #F4F4F4;zoom: 1;position: relative;}
+.error {
+	width: 100px;
+	clear: both;
+	border: 1px solid orange;
+	line-height: 20px;
+	text-align: left;
+	height: 20px;
+	background:url(../img/PublicIcon.png) no-repeat 4px -74px;
+	padding-left: 25px;
+	display: none;
+	position: absolute;
+	top: -15px;
+	left: 25%;
+	z-index: 12;
+	color: #666;
+	overflow:hidden;
+}
 .goods-iten .gl_number {line-height: 20px;color: #999;text-align: center;}
 .goods-iten .gl_number .num_ban {color: #CCC;cursor: default;}
 .goods-iten .gl_number .num_del, .goods-iten .gl_number .num_add, .goods-iten .gl_number .num_dig {
@@ -96,17 +113,17 @@ background: url(../img/goods_tj.png) no-repeat;}
 .go_cart:hover {background: #FDD395;}
 /*分页*/
 .pages {overflow: hidden;height: 50px;border-top: 1px solid #E4E4E4; line-height:50px;}
-.pages ul li{float:left; width:30px; text-align:center; height:30px; line-height:30px; border-radius:5px;border: 1px solid #DEDEDE; margin-right:10px; cursor:pointer;}
-.pages ul.pageULEx {float: right;margin:10px 10px 0 0; overflow:hidden;}
+.pages ul{float: right;margin: 10px 10px 0 0;overflow: hidden;}
+.pages ul li{float:left; min-width:22px; padding:0 5px; text-align:center; height:30px; line-height:30px; border-radius:5px;border: 1px solid #DEDEDE; margin-right:10px;}
 .pages ul li a{color:#333;}
-.pages ul.pageULEx li.prev_page,.pages ul.pageULEx li.next_page{
-	width:60px;
-}
-.pages ul.pageULEx li.curr_page{
+.pages ul li.active{
 	background:#f60;
+}
+.pages ul li.active a{
 	color:#fff;
 }
-.pages ul li:hover{color:#f60;}
+.pages ul li a:hover{color:#f60;}
+
 
 /*人气推荐*/
 .list_goodsTj {width: 980px;background: white;margin: 10px auto 20px auto;_margin: 10px auto 10px auto;}

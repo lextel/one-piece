@@ -51,4 +51,15 @@ Dispatcher::applyFilter('run', function($self, $params, $chain) {
 	return $chain->next($self, $params, $chain);
 });
 
+
+// 日志文件
+use lithium\analysis\Logger;
+Logger::config(array(
+    'default' => array('adapter' => 'Syslog'),
+    'badnews' => array(
+        'adapter' => 'File',
+        'priority' => array('user', 'system')
+    )
+));
+
 ?>
