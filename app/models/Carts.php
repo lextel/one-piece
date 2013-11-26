@@ -50,7 +50,63 @@ class Carts extends \lithium\data\Model {
             $carts = Session::read('cart');
         }
 
-        return $carts;
+        $data = [];
+        foreach($carts as $k => $cart) {
+            $product = Products::find('first', ['conditions' => ['_id' => $cart['id']]])->to('array');
+            $data[$k] = ['title' => $product['title'], 'image' => $product['images'][0]] + $cart;
+        }
+
+        return $data;
+    }
+
+    /**
+     * 购物车商品数量
+     *
+     * @return integer
+     */
+    public static function count() {
+
+        return count(self::get());
+    }
+
+    /**
+     * 购物车总件数
+     *
+     * @return integer
+     */
+    public static function quantity() {
+
+        $carts = Carts::get();
+        $quantity = 0;
+        foreach($carts as $cart) {
+            $quantity += $cart['quantity'];
+        }
+
+        return $quantity;
+    }
+
+    /**
+     * 移除商品
+     *
+     * @param $id mongoid 
+     * @param $periodId 
+     *
+     * @return void
+     */
+    public static function del($id, $periodId) {
+
+        $carts = Carts::get();
+        foreach($carts as $k => $cart) {
+            if($cart['id'] == $id && $cart['periodId'] == $periodId) {
+                unset($carts[$k]);
+            }
+        }
+
+        if(USER_ID) {
+            Session::write('myCart', $carts);
+        } else {
+            Session::write('cart', $carts);
+        }
     }
 }
 

@@ -164,7 +164,7 @@ class Periods extends \lithium\data\Model {
     /**
      * 获取一期信息
      *
-     * @param $productId mongoid  所有期
+     * @param $productId mongoid  商品ID
      * @param $periodId integer   期数ID
      *
      * @return array

@@ -362,7 +362,6 @@ class Products extends \lithium\data\Model {
         $info['feature']      = $product['feature'];
         $info['content']      = $product['content'];
         $info['images']       = $product['images'];
-        $info['typeId']       = $period['type_id'];
         $info['orders']       = $period['orders'];
         $info['results']      = $period['results'];
         $info['price']        = $period['price'];
@@ -432,7 +431,7 @@ class Products extends \lithium\data\Model {
     }
 
     /**
-     * 是否是显示揭晓
+     * 揭晓倒计时
      *
      * @param $period array 本期信息
      * @param &$info  array 附加揭晓时间
@@ -441,9 +440,9 @@ class Products extends \lithium\data\Model {
      */
     private function _showLimit($period, &$info) {
         $show = false;
-        if($period['type_id'] == 1) {
+        $leftTime = $period['showed'] - time();
+        if($leftTime >= self::SHOW_TIME * 60) {
             $show = true;
-            $leftTime = $period['showed'] - time();
             $hour = floor($leftTime/3600);
             $second = $leftTime%3600;
             $minute = floor($second/60);
