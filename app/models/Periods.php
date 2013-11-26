@@ -6,13 +6,13 @@
 
 namespace app\models;
 
-use lithium\analysis\Inspector;
 use app\extensions\helper\MongoClient;
 
 class Periods extends \lithium\data\Model {
 
     /**
      * periods 数据库结构
+     */
     protected $_schema = [
         'id'      => ['type' => 'id', 'length' => 10],                                                     // 自增ID
         'price'   => ['type' => 'float', 'length' => 10, 'null' => false, 'default' => 0],                 // 价格
@@ -30,7 +30,7 @@ class Periods extends \lithium\data\Model {
         ];
 
     public $validates = array();
-     */
+
 
     /**
      * 添加新一期
@@ -177,67 +177,6 @@ class Periods extends \lithium\data\Model {
         $period = array_shift($period);
 
         return $period['periods'][0];
-
-        /*
-
-        $total = count($periods);
-
-        if($periodId > $total) {
-            return [[], []];
-        }
-
-        $data = [];
-        $periodIds = [];
-        $periodId = empty($periodId) ? $total : $periodId;
-        foreach($periods as $period) {
-            $data[$period->id]['id']      = $period->id;
-            $data[$period->id]['price']   = $period->price;
-            $data[$period->id]['person']  = $period->person;
-            $data[$period->id]['remain']  = $period->remain;
-            $data[$period->id]['hits']    = $period->hits;
-            $data[$period->id]['code']    = $period->code;
-            $data[$period->id]['user_id'] = $period->user_id;
-            $data[$period->id]['ordered'] = $period->ordered;
-            $data[$period->id]['results'] = $period->results ? $period->results : [];
-            $data[$period->id]['orders']  = $period->orders ? $period->orders : [];
-            $data[$period->id]['created'] = $period->created;
-            $data[$period->id]['showed']  = $period->showed;
-            $data[$period->id]['typeId']  = $period->type_id;
-            $data[$period->id]['status']  = $period->status;
-
-            // 期数处理
-            $ids['id'] = $period->id;
-
-            if($period->id == $periodId) {
-                $ids['class'] = 'period_ArrowCur';
-                $ids['active'] = false;
-            } else if($period->id == $total) {
-                $ids['class'] = 'period_Ongoing';
-                $ids['active'] = true;
-            } else {
-                $ids['class'] = false;
-                $ids['active'] = false;
-            }
-
-
-            $periodIds[] = $ids;
-            
-        }
-
-        $periodIds = array_reverse($periodIds);
-
-        foreach($periodIds as $k => $v) {
-            if(($k+1)%9 == 0) {
-                $periodIds[$k]['separator'] = true;
-            } else {
-                $periodIds[$k]['separator'] = false;
-            }
-        }
-
-        return [$data[$periodId], $periodIds];
-
-        */
     }
 }
-
 ?>

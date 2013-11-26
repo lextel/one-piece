@@ -1,0 +1,792 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>晒单分享</title>
+<link type="text/css" rel="stylesheet"  href="css/header.css"/>
+<link type="text/css" rel="stylesheet"  href="css/comm.css"/>
+<link type="text/css" rel="stylesheet"  href="css/product_list.css"/>
+</head>
+
+<body>
+<div class="header">
+    <div class="site_top">
+        <div class="head_top">
+            <p class="collect"><a href="javascript:void();" id="addSiteFavorite">收藏1元云购</a></p>
+            <p class="Ht-qqicon"><a class="gray01" href="http://help.1yyg.com/info/htm-qqgroup.html" target="_blank">官方QQ群</a></p>
+            <ul class="login_info" style="display: block;">
+                <li class="h_login" id="logininfo"> <i>您好，欢迎光临！</i> <a rel="nofollow" href="http://passport.1yyg.com/login.html?forward=rego" class="gray01">登录</a> <span>|</span> <a rel="nofollow" href="http://passport.1yyg.com/register.html?forward=rego" class="gray01">注册</a> </li>
+                <li class="h_1yyg"> <a rel="nofollow" href="http://member.1yyg.com/">我的1元云购<b></b></a>
+                    <div class="h_1yyg_eject" style="display: none; ">
+                        <dl>
+                            <dt><a rel="nofollow" href="http://member.1yyg.com/">我的1元云购<i></i></a></dt>
+                            <dd><a rel="nofollow" href="http://member.1yyg.com/UserBuyList.html">云购记录</a></dd>
+                            <dd><a rel="nofollow" href="http://member.1yyg.com/OrderList.html">获得的商品</a></dd>
+                            <dd><a rel="nofollow" href="http://member.1yyg.com/UserRecharge.html">帐户充值</a></dd>
+                            <dd><a rel="nofollow" href="http://member.1yyg.com/MemberModify.html">个人设置</a></dd>
+                        </dl>
+                    </div>
+                </li>
+                <li class="h_news" id="liMsgTip" style="display:none;"> <a rel="nofollow" href="http://member.1yyg.com/userMessage.html">消息<b></b></a>
+                    <div class="h_news_down" style="display:none;">
+                        <div class="h_news_downT"><a rel="nofollow" href="http://member.1yyg.com/userMessage.html">消息<i></i></a></div>
+                        <div class="h_news_downC"></div>
+                    </div>
+                </li>
+                <li class="h_Mobile"><a rel="nofollow" target="_blank" href="http://info.1yyg.com/app/desktop.html">桌面版</a></li>
+                <li class="h_Mobile"><a rel="nofollow" target="_blank" href="http://info.1yyg.com/app/touch.html">手机版</a></li>
+                <li class="h_help"><a rel="nofollow" target="_blank" href="http://help.1yyg.com/">帮助</a></li>
+                <li class="h_inv"><a rel="nofollow" target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2355805906&amp;site=qq&amp;menu=yes">在线客服</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="head_mid">
+    <div class="head_mid_bg">
+        <h1 class="logo_1yyg"><a class="logo_1yyg_img" href="http://www.1yyg.com" title="1元云购">1元云购</a></h1>
+        <div id="topJackaroo" class="newbie_guide"></div>
+        <div class="head_number"> <a href="http://dataserver.1yyg.com/HistoryBuyRecords.html" target="_blank">已 <span id="spBuyCount" style="color: rgb(34, 170, 255); background-color: rgb(245, 245, 245); opacity: 1; background-position: initial initial; background-repeat: initial initial; ">7383415</span>人次参与云购</a> </div>
+        <div class="head_search">
+            <input type="text" id="txtSearch" class="init" value="" title="输入"红米手机" 试试">
+            <input type="button" id="butSearch" class="search_submit" value="搜索">
+            <div class="keySearch"> <a href="http://www.1yyg.com/search/?q=智能手机" target="_blank">智能手机</a> <a href="http://www.1yyg.com/search/?q=3G手机" target="_blank">3G手机</a> <a href="http://www.1yyg.com/search/?q=宝马" target="_blank">宝马</a> <a href="http://www.1yyg.com/search/?q=单反" target="_blank">单反</a> </div>
+        </div>
+    </div>
+</div>
+<div class="head_nav">
+    <div class="nav_center">
+        <ul class="nav_list">
+            <li class="home-back"><a href="http://www.1yyg.com/" class="home">首页</a></li>
+            <li class="sort-all" id="slideSort"><a class="sort" href="http://www.1yyg.com/list/m1.html">所有商品</a></li>
+            <li class="new-lottery"><a href="http://dataserver.1yyg.com/lottery.html">最新揭晓</a></li>
+            <li class="share"><a href="http://post.1yyg.com/">晒单分享</a></li>
+            <li class="nav_Cloud"><a href="http://www.1yyg.com/autolottery.html">限时揭晓</a></li>
+            <li class="cooperation"><a rel="nofollow" href="http://member.1yyg.com/ReferAuth.html">邀请</a></li>
+            <li class="what-1yyg"><a rel="nofollow" href="http://help.1yyg.com/info/newbie/index.html" class="what-yg">新手指南</a></li>
+        </ul>
+        <div class="mini_mycart" id="sCart">
+            <input type="hidden" id="hidChanged" value="0">
+            <a rel="nofollow" href="http://www.1yyg.com/MyCart/CartList.html" id="sCartNavi" class="cart"><s></s>购物车<span id="sCartTotal">0</span></a><a rel="nofollow" href="http://www.1yyg.com/MyCart/CartList.html" class="checkout">去结算</a>
+            <div class="mycart_list" id="sCartlist" style="display: none; z-index: 99999; ">
+                <div class="goods_loding" id="sCartLoading"><img border="0" alt="" src="http://skin.1yyg.com/images/goods_loading.gif">正在加载......</div>
+                <p id="p1">共计 <span id="sCartTotal2"> 0</span> 件商品 金额总计：<span id="sCartTotalM" class="rmbred">0.00</span></p>
+                <h3>
+                    <input type="button" id="sGotoCart" value="去购物车并结算">
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="nav_class">
+    <ul>
+        <li><a href="http://www.1yyg.com/list/i111.html">手机</a></li>
+        <li><a href="http://www.1yyg.com/list/i102.html">数码相机</a></li>
+        <li><a href="http://www.1yyg.com/list/i112.html">电脑</a></li>
+        <li><a href="http://www.1yyg.com/list/i120.html">平板电视</a></li>
+        <li><a href="http://www.1yyg.com/list/i222.html">钟表首饰</a></li>
+        <li><a href="http://www.1yyg.com/list/i312.html">其它商品</a></li>
+        <li><a href="http://www.1yyg.com/list/m1.html">全部</a></li>
+    </ul>
+</div>
+<!--晒单分享内容-->
+<div class="share_main">
+    <div class="Current_nav"><a href="http://www.1yyg.com">首页</a> &gt; 晒单分享</div>
+    <div id="current" class="share_Curtit">
+        <h1 class="fl"> 晒单分享</h1>
+        <span id="spTotalCount">(共<em class="orange">2717</em>个幸运获得者晒单)</span> </div>
+    <div class="list_Sort">
+        <dl>
+            <dt>排序</dt>
+            <dd> <a href="http://post.1yyg.com/list.html" id="new" class="SortCur">最新晒单</a> <a href="http://post.1yyg.com/list.html?r=20" id="popularity" class="">人气晒单</a> <a href="http://post.1yyg.com/list.html?r=30" id="comment" class="">评论最多</a> </dd>
+        </dl>
+    </div>
+    <!--分享照片-->
+    <div id="loadingPicBlock" class="share_list">
+        <div class="goods_share_listC">
+            <ul>
+                <li>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3061.html"><img src="http://postimg.1yyg.com/UserPost/Big/20131107073308851.jpg" style=""></a></dt>
+                            <dd class="share-name gray02">
+                                <a href="http://u.1yyg.com/1000320352" class="name-img">
+                                    <img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131102121024129.jpg" style=""> 
+                                </a>
+                                <div class="share-name-r"> 
+                                    <span class="gray03"> 
+                                        <a rel="nofollow" href="http://u.1yyg.com/1000320352" class="blue">我要十个</a>今天 13:17
+                                    </span>
+                                    <a class="Fb gray01" href="http://post.1yyg.com/detail-3061.html" target="_blank">土豪，我们做朋友吧</a>
+                                </div>
+                            </dd>
+                            <dd class="share_info gray01">期待能来个土豪金，大清早被顺丰的兄弟吵醒了，你有快递，我还想什么快递啊，他就来一句…</dd>
+                            <dd class="message hidden" style="display: block; "> 
+                                <span class="smile gray03"><i></i><b>羡慕(<em num="3061">2</em>)</b></span> 
+                                <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3061.html" class="gray03"><i></i>评论<em>(0)</em></a></span
+                            ></dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3058.html"><img src="http://postimg.1yyg.com/UserPost/220/20131107121636501.jpg" style=""></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000107835" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131029090551311.jpg" style=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000107835" class="blue">改名就中中</a>今天 12:19 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3058.html" target="_blank">apple耳机到了</a></div>
+                            </dd>
+                            <dd class="share_info gray01">感谢云购！谢各位云友门。漫长的等了几天总算是送过来来了哈，希望后面可以继续中哈，想…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3058">0</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3058.html" class="gray03"><i></i>评论<em>(0)</em></a></span></dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3051.html"><img src="http://postimg.1yyg.com/UserPost/220/20131107100728703.jpg" style=""></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000251480" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131013173426407.jpg" style=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000251480" class="blue">容易么</a>今天 10:07 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3051.html" target="_blank">只有一期。还让我中了、这是幸运么？</a></div>
+                            </dd>
+                            <dd class="share_info gray01">本来都失去信心了、突然收到短信提示。当时那个高兴劲就别提了、本来是想要是中了就给媳…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3051">0</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3051.html" class="gray03"><i></i>评论<em>(0)</em></a></span></dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3046.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106235105088.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000956863" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131027223424671.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000956863" class="blue">中吧中吧我要中奖</a>昨天 23:51 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3046.html" target="_blank">罗技无线蓝牙头戴式耳机+麦克风</a></div>
+                            </dd>
+                            <dd class="share_info gray01">第一次中奖，也是朋友叫我玩，结果一玩就不可收拾。总投了快3000大元就中了这玩意，真心…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3046">6</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3046.html" class="gray03"><i></i>评论<em>(4)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000461314" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/00000000000000000.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000461314" class="blue">这期必须</a>:&nbsp;<span>QQ群138894097 云购技巧iPhone5s人人可以得！</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3041.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106202900797.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000462513" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131022124527184.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000462513" class="blue">孤山老佛</a>昨天 20:30 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3041.html" target="_blank">电源收到了，没想象中大</a></div>
+                            </dd>
+                            <dd class="share_info gray01">带wifi功能很不错，以后出门就容易了，今天的5s也发货了，真开心，希望云购越办越好，还…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3041">3</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3041.html" class="gray03"><i></i>评论<em>(1)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000451610" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131029211533757.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000451610" class="blue">换个名字</a>:&nbsp;<span>恭喜[/gz]</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3037.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106162603097.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000384825" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131021135935595.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000384825" class="blue">只想要红米</a>昨天 16:28 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3037.html" target="_blank">收到&nbsp;闪迪&nbsp;内存卡拉</a></div>
+                            </dd>
+                            <dd class="share_info gray01">好吧，虽然是个内存卡，好歹也算云够奖，1元云购不是梦，小伙伴们速度来GOGOGO把，合理云…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3037">3</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3037.html" class="gray03"><i></i>评论<em>(3)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000451610" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131029211533757.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000451610" class="blue">换个名字</a>:&nbsp;<span>[/gz]恭喜</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3034.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106151103315.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000670809" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/00000000000000000.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000670809" class="blue">秋天落叶</a>昨天 15:12 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3034.html" target="_blank">第五个奖品内存卡</a></div>
+                            </dd>
+                            <dd class="share_info gray01">第五个奖品了，从来云购开始除了中红米就内存卡中的最多了，希望自己以后中个大奖，不然…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3034">6</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3034.html" class="gray03"><i></i>评论<em>(4)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000451610" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131029211533757.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000451610" class="blue">换个名字</a>:&nbsp;<span>[/gz]恭喜</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-2880.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131103160326476.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000014892" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131020080035627.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000014892" class="blue">草终于中了</a>昨天 14:35 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-2880.html" target="_blank">又中了个小件</a></div>
+                            </dd>
+                            <dd class="share_info gray01">想买个电源来着，呵呵一不小心就中了个。就是老中小件啊，我的单反啊快快来。什么时候能…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="2880">1</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-2880.html" class="gray03"><i></i>评论<em>(1)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000451610" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131029211533757.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000451610" class="blue">换个名字</a>:&nbsp;<span>[/gz]恭喜</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3029.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106132129372.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000513602" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131015140437803.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000513602" class="blue">一切都是命</a>昨天 13:21 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3029.html" target="_blank">无聊随便抽到了一个电源~~</a></div>
+                            </dd>
+                            <dd class="share_info gray01">无聊随便抽到了一个电源~~<br>
+                                这电源说实话挺实用的就是有一个电灯，外观就实在有点土~…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3029">3</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3029.html" class="gray03"><i></i>评论<em>(3)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000451610" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131029211533757.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000451610" class="blue">换个名字</a>:&nbsp;<span>[/gz]恭喜</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3025.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106125724872.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000799267" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131021075431750.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000799267" class="blue">神啊这个5S赐给我吧</a>昨天 12:59 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3025.html" target="_blank">中了红米好开心</a></div>
+                            </dd>
+                            <dd class="share_info gray01">抱着中500万的心态来玩云购吧<br>
+                                大家一起来玩云购吧<br>
+                                (*^__^*)&nbsp;嘻嘻……<br>
+                                …</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3025">3</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3025.html" class="gray03"><i></i>评论<em>(3)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000451610" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131029211533757.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000451610" class="blue">换个名字</a>:&nbsp;<span>[/gz]恭喜</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                </li>
+                <li>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-2779.html"><img src="http://postimg.1yyg.com/UserPost/Big/20131107073313304.jpg" style=""></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000082639" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/00000000000000000.jpg" style=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000082639" class="blue">很久没中了</a>今天 13:12 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-2779.html" target="_blank">U盘到手了</a></div>
+                            </dd>
+                            <dd class="share_info gray01">一个星期鼠标和u盘一起到手了,速度挺快的,,东西也挺好的,晒图为福分也为感谢各位集资的云…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="2779">0</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-2779.html" class="gray03"><i></i>评论<em>(0)</em></a></span></dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3057.html"><img src="http://postimg.1yyg.com/UserPost/220/20131107120615954.jpg" style=""></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000086505" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131029234040110.jpg" style=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000086505" class="blue">都散了吧</a>今天 12:07 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3057.html" target="_blank">第一次买就中了</a></div>
+                            </dd>
+                            <dd class="share_info gray01">开心死了。哈哈这次运气怎么会这么好呢，第一次买就中了，而且还是一元。一开始看到自己…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3057">0</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3057.html" class="gray03"><i></i>评论<em>(0)</em></a></span></dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3050.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131107094343139.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000842386" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131024175427422.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000842386" class="blue">爱生活爱影轩</a>今天 09:44 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3050.html" target="_blank">哈哈。想了好久的2S&nbsp;到了。</a></div>
+                            </dd>
+                            <dd class="share_info gray01">运气好。本来要是&nbsp;再不中、打算放弃的、然后&nbsp;不小心&nbsp;就中了。。不管你们…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3050">0</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3050.html" class="gray03"><i></i>评论<em>(0)</em></a></span></dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3045.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106224447442.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000092511" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131009234601781.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000092511" class="blue">中次奖z不容易</a>昨天 22:52 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3045.html" target="_blank">恭喜咱收到了"MEIZU魅族-MX2"</a></div>
+                            </dd>
+                            <dd class="share_info gray01">MX2TD版，终于到手了，很漂亮!没及时发货加上咱是偏远地区云友，发的EMS所以才到手。给客…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3045">4</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3045.html" class="gray03"><i></i>评论<em>(3)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000048715" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131105161424533.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000048715" class="blue">尼玛没有</a>:&nbsp;<span>上面就显示你投了24次，投毛2000多··混吉</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3040.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106201444688.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000080673" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131007133148940.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000080673" class="blue">来给大家赞助</a>昨天 20:17 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3040.html" target="_blank">大家来分享云购惊喜</a></div>
+                            </dd>
+                            <dd class="share_info gray01">预售等了20天，拿到机子非常开心，是正品，云购很靠谱，不过我是出了大手笔的，也算赚了…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3040">8</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3040.html" class="gray03"><i></i>评论<em>(4)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000211348" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131104222317861.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000211348" class="blue">云购了中</a>:&nbsp;<span>我也想要呀，花了不少钱了，就是不中，真的没信心了</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3036.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106160051612.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000887481" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131018200343567.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000887481" class="blue">买的就是个运气</a>昨天 16:02 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3036.html" target="_blank">哈哈MX2</a></div>
+                            </dd>
+                            <dd class="share_info gray01">呵呵，谢谢各位1元云友支持，也谢谢1元云购的平台，我是自己在网上无意中发现1元云购,买…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3036">10</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3036.html" class="gray03"><i></i>评论<em>(5)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000451610" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131029211533757.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000451610" class="blue">换个名字</a>:&nbsp;<span>[/gz]恭喜</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3033.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106150121565.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000284913" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131003202909132.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000284913" class="blue">在不中老子毙了你</a>昨天 15:01 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3033.html" target="_blank">中的单反，</a></div>
+                            </dd>
+                            <dd class="share_info gray01">很高兴，用了差不多一个月了&nbsp;，真心很好&nbsp;，也很感谢一元云购，希望月半越好。…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3033">6</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3033.html" class="gray03"><i></i>评论<em>(6)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000623766" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/00000000000000000.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000623766" class="blue">神马昵称</a>:&nbsp;<span>加群177403328，了解云购技巧，5S不是梦！</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3032.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106141845144.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000424551" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131029133818616.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000424551" class="blue">一元会中奖</a>昨天 14:20 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3032.html" target="_blank">晒单晒单啊……</a></div>
+                            </dd>
+                            <dd class="share_info gray01">这是好不容易中的啊，云购给点希望我们才会有激情继续付出啊，盯着红米几天啊，还不错，…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3032">9</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3032.html" class="gray03"><i></i>评论<em>(6)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000451610" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131029211533757.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000451610" class="blue">换个名字</a>:&nbsp;<span>[/gz]恭喜</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3028.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106132018372.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000513602" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131015140437803.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000513602" class="blue">一切都是命</a>昨天 13:20 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3028.html" target="_blank">又抽到一台红米~不过是超高价格抽的。哈哈等于是买的。</a></div>
+                            </dd>
+                            <dd class="share_info gray01">又抽到一台红米~不过是超高价格抽的。哈哈等于是买的。<br>
+                                有时候无聊上来云购这里随便…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3028">2</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3028.html" class="gray03"><i></i>评论<em>(2)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000451610" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131029211533757.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000451610" class="blue">换个名字</a>:&nbsp;<span>[/gz]恭喜</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3024.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106124758950.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000810779" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/00000000000000000.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000810779" class="blue">试试行不行</a>昨天 12:52 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3024.html" target="_blank">5s收到了</a></div>
+                            </dd>
+                            <dd class="share_info gray01">苦等了半个月，5s终于到了，不过还是很开心，在给个平板电脑把，我在上面投了不少钱了，…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3024">11</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3024.html" class="gray03"><i></i>评论<em>(10)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000005015" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131031205604894.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000005015" class="blue">我就是想</a>:&nbsp;<span>[/gz][/gz]恭喜  恭喜</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                </li>
+                <li>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3060.html"><img src="http://postimg.1yyg.com/UserPost/220/20131107122400376.jpg" style=""></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000795358" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20130927202052895.jpg" style=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000795358" class="blue">就让我中一次吧云购</a>今天 12:32 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3060.html" target="_blank">红米几天就到了</a></div>
+                            </dd>
+                            <dd class="share_info gray01">红米早就到了，现在才晒单是云购没帮我点发货，感觉屏幕没有米1好看，有点大拿着还不习惯…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3060">0</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3060.html" class="gray03"><i></i>评论<em>(0)</em></a></span></dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3055.html"><img src="http://postimg.1yyg.com/UserPost/220/20131107103415436.jpg" style=""></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000360206" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131106105926591.jpg" style=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000360206" class="blue">掐指一算我中了</a>今天 10:35 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3055.html" target="_blank">土豪银到手</a></div>
+                            </dd>
+                            <dd class="share_info gray01">获奖是激动的，等待是痛苦的，终于到了，虽然不是土豪金，不过银色也不错，知足常乐。自…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3055">0</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3055.html" class="gray03"><i></i>评论<em>(0)</em></a></span></dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3048.html"><img src="http://postimg.1yyg.com/UserPost/220/20131107073308851.jpg" style=""></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000898861" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131029144912263.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000898861" class="blue">土豪-姐姐请你来做客</a>今天 07:33 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3048.html" target="_blank">中了红米好开心</a></div>
+                            </dd>
+                            <dd class="share_info gray01">感谢云购抱着中500万的心态来玩云购吧<br>
+                                大家一起来玩云购吧<br>
+                                (*^__^*)&nbsp;嘻嘻……</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3048">6</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3048.html" class="gray03"><i></i>评论<em>(10)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000360729" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131105232738285.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000360729" class="blue">水墨丹清</a>:&nbsp;<span>希望能中个!!!</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-2178.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131016184628558.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000536996" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131013161517556.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000536996" class="blue">卧考又肿了</a>昨天 21:06 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-2178.html" target="_blank">终于等到了！红米！</a></div>
+                            </dd>
+                            <dd class="share_info gray01">等啊等盼呀盼！！终于到了！2000快多中了红米+小米3&nbsp;。。。&nbsp;欢喜呀！！就是不…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="2178">5</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-2178.html" class="gray03"><i></i>评论<em>(3)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000461314" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/00000000000000000.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000461314" class="blue">这期必须</a>:&nbsp;<span>QQ群138894097 云购技巧iPhone5s人人可以得！</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3039.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106163022253.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000752317" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131015224903278.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000752317" class="blue">求中奖3399</a>昨天 16:31 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3039.html" target="_blank">5圆中红米，人品啊</a></div>
+                            </dd>
+                            <dd class="share_info gray01">和朋友聊天无意间发现了1圆云购，就抱着试试的态度买了5圆，结果就中了，哈哈哈，不管你…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3039">25</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3039.html" class="gray03"><i></i>评论<em>(12)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000623766" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/00000000000000000.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000623766" class="blue">神马昵称</a>:&nbsp;<span>加群177403328，了解云购技巧，5S不是梦！</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3035.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106134840388.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000909451" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131009152126625.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000909451" class="blue">到底是给我中一个啊</a>昨天 15:37 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3035.html" target="_blank">小米3一个</a></div>
+                            </dd>
+                            <dd class="share_info gray01">上次说到想中个小米3.没想到真的中到了.以为发货会很慢.没想到挺快.比官网靠谱.而且还不…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3035">9</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3035.html" class="gray03"><i></i>评论<em>(6)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000461314" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/00000000000000000.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000461314" class="blue">这期必须</a>:&nbsp;<span>QQ群138894097 云购技巧iPhone5s人人可以得！</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-2855.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131102204715705.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000994818" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131030002924876.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000994818" class="blue">我不信我不中奖</a>昨天 15:00 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-2855.html" target="_blank">一元云购&nbsp;16g内成卡&nbsp;</a></div>
+                            </dd>
+                            <dd class="share_info gray01">今天宝贝到了，等了四天到了。总的来说还可以心里比较开心。很想中个苹果5s，能不能再中…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="2855">2</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-2855.html" class="gray03"><i></i>评论<em>(4)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000994818" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131030002924876.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000994818" class="blue">我不信我</a>:&nbsp;<span>谢谢，想要个5S啊</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3031.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106133706294.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000978673" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131013220636523.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000978673" class="blue">屎到您头</a>昨天 13:37 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3031.html" target="_blank">20多中的电源，不错了</a></div>
+                            </dd>
+                            <dd class="share_info gray01">这电源感觉真不错，有电筒和WIFI功能，玩云购也算幸运了，总共中了4件东西，所有东西我都…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3031">3</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3031.html" class="gray03"><i></i>评论<em>(2)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000451610" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131029211533757.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000451610" class="blue">换个名字</a>:&nbsp;<span>[/gz]恭喜</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3027.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106130825747.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000898861" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131029144912263.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000898861" class="blue">土豪-姐姐请你来做客</a>昨天 13:09 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3027.html" target="_blank">中了苹果5很开心的</a></div>
+                            </dd>
+                            <dd class="share_info gray01">抱着中500万的心态来玩云购吧<br>
+                                大家一起来玩云购吧<br>
+                                (*^__^*)&nbsp;嘻嘻……<br>
+                                …</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3027">4</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3027.html" class="gray03"><i></i>评论<em>(4)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000451610" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131029211533757.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000451610" class="blue">换个名字</a>:&nbsp;<span>[/gz]恭喜</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3023.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106124706325.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000110758" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131107133234643.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000110758" class="blue">云购得单反和手机</a>昨天 12:50 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3023.html" target="_blank">iPad4终于到手了</a></div>
+                            </dd>
+                            <dd class="share_info gray01">无意中进到一元云购网，没想过会中大奖，一共花了20元钱购买了20件商品，此iPad4是第一件…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3023">26</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3023.html" class="gray03"><i></i>评论<em>(6)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000179191" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131106092853315.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000179191" class="blue">命中有时</a>:&nbsp;<span>[/gz]，请问云购什么时候给你发的货，几天收到的 ？</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                </li>
+                <li class="share-liR">
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3059.html"><img src="http://postimg.1yyg.com/UserPost/220/20131107122559876.jpg" style=""></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000308290" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131025215047447.jpg" style=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000308290" class="blue">再不中泥巴艹泥马</a>今天 12:27 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3059.html" target="_blank">NOTE3来了</a></div>
+                            </dd>
+                            <dd class="share_info gray01">哎！终于中了。那天晚上投了800，跟了4期红米要送朋友，每期200都没中，一元党搞死两次。…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3059">0</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3059.html" class="gray03"><i></i>评论<em>(0)</em></a></span></dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3052.html"><img src="http://postimg.1yyg.com/UserPost/220/20131107100851356.jpg" style=""></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000139115" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131022054704265.jpg" style=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000139115" class="blue">小本儿楼</a>今天 10:09 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3052.html" target="_blank">真的会中呀</a></div>
+                            </dd>
+                            <dd class="share_info gray01">原来就想着是玩玩而已，真的木想到，投入200多块竟然就中了一部红米，还挺好用的，性能也…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3052">0</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3052.html" class="gray03"><i></i>评论<em>(0)</em></a></span></dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3047.html"><img src="http://postimg.1yyg.com/UserPost/220/20131107000658504.jpg" style=""></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000753487" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131006173540487.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000753487" class="blue">花了这么多还不中</a>今天 00:08 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3047.html" target="_blank">中奖了&nbsp;三星S4</a></div>
+                            </dd>
+                            <dd class="share_info gray01">在QQ上无意看到一元云购，第一次云购，看着他们1块2块就可以中了手机，那个嫉妒羡慕恨啊…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3047">5</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3047.html" class="gray03"><i></i>评论<em>(6)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000054536" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131107121713381.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000054536" class="blue">囡678823</a>:&nbsp;<span>nb啊  求技巧</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3042.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106205253204.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000413637" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131027184214672.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000413637" class="blue">噢买尬中奖了</a>昨天 20:53 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3042.html" target="_blank">不小心中奖的&nbsp;&nbsp;&nbsp;&nbsp;呵呵</a></div>
+                            </dd>
+                            <dd class="share_info gray01">我很高兴，也非常激动。此时次刻，我想用三个词来表达我的心情。<br>
+                                &nbsp;&nbsp;第一个…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3042">7</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3042.html" class="gray03"><i></i>评论<em>(4)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000461314" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/00000000000000000.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000461314" class="blue">这期必须</a>:&nbsp;<span>QQ群138894097 云购技巧iPhone5s人人可以得！</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3038.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106162849628.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000962075" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131012083750754.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000962075" class="blue">广州仔凶点要再中</a>昨天 16:30 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3038.html" target="_blank">谁说云购是假，小米3果断到货！正品</a></div>
+                            </dd>
+                            <dd class="share_info gray01">收到了小米3在外，还没时间来确认收货，一天老是想着来晒单，但又没时间，今天难得休息就…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3038">22</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3038.html" class="gray03"><i></i>评论<em>(14)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000623766" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/00000000000000000.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000623766" class="blue">神马昵称</a>:&nbsp;<span>加群177403328，了解云购技巧，5S不是梦！</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3020.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106112448236.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000242254" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131104102009884.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000242254" class="blue">啊弥陀佛</a>昨天 15:16 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3020.html" target="_blank">5s到了，银色，等时间太久了，都麻木了</a></div>
+                            </dd>
+                            <dd class="share_info gray01">不是希望的土豪金，等时间这么久，希望下一台来个土豪，兴奋劲早过了，收到手机反而淡定…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3020">22</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3020.html" class="gray03"><i></i>评论<em>(7)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000005015" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131031205604894.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000005015" class="blue">我就是想</a>:&nbsp;<span>[/gz][/gz]贺喜</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-2879.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131103155908337.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000014892" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131020080035627.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000014892" class="blue">草终于中了</a>昨天 14:37 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-2879.html" target="_blank">终于又中了</a></div>
+                            </dd>
+                            <dd class="share_info gray01">终于又中了，中过一台红米后就没中过了，就想着中个小件转转运，同时还中了个MP3.希望快…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="2879">3</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-2879.html" class="gray03"><i></i>评论<em>(1)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000451610" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131029211533757.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000451610" class="blue">换个名字</a>:&nbsp;<span>[/gz]恭喜</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3030.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106133111653.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000978673" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131013220636523.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000978673" class="blue">屎到您头</a>昨天 13:31 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3030.html" target="_blank">9月17号中的5S</a></div>
+                            </dd>
+                            <dd class="share_info gray01">4号给我发的货，今天我就出来上物流领到了，也比较速度了，用着电信卡不想换卡，所以手机…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3030">2</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3030.html" class="gray03"><i></i>评论<em>(4)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000451610" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131029211533757.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000451610" class="blue">换个名字</a>:&nbsp;<span>[/gz]恭喜</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3026.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106125834357.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000542666" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/00000000000000000.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000542666" class="blue">一购倾城</a>昨天 13:00 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3026.html" target="_blank">意料之外，也是意料之中的事</a></div>
+                            </dd>
+                            <dd class="share_info gray01">借助1元云购这个平台帮助他人实现自己的梦想的同时，也实现了自己的梦想！太棒了！执梦而…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3026">2</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3026.html" class="gray03"><i></i>评论<em>(5)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1000451610" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131029211533757.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1000451610" class="blue">换个名字</a>:&nbsp;<span>[/gz]恭喜</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                    <div class="share_list_content">
+                        <dl>
+                            <dt><a target="_blank" href="http://post.1yyg.com/detail-3022.html"><img src="http://skin.1yyg.com/Post/images/loding.gif" src2="http://postimg.1yyg.com/UserPost/220/20131106123625480.jpg"></a></dt>
+                            <dd class="share-name gray02"><a href="http://u.1yyg.com/1000311339" class="name-img"><img src2="http://faceimg.1yyg.com/UserFace/30/20131005111419816.jpg" border="0" alt=""> </a>
+                                <div class="share-name-r"> <span class="gray03"> <a rel="nofollow" href="http://u.1yyg.com/1000311339" class="blue">这次真不玩了</a>昨天 12:38 </span><a class="Fb gray01" href="http://post.1yyg.com/detail-3022.html" target="_blank">4s到了。。。</a></div>
+                            </dd>
+                            <dd class="share_info gray01">没什么兴奋的。。投了那么多钱了，才中了个大件。自己是移动的卡，，可惜是联通版的。。…</dd>
+                            <dd class="message hidden" style="display: block; "> <span class="smile gray03"><i></i><b>羡慕(<em num="3022">5</em>)</b></span> <span class="much"> <a target="_blank" rel="nofollow" href="http://post.1yyg.com/detail-3022.html" class="gray03"><i></i>评论<em>(4)</em></a></span></dd>
+                            <dd class="text_message gray02 hidden" style="display: block; "><a href="http://u.1yyg.com/1001621368" class="name-img"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/30/20131107113753321.jpg" style=""></a>
+                                <p><a rel="nofollow" href="http://u.1yyg.com/1001621368" class="blue">老天让我</a>:&nbsp;<span>[/se]</span></p>
+                            </dd>
+                        </dl>
+                        <p class="text-h10"></p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="pages">
+            <ul class="pageULEx">
+                <li class="prev_page page_curgray"><a><i>&lt;</i>上一页</a></li>
+                <li class="curr_page">1</li>
+                <li><a href="http://post.1yyg.com/List-2.html">2</a></li>
+                <li><a href="http://post.1yyg.com/List-3.html">3</a></li>
+                <li><a href="http://post.1yyg.com/List-4.html">4</a></li>
+                <li><a href="http://post.1yyg.com/List-5.html">5</a></li>
+                <li>…</li>
+                <li><a href="http://post.1yyg.com/List-68.html">68</a></li>
+                <li class="next_page"><a href="http://post.1yyg.com/List-2.html">下一页<i>&gt;</i></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--底部-->
+     <div class="footer_content">
+       <div class="footer_line"></div>
+       <div class="footservice">
+           <div class="support">
+               <dl class="ft-newbie">
+                   <dt><span>新手指南</span></dt>
+                   <dd><b></b><a href="http://help.1yyg.com/" rel="nofollow" target="_blank">了解1元云购</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-questiondetail.html" rel="nofollow" target="_blank">常见问题</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-agreement.html" rel="nofollow" target="_blank">服务协议</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-userExperience.html" rel="nofollow" target="_blank">会员福分经验值</a></dd>
+               </dl>
+               <dl class="ft-wares">
+                   <dt><span>云购保障</span></dt>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-genuinetwo.html" rel="nofollow" target="_blank">1元云购保障体系</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-genuine.html" rel="nofollow" target="_blank">正品保障</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-securepayment.html" rel="nofollow" target="_blank">安全支付</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-suggestion.html" rel="nofollow" target="_blank">投诉建议</a></dd>
+               </dl>
+               <dl class="ft-delivery">
+                   <dt><span>商品配送</span></dt>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-ship.html" rel="nofollow" target="_blank">商品配送</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-deliveryfees.html" rel="nofollow" target="_blank">配送费用</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-prodcheck.html" rel="nofollow" target="_blank">商品验货与签收</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-shiptwo.html" rel="nofollow" target="_blank">长时间未收到商品</a></dd>
+               </dl>
+               <dl class="ft-ygjj">
+                   <dt><span>云购基金</span></dt>
+                   <dd><b></b><a href="http://info.1yyg.com/fund/" rel="nofollow" target="_blank">云购基金</a></dd>
+                   <dd><b></b><a href="http://info.1yyg.com/fund/" rel="nofollow" target="_blank">社会活动</a></dd>
+               </dl>
+               <dl class="ft-fwrx">
+                   <dt><span>服务热线</span></dt>
+                   <dd class="ft-fwrx-tel"><i></i></dd>
+                   <dd class="ft-fwrx-time">周一至周五 8:30-18:30</dd>
+                   <dd class="ft-fwrx-service"><span class="ft-qqicon"><a href="http://help.1yyg.com/info/htm-qqgroup.html" rel="nofollow" target="_blank" style="text-indent:0em; background:none;width:160px;">官方QQ群①：<em class="orange Fb">89834747</em></a></span><span class="ft-qqicon"><a href="http://help.1yyg.com/info/htm-qqgroup.html" rel="nofollow" target="_blank" style="text-indent:0em; background:none;width:160px;">官方QQ群②：<em class="orange Fb">190818578</em></a></span></dd>
+               </dl>
+               <dl class="ft-weixin">
+                   <dt><span>微信扫一扫</span></dt>
+                   <dd class="ft-weixin-img"><s></s></dd>
+                   <dd class="gray02"></dd>
+               </dl>
+           </div>
+       </div>
+       <div class="service-promise">
+           <ul>
+               <li class="sp-fair"><a href="http://help.1yyg.com/htm-genuinetwo.html" rel="nofollow" target="_blank"><span></span></a></li>
+               <li class="sp-wares"><a href="http://help.1yyg.com/htm-genuine.html" rel="nofollow" target="_blank"><span></span></a></li>
+               <li class="sp-free-delivery"><a href="http://help.1yyg.com/htm-deliveryfees.html" rel="nofollow" target="_blank"><span></span></a></li>
+               <li class="sp-business service-promise-border-r0"><a href="http://help.1yyg.com/info/htm-business.html" rel="nofollow" target="_blank"><span></span></a></li>
+           </ul>
+       </div>
+       <div class="service_date">
+           <div class="Service_Time">
+               <p>服务器时间</p>
+               <span id="sp_ServerTime">17:18:41</span>
+           </div>
+           <div class="Service_Fund">
+               <a href="http://info.1yyg.com/fund/" target="_blank">
+                   <p>云购公益基金</p>
+                   <span id="spanFundTotal">1073979.25</span>
+               </a>
+           </div>
+       </div>
+</div>
+    <div class="footer">
+    <div class="footer_links">
+        <a href="http://www.1yyg.com/" rel="nofollow">首页</a>
+        <b></b>
+          <a href="http://help.1yyg.com/htm-about.html" rel="nofollow">关于云购</a>
+        <b></b>
+          <a href="http://help.1yyg.com/htm-privacy.html" rel="nofollow">隐私声明</a>
+        <b></b>
+          <a href="http://help.1yyg.com/info/htm-business.html" rel="nofollow">合作专区</a>
+        <b></b>
+          <a href="http://help.1yyg.com/info/htm-jobs.html" rel="nofollow">加入云购</a>
+        <b></b>
+        <a href="http://group.1yyg.com/" rel="nofollow">云购圈</a>
+        <b></b>
+        <a href="http://www.1yyg.com/link.html" rel="nofollow">友情链接</a>
+        <b></b>
+          <a href="http://help.1yyg.com/htm-contactus.html" rel="nofollow">联系我们</a>
+      </div>
+    <div class="copyright">Copyright  © 2011 - 2013,  版权所有  1yyg.com  粤ICP备09213115号-1</div>
+      <div class="footer_icon" style="width:599px;">
+        <ul>
+            <li class="fi_ectrustchina"><a target="_blank" href="http://www.1yyg.com/url.html?t=1"><span>可信网站</span></a></li>
+            <li class="fi_315online"><a target="_blank" href="http://www.1yyg.com/url.html?t=2"><span>深圳市市场监督管理局</span></a></li>
+            <li class="fi_cnnic"><a target="_blank" href="http://www.1yyg.com/url.html?t=3"><span>中国电子商务诚信单位</span></a></li>
+              <li class="fi_anxibao"><a target="_blank" href="http://www.1yyg.com/url.html?t=6"><span>安信保</span></a></li>
+            <li class="fi_pingan"><a target="_blank" href="http://www.1yyg.com/url.html?t=4"><span>平安银行</span></a></li>
+            <li class="fi_qh"><a target="_blank" href="http://www.1yyg.com/url.html?t=5"><span>前海股权交易中心</span></a></li>
+        </ul>
+    </div>
+</div>
+<div class="hCollectCon">
+    <div class="hCollectCon2">
+        <div class="hCollect">
+            <ul>
+                <li><a target="_blank" href="http://www.1yyg.com" class="hyyg" title="1元云购">1元云购</a></li>
+                <li><a target="_blank" href="http://www.1yyg.com/autolottery.html" class="hauto" title="限时揭晓">限时揭晓</a></li>
+                <li><a target="_blank" href="http://www.baidu.com" class="hbaidu" title="百度">百度</a></li>
+                <li><a id="btnAdd" href="javascript:;" class="hadd">编辑</a></li>
+            </ul>
+        </div>
+     </div>
+</div>
+</body>
+</html>

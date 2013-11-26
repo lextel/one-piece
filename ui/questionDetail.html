@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>帮助中心</title>
+<link type="text/css" rel="stylesheet" href="css/comm.css"/>
+<link type="text/css" rel="stylesheet" href="css/header.css"/>
+<link type="text/css" rel="stylesheet" href="css/product_list"/>
+</head>
+
+<body style="background:#fff;">
+<!--顶部信息-->
+    <div class="header">
+         <div class="site_top">
+            <div class="head_top">
+             <p class="collect"><a href="javascript:void(0);">官方QQ群</a></p>
+             <ul class="login_info" style="display: block;">
+                 <li class="h_login" id="logininfo"><i>您好，欢迎光临！</i><a rel="nofollow" href="javascript:void(0);">注册</a></li>
+                 <li class="h_1yyg">
+                     <a rel="nofollow" href="javascript:void(0);">我的1元云购<b></b></a>
+                     <div class="h_1yyg_eject" style="display: none; ">
+                         <dl>
+                             <dt><a rel="nofollow" href="javascript:void(0);">我的1元云购<i></i></a></dt>
+                             <dd><a rel="nofollow" href="javascript:void(0);">云购记录</a></dd>
+                             <dd><a rel="nofollow" href="javascript:void(0);">获得的商品</a></dd>
+                             <dd><a rel="nofollow" href="javascript:void(0);">帐户充值</a></dd>
+                             <dd><a rel="nofollow" href="javascript:void(0);">个人设置</a></dd>
+                         </dl>
+                     </div>
+                 </li>
+                 <li class="h_news" id="liMsgTip" style="display:none;">
+                     <a rel="nofollow" href="javascript:void(0);">消息<b></b></a>
+                     <div class="h_news_down" style="display:none;">
+                         <div class="h_news_downT"><a rel="nofollow" href="javascript:void(0);">消息<i></i></a></div>
+                         <div class="h_news_downC"></div>
+                     </div>
+                 </li>
+                 <li class="h_Mobile"><a rel="nofollow" target="_blank" href="javascript:void(0);">桌面版</a></li>
+                 <li class="h_Mobile"><a rel="nofollow" target="_blank" href="javascript:void(0);">手机版</a></li>
+                 <li class="h_help"><a rel="nofollow" target="_blank" href="javascript:void(0);">帮助</a></li>
+                 <li class="h_inv"><a rel="nofollow" target="_blank" href="javascript:void(0);">在线客服</a></li>
+               </ul>
+            </div>
+         </div>
+     </div>
+<!--顶部信息结束-->
+<!--logo开始-->
+    <div class="head_mid">
+        <div class="head_mid_bg">
+            <h1 class="logo_1yyg"><a class="logo_1yyg_img" href="javascript:void(0);">1元云购</a></h1>
+            <div id="topJackaroo" class="newbie_guide"></div>
+            <div class="head_number">
+                <a href="javascript:void(0);">
+                    已<span id="spBuyCount" style="color: rgb(34, 170, 255); background-color: rgb(245, 245, 245); ">7383415</span>人次参与云
+                    购
+                 </a>
+             </div>
+            <div class="head_search">
+                <input type="text" id="txtSearch" class="init" value="" title="输入"红米手机" 试试"><input type="button" id="butSearch" class="search_submit" value="搜索">
+                <div class="keySearch">
+                    <a href="javascript:void(0);">智能手机</a>
+                    <a href="javascript:void(0);">3G手机</a>
+                    <a href="javascript:void(0);">宝马</a>
+                    <a href="javascript:void(0);">单反</a>                 
+                </div>
+            </div>
+        </div>
+    </div>
+<!--logo结束-->
+<!--导航开始-->
+    <div class="head_nav">
+     <div class="nav_center">
+         <ul class="nav_list">
+             <li class="home-back"><a href="http://www.1yyg.com/" class="home">首页</a></li>
+             <li class="sort-all" id="slideSort"><a class="sort" href="http://www.1yyg.com/list/m1.html">所有商品</a></li>
+             <li class="new-lottery"><a href="http://dataserver.1yyg.com/lottery.html">最新揭晓</a></li>
+             <li class="share"><a href="http://post.1yyg.com/">晒单分享</a></li>
+             <li class="nav_Cloud"><a href="http://www.1yyg.com/autolottery.html">限时揭晓</a></li>
+             <li class="cooperation"><a rel="nofollow" href="http://member.1yyg.com/ReferAuth.html">邀请</a></li>
+             <li class="what-1yyg"><a rel="nofollow" href="http://help.1yyg.com/info/newbie/index.html" class="what-yg">新手指南</a></li>
+         </ul>
+         <div class="mini_mycart" id="sCart">
+                  <input type="hidden" id="hidChanged" value="0">
+             <a rel="nofollow" href="http://www.1yyg.com/MyCart/CartList.html" id="sCartNavi" class="cart">
+             	<s></s>购物车<span id="sCartTotal">0</span>
+             </a>
+             <a rel="nofollow" href="http://www.1yyg.com/MyCart/CartList.html" class="checkout">去结算</a>
+             <div class="mycart_list" id="sCartlist" style="display: none; z-index: 99999; ">
+                 <div class="goods_loding" id="sCartLoading"><img border="0" alt="" src="http://skin.1yyg.com/images/goods_loading.gif">正在加载......</div>
+                 <p id="p1">共计 <span id="sCartTotal2"> 0</span> 件商品 金额总计：<span id="sCartTotalM" class="rmbred">0.00</span></p>
+                 <h3><input type="button" id="sGotoCart" value="去购物车并结算"></h3>
+             </div>
+         </div>
+     </div>
+ </div>
+ <!--导航结束-->
+<!--帮助中心-->
+<div class="help_center">
+	<div class="help_left">
+    	<h2>帮助中心</h2>
+        <dl>
+        	<dt>新手指南</dt>
+            <dd><a href="javascript:void(0);" class="cur01">了解一云购<b></b></a></dd>
+            <dd><a href="javascript:void(0);">常见问题</a><b></b></dd>
+            <dd><a href="javascript:void(0);">服务协议</a><b></b></dd>
+            <dd><a href="javascript:void(0);">会员福分经验值</a><b></b></dd>
+        </dl>
+        <dl>
+        	<dt>服务保障</dt>
+            <dd><a href="javascript:void(0);">一元购物服务保障体系<b></b></a></dd>
+            <dd><a href="javascript:void(0);">正品承诺</a><b></b></dd>
+            <dd><a href="javascript:void(0);">安全支付</a><b></b></dd>
+            <dd><a href="javascript:void(0);">商品配送</a><b></b></dd>
+            <dd><a href="javascript:void(0);">投诉建议</a><b></b></dd>
+        </dl>
+        <dl>
+        	<dt>产品配送</dt>
+            <dd><a href="javascript:void(0);">配送费用<b></b></a></dd>
+            <dd><a href="javascript:void(0);">商品验货与签收</a><b></b></dd>
+            <dd><a href="javascript:void(0);">长时间未收到商品问题</a><b></b></dd>
+        </dl>
+        <dl>
+        	<dt>关于云购</dt>
+            <dd><a href="javascript:void(0);">关于我们<b></b></a></dd>
+            <dd><a href="javascript:void(0);">云购公益</a><b></b></dd>
+            <dd><a href="javascript:void(0);">云购微博</a><b></b></dd>
+            <dd><a href="javascript:void(0);">联系我们</a><b></b></dd>
+        </dl>
+        <div class="help-contact">
+              <p>如果不能在帮助内容中找到答案，或者您有其他建议、投诉，您还可以：</p>
+              <ul>
+                  <li class="CustomerCon"><a href="javascript:void(0);" target="_blank" class="Customer"><b></b>在线客服</a></li>
+                  <li>电话客服热线(免长途费)</li>
+                  <li class="tel"><span>400-685-9800</span></li>
+                  <li>邮件联系：<a href="javascript:void(0);">Service@1yyg.com</a></li>
+              </ul>
+         </div>
+    </div>
+    <div class="help_right">
+    	<h2>常见问题</h2>
+        <div class="help_right_c">
+            <h4 class="mat0">
+                1、怎样查看我参与的商品有没有中奖？</h4>
+            <p>
+                每件商品开奖结果公布之后，登录云购网，进入"我的云购中心"，在"我中奖的云购"中即可查询中奖情况。</p>
+            <h4>
+                2、我获得了商品，我还需要支付其他费用吗？</h4>
+            <p>
+                不需要支付其他任何费用。</p>
+            <h4>
+                3、当我获得商品以后我该做什么？</h4>
+            <p class="textindent">
+                在您获得商品后您会收到站内信、短信和电子邮件的通知。在这之后，您必须在"我的云购中心"正确填写、真实的收货地址，完善或确认您的个人信息。我们会在您获得商品后3个工作日内通过电话方式与您取得联系。</p>
+            <h4>
+                4、云购网的商品是正品吗？怎么保证？</h4>
+            <p>
+                云购网承诺，所有商品100%正品，可享受厂家所提供的全国联保服务，享受商品的保修、换货和退货的义务（国家三包政策）。</p>
+            <h4>
+                5、如何晒单分享？</h4>
+            <p>
+                在您收到商品后，登录云购网，进入"我的云购中心"，在"晒单分享"区发布晒单信息，通过审核后，您还可获得1000福分奖励。在您成功晒单后，您的晒单会出现在网站"晒单分享"区，与大家分享喜悦。</p>
+            <h4>
+                6、我收到的商品可以换货或者退货吗？</h4>
+            <p>
+                非质量问题，不在三包范围内，不给予退换货。</p>
+            <h4>
+                7、参与1元云购需要注意什么？</h4>
+            <p>
+                请务必正确填写真实有效的联系电话、收货地址以便在您中奖时能及时与您取得联系。</p>
+            <h4>
+                8、网上银行充值未及时到帐怎么办？</h4>
+            <p>
+                网上支付未及时到帐可能有以下几个原因造成：</p>
+            <p>
+                第一，由于网速或者支付接口等问题，支付数据没有及时传送到支付系统造成的；</p>
+            <p>
+                第二，网速过慢，数据传输超时，使银行后台支付信息不能成功对接，导致银行交易成功而支付后台显示失败；</p>
+            <p>
+                第三，在网上支付如果使用某些防火墙软件，有时会屏蔽银行接口的弹出窗口，这时会造成在银行那边被扣费，但在我们网站上显示尚没支付。但请您放心，每天我们都会根据银行系统的帐务明细清单对前一天的订单进行逐笔核对，如遇问题订单，我们会做手工添加。</p>
+            <p>
+                建议反馈</p>
+            <p>
+                如您对我们"帮助中心"的说明有任何疑问或建议请<a href="#">告诉我们</a></p>
+        </div>
+    </div>
+</div>
+<!--帮助中心结束-->
+</body>
+</html>

@@ -1,0 +1,974 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link type="text/css" rel="stylesheet"  href="css/header.css"/>
+<link type="text/css" rel="stylesheet"  href="css/comm.css"/>
+<link type="text/css" rel="stylesheet"  href="css/product_list.css"/>
+</head>
+
+<body>
+    <div class="header">
+             <div class="site_top">
+                <div class="head_top">
+                 <p class="collect"><a href="javascript:void();" id="addSiteFavorite">收藏1元云购</a></p><p class="Ht-qqicon"><a class="gray01" href="http://help.1yyg.com/info/htm-qqgroup.html" target="_blank">官方QQ群</a></p>
+                 <ul class="login_info" style="display: block;">
+                     <li class="h_login" id="logininfo"><i>您好，欢迎光临！</i><a rel="nofollow" href="http://passport.1yyg.com/login.html?forward=rego" class="gray01">登录</a><span>|</span><a rel="nofollow" href="http://passport.1yyg.com/register.html?forward=rego" class="gray01">注册</a></li>
+                     <li class="h_1yyg">
+                         <a rel="nofollow" href="http://member.1yyg.com/">我的1元云购<b></b></a>
+                         <div class="h_1yyg_eject" style="display: none; ">
+                             <dl>
+                                 <dt><a rel="nofollow" href="http://member.1yyg.com/">我的1元云购<i></i></a></dt>
+                                 <dd><a rel="nofollow" href="http://member.1yyg.com/UserBuyList.html">云购记录</a></dd>
+                                 <dd><a rel="nofollow" href="http://member.1yyg.com/OrderList.html">获得的商品</a></dd>
+                                 <dd><a rel="nofollow" href="http://member.1yyg.com/UserRecharge.html">帐户充值</a></dd>
+                                 <dd><a rel="nofollow" href="http://member.1yyg.com/MemberModify.html">个人设置</a></dd>
+                             </dl>
+                         </div>
+                     </li>
+                     <li class="h_news" id="liMsgTip" style="display:none;">
+                         <a rel="nofollow" href="http://member.1yyg.com/userMessage.html">消息<b></b></a>
+                         <div class="h_news_down" style="display:none;">
+                             <div class="h_news_downT"><a rel="nofollow" href="http://member.1yyg.com/userMessage.html">消息<i></i></a></div>
+                             <div class="h_news_downC"></div>
+                         </div>
+                     </li>
+                     <li class="h_Mobile"><a rel="nofollow" target="_blank" href="http://info.1yyg.com/app/desktop.html">桌面版</a></li>
+                     <li class="h_Mobile"><a rel="nofollow" target="_blank" href="http://info.1yyg.com/app/touch.html">手机版</a></li>
+                     <li class="h_help"><a rel="nofollow" target="_blank" href="http://help.1yyg.com/">帮助</a></li>
+                     <li class="h_inv"><a rel="nofollow" target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2355805906&amp;site=qq&amp;menu=yes">在线客服</a></li>
+                   </ul>
+                </div>
+             </div>
+         </div>
+    <div class="head_mid">
+    <div class="head_mid_bg">
+        <h1 class="logo_1yyg"><a class="logo_1yyg_img" href="http://www.1yyg.com" title="1元云购">1元云购</a></h1>
+        <div id="topJackaroo" class="newbie_guide"></div>
+        <div class="head_number">
+            <a href="http://dataserver.1yyg.com/HistoryBuyRecords.html" target="_blank">已
+            <span id="spBuyCount" style="color: rgb(34, 170, 255); background-color: rgb(245, 245, 245); opacity: 1; background-position: initial initial; background-repeat: initial initial; ">7383415</span>人次参与云购</a>
+         </div>
+        <div class="head_search">
+            <input type="text" id="txtSearch" class="init" value="" title="输入"红米手机" 试试"><input type="button" id="butSearch" class="search_submit" value="搜索">
+            <div class="keySearch">
+                <a href="http://www.1yyg.com/search/?q=智能手机" target="_blank">智能手机</a>
+                <a href="http://www.1yyg.com/search/?q=3G手机" target="_blank">3G手机</a>
+                <a href="http://www.1yyg.com/search/?q=宝马" target="_blank">宝马</a>
+                <a href="http://www.1yyg.com/search/?q=单反" target="_blank">单反</a>                 
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="head_nav">
+     <div class="nav_center">
+         <ul class="nav_list">
+             <li class="home-back"><a href="http://www.1yyg.com/" class="home">首页</a></li>
+             <li class="sort-all" id="slideSort"><a class="sort" href="http://www.1yyg.com/list/m1.html">所有商品</a></li>
+             <li class="new-lottery"><a href="http://dataserver.1yyg.com/lottery.html">最新揭晓</a></li>
+             <li class="share"><a href="http://post.1yyg.com/">晒单分享</a></li>
+             <li class="nav_Cloud"><a href="http://www.1yyg.com/autolottery.html">限时揭晓</a></li>
+             <li class="cooperation"><a rel="nofollow" href="http://member.1yyg.com/ReferAuth.html">邀请</a></li>
+             <li class="what-1yyg"><a rel="nofollow" href="http://help.1yyg.com/info/newbie/index.html" class="what-yg">新手指南</a></li>
+         </ul>
+         <div class="mini_mycart" id="sCart">
+                  <input type="hidden" id="hidChanged" value="0">
+             <a rel="nofollow" href="http://www.1yyg.com/MyCart/CartList.html" id="sCartNavi" class="cart"><s></s>购物车<span id="sCartTotal">0</span></a><a rel="nofollow" href="http://www.1yyg.com/MyCart/CartList.html" class="checkout">去结算</a>
+             <div class="mycart_list" id="sCartlist" style="display: none; z-index: 99999; ">
+                 <div class="goods_loding" id="sCartLoading"><img border="0" alt="" src="http://skin.1yyg.com/images/goods_loading.gif">正在加载......</div>
+                 <p id="p1">共计 <span id="sCartTotal2"> 0</span> 件商品 金额总计：<span id="sCartTotalM" class="rmbred">0.00</span></p>
+                 <h3><input type="button" id="sGotoCart" value="去购物车并结算"></h3>
+             </div>
+         </div>
+     </div>
+ </div>  
+    <div class="nav_class">
+     <ul>
+         <li><a href="http://www.1yyg.com/list/i111.html">手机</a></li>
+         <li><a href="http://www.1yyg.com/list/i102.html">数码相机</a></li>
+         <li><a href="http://www.1yyg.com/list/i112.html">电脑</a></li>
+         <li><a href="http://www.1yyg.com/list/i120.html">平板电视</a></li>
+         <li><a href="http://www.1yyg.com/list/i222.html">钟表首饰</a></li>
+         <li><a href="http://www.1yyg.com/list/i312.html">其它商品</a></li>
+         <li><a href="http://www.1yyg.com/list/m1.html">全部</a></li>
+     </ul>
+ </div> 
+<!--中间内容--> 
+<div class="Current_nav">
+        <a href="/">首页</a> <span>&gt;</span> <a href="/list/i100.html">手机数码</a> <span>&gt;</span> <a href="/list/i102.html">数码影像</a> <span>&gt;</span> <a href="/list/i130.html">单反相机</a> <span>&gt;</span> 商品详情 
+</div>
+<div class="show_content">
+<!-- 商品期数 -->
+        <div id="divPeriodList" class="show_Period">
+            <ul class="Period_list">
+                <li><a href="http://dataserver.1yyg.com/lotterydetail-19648.html" class="gray02">第23期</a></li
+                ><li><a href="http://dataserver.1yyg.com/lotterydetail-19647.html" class="gray02">第22期</a></li>
+                <li><a href="http://dataserver.1yyg.com/lotterydetail-19239.html" class="gray02">第21期</a></li>
+                <li><a href="http://dataserver.1yyg.com/lotterydetail-19238.html" class="gray02">第20期</a></li>
+                <li><a href="http://dataserver.1yyg.com/lotterydetail-17418.html" class="gray02">第19期</a></li>
+                <li><a href="http://dataserver.1yyg.com/lotterydetail-17417.html" class="gray02">第18期</a></li>
+                <li><a href="http://dataserver.1yyg.com/lotterydetail-17416.html" class="gray02">第17期</a></li>
+                <li><a href="http://dataserver.1yyg.com/lotterydetail-17415.html" class="gray02">第16期</a></li>
+                <li><a href="http://dataserver.1yyg.com/lotterydetail-17414.html" class="gray02">第15期</a></li>
+             </ul>
+             <ul class="Period_list">
+                 <li><a href="http://dataserver.1yyg.com/lotterydetail-17413.html" class="gray02">第14期</a></li>
+                <li><a href="http://dataserver.1yyg.com/lotterydetail-17412.html" class="gray02">第13期</a></li>
+                <li><a href="http://dataserver.1yyg.com/lotterydetail-17411.html" class="gray02">第12期</a></li>
+                <li><a href="http://dataserver.1yyg.com/lotterydetail-17410.html" class="gray02">第11期</a></li>
+                <li><a href="http://dataserver.1yyg.com/lotterydetail-17409.html" class="gray02">第10期</a></li>
+                <li><a href="http://dataserver.1yyg.com/lotterydetail-16667.html" class="gray02">第9期</a></li>
+                <li><a href="http://dataserver.1yyg.com/lotterydetail-16666.html" class="gray02">第8期</a></li>
+                <li><a href="http://dataserver.1yyg.com/lotterydetail-16665.html" class="gray02">第7期</a></li>
+                <li><a href="http://dataserver.1yyg.com/lotterydetail-16307.html" class="gray02">第6期</a></li>
+             </ul>
+             <ul class="Period_list">
+                 <li><a href="http://dataserver.1yyg.com/lotterydetail-16306.html" class="gray02">第5期</a></li>
+                <li><a href="http://dataserver.1yyg.com/lotterydetail-15977.html" class="gray02">第4期</a></li>
+                <li><a href="http://dataserver.1yyg.com/lotterydetail-13382.html" class="gray02">第3期</a></li>
+                <li><a href="http://dataserver.1yyg.com/lotterydetail-13381.html" class="gray02">第2期</a></li
+                ><li><a href="http://dataserver.1yyg.com/lotterydetail-13380.html" class="gray02">第1期</a></li>
+            </ul>
+         </div>
+<!-- 商品信息 -->
+    <div class="Pro_Details">
+            <h1>佳能（Canon）EOS 600D 单反套机 <span class="red">EF-S 18-55mm f/3.5-5.6 IS II 镜头，EOS场景分析系统，可旋转液晶监视器！</span></h1>
+            <div class="Pro_Detleft">
+                <div class="detail-itemsummary-imageviewer">
+                    <div id="middlePicRemark" class="middlePicRemark"></div>
+                    <img id="imgGoodsPic" alt="" src="http://goodsimg.1yyg.com/GoodsPic/Pic-400-400/20120324143003459.jpg" style="width:396px; height:396px; display:none;">
+                    <div id="middlePicBox" class="middlePicBox" style="position: relative; "><span id="BigViewImage" class="jqzoom" style="outline-style: none; cursor: crosshair; display: block; position: relative; height: 396px; width: 396px; "><em>本商品已结束</em><img id="" style="width: 396px; height: 396px; position: absolute; top: 0px; left: 0px; " src="http://goodsimg.1yyg.com/GoodsPic/Pic-400-400/20120324143003459.jpg"></span></div>
+                    <div class="smallPicList">
+                        <div class="hidden" style="display: none; "></div>
+                        <div class="jcarousel-clip">
+                            <ul id="mycarousel" style="width: 216px; left: 0px; display: block; ">
+                                
+                                        <li class=""><img width="48" height="48" src="http://goodsimg.1yyg.com/GoodsPic/pic-38-38/20120324143030554.jpg" alt="" name="20120324143030554.jpg"></li>
+                                    
+                                        <li class=""><img width="48" height="48" src="http://goodsimg.1yyg.com/GoodsPic/pic-38-38/20120324143022772.jpg" alt="" name="20120324143022772.jpg"></li>
+                                    
+                                        <li class=""><img width="48" height="48" src="http://goodsimg.1yyg.com/GoodsPic/pic-38-38/20120324143014846.jpg" alt="" name="20120324143014846.jpg"></li>
+                                    
+                                        <li class="curr"><img width="48" height="48" src="http://goodsimg.1yyg.com/GoodsPic/pic-38-38/20120324143003459.jpg" alt="" name="20120324143003459.jpg"></li>
+                                    
+                                <div class="hackbox"></div>
+                            </ul>
+                        </div>
+                        <div class="hidden" style="display: none; "></div>
+                    </div>
+                </div>
+                
+                <div class="Pro_GetPrize">
+                    <h2>上期获得者</h2>
+                    <div class="GetPrize">
+                    
+                        <dl>
+                            <dt><a rel="nofollow" href="http://u.1yyg.com/1000507200" target="_blank"><img width="80" height="80" alt="" src="http://faceimg.1yyg.com/UserFace/20131028015821431.jpg"></a></dt>
+                            <dd class="gray02">
+                                <p>恭喜 <a href="http://u.1yyg.com/1000507200" target="_blank" class="blue">5S唵嘛呢叭弥吽5S</a> (黑龙江省绥化市) 获得了本商品</p>
+                                <p>揭晓时间：2013-11-06 09:33:28.174</p>
+                                <p>云购时间：2013-11-06 00:21:19.452</p>
+                                <p>幸运云购码：<em class="orange Fb">10003278</em></p>
+                            </dd>
+                        </dl>
+                    
+                    </div>
+                </div>
+                
+            </div>
+            <div class="Pro_Detright">
+                
+                
+                    <div class="End_DetailsExplain">本商品已结束云购！</div>
+                
+                
+                    <div class="End_Detailslist">
+                        <div class="End_DetailsTit">他们就快揭晓啦，赶快看看吧！</div>
+                        <ul class="End_DetailsCon">
+                        
+                                <li>
+                                    <div class="pic">
+                                        <a rel="nofollow" href="/products/21274.html" target="_blank" title="魅族（Meizu）MX2 16G 3G智能手机"><img alt="魅族（Meizu）MX2 16G 3G智能手机" src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20130205110810861.jpg" style=""></a>
+                                    </div>
+                                    <p class="name">
+                                        <a href="/products/21274.html" class="gray01" target="_blank" title="魅族（Meizu）MX2 16G 3G智能手机">魅族（Meizu）MX2 16G 3G智能手机</a>
+                                    </p>
+                                    <p class="money">价值：<span class="rmbgray">1799.00</span></p>
+                                    <div class="Endgo_buy">
+                                        <a rel="nofollow" href="/products/21274.html" target="_blank" title="立即1元云购" class="go_Shopping12">立即1元云购</a>
+                                    </div>
+                                </li>
+                            
+                                <li>
+                                    <div class="pic">
+                                        <a rel="nofollow" href="/products/21347.html" target="_blank" title="三星（SAMSUNG）Galaxy Note 3 N9008 3G手机"><img alt="三星（SAMSUNG）Galaxy Note 3 N9008 3G手机" src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20130930110509919.jpg" style=""></a>
+                                    </div>
+                                    <p class="name">
+                                        <a href="/products/21347.html" class="gray01" target="_blank" title="三星（SAMSUNG）Galaxy Note 3 N9008 3G手机">三星（SAMSUNG）Galaxy Note 3 N9008 3G手机</a>
+                                    </p>
+                                    <p class="money">价值：<span class="rmbgray">5599.00</span></p>
+                                    <div class="Endgo_buy">
+                                        <a rel="nofollow" href="/products/21347.html" target="_blank" title="立即1元云购" class="go_Shopping12">立即1元云购</a>
+                                    </div>
+                                </li>
+                            
+                                <li>
+                                    <div class="pic">
+                                        <a rel="nofollow" href="/products/21341.html" target="_blank" title="飞利浦 (Philips) SHE7055BK/00 手机耳机"><img alt="飞利浦 (Philips) SHE7055BK/00 手机耳机" src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20130807150758554.jpg" style=""></a>
+                                    </div>
+                                    <p class="name">
+                                        <a href="/products/21341.html" class="gray01" target="_blank" title="飞利浦 (Philips) SHE7055BK/00 手机耳机">飞利浦 (Philips) SHE7055BK/00 手机耳机</a>
+                                    </p>
+                                    <p class="money">价值：<span class="rmbgray">199.00</span></p>
+                                    <div class="Endgo_buy">
+                                        <a rel="nofollow" href="/products/21341.html" target="_blank" title="立即1元云购" class="go_Shopping12">立即1元云购</a>
+                                    </div>
+                                </li>
+                            
+                                <li>
+                                    <div class="pic">
+                                        <a rel="nofollow" href="/products/21359.html" target="_blank" title="苹果（APPLE）带线控和麦克风的 Apple EarPods"><img alt="苹果（APPLE）带线控和麦克风的 Apple EarPods" src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20131015175246145.jpg" style=""></a>
+                                    </div>
+                                    <p class="name">
+                                        <a href="/products/21359.html" class="gray01" target="_blank" title="苹果（APPLE）带线控和麦克风的 Apple EarPods">苹果（APPLE）带线控和麦克风的 Apple EarPods</a>
+                                    </p>
+                                    <p class="money">价值：<span class="rmbgray">208.00</span></p>
+                                    <div class="Endgo_buy">
+                                        <a rel="nofollow" href="/products/21359.html" target="_blank" title="立即1元云购" class="go_Shopping12">立即1元云购</a>
+                                    </div>
+                                </li>
+                            
+                                <li>
+                                    <div class="pic">
+                                        <a rel="nofollow" href="/products/21260.html" target="_blank" title="苹果（Apple）iPad4 平板电脑 16G WIFI版"><img alt="苹果（Apple）iPad4 平板电脑 16G WIFI版" src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20121109163057996.jpg" style=""></a>
+                                    </div>
+                                    <p class="name">
+                                        <a href="/products/21260.html" class="gray01" target="_blank" title="苹果（Apple）iPad4 平板电脑 16G WIFI版">苹果（Apple）iPad4 平板电脑 16G WIFI版</a>
+                                    </p>
+                                    <p class="money">价值：<span class="rmbgray">3688.00</span></p>
+                                    <div class="Endgo_buy">
+                                        <a rel="nofollow" href="/products/21260.html" target="_blank" title="立即1元云购" class="go_Shopping12">立即1元云购</a>
+                                    </div>
+                                </li>
+                            
+                                <li>
+                                    <div class="pic">
+                                        <a rel="nofollow" href="/products/21300.html" target="_blank" title="三星（Samsung）Galaxy S4 I9500 3G手机"><img alt="三星（Samsung）Galaxy S4 I9500 3G手机" src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20130423095231743.jpg" style=""></a>
+                                    </div>
+                                    <p class="name">
+                                        <a href="/products/21300.html" class="gray01" target="_blank" title="三星（Samsung）Galaxy S4 I9500 3G手机">三星（Samsung）Galaxy S4 I9500 3G手机</a>
+                                    </p>
+                                    <p class="money">价值：<span class="rmbgray">4999.00</span></p>
+                                    <div class="Endgo_buy">
+                                        <a rel="nofollow" href="/products/21300.html" target="_blank" title="立即1元云购" class="go_Shopping12">立即1元云购</a>
+                                    </div>
+                                </li>
+                            
+                        </ul>
+                    </div>
+                
+                
+                
+                
+            </div>
+        </div>
+    </div>
+<div class="ProductTabNav">
+        <div id="divProductNav" class="DetailsT_Tit">
+            <div class="DetailsT_TitP">
+                <ul>
+                    <li class="Product_DetT DetailsTCur"><span class="DetailsTCur">商品详情</span></li>
+                    
+                    <li class="Single_ConT"><span class="">晒单</span></li>
+                </ul>
+                <p></p>
+            </div>
+        </div>
+</div>
+<!--商品内容-->
+<div id="divContent" class="Product_Content" style="display: block; ">
+        <div class="Product_Con"><div style="margin: 0px auto; width: 800px">
+    <p style="padding-bottom: 20px; text-indent: 28px; font-family: '微软雅黑'; font-size: 14px">
+        <strong>佳能（Canon）EOS 600D单反套机</strong>使用1800万有效像素的CMOS图像感应器以及可实现高效影像处理的DIGIC4数字影像处理器，首次搭载了以EOS场景分析系统为基础的、更加高效的全自动拍摄模式"场景智能自动"。佳能入门级单反相机性能配置绝对强悍甚至逼近自家的中端机型60D，使用旋转屏幕，"场景智能自动"和创意滤镜模式，使得更加易于使用，并更具可玩性！</p>
+    <div style="text-align: center; padding-bottom: 15px">
+        <span style="font-size: 14px"><img src="http://goodsimg.1yyg.com/GoodsInfo/20120324143452795.jpg" style=""></span></div>
+</div>
+<div style="margin: 0px auto; width: 800px">
+    <h2 style="font-family: '微软雅黑'; font-size: 16px; font-weight: bold">
+        <span style="font-size: 16px">产品信息：</span></h2>
+</div>
+<div style="padding-bottom: 20px; margin: 0px auto; width: 800px">
+    <span style="font-size: 14px"><img style="padding-right: 20px; float: left; " src="http://goodsimg.1yyg.com/GoodsInfo/20120324143501612.jpg"> </span>
+    <p style="line-height: 22px; text-indent: 28px; font-family: '微软雅黑'; font-size: 14px; padding-top: 20px">
+        <span style="font-size: 14px">●能够自动识别拍摄场景的"场景智能自动"</span></p>
+    <p style="line-height: 22px; text-indent: 28px; font-family: '微软雅黑'; font-size: 14px">
+        <span style="font-size: 14px">●拍摄角度更自由的可旋转液晶监视器</span></p>
+    <p style="line-height: 22px; text-indent: 28px; font-family: '微软雅黑'; font-size: 14px">
+        <span style="font-size: 14px">●可获得微缩景观效果、鱼眼效果、柔焦等5种效果的创意滤镜</span></p>
+    <p style="line-height: 22px; text-indent: 28px; font-family: '微软雅黑'; font-size: 14px">
+        <span style="font-size: 14px">●实时显示拍摄时，可选择1:1、16:9、3:2和4:3共4种多种长宽比功能</span></p>
+    <p style="line-height: 22px; text-indent: 28px; font-family: '微软雅黑'; font-size: 14px">
+        <span style="font-size: 14px">●约1800万有效像素的CMOS图像感应器</span></p>
+    <p style="line-height: 22px; text-indent: 28px; font-family: '微软雅黑'; font-size: 14px">
+        <span style="font-size: 14px">●对应全高清（1920×1080）画质的短片拍摄功能</span></p>
+    <p style="line-height: 22px; text-indent: 28px; font-family: '微软雅黑'; font-size: 14px">
+        <span style="font-size: 14px">●短片拍摄时约3-10倍的数码变焦功能</span></p>
+    <p style="line-height: 22px; text-indent: 28px; font-family: '微软雅黑'; font-size: 14px">
+        <span style="font-size: 14px">●能够轻松制作短篇电影的视频快照功能</span></p>
+    <p style="line-height: 22px; text-indent: 28px; font-family: '微软雅黑'; font-size: 14px">
+        <span style="font-size: 14px">●可由内置闪光灯控制的无线多灯闪光系统</span></p>
+    <div style="clear: both">
+        <span style="font-size: 14px">&nbsp;</span></div>
+</div>
+<div style="padding-bottom: 20px; margin: 0px auto; width: 800px">
+    <span style="font-size: 14px"><img style="padding-right: 20px; float: left; " src="http://goodsimg.1yyg.com/GoodsInfo/20120324143510394.jpg"> </span>
+    <h3 style="padding-bottom: 10px; font-family: '微软雅黑'; font-size: 16px; font-weight: bold">
+        <span style="font-size: 14px">智能性 - EOS场景分析系统，实现准确的图像处理</span></h3>
+    <p style="line-height: 22px; font-family: '微软雅黑'; font-size: 14px">
+        <span style="font-size: 14px">●实现5种自动功能联动的"场景智能自动"<br>
+        ●能够准确判断拍摄场景的EOS场景分析系统<br>
+        ●根据拍摄场景新生照片风格的"自动"模式<br>
+        ●能够将人物和夕阳色调展现得更美的白平衡<br>
+        ●能够调节亮度和对比度的自动亮度优化<br>
+        ●可应对运动被摄体的自动对焦系统<br>
+        ●可识别被摄体颜色信息的测光感应器</span></p>
+    <div style="clear: both">
+        <span style="font-size: 14px">&nbsp;</span></div>
+</div>
+<div style="padding-bottom: 20px; margin: 0px auto; width: 800px">
+    <span style="font-size: 14px"><img style="padding-right: 31px; float: left; padding-top: 5px; " src="http://goodsimg.1yyg.com/GoodsInfo/20120324143519276.jpg"> </span>
+    <h3 style="padding-bottom: 10px; font-family: '微软雅黑'; font-size: 16px; font-weight: bold">
+        <span style="font-size: 14px">高画质 - 成熟的图像处理系统，支持高画质</span></h3>
+    <p style="line-height: 22px; font-family: '微软雅黑'; font-size: 14px">
+        <span style="font-size: 14px">●有效像素约1800万的图像感应器，实现高精度的成像<br>
+        ●DIGIC 4数字影像处理器带来的高效图像处理<br>
+        ●宽广的ISO感光度范围进一步拓展拍摄领域<br>
+        ●减少灰尘拍入图像的EOS综合除尘系统</span></p>
+    <div style="clear: both">
+        &nbsp;</div>
+</div>
+<div style="padding-bottom: 20px; margin: 0px auto; width: 800px">
+    <span style="font-size: 14px"><img style="padding-right: 31px; float: left; padding-top: 5px; " src="http://goodsimg.1yyg.com/GoodsInfo/20121214105426190.jpg"> </span>
+    <h3 style="padding-bottom: 10px; font-family: '微软雅黑'; font-size: 16px; font-weight: bold">
+        <span style="font-size: 14px">创造力 - 强大的表现力是拍摄者发挥想象力的有力支持</span></h3>
+    <p style="line-height: 22px; font-family: '微软雅黑'; font-size: 14px">
+        <span style="font-size: 14px">●EOS三位数机型首次搭载的可旋转液晶监视器<br>
+        ●可体验创作乐趣的创意滤镜<br>
+        ●拍摄时可确认拍摄效果的实时显示拍摄<br>
+        ●可实现极端高调或低调的曝光补偿功能<br>
+        ●控制图像颜色及风格</span></p>
+    <div style="clear: both">
+        &nbsp;</div>
+</div>
+<div style="padding-bottom: 20px; margin: 0px auto; width: 800px">
+    <span style="font-size: 14px"><img style="padding-right: 31px; padding-top: 5px; float: left; " src="http://goodsimg.1yyg.com/GoodsInfo/20121214104909445.jpg"> </span>
+    <h3 style="padding-bottom: 10px; font-family: '微软雅黑'; font-size: 16px; font-weight: bold">
+        <span style="font-size: 14px">便捷的操作 - 便捷的操作系统，追求直观明了的操作感</span></h3>
+    <p style="line-height: 22px; font-family: '微软雅黑'; font-size: 14px">
+        <span style="font-size: 14px">●能够准确捕捉被摄体的自动对焦系统<br>
+        ●能够进行简明、快速设置的各种功能<br>
+        ●可实现对拍摄影像的有效管理<br>
+        ●9种记录画质与能够缩小图像的"调整尺寸"功能<br>
+        ●善于捕捉拍摄时机的快门单元<br>
+        ●视野率约95%的光学取景器</span></p>
+    <div style="clear: both">
+        <span style="font-size: 14px">&nbsp;</span></div>
+</div>
+<div style="padding-bottom: 20px; margin: 0px auto; width: 800px">
+    <span style="font-size: 14px"><img style="padding-right: 31px; padding-top: 5px; float: left; " src="http://goodsimg.1yyg.com/GoodsInfo/20121214104958220.jpg"> </span>
+    <h3 style="padding-bottom: 10px; font-family: '微软雅黑'; font-size: 16px; font-weight: bold">
+        <span style="font-size: 14px">短片拍摄 - 全高清画质+众多新功能的短片拍摄</span></h3>
+    <p style="line-height: 22px; font-family: '微软雅黑'; font-size: 14px">
+        <span style="font-size: 14px">●全高清画质带来的美丽影像表现<br>
+        ●短片中可进行约3-10倍的数码变焦<br>
+        ●可以轻松制作短篇电影的视频快照功能<br>
+        ●可在短片中体现创作意图的各种功能<br>
+        ●支持专业级影片制作的录音功能和编辑功能<br>
+        ●自动调整播放音量的低音增强功能<br>
+        ●支持SPEEDLITE 320EX的短片辅助自动照明灯功能</span></p>
+    <div style="clear: both">
+        <span style="font-size: 14px">&nbsp;</span></div>
+</div>
+<div style="padding-bottom: 20px; margin: 0px auto; width: 800px">
+    <span style="font-size: 14px"><img style="padding-right: 31px; padding-top: 5px; float: left; " src="http://goodsimg.1yyg.com/GoodsInfo/20121214105026182.jpg"> </span>
+    <h3 style="padding-bottom: 10px; font-family: '微软雅黑'; font-size: 16px; font-weight: bold">
+        <span style="font-size: 14px">扩展性 - 进一步提升相机性能的扩展系统</span></h3>
+    <p style="line-height: 22px; font-family: '微软雅黑'; font-size: 14px">
+        <span style="font-size: 14px">●可对应60款以上的丰富EF镜头群<br>
+        ●附带了RAW显像软件DPP<br>
+        ●可进行无线操控的闪光系统<br>
+        ●采用SD存储卡作为记录媒体<br>
+        ●可注册影像回放时的背景音乐<br>
+        ●可安装电池盒兼手柄BG-E8</span></p>
+    <div style="clear: both">
+        <span style="font-size: 14px">&nbsp;</span></div>
+</div>
+<div style="padding-bottom: 20px; margin: 0px auto; width: 800px">
+    <span style="font-size: 14px"><img style="padding-right: 31px; float: left; " src="http://goodsimg.1yyg.com/GoodsInfo/20120324143559396.jpg"> </span>
+    <p style="line-height: 22px; font-family: '微软雅黑'; font-size: 14px; padding-top: 250px">
+        <span style="font-size: 14px">●样张名称：人像<br>
+        ●快门速度：1/1000秒<br>
+        ●光圈值：F1.8<br>
+        ●ISO感光度：100<br>
+        ●白平衡：自动<br>
+        ●照片风格：自动<br>
+        ●镜头：EF50mmf/1.8II</span></p>
+    <div style="clear: both">
+        <span style="font-size: 14px">&nbsp;</span></div>
+</div>
+<div style="padding-bottom: 20px; margin: 0px auto; width: 800px">
+    <span style="font-size: 14px"><img style="padding-right: 31px; float: left; " src="http://goodsimg.1yyg.com/GoodsInfo/20120324143611124.jpg"> </span>
+    <p style="line-height: 22px; font-family: '微软雅黑'; font-size: 14px; padding-top: 90px">
+        <span style="font-size: 14px">●样张名称：风光<br>
+        ●快门速度： 1/200 秒<br>
+        ●光圈值：F14<br>
+        ●ISO感光度：100<br>
+        ●白平衡：日光<br>
+        ●照片风格：自动<br>
+        ●镜头：EF-S 18-200mm f/3.5L-5.6 IS</span></p>
+    <div style="clear: both">
+        <span style="font-size: 14px">&nbsp;</span></div>
+</div>
+<div style="padding-bottom: 20px; margin: 0px auto; width: 800px">
+    <span style="font-size: 14px"><img style="padding-right: 31px; float: left; " src="http://goodsimg.1yyg.com/GoodsInfo/20120324143622106.jpg"> </span>
+    <p style="line-height: 22px; font-family: '微软雅黑'; font-size: 14px; padding-top: 90px">
+        <span style="font-size: 14px">●样张名称：体育运动<br>
+        ●快门速度： 1/4000 秒<br>
+        ●光圈值：F4.5<br>
+        ●ISO感光度：800<br>
+        ●白平衡：自动<br>
+        ●照片风格： 标准<br>
+        ●镜头： EF-S 10-22mm f/3.5L-4.5 USM</span></p>
+    <div style="clear: both">
+        <span style="font-size: 14px">&nbsp;</span></div>
+</div>
+<div style="padding-bottom: 20px; margin: 0px auto; width: 800px">
+    <span style="font-size: 14px"><img style="padding-right: 31px; float: left; " src="http://goodsimg.1yyg.com/GoodsInfo/20120324143633574.jpg"> </span>
+    <p style="line-height: 22px; font-family: '微软雅黑'; font-size: 14px; padding-top: 90px">
+        <span style="font-size: 14px">●样张名称：考拉<br>
+        ●快门速度： 1/400 秒<br>
+        ●光圈值：F6.3<br>
+        ●ISO感光度：1600<br>
+        ●白平衡：自动<br>
+        ●照片风格：自动<br>
+        ●镜头： EF-S 55-250mm f/4-5.6 IS</span></p>
+    <div style="clear: both">
+        <span style="font-size: 14px">&nbsp;</span></div>
+</div>
+<div style="padding-bottom: 20px; margin: 0px auto; width: 800px">
+    <span style="font-size: 14px"><img style="padding-right: 31px; float: left; " src="http://goodsimg.1yyg.com/GoodsInfo/20120324143642359.jpg"> </span>
+    <p style="line-height: 22px; font-family: '微软雅黑'; font-size: 14px; padding-top: 90px">
+        <span style="font-size: 14px">●样张名称：夜景<br>
+        ●快门速度： 1/6 秒<br>
+        ●光圈值： F11<br>
+        ●ISO感光度：3200<br>
+        ●白平衡：白色荧光灯<br>
+        ●照片风格：标准<br>
+        ●镜头： EF-S 18-55mm f/3.5-5.6 IS</span></p>
+    <div style="clear: both">
+        <span style="font-size: 14px">&nbsp;</span></div>
+</div>
+<div style="padding-bottom: 20px; margin: 0px auto; width: 800px">
+    <span style="font-size: 14px"><img style="padding-right: 31px; float: left; " src="http://goodsimg.1yyg.com/GoodsInfo/20120324143652805.jpg"> </span>
+    <p style="line-height: 22px; font-family: '微软雅黑'; font-size: 14px; padding-top: 90px">
+        <span style="font-size: 14px">●样张名称：风光<br>
+        ●快门速度： 1/160 秒<br>
+        ●光圈值： F8.0<br>
+        ●ISO感光度：100<br>
+        ●白平衡：自动<br>
+        ●照片风格：风光<br>
+        ●镜头： EF-S 10-22mm f/3.5-4.5 USM</span></p>
+    <div style="clear: both">
+        <span style="font-size: 14px">&nbsp;</span></div>
+</div>
+<p style="margin: 0px auto; width: 800px;font-family: '微软雅黑'; font-size:16px;padding-bottom:10px;">
+    重要说明：</p>
+<p style="padding-bottom:10px;margin: 0px auto; width: 800px; font-family: '微软雅黑'; font-size: 14px;">
+    1、商品获得者拥有佳能（Canon）EOS 600D 单反套机10年免费使用权。</p>
+<p style="padding-bottom:10px;margin: 0px auto; width: 800px; font-family: '微软雅黑'; font-size: 14px;">
+    2、1元云购对本商品使用权在法律范围内拥有最终解释权。</p>
+</div>
+    </div>
+<!--商品内容-->
+<div class="SingleT_Tit">晒单 <span>本商品已有<em class="orange">16</em>位幸运用户晒单 总共<em class="orange">270</em>条评论</span></div>
+<div id="divPost" class="Single_Content">
+        <div class="goods_loding" style="display:none;"><img border="0" src="http://skin.1yyg.com/images/goods_loading.gif">正在加载......</div>
+        
+        <div class="Single_list">
+            <div class="SingleL fl Topiclist-img">
+                <a rel="nofollow" class="head-img" href="http://u.1yyg.com/1000850058" type="showCard" uweb="1000850058" target="_blank"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/20131019165011219.jpg"></a><a class="blue" href="http://u.1yyg.com/1000850058" type="showCard" uweb="1000850058" target="_blank">1元来中大奖</a><span class="class-icon01"><s></s>云购小将</span>
+            </div>
+            <div class="SingleR fl">
+                <div class="SingleR_TC"><i></i> <s></s>
+                    <h3><span class="gray02">第20期晒单</span><a href="http://post.1yyg.com/detail-3013.html" target="_blank"> 盼单反盼了很久，终于云到了</a>   <em class="gray02">2013-11-05</em></h3>
+                    <p class="gray01">自从上了大学，一直都想拥有一台属于自己的单反，这次真的云购到了，非常不错。很感谢云友们为我集资。还没有中奖的朋友，加油！希望你们也能成功云购到自己想要的东西。自从上次中了个1050.隔离15天，再次中奖，很不容易。当时想放弃了，但当坚持了一下，中奖短信就来了。希望好运气一直都在我们的身边。我还没用福分中过奖，现在就差一台自己用得手机了，能不能给个机会我成为爱疯党？</p>
+                </div>
+                <ul class="SingleR_pic">
+                    <li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131105223445504.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131105223402723.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131105223421473.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131105223504332.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131105223518723.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131105223539707.jpg" style=""></li>
+                </ul>
+                <div class="SingleR_Comment" postid="3013" count="0">
+                    <div class="Comment_smile gray02"><span><i></i>9人羡慕嫉妒恨</span><span><s></s>0条评论</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="Single_list">
+            <div class="SingleL fl Topiclist-img">
+                <a rel="nofollow" class="head-img" href="http://u.1yyg.com/1000907774" type="showCard" uweb="1000907774" target="_blank"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/20131024090958520.jpg"></a><a class="blue" href="http://u.1yyg.com/1000907774" type="showCard" uweb="1000907774" target="_blank">我要中大大奖啦</a><span class="class-icon01"><s></s>云购小将</span>
+            </div>
+            <div class="SingleR fl">
+                <div class="SingleR_TC"><i></i> <s></s>
+                    <h3><span class="gray02">第19期晒单</span><a href="http://post.1yyg.com/detail-2862.html" target="_blank"> 单反终于到手了</a>   <em class="gray02">2013-11-03</em></h3>
+                    <p class="gray01">当初中奖的时候身边的朋友都说是骗人的没有一个人相信，在我收到货的时候心中的大石才落下，一元云购是真实的，哈哈，支持一元云购，没中的朋友继续努力，我相信大奖会光顾你们的。顺丰速度真快，2天就到了，谢谢一元云购让我中到大奖。</p>
+                </div>
+                <ul class="SingleR_pic">
+                    <li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131103090907276.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131103090919198.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131103090928292.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131103090937683.jpg" style=""></li>
+                </ul>
+                <div class="SingleR_Comment" postid="2862" count="2">
+                    <div class="Comment_smile gray02"><span><i></i>3人羡慕嫉妒恨</span><span><s></s>2条评论</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="Single_list">
+            <div class="SingleL fl Topiclist-img">
+                <a rel="nofollow" class="head-img" href="http://u.1yyg.com/1000101873" type="showCard" uweb="1000101873" target="_blank"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/20131012090235772.jpg"></a><a class="blue" href="http://u.1yyg.com/1000101873" type="showCard" uweb="1000101873" target="_blank">否极泰来</a><span class="class-icon05"><s></s>云购大将</span>
+            </div>
+            <div class="SingleR fl">
+                <div class="SingleR_TC"><i></i> <s></s>
+                    <h3><span class="gray02">第18期晒单</span><a href="http://post.1yyg.com/detail-2799.html" target="_blank"> 单反终于来了</a>   <em class="gray02">2013-11-01</em></h3>
+                    <p class="gray01">佳能EOS 600D单反套机，最适合我这种初学者上手了，梦寐以求的单反啊！终于到手了，可以把老旧的卡片机淘汰了，在此特别感谢云购还有云友们的支持。</p>
+                </div>
+                <ul class="SingleR_pic">
+                    <li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131101200753195.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131101200935570.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131101201333711.jpg" style=""></li>
+                </ul>
+                <div class="SingleR_Comment" postid="2799" count="3">
+                    <div class="Comment_smile gray02"><span><i></i>3人羡慕嫉妒恨</span><span><s></s>3条评论</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="Single_list">
+            <div class="SingleL fl Topiclist-img">
+                <a rel="nofollow" class="head-img" href="http://u.1yyg.com/1000343991" type="showCard" uweb="1000343991" target="_blank"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/20130926223349428.jpg"></a><a class="blue" href="http://u.1yyg.com/1000343991" type="showCard" uweb="1000343991" target="_blank">谢谢上帝的生日礼物</a><span class="class-icon01"><s></s>云购小将</span>
+            </div>
+            <div class="SingleR fl">
+                <div class="SingleR_TC"><i></i> <s></s>
+                    <h3><span class="gray02">第9期晒单</span><a href="http://post.1yyg.com/detail-2600.html" target="_blank"> 没想到真的寄过来了....激动了好久</a>   <em class="gray02">2013-10-28</em></h3>
+                    <p class="gray01">我想说 我是真的中奖，一元云购是真的虽然是一元就秒到了....我相信的确是美梦成真，而且那天是我的生日 真的很感谢一元云购,,我想说大家不要为了赚而去投 ，的确是自己梦寐以求的东西，日日积累，一定会如愿的</p>
+                </div>
+                <ul class="SingleR_pic">
+                    <li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131028175009478.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131028175138118.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131028175145696.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131028175152056.jpg" style=""></li>
+                </ul>
+                <div class="SingleR_Comment" postid="2600" count="2">
+                    <div class="Comment_smile gray02"><span><i></i>2人羡慕嫉妒恨</span><span><s></s>2条评论</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="Single_list">
+            <div class="SingleL fl Topiclist-img">
+                <a rel="nofollow" class="head-img" href="http://u.1yyg.com/1000531829" type="showCard" uweb="1000531829" target="_blank"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/20131003144006954.jpg"></a><a class="blue" href="http://u.1yyg.com/1000531829" type="showCard" uweb="1000531829" target="_blank">100001118</a><span class="class-icon02"><s></s>云购少将</span>
+            </div>
+            <div class="SingleR fl">
+                <div class="SingleR_TC"><i></i> <s></s>
+                    <h3><span class="gray02">第12期晒单</span><a href="http://post.1yyg.com/detail-2167.html" target="_blank"> 终于有自己的佳能了</a>   <em class="gray02">2013-10-16</em></h3>
+                    <p class="gray01">在和人聊天的时候无意的看到一元云购，抱着玩的心态投了30元，没想到真的中了一台小米3，但是预售，不知道什么时候那拿到机子，再试试看，又投了些，没想到真的中了，这次是一台佳能数码相机。感谢一元云购！</p>
+                </div>
+                <ul class="SingleR_pic">
+                    <li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131016111150476.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131016111217570.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131016111237117.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131016111300695.jpg" style=""></li>
+                </ul>
+                <div class="SingleR_Comment" postid="2167" count="10">
+                    <div class="Comment_smile gray02"><span><i></i>8人羡慕嫉妒恨</span><span><s></s>10条评论</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="Single_list">
+            <div class="SingleL fl Topiclist-img">
+                <a rel="nofollow" class="head-img" href="http://u.1yyg.com/1000898683" type="showCard" uweb="1000898683" target="_blank"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/20131014214323398.jpg"></a><a class="blue" href="http://u.1yyg.com/1000898683" type="showCard" uweb="1000898683" target="_blank">我这是第二次中了你呢</a><span class="class-icon01"><s></s>云购小将</span>
+            </div>
+            <div class="SingleR fl">
+                <div class="SingleR_TC"><i></i> <s></s>
+                    <h3><span class="gray02">第13期晒单</span><a href="http://post.1yyg.com/detail-2084.html" target="_blank"> 人口爆发，单反到手</a>   <em class="gray02">2013-10-14</em></h3>
+                    <p class="gray01">一直想要一台单反，看到云购有这么个机会，就侥幸参加，没想到跟了几期竟然中了，感谢云购还有工作人员。虽然感觉还有很多方面需要改进，还是会继续玩，希望再中几次，哈哈</p>
+                </div>
+                <ul class="SingleR_pic">
+                    <li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131014131214625.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131014131315422.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131014131353515.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131014131436125.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131014131839718.jpg" style=""></li>
+                </ul>
+                <div class="SingleR_Comment" postid="2084" count="25">
+                    <div class="Comment_smile gray02"><span><i></i>39人羡慕嫉妒恨</span><span><s></s>25条评论</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="Single_list">
+            <div class="SingleL fl Topiclist-img">
+                <a rel="nofollow" class="head-img" href="http://u.1yyg.com/1000159389" type="showCard" uweb="1000159389" target="_blank"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/20131012233503617.jpg"></a><a class="blue" href="http://u.1yyg.com/1000159389" type="showCard" uweb="1000159389" target="_blank">不玩了揭晓中了再玩</a><span class="class-icon02"><s></s>云购少将</span>
+            </div>
+            <div class="SingleR fl">
+                <div class="SingleR_TC"><i></i> <s></s>
+                    <h3><span class="gray02">第11期晒单</span><a href="http://post.1yyg.com/detail-2058.html" target="_blank"> 真的很高兴。。。</a>   <em class="gray02">2013-10-13</em></h3>
+                    <p class="gray01">抱着随便玩玩的心情。竟然1元就中了。我真的没想到。我不说什么了。只说一句。真的很开心，谢谢大家谢谢1元云购，希望下次再中到好东西。哈哈哈哈哈哈</p>
+                </div>
+                <ul class="SingleR_pic">
+                    <li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131013230158542.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131013230311323.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131013230448573.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131013230606526.jpg" style=""></li>
+                </ul>
+                <div class="SingleR_Comment" postid="2058" count="8">
+                    <div class="Comment_smile gray02"><span><i></i>16人羡慕嫉妒恨</span><span><s></s>8条评论</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="Single_list">
+            <div class="SingleL fl Topiclist-img">
+                <a rel="nofollow" class="head-img" href="http://u.1yyg.com/1000590352" type="showCard" uweb="1000590352" target="_blank"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/20131006074251296.jpg"></a><a class="blue" href="http://u.1yyg.com/1000590352" type="showCard" uweb="1000590352" target="_blank">你是我的mu</a><span class="class-icon01"><s></s>云购小将</span>
+            </div>
+            <div class="SingleR fl">
+                <div class="SingleR_TC"><i></i> <s></s>
+                    <h3><span class="gray02">第10期晒单</span><a href="http://post.1yyg.com/detail-2024.html" target="_blank"> 感谢一元,感谢所有参与云购的战友们,谢谢你们</a>   <em class="gray02">2013-10-12</em></h3>
+                    <p class="gray01">一元云购我是在百度贴吧上面看到的,进来以后抱着怀疑的态度充值了50,首先买的是5s 和5,后来实在没得买的剩余的24块钱买了600D,本来不在意的,想着就试一试,但是29号那天晚上突然收到中奖短信,真的不可思议,后来经过漫长的等待,在您们发货之前都一直怀疑云购是不是真的,难道我上当了,知道今天我收到货,我才彻底没了顾虑,我会一直支持下去,写在最后:各位战友,对于云购要以平常心,随缘的态度来玩,别着迷,不然会上火的哟</p>
+                </div>
+                <ul class="SingleR_pic">
+                    <li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131012233004979.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131012233051369.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131012233210525.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131012233240916.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131012233319009.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131012233345618.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131012233431618.jpg" style=""></li>
+                </ul>
+                <div class="SingleR_Comment" postid="2024" count="4">
+                    <div class="Comment_smile gray02"><span><i></i>4人羡慕嫉妒恨</span><span><s></s>4条评论</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="Single_list">
+            <div class="SingleL fl Topiclist-img">
+                <a rel="nofollow" class="head-img" href="http://u.1yyg.com/1000334089" type="showCard" uweb="1000334089" target="_blank"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/20131025124346523.jpg"></a><a class="blue" href="http://u.1yyg.com/1000334089" type="showCard" uweb="1000334089" target="_blank">喂我的土豪金</a><span class="class-icon02"><s></s>云购少将</span>
+            </div>
+            <div class="SingleR fl">
+                <div class="SingleR_TC"><i></i> <s></s>
+                    <h3><span class="gray02">第8期晒单</span><a href="http://post.1yyg.com/detail-1992.html" target="_blank"> 今天终于收到货了</a>   <em class="gray02">2013-10-11</em></h3>
+                    <p class="gray01">刚开始还以为一元云购是骗人的，中了那么就都没有收到货，直到今天下午收到货才敢相信这是真的。希望能继续云购到我喜欢的商品！</p>
+                </div>
+                <ul class="SingleR_pic">
+                    <li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131011215938816.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131011220025598.jpg" style=""></li><li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20131011220103676.jpg" style=""></li>
+                </ul>
+                <div class="SingleR_Comment" postid="1992" count="25">
+                    <div class="Comment_smile gray02"><span><i></i>51人羡慕嫉妒恨</span><span><s></s>25条评论</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="Single_list last">
+            <div class="SingleL fl Topiclist-img">
+                <a rel="nofollow" class="head-img" href="http://u.1yyg.com/1000814820" type="showCard" uweb="1000814820" target="_blank">
+                    <img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/20131102194129982.jpg">
+                </a>
+                <a class="blue" href="http://u.1yyg.com/1000814820" type="showCard" uweb="1000814820" target="_blank">我家有个小灰灰</a>
+                <span class="class-icon02"><s></s>云购少将</span>
+            </div>
+            <div class="SingleR fl">
+                <div class="SingleR_TC"><i></i> <s></s>
+                    <h3>
+                        <span class="gray02">第6期晒单</span>
+                        <a href="http://post.1yyg.com/detail-1783.html" target="_blank"> 刚接触云购，就中个大奖。</a>  
+                        <em class="gray02">2013-09-30</em>
+                    </h3>
+                    <p class="gray01">12号通过QQ聊天窗口右上角的广告接触云购。以为百分百是骗人的，毕竟现在骗子太多，骗的五花八门，防不胜防。大概了解了下规则，抱着试试的态度投了十几块钱（就当买包烟了）。没想到过了四五天突然收到短信说中奖了。上网一看，哇塞，单反啊。我当时第一感觉就是骗人的。6块钱这么容易就中了？我可不信。但是还是填了收货信息，反正没损失。后来备货备了8天，操！！我以为肯定是假的了。没想到还真的收到货了。。现在不信都不行了，还有点上瘾了。每天都会上云购看看，有喜欢的就投点，有快开奖的也投点。。。啊啊啊，想剁手啊，戒不掉了。</p>
+                </div>
+                <ul class="SingleR_pic">
+                    <li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20130930215413981.jpg" style=""></li>
+                    <li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20130930220141794.jpg" style=""></li>
+                    <li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20130930220147716.jpg" style=""></li>
+                    <li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20130930220203591.jpg" style=""></li>
+                    <li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20130930220212622.jpg" style=""></li>
+                    <li><img border="0" src="http://postimg.1yyg.com/UserPost/Small/20130930220307170.jpg" style=""></li>
+                </ul>
+                <div class="SingleR_Comment" postid="1783" count="4">
+                    <div class="Comment_smile gray02"><span><i></i>12人羡慕嫉妒恨</span><span><s></s>4条评论</span></div>
+                </div>
+            </div>
+        </div>
+        
+    <div class="pages">
+        <ul class="pageULEx">
+            <li class="prev_page page_curgray">
+                <a><i>&lt;</i>上一页</a>
+            </li>
+            <li class="curr_page">1</li>
+            <li><a href="javascript:gotoClick();" onclick="javascript:return PostFun.gotoPageIndex(11,20);">2</a></li>
+            <li class="next_page"><a href="javascript:gotoClick();" onclick="javascript:return PostFun.gotoPageIndex(11,20);">下一页</a></li>
+        </ul>
+     </div>
+ </div>
+<!--人气推荐-->
+<div id="divGoodsRec" class="list_goodsTj">
+    <div class="list_goodsTjTit">
+        人气推荐
+    </div>
+    <div id="divRecommend" class="list_goodsTjCon">
+        <div class="Roll_Left"><a name="left" href="javascript:void();" class="Roll_enabled">&lt;</a></div>
+        <div class="Roll_Con">
+            <ul id="ulRecommend" style="width: 1820px; left: 0px; ">
+                    <li id="0">
+                        <div class="pic">
+                            <a rel="nofollow" href="/products/21344.html" target="_blank" title="小米（MIUI） 红米手机">
+                                 <img alt="小米（MIUI） 红米手机" src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20130816134906377.jpg" style="">
+                            </a>
+                        </div>
+                        <p class="name">
+                            <a href="/products/21344.html" target="_blank" title="小米（MIUI） 红米手机">小米（MIUI） 红米手机</a>
+                        </p>
+                        <p class="money">价值：<span class="rmbgray">1099.00</span></p>
+                        <div class="go_buy">
+                            <a href="/products/21344.html" target="_blank" title="立即1元云购" class="go_Shopping12" rel="nofollow">立即1元云购</a>
+                        </div>
+                    </li>
+                
+                    <li id="1">
+                        <div class="pic">
+                            <a rel="nofollow" href="/products/21309.html" target="_blank" title="诺基亚（Nokia）1050手机">
+                                <img alt="诺基亚（Nokia）1050手机" src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20130424114718997.jpg" style="">
+                            </a>
+                        </div>
+                        <p class="name">
+                            <a href="/products/21309.html" target="_blank" title="诺基亚（Nokia）1050手机">诺基亚（Nokia）1050手机</a>
+                        </p>
+                        <p class="money">价值：<span class="rmbgray">199.00</span></p>
+                        <div class="go_buy">
+                            <a href="/products/21309.html" target="_blank" title="立即1元云购" class="go_Shopping12" rel="nofollow">立即1元云购</a>
+                        </div>
+                    </li>
+                
+                    <li id="2">
+                        <div class="pic">
+                            <a rel="nofollow" href="/products/20701.html" target="_blank" title="闪迪（SanDisk）酷刃 (CZ50）16GB U盘">
+                                <img alt="闪迪（SanDisk）酷刃 (CZ50）16GB U盘" src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20121205160948468.jpg" style="">
+                            </a>
+                        </div>
+                        <p class="name">
+                            <a href="/products/20701.html" target="_blank" title="闪迪（SanDisk）酷刃 (CZ50）16GB U盘">闪迪（SanDisk）酷刃 (CZ50）16GB U盘</a>
+                        </p>
+                        <p class="money">价值：<span class="rmbgray">72.00</span></p>
+                        <div class="go_buy">
+                            <a href="/products/20701.html" target="_blank" title="立即1元云购" class="go_Shopping12" rel="nofollow">立即1元云购</a>
+                        </div>
+                    </li>
+                
+                    <li id="3">
+                        <div class="pic">
+                            <a rel="nofollow" href="/products/21320.html" target="_blank" title="TPOS C4三叶草幸福系列 移动电源">
+                                <img alt="TPOS C4三叶草幸福系列 移动电源" src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20130527154606683.jpg" style="">
+                            </a>
+                        </div>
+                        <p class="name">
+                            <a href="/products/21320.html" target="_blank" title="TPOS C4三叶草幸福系列 移动电源">TPOS C4三叶草幸福系列 移动电源</a>
+                        </p>
+                        <p class="money">价值：<span class="rmbgray">99.00</span></p>
+                        <div class="go_buy">
+                            <a href="/products/21320.html" target="_blank" title="立即1元云购" class="go_Shopping12" rel="nofollow">立即1元云购</a>
+                        </div>
+                    </li>
+                
+                    <li id="4">
+                        <div class="pic">
+                            <a rel="nofollow" href="/products/21345.html" target="_blank" title="苹果（Apple）iPhone 5S 16G版 3G手机（预售）">
+                                <img alt="苹果（Apple）iPhone 5S 16G版 3G手机（预售）" src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20130911134406272.jpg" style="">
+                            </a>
+                        </div>
+                        <p class="name">
+                            <a href="/products/21345.html" target="_blank" title="苹果（Apple）iPhone 5S 16G版 3G手机（预售）">苹果（Apple）iPhone 5S 16G版 3G手机（预售）</a>
+                        </p>
+                        <p class="money">价值：<span class="rmbgray">5688.00</span></p>
+                        <div class="go_buy">
+                            <a href="/products/21345.html" target="_blank" title="立即1元云购" class="go_Shopping12" rel="nofollow">立即1元云购</a>
+                        </div>
+                    </li>
+                
+                    <li id="5">
+                        <div class="pic">
+                            <a rel="nofollow" href="/products/21346.html" target="_blank" title="小米（MIUI） 小米3 智能手机(16G)">
+                                <img alt="小米（MIUI） 小米3 智能手机(16G)" src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20130923164648695.jpg" style="">
+                            </a>
+                        </div>
+                        <p class="name">
+                            <a href="/products/21346.html" target="_blank" title="小米（MIUI） 小米3 智能手机(16G)">小米（MIUI） 小米3 智能手机(16G)</a>
+                        </p>
+                        <p class="money">价值：<span class="rmbgray">2999.00</span></p>
+                        <div class="go_buy">
+                            <a href="/products/21346.html" target="_blank" title="立即1元云购" class="go_Shopping12" rel="nofollow">立即1元云购</a>
+                        </div>
+                    </li>
+                
+                    <li id="6">
+                        <div class="pic">
+                            <a rel="nofollow" href="/products/20702.html" target="_blank" title="闪迪（SanDisk）16G MicroSDHC(TF)存储卡 ">
+                                <img alt="闪迪（SanDisk）16G MicroSDHC(TF)存储卡 " src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20120320114257599.jpg" style="">
+                            </a>
+                        </div>
+                        <p class="name">
+                            <a href="/products/20702.html" target="_blank" title="闪迪（SanDisk）16G MicroSDHC(TF)存储卡 ">闪迪（SanDisk）16G MicroSDHC(TF)存储卡 </a>
+                        </p>
+                        <p class="money">价值：<span class="rmbgray">99.00</span></p>
+                        <div class="go_buy">
+                            <a href="/products/20702.html" target="_blank" title="立即1元云购" class="go_Shopping12" rel="nofollow">立即1元云购</a>
+                        </div>
+                    </li>
+                
+                    <li id="7">
+                        <div class="pic">
+                            <a rel="nofollow" href="/products/20388.html" target="_blank" title="罗技（Logitech）M185无线鼠标 ">
+                                <img alt="罗技（Logitech）M185无线鼠标 " src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20110906173223276.jpg" style="">
+                            </a>
+                        </div>
+                        <p class="name">
+                            <a href="/products/20388.html" target="_blank" title="罗技（Logitech）M185无线鼠标 ">罗技（Logitech）M185无线鼠标 </a>
+                        </p>
+                        <p class="money">价值：<span class="rmbgray">98.00</span></p>
+                        <div class="go_buy">
+                            <a href="/products/20388.html" target="_blank" title="立即1元云购" class="go_Shopping12" rel="nofollow">立即1元云购</a>
+                        </div>
+                    </li>
+                
+                    <li id="8">
+                        <div class="pic">
+                            <a rel="nofollow" href="/products/20704.html" target="_blank" title="闪迪（SanDisk）酷捷 (CZ51)16GB U盘 ">
+                                <img alt="闪迪（SanDisk）酷捷 (CZ51)16GB U盘 " src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20120306200026991.jpg" style="">
+                            </a>
+                        </div>
+                        <p class="name">
+                            <a href="/products/20704.html" target="_blank" title="闪迪（SanDisk）酷捷 (CZ51)16GB U盘 ">闪迪（SanDisk）酷捷 (CZ51)16GB U盘 </a>
+                        </p>
+                        <p class="money">价值：<span class="rmbgray">88.00</span></p>
+                        <div class="go_buy">
+                            <a href="/products/20704.html" target="_blank" title="立即1元云购" class="go_Shopping12" rel="nofollow">立即1元云购</a>
+                        </div>
+                    </li>
+                
+                    <li id="9">
+                        <div class="pic">
+                            <a rel="nofollow" href="/products/20387.html" target="_blank" title="罗技（Logitech）M215无线鼠标 ">
+                                <img alt="罗技（Logitech）M215无线鼠标 " src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20121205140342680.jpg" style="">
+                            </a>
+                        </div>
+                        <p class="name">
+                            <a href="/products/20387.html" target="_blank" title="罗技（Logitech）M215无线鼠标 ">罗技（Logitech）M215无线鼠标 </a>
+                        </p>
+                        <p class="money">价值：<span class="rmbgray">118.00</span></p>
+                        <div class="go_buy">
+                            <a href="/products/20387.html" target="_blank" title="立即1元云购" class="go_Shopping12" rel="nofollow">立即1元云购</a>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+        <div class="Roll_Right"><a name="right" href="javascript:void();" class="Roll_enabled">&gt;</a></div>
+    </div>
+</div>
+<!--底部-->
+     <div class="footer_content">
+       <div class="footer_line"></div>
+       <div class="footservice">
+           <div class="support">
+               <dl class="ft-newbie">
+                   <dt><span>新手指南</span></dt>
+                   <dd><b></b><a href="http://help.1yyg.com/" rel="nofollow" target="_blank">了解1元云购</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-questiondetail.html" rel="nofollow" target="_blank">常见问题</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-agreement.html" rel="nofollow" target="_blank">服务协议</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-userExperience.html" rel="nofollow" target="_blank">会员福分经验值</a></dd>
+               </dl>
+               <dl class="ft-wares">
+                   <dt><span>云购保障</span></dt>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-genuinetwo.html" rel="nofollow" target="_blank">1元云购保障体系</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-genuine.html" rel="nofollow" target="_blank">正品保障</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-securepayment.html" rel="nofollow" target="_blank">安全支付</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-suggestion.html" rel="nofollow" target="_blank">投诉建议</a></dd>
+               </dl>
+               <dl class="ft-delivery">
+                   <dt><span>商品配送</span></dt>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-ship.html" rel="nofollow" target="_blank">商品配送</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-deliveryfees.html" rel="nofollow" target="_blank">配送费用</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-prodcheck.html" rel="nofollow" target="_blank">商品验货与签收</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-shiptwo.html" rel="nofollow" target="_blank">长时间未收到商品</a></dd>
+               </dl>
+               <dl class="ft-ygjj">
+                   <dt><span>云购基金</span></dt>
+                   <dd><b></b><a href="http://info.1yyg.com/fund/" rel="nofollow" target="_blank">云购基金</a></dd>
+                   <dd><b></b><a href="http://info.1yyg.com/fund/" rel="nofollow" target="_blank">社会活动</a></dd>
+               </dl>
+               <dl class="ft-fwrx">
+                   <dt><span>服务热线</span></dt>
+                   <dd class="ft-fwrx-tel"><i></i></dd>
+                   <dd class="ft-fwrx-time">周一至周五 8:30-18:30</dd>
+                   <dd class="ft-fwrx-service"><span class="ft-qqicon"><a href="http://help.1yyg.com/info/htm-qqgroup.html" rel="nofollow" target="_blank" style="text-indent:0em; background:none;width:160px;">官方QQ群①：<em class="orange Fb">89834747</em></a></span><span class="ft-qqicon"><a href="http://help.1yyg.com/info/htm-qqgroup.html" rel="nofollow" target="_blank" style="text-indent:0em; background:none;width:160px;">官方QQ群②：<em class="orange Fb">190818578</em></a></span></dd>
+               </dl>
+               <dl class="ft-weixin">
+                   <dt><span>微信扫一扫</span></dt>
+                   <dd class="ft-weixin-img"><s></s></dd>
+                   <dd class="gray02"></dd>
+               </dl>
+           </div>
+       </div>
+       <div class="service-promise">
+           <ul>
+               <li class="sp-fair"><a href="http://help.1yyg.com/htm-genuinetwo.html" rel="nofollow" target="_blank"><span></span></a></li>
+               <li class="sp-wares"><a href="http://help.1yyg.com/htm-genuine.html" rel="nofollow" target="_blank"><span></span></a></li>
+               <li class="sp-free-delivery"><a href="http://help.1yyg.com/htm-deliveryfees.html" rel="nofollow" target="_blank"><span></span></a></li>
+               <li class="sp-business service-promise-border-r0"><a href="http://help.1yyg.com/info/htm-business.html" rel="nofollow" target="_blank"><span></span></a></li>
+           </ul>
+       </div>
+       <div class="service_date">
+           <div class="Service_Time">
+               <p>服务器时间</p>
+               <span id="sp_ServerTime">17:18:41</span>
+           </div>
+           <div class="Service_Fund">
+               <a href="http://info.1yyg.com/fund/" target="_blank">
+                   <p>云购公益基金</p>
+                   <span id="spanFundTotal">1073979.25</span>
+               </a>
+           </div>
+       </div>
+</div>
+    <div class="footer">
+    <div class="footer_links">
+        <a href="http://www.1yyg.com/" rel="nofollow">首页</a>
+        <b></b>
+          <a href="http://help.1yyg.com/htm-about.html" rel="nofollow">关于云购</a>
+        <b></b>
+          <a href="http://help.1yyg.com/htm-privacy.html" rel="nofollow">隐私声明</a>
+        <b></b>
+          <a href="http://help.1yyg.com/info/htm-business.html" rel="nofollow">合作专区</a>
+        <b></b>
+          <a href="http://help.1yyg.com/info/htm-jobs.html" rel="nofollow">加入云购</a>
+        <b></b>
+        <a href="http://group.1yyg.com/" rel="nofollow">云购圈</a>
+        <b></b>
+        <a href="http://www.1yyg.com/link.html" rel="nofollow">友情链接</a>
+        <b></b>
+          <a href="http://help.1yyg.com/htm-contactus.html" rel="nofollow">联系我们</a>
+      </div>
+    <div class="copyright">Copyright  © 2011 - 2013,  版权所有  1yyg.com  粤ICP备09213115号-1</div>
+      <div class="footer_icon" style="width:599px;">
+        <ul>
+            <li class="fi_ectrustchina"><a target="_blank" href="http://www.1yyg.com/url.html?t=1"><span>可信网站</span></a></li>
+            <li class="fi_315online"><a target="_blank" href="http://www.1yyg.com/url.html?t=2"><span>深圳市市场监督管理局</span></a></li>
+            <li class="fi_cnnic"><a target="_blank" href="http://www.1yyg.com/url.html?t=3"><span>中国电子商务诚信单位</span></a></li>
+              <li class="fi_anxibao"><a target="_blank" href="http://www.1yyg.com/url.html?t=6"><span>安信保</span></a></li>
+            <li class="fi_pingan"><a target="_blank" href="http://www.1yyg.com/url.html?t=4"><span>平安银行</span></a></li>
+            <li class="fi_qh"><a target="_blank" href="http://www.1yyg.com/url.html?t=5"><span>前海股权交易中心</span></a></li>
+        </ul>
+    </div>
+</div>
+<div class="hCollectCon">
+    <div class="hCollectCon2">
+        <div class="hCollect">
+            <ul>
+                <li><a target="_blank" href="http://www.1yyg.com" class="hyyg" title="1元云购">1元云购</a></li>
+                <li><a target="_blank" href="http://www.1yyg.com/autolottery.html" class="hauto" title="限时揭晓">限时揭晓</a></li>
+                <li><a target="_blank" href="http://www.baidu.com" class="hbaidu" title="百度">百度</a></li>
+                <li><a id="btnAdd" href="javascript:;" class="hadd">编辑</a></li>
+            </ul>
+        </div>
+     </div>
+</div>
+</body>
+</html>

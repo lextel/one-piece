@@ -1,0 +1,466 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>晒单分享</title>
+<link type="text/css" rel="stylesheet"  href="css/header.css"/>
+<link type="text/css" rel="stylesheet"  href="css/comm.css"/>
+<link type="text/css" rel="stylesheet"  href="css/product_list.css"/>
+</head>
+
+<body>
+<div class="header">
+    <div class="site_top">
+        <div class="head_top">
+            <p class="collect"><a href="javascript:void();" id="addSiteFavorite">收藏1元云购</a></p>
+            <p class="Ht-qqicon"><a class="gray01" href="http://help.1yyg.com/info/htm-qqgroup.html" target="_blank">官方QQ群</a></p>
+            <ul class="login_info" style="display: block;">
+                <li class="h_login" id="logininfo"> <i>您好，欢迎光临！</i> <a rel="nofollow" href="http://passport.1yyg.com/login.html?forward=rego" class="gray01">登录</a> <span>|</span> <a rel="nofollow" href="http://passport.1yyg.com/register.html?forward=rego" class="gray01">注册</a> </li>
+                <li class="h_1yyg"> <a rel="nofollow" href="http://member.1yyg.com/">我的1元云购<b></b></a>
+                    <div class="h_1yyg_eject" style="display: none; ">
+                        <dl>
+                            <dt><a rel="nofollow" href="http://member.1yyg.com/">我的1元云购<i></i></a></dt>
+                            <dd><a rel="nofollow" href="http://member.1yyg.com/UserBuyList.html">云购记录</a></dd>
+                            <dd><a rel="nofollow" href="http://member.1yyg.com/OrderList.html">获得的商品</a></dd>
+                            <dd><a rel="nofollow" href="http://member.1yyg.com/UserRecharge.html">帐户充值</a></dd>
+                            <dd><a rel="nofollow" href="http://member.1yyg.com/MemberModify.html">个人设置</a></dd>
+                        </dl>
+                    </div>
+                </li>
+                <li class="h_news" id="liMsgTip" style="display:none;"> <a rel="nofollow" href="http://member.1yyg.com/userMessage.html">消息<b></b></a>
+                    <div class="h_news_down" style="display:none;">
+                        <div class="h_news_downT"><a rel="nofollow" href="http://member.1yyg.com/userMessage.html">消息<i></i></a></div>
+                        <div class="h_news_downC"></div>
+                    </div>
+                </li>
+                <li class="h_Mobile"><a rel="nofollow" target="_blank" href="http://info.1yyg.com/app/desktop.html">桌面版</a></li>
+                <li class="h_Mobile"><a rel="nofollow" target="_blank" href="http://info.1yyg.com/app/touch.html">手机版</a></li>
+                <li class="h_help"><a rel="nofollow" target="_blank" href="http://help.1yyg.com/">帮助</a></li>
+                <li class="h_inv"><a rel="nofollow" target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2355805906&amp;site=qq&amp;menu=yes">在线客服</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="head_mid">
+    <div class="head_mid_bg">
+        <h1 class="logo_1yyg"><a class="logo_1yyg_img" href="http://www.1yyg.com" title="1元云购">1元云购</a></h1>
+        <div id="topJackaroo" class="newbie_guide"></div>
+        <div class="head_number"> <a href="http://dataserver.1yyg.com/HistoryBuyRecords.html" target="_blank">已 <span id="spBuyCount" style="color: rgb(34, 170, 255); background-color: rgb(245, 245, 245); opacity: 1; background-position: initial initial; background-repeat: initial initial; ">7383415</span>人次参与云购</a> </div>
+        <div class="head_search">
+            <input type="text" id="txtSearch" class="init" value="" title="输入"红米手机" 试试">
+            <input type="button" id="butSearch" class="search_submit" value="搜索">
+            <div class="keySearch"> <a href="http://www.1yyg.com/search/?q=智能手机" target="_blank">智能手机</a> <a href="http://www.1yyg.com/search/?q=3G手机" target="_blank">3G手机</a> <a href="http://www.1yyg.com/search/?q=宝马" target="_blank">宝马</a> <a href="http://www.1yyg.com/search/?q=单反" target="_blank">单反</a> </div>
+        </div>
+    </div>
+</div>
+<div class="head_nav">
+    <div class="nav_center">
+        <ul class="nav_list">
+            <li class="home-back"><a href="http://www.1yyg.com/" class="home">首页</a></li>
+            <li class="sort-all" id="slideSort"><a class="sort" href="http://www.1yyg.com/list/m1.html">所有商品</a></li>
+            <li class="new-lottery"><a href="http://dataserver.1yyg.com/lottery.html">最新揭晓</a></li>
+            <li class="share"><a href="http://post.1yyg.com/">晒单分享</a></li>
+            <li class="nav_Cloud"><a href="http://www.1yyg.com/autolottery.html">限时揭晓</a></li>
+            <li class="cooperation"><a rel="nofollow" href="http://member.1yyg.com/ReferAuth.html">邀请</a></li>
+            <li class="what-1yyg"><a rel="nofollow" href="http://help.1yyg.com/info/newbie/index.html" class="what-yg">新手指南</a></li>
+        </ul>
+        <div class="mini_mycart" id="sCart">
+            <input type="hidden" id="hidChanged" value="0">
+            <a rel="nofollow" href="http://www.1yyg.com/MyCart/CartList.html" id="sCartNavi" class="cart"><s></s>购物车<span id="sCartTotal">0</span></a><a rel="nofollow" href="http://www.1yyg.com/MyCart/CartList.html" class="checkout">去结算</a>
+            <div class="mycart_list" id="sCartlist" style="display: none; z-index: 99999; ">
+                <div class="goods_loding" id="sCartLoading"><img border="0" alt="" src="http://skin.1yyg.com/images/goods_loading.gif">正在加载......</div>
+                <p id="p1">共计 <span id="sCartTotal2"> 0</span> 件商品 金额总计：<span id="sCartTotalM" class="rmbred">0.00</span></p>
+                <h3>
+                    <input type="button" id="sGotoCart" value="去购物车并结算">
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="nav_class">
+    <ul>
+        <li><a href="http://www.1yyg.com/list/i111.html">手机</a></li>
+        <li><a href="http://www.1yyg.com/list/i102.html">数码相机</a></li>
+        <li><a href="http://www.1yyg.com/list/i112.html">电脑</a></li>
+        <li><a href="http://www.1yyg.com/list/i120.html">平板电视</a></li>
+        <li><a href="http://www.1yyg.com/list/i222.html">钟表首饰</a></li>
+        <li><a href="http://www.1yyg.com/list/i312.html">其它商品</a></li>
+        <li><a href="http://www.1yyg.com/list/m1.html">全部</a></li>
+    </ul>
+</div>
+<!--晒单分享内容-->
+<div class="Current_nav"><a href="http://www.1yyg.com">首页</a> &gt; <a href="/">晒单分享</a> &gt; 晒单详请</div>
+<div class="share_box" id="loadingPicBlock">
+    <div id="DCMainLeft" class="share_box_left">
+        <div class="share_main"> 
+            <!--用户晒单部分-->
+            <div class="share_title">
+                <h3> 中了红米好开心</h3>
+                <div class="share_time"> 晒单时间：<span>2013-11-07 07:33</span></div>
+            </div>
+            <div class="share_goods">
+                <div class="share-get"> <i></i> <a class="fl-img" href="http://u.1yyg.com/1000898861" target="_blank"><img src="http://faceimg.1yyg.com/UserFace/20131029144912263.jpg"></a>
+                    <div class="share-getinfo">
+                        <p class="getinfo-name">幸运获得者：<a class="blue Fb" href="http://u.1yyg.com/1000898861" target="_blank">土豪-姐姐请你</a></p>
+                        <p>总共云购：<b class="orange">102</b>人次</p>
+                        <p>幸运云购码：10000290</p>
+                        <p>揭晓时间：2013-10-15 13:27:46.561</p>
+                    </div>
+                </div>
+                <div class="share-Conduct">
+                    <div class="arrow arrow_Rleft"> <em>◆</em><span>◆</span></div>
+                    <a class="fl-img" href="http://www.1yyg.com/product/18406.html" target="_blank"><img src="http://goodsimg.1yyg.com/GoodsPic/pic-70-70/20130816134906377.jpg" border="0"></a>
+                    <div class="share-getinfo">
+                        <p class="getinfo-title"><a class="gray01" href="http://www.1yyg.com/product/18406.html" target="_blank">(第602期)小米（MIUI） 红米手机</a></p>
+                        <p>价值：￥1288.00</p>
+                        <p id="GoToBuy"><a class="getbut-a" href="http://www.1yyg.com/products/21344.html" target="_blank">第<span>960</span>期进行中… </a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="share_content">
+                <p class="content-pad">感谢云购抱着中500万的心态来玩云购吧大家一起来玩云购吧(*^__^*) 嘻嘻……只要坚持就会中奖</p>
+                <p><img src="http://postimg.1yyg.com/UserPost/Big/20131107073308851.jpg" border="0" alt="" style=""></p>
+                <p><img src="http://postimg.1yyg.com/UserPost/Big/20131107073313304.jpg" border="0" alt="" style=""></p>
+                <p><img src="http://postimg.1yyg.com/UserPost/Big/20131107073317726.jpg" border="0" alt="" style=""></p>
+            </div>
+            <!--用户晒单部分结束--> 
+            <!-- 分享按钮 -->
+            <div class="mood">
+                <div class="moodwm">
+                    <div class="moodm hidden" style="display: block; "> <span class="smile" id="emHits"><i></i><b>羡慕嫉妒恨(<em>6</em>)</b></span> <span class="much"> <i></i>评论(<em id="emReplyCount">7</em>)</span> </div>
+                    <div class="share"> <span class="fen">分享到：</span> 
+                        <!-- Baidu Button BEGIN -->
+                        <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare"> <a class="bds_tsina" title="分享到新浪微博" href="#"></a><a class="bds_qzone" title="分享到QQ空间" href="#"></a><a class="bds_tqq" title="分享到腾讯微博" href="#"></a><a class="bds_renren" title="分享到人人网" href="#"></a><a class="bds_t163" title="分享到网易微博" href="#"></a><span class="bds_more"></span> </div>
+                        <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=0" src="http://bdimg.share.baidu.com/static/js/bds_s_v2.js?cdnversion=379857"></script> 
+                        <script type="text/javascript">
+                                document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+                            </script> 
+                        <!-- Baidu Button END --> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input name="hidReplyCount" type="hidden" id="hidReplyCount" value="7">
+        <input name="hidUserFace" type="hidden" id="hidUserFace" value="00000000000000000.jpg">
+        <div id="bottomComment" class="qcomment_bottom_reply clearfix">
+            <div class="Comment_Reply clearfix">
+                <div class="Comment-pic"><img name="imgUserPhoto" src="http://faceimg.1yyg.com/UserFace/00000000000000000.jpg"></div>
+                <div class="Comment_form">
+                    <div id="divCommTo" class="Comment-name" style="display:none;"></div>
+                    <div class="Comment_textbox">
+                        <textarea id="replyTAM0" name="replyTA" class="hidden Comment-txt"></textarea>
+                        <div id="notLogin" name="replyLogin" class="Comment_login" runat="server">请您<a href="javascript:;" class="blue" name="replyLoginBtn">登录</a>或<a href="http://passport.1yyg.com/register.html?forward=rego" class="blue">注册</a>后再回复评论</div>
+                        <input type="button" id="btnReplyMsgM0" name="btnReplyMsg" class="hidden">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="commentMain" class="qcomment_main" style="">
+            <ul>
+                <li class="Comment_single">
+                    <div class="Comment_box_con clearfix">
+                        <div class="User_head"><a rel="nofollow" href="http://u.1yyg.com/1000407397" target="_blank" title="中奖的几率忒低了"><img src="http://faceimg.1yyg.com/UserFace/20131106130539103.jpg" alt=""></a></div>
+                        <div class="Comment_con">
+                            <div class="Comment_User"><span><a class="blue" href="http://u.1yyg.com/1000407397" target="_blank">中奖的几率忒低了</a></span></div>
+                            <div class="C_summary">恭喜 您是 多长时间到货的<img src="http://skin.1yyg.com/Images/Emoticons/1.gif" alt=""><span class="Summary-time">45分钟前</span><span class="Reply-r"><a class="blue signReplay" href="javascript:;">回复(<b>0</b>)</a>
+                                <input name="replyDataState" type="hidden" value="0">
+                                </span></div>
+                        </div>
+                        <div name="Replybox" class="qcomment_box_reply" style="display: none;">
+                            <div class="qcomment_box_reply_topbj"></div>
+                            <div name="ReplyForm" class="qcomment_reply_module"></div>
+                            <div name="ReplyList" class="qcomment_reply_list_module"></div>
+                            <div class="Comment_Collapse" style="display: none; "><a href="#">收起<b></b></a></div>
+                        </div>
+                        <div class="qhackbox"></div>
+                        <div class="qcomment_box_bottom"></div>
+                    </div>
+                </li>
+                <li class="Comment_single">
+                    <div class="Comment_box_con clearfix">
+                        <div class="User_head"><a rel="nofollow" href="http://u.1yyg.com/1000087189" target="_blank" title="Joson"><img src="http://faceimg.1yyg.com/UserFace/20131106093603359.jpg" alt=""></a></div>
+                        <div class="Comment_con">
+                            <div class="Comment_User"><span><a class="blue" href="http://u.1yyg.com/1000087189" target="_blank">Joson</a></span></div>
+                            <div class="C_summary">不错呀<span class="Summary-time">56分钟前</span><span class="Reply-r"><a class="blue signReplay" href="javascript:;">回复(<b>0</b>)</a>
+                                <input name="replyDataState" type="hidden" value="0">
+                                </span></div>
+                        </div>
+                        <div name="Replybox" class="qcomment_box_reply" style="display: none;">
+                            <div class="qcomment_box_reply_topbj"></div>
+                            <div name="ReplyForm" class="qcomment_reply_module"></div>
+                            <div name="ReplyList" class="qcomment_reply_list_module"></div>
+                            <div class="Comment_Collapse" style="display: none; "><a href="#">收起<b></b></a></div>
+                        </div>
+                        <div class="qhackbox"></div>
+                        <div class="qcomment_box_bottom"></div>
+                    </div>
+                </li>
+                <li class="Comment_single">
+                    <div class="Comment_box_con clearfix">
+                        <div class="User_head"><a rel="nofollow" href="http://u.1yyg.com/1000107835" target="_blank" title="改名就中中"><img src="http://faceimg.1yyg.com/UserFace/20131029090551311.jpg" alt=""></a></div>
+                        <div class="Comment_con">
+                            <div class="Comment_User"><span><a class="blue" href="http://u.1yyg.com/1000107835" target="_blank">改名就中中</a></span></div>
+                            <div class="C_summary">土豪、土豪金<span class="Summary-time">今天 10:51</span><span class="Reply-r"><a class="blue signReplay" href="javascript:;">回复(<b>0</b>)</a>
+                                <input name="replyDataState" type="hidden" value="0">
+                                </span></div>
+                        </div>
+                        <div name="Replybox" class="qcomment_box_reply" style="display: none;">
+                            <div class="qcomment_box_reply_topbj"></div>
+                            <div name="ReplyForm" class="qcomment_reply_module"></div>
+                            <div name="ReplyList" class="qcomment_reply_list_module"></div>
+                            <div class="Comment_Collapse" style="display: none; "><a href="#">收起<b></b></a></div>
+                        </div>
+                        <div class="qhackbox"></div>
+                        <div class="qcomment_box_bottom"></div>
+                    </div>
+                </li>
+                <li class="Comment_single">
+                    <div class="Comment_box_con clearfix">
+                        <div class="User_head"><a rel="nofollow" href="http://u.1yyg.com/1000623766" target="_blank" title="神马昵称可以"><img src="http://faceimg.1yyg.com/UserFace/00000000000000000.jpg" alt=""></a></div>
+                        <div class="Comment_con">
+                            <div class="Comment_User"><span><a class="blue" href="http://u.1yyg.com/1000623766" target="_blank">神马昵称可以</a></span></div>
+                            <div class="C_summary">加群177403328，了解云购技巧，5S不是梦！<span class="Summary-time">今天 10:20</span><span class="Reply-r"><a class="blue signReplay" href="javascript:;">回复(<b>0</b>)</a>
+                                <input name="replyDataState" type="hidden" value="0">
+                                </span></div>
+                        </div>
+                        <div name="Replybox" class="qcomment_box_reply" style="display: none;">
+                            <div class="qcomment_box_reply_topbj"></div>
+                            <div name="ReplyForm" class="qcomment_reply_module"></div>
+                            <div name="ReplyList" class="qcomment_reply_list_module"></div>
+                            <div class="Comment_Collapse" style="display: none; "><a href="#">收起<b></b></a></div>
+                        </div>
+                        <div class="qhackbox"></div>
+                        <div class="qcomment_box_bottom"></div>
+                    </div>
+                </li>
+                <li class="Comment_single">
+                    <div class="Comment_box_con clearfix">
+                        <div class="User_head"><a rel="nofollow" href="http://u.1yyg.com/1001046063" target="_blank" title="贝克小子"><img src="http://faceimg.1yyg.com/UserFace/20131107100302828.jpg" alt=""></a></div>
+                        <div class="Comment_con">
+                            <div class="Comment_User"><span><a class="blue" href="http://u.1yyg.com/1001046063" target="_blank">贝克小子</a></span></div>
+                            <div class="C_summary">为什么和660期晒单图片一模一样的！！！太假了吧！！！！<img src="http://skin.1yyg.com/Images/Emoticons/35.gif" alt=""><span class="Summary-time">今天 10:13</span><span class="Reply-r"><a class="blue signReplay" href="javascript:;">回复(<b>0</b>)</a>
+                                <input name="replyDataState" type="hidden" value="0">
+                                </span></div>
+                        </div>
+                        <div name="Replybox" class="qcomment_box_reply" style="display: none;">
+                            <div class="qcomment_box_reply_topbj"></div>
+                            <div name="ReplyForm" class="qcomment_reply_module"></div>
+                            <div name="ReplyList" class="qcomment_reply_list_module"></div>
+                            <div class="Comment_Collapse" style="display: none; "><a href="#">收起<b></b></a></div>
+                        </div>
+                        <div class="qhackbox"></div>
+                        <div class="qcomment_box_bottom"></div>
+                    </div>
+                </li>
+                <li class="Comment_single">
+                    <div class="Comment_box_con clearfix">
+                        <div class="User_head"><a rel="nofollow" href="http://u.1yyg.com/1000451610" target="_blank" title="换个名字就中大苹果"><img src="http://faceimg.1yyg.com/UserFace/20131029211533757.jpg" alt=""></a></div>
+                        <div class="Comment_con">
+                            <div class="Comment_User"><span><a class="blue" href="http://u.1yyg.com/1000451610" target="_blank">换个名字就中大苹果</a></span></div>
+                            <div class="C_summary"><img src="http://skin.1yyg.com/Images/Emoticons/3.gif" alt="">为什么和660期晒单图片一模一样的<span class="Summary-time">今天 09:18</span><span class="Reply-r"><a class="blue signReplay" href="javascript:;">回复(<b>0</b>)</a>
+                                <input name="replyDataState" type="hidden" value="0">
+                                </span></div>
+                        </div>
+                        <div name="Replybox" class="qcomment_box_reply" style="display: none;">
+                            <div class="qcomment_box_reply_topbj"></div>
+                            <div name="ReplyForm" class="qcomment_reply_module"></div>
+                            <div name="ReplyList" class="qcomment_reply_list_module"></div>
+                            <div class="Comment_Collapse" style="display: none; "><a href="#">收起<b></b></a></div>
+                        </div>
+                        <div class="qhackbox"></div>
+                        <div class="qcomment_box_bottom"></div>
+                    </div>
+                </li>
+                <li class="Comment_single">
+                    <div class="Comment_box_con clearfix">
+                        <div class="User_head"><a rel="nofollow" href="http://u.1yyg.com/1000451610" target="_blank" title="换个名字就中大苹果"><img src="http://faceimg.1yyg.com/UserFace/20131029211533757.jpg" alt=""></a></div>
+                        <div class="Comment_con">
+                            <div class="Comment_User"><span><a class="blue" href="http://u.1yyg.com/1000451610" target="_blank">换个名字就中大苹果</a></span></div>
+                            <div class="C_summary"><img src="http://skin.1yyg.com/Images/Emoticons/37.gif" alt="">恭喜<span class="Summary-time">今天 08:52</span><span class="Reply-r"><a class="blue signReplay" href="javascript:;">回复(<b>0</b>)</a>
+                                <input name="replyDataState" type="hidden" value="0">
+                                </span></div>
+                        </div>
+                        <div name="Replybox" class="qcomment_box_reply" style="display: none;">
+                            <div class="qcomment_box_reply_topbj"></div>
+                            <div name="ReplyForm" class="qcomment_reply_module"></div>
+                            <div name="ReplyList" class="qcomment_reply_list_module"></div>
+                            <div class="Comment_Collapse" style="display: none; "><a href="#">收起<b></b></a></div>
+                        </div>
+                        <div class="qhackbox"></div>
+                        <div class="qcomment_box_bottom"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--用户评论列表开始-->
+        <div class="Comment_main clearfix" id="CommentMain"></div>
+        <!--用户评论部分结束--> 
+    </div>
+    <!--晒单左侧结束--> 
+    <!--晒单右侧-->
+    <div class="Comment_right" id="PostDetailRight">
+        <div class="Comment_victory">
+            <div class="victory-tit"><span><a href="javascript:void(0);" class="page-upgray"></a><a href="javascript:void(0);" class="page-updow page-dow"></a></span>
+                <h3>其他期数获得者</h3>
+            </div>
+            <ul>
+                <ul>
+                    <li class="victory_info">
+                        <div class="victory_head"><a class="blue" href="http://u.1yyg.com/1001425527" title="不之谜" target="_blank"><img src="http://faceimg.1yyg.com/UserFace/20131107113923463.jpg"></a></div>
+                        <p class="victory_User"><a class="blue" href="http://u.1yyg.com/1001425527" title="不之谜" target="_blank">不之谜</a>获得了第959期</p>
+                        <p><span class="gray03">暂未晒单</span></p>
+                    </li>
+                    <li class="victory_info">
+                        <div class="victory_head"><a class="blue" href="http://u.1yyg.com/1000000091" title="向5S钱进" target="_blank"><img src="http://faceimg.1yyg.com/UserFace/20131105102304740.jpg"></a></div>
+                        <p class="victory_User"><a class="blue" href="http://u.1yyg.com/1000000091" title="向5S钱进" target="_blank">向5S钱进</a>获得了第958期</p>
+                        <p><span class="gray03">暂未晒单</span></p>
+                    </li>
+                    <li class="victory_info">
+                        <div class="victory_head"><a class="blue" href="http://u.1yyg.com/1000174153" title="只对土豪有感" target="_blank"><img src="http://faceimg.1yyg.com/UserFace/20131024162740995.jpg"></a></div>
+                        <p class="victory_User"><a class="blue" href="http://u.1yyg.com/1000174153" title="只对土豪有感" target="_blank">只对土豪</a>获得了第957期</p>
+                        <p><span class="gray03">暂未晒单</span></p>
+                    </li>
+                    <li class="victory_info">
+                        <div class="victory_head"><a class="blue" href="http://u.1yyg.com/1000101873" title="否极泰来" target="_blank"><img src="http://faceimg.1yyg.com/UserFace/20131012090235772.jpg"></a></div>
+                        <p class="victory_User"><a class="blue" href="http://u.1yyg.com/1000101873" title="否极泰来" target="_blank">否极泰来</a>获得了第956期</p>
+                        <p><span class="gray03">暂未晒单</span></p>
+                    </li>
+                    <li class="victory_info">
+                        <div class="victory_head"><a class="blue" href="http://u.1yyg.com/1000987381" title="qxoqxo" target="_blank"><img src="http://faceimg.1yyg.com/UserFace/20131106091025577.jpg"></a></div>
+                        <p class="victory_User"><a class="blue" href="http://u.1yyg.com/1000987381" title="qxoqxo" target="_blank">qxoqxo</a>获得了第955期</p>
+                        <p><span class="gray03">暂未晒单</span></p>
+                    </li>
+                    <li class="victory_info">
+                        <div class="victory_head"><a class="blue" href="http://u.1yyg.com/1000268557" title="whc-top" target="_blank"><img src="http://faceimg.1yyg.com/UserFace/20130822010721313.jpg"></a></div>
+                        <p class="victory_User"><a class="blue" href="http://u.1yyg.com/1000268557" title="whc-top" target="_blank">whc-top</a>获得了第954期</p>
+                        <p><span class="gray03">暂未晒单</span></p>
+                    </li>
+                </ul>
+            </ul>
+        </div>
+        <div class="Comment_share">
+            <h4>最新晒单</h4>
+            <div class="New-single">
+                <p class="New-single-time"><a class="blue" href="http://u.1yyg.com/1000898861" target="_blank">土豪-姐姐请你来做客</a>今天 07:33</p>
+                <p class="New-single-C"><a href="http://post.1yyg.com/detail-3048.html" target="_blank">感谢云购抱着中500万的心态来玩云购吧<br>
+                    大家一起来玩云购吧<br>
+                    (*^__^*)&nbsp;嘻嘻……<br>
+                    只要坚持就会中奖<br>
+                    …</a></p>
+                <div class="New-singleImg">
+                    <div class="arrow arrow_Rleft"><em>◆</em></div>
+                    <a href="http://post.1yyg.com/detail-3048.html" target="_blank"><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131107073308851.jpg" style=""><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131107073313304.jpg" style=""><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131107073317726.jpg" style=""></a></div>
+            </div>
+            <div class="New-single">
+                <p class="New-single-time"><a class="blue" href="http://u.1yyg.com/1000753487" target="_blank">花了这么多还不中</a>今天 00:08</p>
+                <p class="New-single-C"><a href="http://post.1yyg.com/detail-3047.html" target="_blank">在QQ上无意看到一元云购，第一次云购，看着他们1块2块就可以中了手机，那个嫉妒羡慕恨啊~~接着我…</a></p>
+                <div class="New-singleImg">
+                    <div class="arrow arrow_Rleft"><em>◆</em></div>
+                    <a href="http://post.1yyg.com/detail-3047.html" target="_blank"><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131107000658504.jpg" style=""><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131107000707676.jpg" style=""><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131107000716238.jpg" style=""></a></div>
+            </div>
+            <div class="New-single">
+                <p class="New-single-time"><a class="blue" href="http://u.1yyg.com/1000956863" target="_blank">中吧中吧我要中奖</a>昨天 23:51</p>
+                <p class="New-single-C"><a href="http://post.1yyg.com/detail-3046.html" target="_blank">第一次中奖，也是朋友叫我玩，结果一玩就不可收拾。总投了快3000大元就中了这玩意，真心感动悲催…</a></p>
+                <div class="New-singleImg">
+                    <div class="arrow arrow_Rleft"><em>◆</em></div>
+                    <a href="http://post.1yyg.com/detail-3046.html" target="_blank"><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131106235105088.jpg" style=""><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131106235117322.jpg" style=""><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131106235124807.jpg" style=""></a></div>
+            </div>
+            <div class="New-single">
+                <p class="New-single-time"><a class="blue" href="http://u.1yyg.com/1000092511" target="_blank">中次奖z不容易</a>昨天 22:52</p>
+                <p class="New-single-C"><a href="http://post.1yyg.com/detail-3045.html" target="_blank">MX2TD版，终于到手了，很漂亮!没及时发货加上咱是偏远地区云友，发的EMS所以才到手。给客服说过要…</a></p>
+                <div class="New-singleImg">
+                    <div class="arrow arrow_Rleft"><em>◆</em></div>
+                    <a href="http://post.1yyg.com/detail-3045.html" target="_blank"><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131106224447442.jpg" style=""><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131106224745066.jpg" style=""><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131106224913878.jpg" style=""></a></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--底部-->
+<div class="footer_content">
+    <div class="footer_line"></div>
+    <div class="footservice">
+        <div class="support">
+            <dl class="ft-newbie">
+                <dt><span>新手指南</span></dt>
+                <dd><b></b><a href="http://help.1yyg.com/" rel="nofollow" target="_blank">了解1元云购</a></dd>
+                <dd><b></b><a href="http://help.1yyg.com/htm-questiondetail.html" rel="nofollow" target="_blank">常见问题</a></dd>
+                <dd><b></b><a href="http://help.1yyg.com/htm-agreement.html" rel="nofollow" target="_blank">服务协议</a></dd>
+                <dd><b></b><a href="http://help.1yyg.com/htm-userExperience.html" rel="nofollow" target="_blank">会员福分经验值</a></dd>
+            </dl>
+            <dl class="ft-wares">
+                <dt><span>云购保障</span></dt>
+                <dd><b></b><a href="http://help.1yyg.com/htm-genuinetwo.html" rel="nofollow" target="_blank">1元云购保障体系</a></dd>
+                <dd><b></b><a href="http://help.1yyg.com/htm-genuine.html" rel="nofollow" target="_blank">正品保障</a></dd>
+                <dd><b></b><a href="http://help.1yyg.com/htm-securepayment.html" rel="nofollow" target="_blank">安全支付</a></dd>
+                <dd><b></b><a href="http://help.1yyg.com/htm-suggestion.html" rel="nofollow" target="_blank">投诉建议</a></dd>
+            </dl>
+            <dl class="ft-delivery">
+                <dt><span>商品配送</span></dt>
+                <dd><b></b><a href="http://help.1yyg.com/htm-ship.html" rel="nofollow" target="_blank">商品配送</a></dd>
+                <dd><b></b><a href="http://help.1yyg.com/htm-deliveryfees.html" rel="nofollow" target="_blank">配送费用</a></dd>
+                <dd><b></b><a href="http://help.1yyg.com/htm-prodcheck.html" rel="nofollow" target="_blank">商品验货与签收</a></dd>
+                <dd><b></b><a href="http://help.1yyg.com/htm-shiptwo.html" rel="nofollow" target="_blank">长时间未收到商品</a></dd>
+            </dl>
+            <dl class="ft-ygjj">
+                <dt><span>云购基金</span></dt>
+                <dd><b></b><a href="http://info.1yyg.com/fund/" rel="nofollow" target="_blank">云购基金</a></dd>
+                <dd><b></b><a href="http://info.1yyg.com/fund/" rel="nofollow" target="_blank">社会活动</a></dd>
+            </dl>
+            <dl class="ft-fwrx">
+                <dt><span>服务热线</span></dt>
+                <dd class="ft-fwrx-tel"><i></i></dd>
+                <dd class="ft-fwrx-time">周一至周五 8:30-18:30</dd>
+                <dd class="ft-fwrx-service"><span class="ft-qqicon"><a href="http://help.1yyg.com/info/htm-qqgroup.html" rel="nofollow" target="_blank" style="text-indent:0em; background:none;width:160px;">官方QQ群①：<em class="orange Fb">89834747</em></a></span><span class="ft-qqicon"><a href="http://help.1yyg.com/info/htm-qqgroup.html" rel="nofollow" target="_blank" style="text-indent:0em; background:none;width:160px;">官方QQ群②：<em class="orange Fb">190818578</em></a></span></dd>
+            </dl>
+            <dl class="ft-weixin">
+                <dt><span>微信扫一扫</span></dt>
+                <dd class="ft-weixin-img"><s></s></dd>
+                <dd class="gray02"></dd>
+            </dl>
+        </div>
+    </div>
+    <div class="service-promise">
+        <ul>
+            <li class="sp-fair"><a href="http://help.1yyg.com/htm-genuinetwo.html" rel="nofollow" target="_blank"><span></span></a></li>
+            <li class="sp-wares"><a href="http://help.1yyg.com/htm-genuine.html" rel="nofollow" target="_blank"><span></span></a></li>
+            <li class="sp-free-delivery"><a href="http://help.1yyg.com/htm-deliveryfees.html" rel="nofollow" target="_blank"><span></span></a></li>
+            <li class="sp-business service-promise-border-r0"><a href="http://help.1yyg.com/info/htm-business.html" rel="nofollow" target="_blank"><span></span></a></li>
+        </ul>
+    </div>
+    <div class="service_date">
+        <div class="Service_Time">
+            <p>服务器时间</p>
+            <span id="sp_ServerTime">17:18:41</span> </div>
+        <div class="Service_Fund"> <a href="http://info.1yyg.com/fund/" target="_blank">
+            <p>云购公益基金</p>
+            <span id="spanFundTotal">1073979.25</span> </a> </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="footer_links"> <a href="http://www.1yyg.com/" rel="nofollow">首页</a> <b></b> <a href="http://help.1yyg.com/htm-about.html" rel="nofollow">关于云购</a> <b></b> <a href="http://help.1yyg.com/htm-privacy.html" rel="nofollow">隐私声明</a> <b></b> <a href="http://help.1yyg.com/info/htm-business.html" rel="nofollow">合作专区</a> <b></b> <a href="http://help.1yyg.com/info/htm-jobs.html" rel="nofollow">加入云购</a> <b></b> <a href="http://group.1yyg.com/" rel="nofollow">云购圈</a> <b></b> <a href="http://www.1yyg.com/link.html" rel="nofollow">友情链接</a> <b></b> <a href="http://help.1yyg.com/htm-contactus.html" rel="nofollow">联系我们</a> </div>
+    <div class="copyright">Copyright  © 2011 - 2013,  版权所有  1yyg.com  粤ICP备09213115号-1</div>
+    <div class="footer_icon" style="width:599px;">
+        <ul>
+            <li class="fi_ectrustchina"><a target="_blank" href="http://www.1yyg.com/url.html?t=1"><span>可信网站</span></a></li>
+            <li class="fi_315online"><a target="_blank" href="http://www.1yyg.com/url.html?t=2"><span>深圳市市场监督管理局</span></a></li>
+            <li class="fi_cnnic"><a target="_blank" href="http://www.1yyg.com/url.html?t=3"><span>中国电子商务诚信单位</span></a></li>
+            <li class="fi_anxibao"><a target="_blank" href="http://www.1yyg.com/url.html?t=6"><span>安信保</span></a></li>
+            <li class="fi_pingan"><a target="_blank" href="http://www.1yyg.com/url.html?t=4"><span>平安银行</span></a></li>
+            <li class="fi_qh"><a target="_blank" href="http://www.1yyg.com/url.html?t=5"><span>前海股权交易中心</span></a></li>
+        </ul>
+    </div>
+</div>
+<div class="hCollectCon">
+    <div class="hCollectCon2">
+        <div class="hCollect">
+            <ul>
+                <li><a target="_blank" href="http://www.1yyg.com" class="hyyg" title="1元云购">1元云购</a></li>
+                <li><a target="_blank" href="http://www.1yyg.com/autolottery.html" class="hauto" title="限时揭晓">限时揭晓</a></li>
+                <li><a target="_blank" href="http://www.baidu.com" class="hbaidu" title="百度">百度</a></li>
+                <li><a id="btnAdd" href="javascript:;" class="hadd">编辑</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

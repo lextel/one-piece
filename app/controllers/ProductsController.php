@@ -7,6 +7,7 @@ namespace app\controllers;
 
 use app\models\Periods;
 use app\models\Products;
+use app\models\Carts;
 use lithium\storage\Session;
 use app\extensions\helper\Page;
 use app\extensions\helper\Cats;
@@ -19,6 +20,7 @@ use app\extensions\helper\Uploader;
 class ProductsController extends \lithium\action\Controller {
 
     private $_navCurr = 'product';
+
 
     // 商品列表
     public function index() {
@@ -49,6 +51,9 @@ class ProductsController extends \lithium\action\Controller {
 
         // 当前导航
         $navCurr = $this->_navCurr;
+
+        $carts = Carts::get();
+        $this->set('carts', $carts);
 
         return compact('products', 'limit', 'page', 'total', 'cats', 'sortList', 'catId', 'brandId', 'brands', 'crumbs', 'navCurr');
     }

@@ -128,23 +128,29 @@
 
             </ul>
             <div class="mini_mycart" id="sCart">
-                <input type="hidden" id="hidChanged" value="0">
+                <?php
+                $carts = $this->cart->get();
+                $item = 0;
+                $quantity = 0;
+                $cart = '';
+                foreach($carts as $k => $v) {
+                    $item++;
+                    $cart .= '<ul class="mycartcur">';
+                    $cart .= '<li class="img"><a href="#"><img src="'.$v['image'].'"></a></li>';
+                    $cart .= '<li class="title"><h3><a href="#">'.$v['title'].'</a></h3><div class="rmbred"><i>1.00 </i>x <i>'.$v['quantity'].'</i><a class="delGood" index="'.$item.'" href="javascript:void(0);">删除</a></div></li>';
+                    $cart .= '</ul>';
+                    $quantity += $v['quantity'];
+                }
+                $cart .= '<p id="p1">共计 <span id="CartTotal2">'.$item.'</span> 件商品 金额总计：<span id="CartTotalM" class="rmbred">'.$quantity.'.00</span></p>';
+                $cart .= '<div class="settlement"><input type="button" id="sGotoCart" value="去购物车并结算"></div>';
+                ?>
                 <a rel="nofollow" href="javascript:void(0);" id="sCartNavi" class="cart">
-                    <s></s>购物车<span id="sCartTotal">0</span>
+                    <s></s>购物车<span id="sCartTotal"><?=$item;?></span>
                 </a>
                 <a rel="nofollow" href="javascript:void(0);" class="checkout">去结算</a>
                 <div class="mycart_list" id="sCartlist" style="display: none; z-index: 99999; ">
-                    <ul class="mycartcur">
-                        <li class="img">
-                            <a href="#"><img src="http://goodsimg.1yyg.com/GoodsPic/pic-70-70/20130718163548378.jpg"></a>
-                        </li>
-                        <li class="title">
-                            <h3><a href="#">华为（HUAWEI） Ascend P6 （白色）WCDMA/GSM</a></h3>
-                            <div class="rmbred"><i>1.00 </i>x <i>3</i><a class="delGood" href="javascript:void();">删除</a></div>
-                       </li>
-                   </ul>
-                   <p id="p1">共计 <span id="CartTotal2"> 0</span> 件商品 金额总计：<span id="CartTotalM" class="rmbred">0.00</span></p>
-                   <div class="settlement"><input type="button" id="sGotoCart" value="去购物车并结算"></div>
+                    <?php echo $cart;?>
+                    <div class="goods_loding" id="sCartLoading" style="display: none;"><img border="0" alt="" src="/img/goods_loading.gif">正在加载......</div>
                 </div>
             </div>
         </div>

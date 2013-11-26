@@ -1,0 +1,765 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link type="text/css" rel="stylesheet"  href="css/header.css"/>
+<link type="text/css" rel="stylesheet"  href="css/comm.css"/>
+<link type="text/css" rel="stylesheet"  href="css/product_list.css"/>
+</head>
+
+<body>
+<div class="header">
+    <div class="site_top">
+        <div class="head_top">
+            <p class="collect"><a href="javascript:void();" id="addSiteFavorite">收藏1元云购</a></p>
+            <p class="Ht-qqicon"><a class="gray01" href="http://help.1yyg.com/info/htm-qqgroup.html" target="_blank">官方QQ群</a></p>
+            <ul class="login_info" style="display: block;">
+                <li class="h_login" id="logininfo"> <i>您好，欢迎光临！</i> <a rel="nofollow" href="http://passport.1yyg.com/login.html?forward=rego" class="gray01">登录</a> <span>|</span> <a rel="nofollow" href="http://passport.1yyg.com/register.html?forward=rego" class="gray01">注册</a> </li>
+                <li class="h_1yyg"> <a rel="nofollow" href="http://member.1yyg.com/">我的1元云购<b></b></a>
+                    <div class="h_1yyg_eject" style="display: none; ">
+                        <dl>
+                            <dt><a rel="nofollow" href="http://member.1yyg.com/">我的1元云购<i></i></a></dt>
+                            <dd><a rel="nofollow" href="http://member.1yyg.com/UserBuyList.html">云购记录</a></dd>
+                            <dd><a rel="nofollow" href="http://member.1yyg.com/OrderList.html">获得的商品</a></dd>
+                            <dd><a rel="nofollow" href="http://member.1yyg.com/UserRecharge.html">帐户充值</a></dd>
+                            <dd><a rel="nofollow" href="http://member.1yyg.com/MemberModify.html">个人设置</a></dd>
+                        </dl>
+                    </div>
+                </li>
+                <li class="h_news" id="liMsgTip" style="display:none;"> <a rel="nofollow" href="http://member.1yyg.com/userMessage.html">消息<b></b></a>
+                    <div class="h_news_down" style="display:none;">
+                        <div class="h_news_downT"><a rel="nofollow" href="http://member.1yyg.com/userMessage.html">消息<i></i></a></div>
+                        <div class="h_news_downC"></div>
+                    </div>
+                </li>
+                <li class="h_Mobile"><a rel="nofollow" target="_blank" href="http://info.1yyg.com/app/desktop.html">桌面版</a></li>
+                <li class="h_Mobile"><a rel="nofollow" target="_blank" href="http://info.1yyg.com/app/touch.html">手机版</a></li>
+                <li class="h_help"><a rel="nofollow" target="_blank" href="http://help.1yyg.com/">帮助</a></li>
+                <li class="h_inv"><a rel="nofollow" target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2355805906&amp;site=qq&amp;menu=yes">在线客服</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="head_mid">
+    <div class="head_mid_bg">
+        <h1 class="logo_1yyg"><a class="logo_1yyg_img" href="http://www.1yyg.com" title="1元云购">1元云购</a></h1>
+        <div id="topJackaroo" class="newbie_guide"></div>
+        <div class="head_number"> <a href="http://dataserver.1yyg.com/HistoryBuyRecords.html" target="_blank">已 <span id="spBuyCount" style="color: rgb(34, 170, 255); background-color: rgb(245, 245, 245); opacity: 1; background-position: initial initial; background-repeat: initial initial; ">7383415</span>人次参与云购</a> </div>
+        <div class="head_search">
+            <input type="text" id="txtSearch" class="init" value="" title="输入"红米手机" 试试">
+            <input type="button" id="butSearch" class="search_submit" value="搜索">
+            <div class="keySearch"> <a href="http://www.1yyg.com/search/?q=智能手机" target="_blank">智能手机</a> <a href="http://www.1yyg.com/search/?q=3G手机" target="_blank">3G手机</a> <a href="http://www.1yyg.com/search/?q=宝马" target="_blank">宝马</a> <a href="http://www.1yyg.com/search/?q=单反" target="_blank">单反</a> </div>
+        </div>
+    </div>
+</div>
+<div class="head_nav">
+    <div class="nav_center">
+        <ul class="nav_list">
+            <li class="home-back"><a href="http://www.1yyg.com/" class="home">首页</a></li>
+            <li class="sort-all" id="slideSort"><a class="sort" href="http://www.1yyg.com/list/m1.html">所有商品</a></li>
+            <li class="new-lottery"><a href="http://dataserver.1yyg.com/lottery.html">最新揭晓</a></li>
+            <li class="share"><a href="http://post.1yyg.com/">晒单分享</a></li>
+            <li class="nav_Cloud"><a href="http://www.1yyg.com/autolottery.html">限时揭晓</a></li>
+            <li class="cooperation"><a rel="nofollow" href="http://member.1yyg.com/ReferAuth.html">邀请</a></li>
+            <li class="what-1yyg"><a rel="nofollow" href="http://help.1yyg.com/info/newbie/index.html" class="what-yg">新手指南</a></li>
+        </ul>
+        <div class="mini_mycart" id="sCart">
+            <input type="hidden" id="hidChanged" value="0">
+            <a rel="nofollow" href="http://www.1yyg.com/MyCart/CartList.html" id="sCartNavi" class="cart"><s></s>购物车<span id="sCartTotal">0</span></a><a rel="nofollow" href="http://www.1yyg.com/MyCart/CartList.html" class="checkout">去结算</a>
+            <div class="mycart_list" id="sCartlist" style="display: none; z-index: 99999; ">
+                <div class="goods_loding" id="sCartLoading"><img border="0" alt="" src="http://skin.1yyg.com/images/goods_loading.gif">正在加载......</div>
+                <p id="p1">共计 <span id="sCartTotal2"> 0</span> 件商品 金额总计：<span id="sCartTotalM" class="rmbred">0.00</span></p>
+                <h3>
+                    <input type="button" id="sGotoCart" value="去购物车并结算">
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="nav_class">
+    <ul>
+        <li><a href="http://www.1yyg.com/list/i111.html">手机</a></li>
+        <li><a href="http://www.1yyg.com/list/i102.html">数码相机</a></li>
+        <li><a href="http://www.1yyg.com/list/i112.html">电脑</a></li>
+        <li><a href="http://www.1yyg.com/list/i120.html">平板电视</a></li>
+        <li><a href="http://www.1yyg.com/list/i222.html">钟表首饰</a></li>
+        <li><a href="http://www.1yyg.com/list/i312.html">其它商品</a></li>
+        <li><a href="http://www.1yyg.com/list/m1.html">全部</a></li>
+    </ul>
+</div>
+<!--中间内容-->
+<div class="Current_nav"> <a href="/">首页</a> <span>&gt;</span> <a href="/list/i100.html">手机数码</a> <span>&gt;</span> <a href="/list/i102.html">数码影像</a> <span>&gt;</span> <a href="/list/i130.html">单反相机</a> <span>&gt;</span> 商品详情 </div>
+<div class="show_content">
+<!-- 商品期数 -->
+<div id="divPeriodList" class="show_Period">
+    <ul class="Period_list">
+        <li><a href="javascript:void(0)" class="period_Ongoing">第23期<i></i></a></li>
+        <li><a href="http://dataserver.1yyg.com/lotterydetail-19647.html" class="gray02">第22期</a></li>
+        <li><a href="http://dataserver.1yyg.com/lotterydetail-19239.html" class="period_ArrowCur">第21期</a></li>
+        <li><a href="http://dataserver.1yyg.com/lotterydetail-19238.html" class="gray02">第20期</a></li>
+        <li><a href="http://dataserver.1yyg.com/lotterydetail-17418.html" class="gray02">第19期</a></li>
+        <li><a href="http://dataserver.1yyg.com/lotterydetail-17417.html" class="gray02">第18期</a></li>
+        <li><a href="http://dataserver.1yyg.com/lotterydetail-17416.html" class="gray02">第17期</a></li>
+        <li><a href="http://dataserver.1yyg.com/lotterydetail-17415.html" class="gray02">第16期</a></li>
+        <li><a href="http://dataserver.1yyg.com/lotterydetail-17414.html" class="gray02">第15期</a></li>
+    </ul>
+    <ul class="Period_list">
+        <li><a href="http://dataserver.1yyg.com/lotterydetail-17413.html" class="gray02">第14期</a></li>
+        <li><a href="http://dataserver.1yyg.com/lotterydetail-17412.html" class="gray02">第13期</a></li>
+        <li><a href="http://dataserver.1yyg.com/lotterydetail-17411.html" class="gray02">第12期</a></li>
+        <li><a href="http://dataserver.1yyg.com/lotterydetail-17410.html" class="gray02">第11期</a></li>
+        <li><a href="http://dataserver.1yyg.com/lotterydetail-17409.html" class="gray02">第10期</a></li>
+        <li><a href="http://dataserver.1yyg.com/lotterydetail-16667.html" class="gray02">第9期</a></li>
+        <li><a href="http://dataserver.1yyg.com/lotterydetail-16666.html" class="gray02">第8期</a></li>
+        <li><a href="http://dataserver.1yyg.com/lotterydetail-16665.html" class="gray02">第7期</a></li>
+        <li><a href="http://dataserver.1yyg.com/lotterydetail-16307.html" class="gray02">第6期</a></li>
+    </ul>
+    <ul class="Period_list">
+        <li><a href="http://dataserver.1yyg.com/lotterydetail-16306.html" class="gray02">第5期</a></li>
+        <li><a href="http://dataserver.1yyg.com/lotterydetail-15977.html" class="gray02">第4期</a></li>
+        <li><a href="http://dataserver.1yyg.com/lotterydetail-13382.html" class="gray02">第3期</a></li>
+        <li><a href="http://dataserver.1yyg.com/lotterydetail-13381.html" class="gray02">第2期</a></li
+                >
+        <li><a href="http://dataserver.1yyg.com/lotterydetail-13380.html" class="gray02">第1期</a></li>
+    </ul>
+</div>
+<!--商品信息-->
+<div class="Pro_Details">
+    <h1><span>(第94期)</span>闪迪（SanDisk）酷捷 (CZ51)16GB U盘 </h1>
+    <div class="Pro_Detleft">
+        <div class="Pro_Detimg">
+            <div class="Pro_pic"> <a href="http://www.1yyg.com/products/20704.html" title="闪迪（SanDisk）酷捷 (CZ51)16GB U盘 "> <img width="398" height="398" alt="闪迪（SanDisk）酷捷 (CZ51)16GB U盘 " src="http://goodsimg.1yyg.com/GoodsPic/Pic-400-400/20120306200026991.jpg"> </a> </div>
+        </div>
+        <div class="Result_LConduct">
+            <dl>
+                <dt><span>第98期</span>正在进行</dt>
+                <dd>
+                    <div class="Result_Progress-bar">
+                        <p title="已完成11.36%"><span style="width:11%;"></span></p>
+                        <ul class="Pro-bar-li">
+                            <li class="P-bar01"><em>10</em>已参与人次</li>
+                            <li class="P-bar02"><em>88</em>总需人次</li>
+                            <li class="P-bar03"><em>78</em>剩余人次</li>
+                        </ul>
+                    </div>
+                    <p><a href="http://www.1yyg.com/product/18259.html" target="_blank" class="Result_LConductBut">查看详情</a></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+   
+    <div class="Pro_Detright">
+        <p class="Det_money">价值：<span class="rmbgray">88.00</span></p>
+         <!--揭晓倒计时-->
+          <div class="announceing_frame" style="display:none">
+            <div class="announceing_tltle">揭晓倒计时</div>
+            <div class="announceing_code">
+            	<div class="announceing_clock"></div>
+                <ul>
+                    <li class="Code_0">1<b></b></li>
+                    <li class="Code_0">0<b></b></li>
+                    <li class="colon"><b></b></li>
+                    <li class="Code_0">0<b></b></li>
+                    <li class="Code_0">0<b></b></li>
+                    <li class="colon"><b></b></li>
+                    <li class="Code_0">7<b></b></li>
+                    <li class="Code_0">6<b></b></li>
+                </ul>
+            </div>
+            <div class="announceing_get">
+                <img src="img/1.gif" />
+            </div>
+            <div class="Announced_FrameBut"> 
+            <a href="javascript:void(0);" onclick="javascript:if(TabFun!=null){TabFun.showTabFun(1);}" class="Announced_But">本期详细计算结果</a> 
+            <a href="javascript:void(0);" onclick="javascript:if(TabFun!=null){TabFun.showTabFun(2);}" class="Announced_But">看看有谁参与了</a> 
+            <a href="javascript:void(0);" onclick="javascript:if(TabFun!=null){TabFun.showTabFun(3);}" class="Announced_But">看看有谁晒单</a> </div>
+            <div class="Announced_FrameBm"></div>
+        </div>
+   		 <!--揭晓倒计时结束-->
+         <!--正在计算-->
+         <div class="calculate">
+         	<div class="calculate_tltle">正在计算</div>
+            <div class="calculate_c">
+         		<img src="img/Announced_6.png" />
+                <img src="img/Announced_4.gif"/>
+         	</div>
+            <div class="Announced_FrameBm"></div>
+         </div>
+         <!--正在计算结束-->
+    	<!--揭晓结果-->
+        <div class="Announced_Frame" style="display:none;">
+            <div class="Announced_FrameT">揭晓结果</div>
+            <div class="Announced_FrameCode">
+                <ul class="Announced_FrameCodeMal">
+                    <li class="Code_1">1<b></b></li>
+                    <li class="Code_0">0<b></b></li>
+                    <li class="Code_0">0<b></b></li>
+                    <li class="Code_0">0<b></b></li>
+                    <li class="Code_0">0<b></b></li>
+                    <li class="Code_0">0<b></b></li>
+                    <li class="Code_7">7<b></b></li>
+                    <li class="Code_6">6<b></b></li>
+                </ul>
+            </div>
+            <div class="Announced_FrameGet">
+                <dl>
+                    <dt><a rel="nofollow" href="http://u.1yyg.com/1000734879" target="_blank" title="有妖气"><img width="60" height="60" src="http://faceimg.1yyg.com/UserFace/20130428183455370.jpg"></a></dt>
+                    <dd class="gray02">
+                        <p>恭喜<a href="http://u.1yyg.com/1000734879" target="_blank" class="blue" title="有妖气">有妖气</a>(广东省江门市)获得</p>
+                        <p>揭晓时间：2013-11-02 21:17:06.446</p>
+                        <p>云购时间：2013-11-02 00:20:24.040</p>
+                    </dd>
+                </dl>
+            </div>
+            <div class="Announced_FrameBut"> <a href="javascript:void(0);" onclick="javascript:if(TabFun!=null){TabFun.showTabFun(1);}" class="Announced_But">本期详细计算结果</a> <a href="javascript:void(0);" onclick="javascript:if(TabFun!=null){TabFun.showTabFun(2);}" class="Announced_But">看看有谁参与了</a> <a href="javascript:void(0);" onclick="javascript:if(TabFun!=null){TabFun.showTabFun(3);}" class="Announced_But">看看有谁晒单</a> </div>
+            <div class="Announced_FrameBm"></div>
+        </div>
+        <!--揭晓结果结束-->
+        <div class="MaCenter">
+            <p>商品获得者本期总共云购了<em class="orange">2</em>人次</p>
+            <div id="userRnoId" class="MaCenterH">
+                <dl>
+                    <dt>2013-11-02 00:20:24.040</dt>
+                    <dd><b>10000002</b><b>10000076</b></dd>
+                </dl>
+            </div>
+        </div>
+        <div id="divOpen" class="MaOff" style="display: none;"><span>展开查看全部<s></s></span></div>
+    </div>
+</div>
+<!--计算结果-->
+<div id="calculate" class="ProductTabNav">
+    <div id="divMidNav" class="DetailsT_Tit">
+        <div class="DetailsT_TitP">
+            <ul>
+                <li class="Product_DetT DetailsTCur"><span class="DetailsTCur">计算结果</span></li>
+                <li class="All_RecordT"><span class="">所有参与记录</span></li>
+                <li class="Single_ConT"><span class="">晒单</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="divCalResult" class="Product_Content" style="display: block; ">
+    <div class="ygRecord" style="">
+        <div class="yghelp"> 1、取该商品最后购买时间前网站所有商品的最后100条购买时间记录 <br>
+            2、每个时间记录按时、分、秒、毫秒依次排列取数值 <br>
+            3、将这100个数值之和除以该商品总参与人次后取余数，余数加上10000001 即为"幸运云购码"。 </div>
+        <ul class="Record_title">
+            <li class="time">云购时间</li>
+            <li class="nem">会员账号</li>
+            <li class="name">商品名称</li>
+            <li class="much">云购人次</li>
+        </ul>
+        <ul class="Record_content">
+            <li class="time"><b>2013-11-02</b>21:17:15.017</li>
+            <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000299895" target="_blank">15978****99</a></li>
+            <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19448.html" target="_blank">（第178期）小米（MIUI） 小米3 智能手机(16G)</a></li>
+            <li class="much">1人次</li>
+        </ul>
+        <ul class="Record_content">
+            <li class="time"><b>2013-11-02</b>21:17:14.994</li>
+            <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000299895" target="_blank">15978****99</a></li>
+            <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19645.html" target="_blank">（第53期）索尼（Sony）NWZ-B172F(2G) Mp3播放器</a></li>
+            <li class="much">1人次</li>
+        </ul>
+        <ul class="Record_content">
+            <li class="time"><b>2013-11-02</b>21:17:14.992</li>
+            <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000299895" target="_blank">15978****99</a></li>
+            <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19544.html" target="_blank">（第181期）苹果（Apple）iPhone 5S 16G版 3G手机（预售）</a></li>
+            <li class="much">1人次</li>
+        </ul>
+        <ul class="Record_content">
+            <li class="time"><b>2013-11-02</b>21:17:13.758</li>
+            <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000304056" target="_blank">Forever翶鄕e</a></li>
+            <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19448.html" target="_blank">（第178期）小米（MIUI） 小米3 智能手机(16G)</a></li>
+            <li class="much">10人次</li>
+        </ul>
+        <ul class="Record_content">
+            <li class="time"><b>2013-11-02</b>21:17:08.711</li>
+            <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000189893" target="_blank">打开蓝肥猫的</a></li>
+            <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19544.html" target="_blank">（第181期）苹果（Apple）iPhone 5S 16G版 3G手机（预售）</a></li>
+            <li class="much">2人次</li>
+        </ul>
+        <div class="RecordOnehundred">
+            <h4>截止该商品最后购买时间【2013-11-02 21:17:06.446】最后100条全站购买时间记录</h4>
+            <div class="FloatBox"></div>
+            <ul class="Record_content">
+                <li class="time"><b>2013-11-02</b>21:17:06.446</li>
+                <li class="timeVal">211706446</li>
+                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000676058" target="_blank">还木有不想玩</a></li>
+                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/18255.html" target="_blank">（第94期）闪迪（SanDisk）酷捷 (CZ51)16GB U盘 </a></li>
+                <li class="much">64人次</li>
+            </ul>
+            <ul class="Record_content">
+                <li class="time"><b>2013-11-02</b>21:17:01.977</li>
+                <li class="timeVal">211701977</li>
+                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000064838" target="_blank">最后再一次不</a></li>
+                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19544.html" target="_blank">（第181期）苹果（Apple）iPhone 5S 16G版 3G手机（预售）</a></li>
+                <li class="much">1人次</li>
+            </ul>
+            <ul class="Record_content">
+                <li class="time"><b>2013-11-02</b>21:17:01.461</li>
+                <li class="timeVal">211701461</li>
+                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000144820" target="_blank">天下太平</a></li>
+                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/18642.html" target="_blank">（第32期）三星（SAMSUNG）Galaxy Note 3 N9008 3G手机</a></li>
+                <li class="much">10人次</li>
+            </ul>
+            <ul class="Record_content">
+                <li class="time"><b>2013-11-02</b>21:16:56.149</li>
+                <li class="timeVal">211656149</li>
+                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000656566" target="_blank">15077****38</a></li>
+                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19586.html" target="_blank">（第854期）小米（MIUI） 红米手机</a></li>
+                <li class="much">20人次</li>
+            </ul>
+            <ul class="Record_content">
+                <li class="time"><b>2013-11-02</b>21:16:52.406</li>
+                <li class="timeVal">211652406</li>
+                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000999046" target="_blank">ai*@qq.com</a></li>
+                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19209.html" target="_blank">（第3期）索尼（SONY）Xperia Z1 L39h 3G手机</a></li>
+                <li class="much">1人次</li>
+            </ul>
+            <ul class="Record_content">
+                <li class="time"><b>2013-11-02</b>21:16:52.383</li>
+                <li class="timeVal">211652383</li>
+                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000999046" target="_blank">ai*@qq.com</a></li>
+                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19448.html" target="_blank">（第178期）小米（MIUI） 小米3 智能手机(16G)</a></li>
+                <li class="much">1人次</li>
+            </ul>
+            <ul class="Record_content">
+                <li class="time"><b>2013-11-02</b>21:16:44.367</li>
+                <li class="timeVal">211644367</li>
+                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000795342" target="_blank">13469****30</a></li>
+                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/18015.html" target="_blank">（第19期）三星（Samsung）840系列MZ-7TD120BW 120G固态硬盘</a></li>
+                <li class="much">2人次</li>
+            </ul>
+            <ul class="Record_content">
+                <li class="time"><b>2013-11-02</b>21:16:38.180</li>
+                <li class="timeVal">211638180</li>
+                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000105182" target="_blank">18606****49</a></li>
+                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19388.html" target="_blank">（第233期）TPOS C4三叶草幸福系列 移动电源</a></li>
+                <li class="much">2人次</li>
+            </ul>
+            <ul class="Record_content">
+                <li class="time"><b>2013-11-02</b>21:16:24.010</li>
+                <li class="timeVal">211624010</li>
+                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000211614" target="_blank">矮挫穷</a></li>
+                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19586.html" target="_blank">（第854期）小米（MIUI） 红米手机</a></li>
+                <li class="much">40人次</li>
+            </ul>
+            <ul class="Record_content">
+                <li class="time"><b>2013-11-02</b>21:16:24.008</li>
+                <li class="timeVal">211624008</li>
+                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000211614" target="_blank">矮挫穷</a></li>
+                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19007.html" target="_blank">（第16期）魅族（Meizu）MX2 16G 3G智能手机</a></li>
+                <li class="much">25人次</li>
+            </ul>
+            <ul class="Record_content">
+                <li class="time"><b>2013-11-02</b>21:16:14.555</li>
+                <li class="timeVal">211614555</li>
+                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000771554" target="_blank">是不是必须改</a></li>
+                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/18642.html" target="_blank">（第32期）三星（SAMSUNG）Galaxy Note 3 N9008 3G手机</a></li>
+                <li class="much">1人次</li>
+            </ul>
+            <ul class="Record_content">
+                <li class="time"><b>2013-11-02</b>21:16:13.353</li>
+                <li class="timeVal">211613353</li>
+                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000658344" target="_blank">zhuzhu520</a></li>
+                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19544.html" target="_blank">（第181期）苹果（Apple）iPhone 5S 16G版 3G手机（预售）</a></li>
+                <li class="much">9人次</li>
+            </ul>
+            <ul class="Record_content">
+                <li class="time"><b>2013-11-02</b>21:16:13.351</li>
+                <li class="timeVal">211613351</li>
+                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000658344" target="_blank">zhuzhu520</a></li>
+                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/18373.html" target="_blank">（第67期）苹果（Apple）iPhone 5 16G智能手机</a></li>
+                <li class="much">1人次</li>
+            </ul>
+            <ul class="Record_content">
+                <li class="time"><b>2013-11-02</b>21:16:12.430</li>
+                <li class="timeVal">211612430</li>
+                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000393967" target="_blank">13032****01</a></li>
+                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19448.html" target="_blank">（第178期）小米（MIUI） 小米3 智能手机(16G)</a></li>
+                <li class="much">1人次</li>
+            </ul>
+            <ul class="Record_content">
+                <li class="time"><b>2013-11-02</b>21:16:09.508</li>
+                <li class="timeVal">211609508</li>
+                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000532049" target="_blank">该到我了</a></li>
+                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/18085.html" target="_blank">（第33期）苹果（Apple）iPad mini平板电脑 16G 3G版</a></li>
+                <li class="much">1人次</li>
+            </ul>
+            <ul class="Record_content">
+                <li class="time"><b>2013-11-02</b>21:16:09.492</li>
+                <li class="timeVal">211609492</li>
+                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000532049" target="_blank">该到我了</a></li>
+                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19544.html" target="_blank">（第181期）苹果（Apple）iPhone 5S 16G版 3G手机（预售）</a></li>
+                <li class="much">2人次</li>
+            </ul>
+            <ul class="Record_content">
+                <li class="time"><b>2013-11-02</b>21:16:04.414</li>
+                <li class="timeVal">211604414</li>
+                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000771554" target="_blank">是不是必须改</a></li>
+                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19209.html" target="_blank">（第3期）索尼（SONY）Xperia Z1 L39h 3G手机</a></li>
+                <li class="much">3人次</li>
+            </ul>
+            <ul class="Record_content">
+                <li class="time"><b>2013-11-02</b>21:16:00.592</li>
+                <li class="timeVal">211600592</li>
+                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000170981" target="_blank">始终無中</a></li>
+                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19368.html" target="_blank">（第13期）中国黄金 Au9999 薄片财富金条10g</a></li>
+                <li class="much">1人次</li>
+            </ul>
+            <div class="ResultBox">
+                <h2>计算结果</h2>
+                <p class="num4">求和：<span class="Fb">21148203195</span>(上面100条云购记录时间取值相加之和)<br>
+                    取余： <span class="Fb">21148203195</span>(100条时间记录之和)<span class="Fb"> % 88</span>(本商品总需参与人次) <span class="Fb"> = 75</span>(余数)<br>
+                    结果：<span class="Fb">75</span>(余数
+                    )<span class="Fb"> + 10000001 = <em>10000076</em></span> </p>
+                <b>最终结果：10000076</b> </div>
+        </div>
+        <ul class="Record_content">
+            <li class="time"><b>2013-11-02</b>21:13:06.405</li>
+            <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000879137" target="_blank">最后三次</a></li>
+            <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19092.html" target="_blank">（第49期）三星（Samsung）Galaxy S4 I9500 3G手机</a></li>
+            <li class="much">1人次</li>
+        </ul>
+        <ul class="Record_content">
+            <li class="time"><b>2013-11-02</b>21:13:06.405</li>
+            <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000879137" target="_blank">最后三次</a></li>
+            <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19092.html" target="_blank">（第49期）三星（Samsung）Galaxy S4 I9500 3G手机</a></li>
+            <li class="much">1人次</li>
+        </ul>
+        <ul class="Record_content">
+            <li class="time"><b>2013-11-02</b>21:13:06.405</li>
+            <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000879137" target="_blank">最后三次</a></li>
+            <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19092.html" target="_blank">（第49期）三星（Samsung）Galaxy S4 I9500 3G手机</a></li>
+            <li class="much">1人次</li>
+        </ul>
+        <ul class="Record_content">
+            <li class="time"><b>2013-11-02</b>21:13:06.405</li>
+            <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000879137" target="_blank">最后三次</a></li>
+            <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19092.html" target="_blank">（第49期）三星（Samsung）Galaxy S4 I9500 3G手机</a></li>
+            <li class="much">1人次</li>
+        </ul>
+        <ul class="Record_content">
+            <li class="time"><b>2013-11-02</b>21:13:06.405</li>
+            <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000879137" target="_blank">最后三次</a></li>
+            <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19092.html" target="_blank">（第49期）三星（Samsung）Galaxy S4 I9500 3G手机</a></li>
+            <li class="much">1人次</li>
+        </ul>
+        <div id="loadCalRes" class="goods_loding" style="display: none; "><img border="0" alt="" src="http://skin.1yyg.com/images/goods_loading.gif">正在加载......</div>
+    </div>
+</div>
+<div class="AllRecordT_Tit">所有参与记录 <span id="spBuyRecordCount">(共<em class="orange">15</em>条记录)</span></div>
+<div id="divBuyRecord" class="AllRecord_Content">
+    <div class="goods_loding" style="display: none; "><img border="0" alt="" src="http://skin.1yyg.com/images/goods_loading.gif">正在加载......</div>
+    <div name="bitem" class="AllRecordCon">
+		<dl>
+        	<dd>
+            	<ul>
+                	<li>
+                    	<a href="#" class="head_pic"><img src="http://faceimg.1yyg.com/UserFace/30/20131006134015786.jpg"></a>
+                        <a href="#" class="name blue">还木有不想玩了</a>
+                    </li>
+                    <li><a href="#">(广东省惠州市 IP:121.11.255.171)云购了<em class="orange">64</em>人次</a></li>
+                    <li class="last"><a href="#">2013-11-12 08:56:20.473</a></li>
+                </ul>
+            </dd>
+            <dd>
+            	<ul>
+                	<li>
+                    	<a href="#" class="head_pic"><img src="http://faceimg.1yyg.com/UserFace/30/20131006134015786.jpg"></a>
+                        <a href="#" class="name blue">还木有不想玩了</a>
+                    </li>
+                    <li><a href="#">(广东省惠州市 IP:121.11.255.171)云购了<em class="orange">64</em>人次</a></li>
+                    <li class="last"><a href="#">2013-11-12 08:56:20.473</a></li>
+                </ul>
+            </dd>
+            <dd class="last">
+            	<ul>
+                	<li>
+                    	<a href="#" class="head_pic"><img src="http://faceimg.1yyg.com/UserFace/30/20131006134015786.jpg"></a>
+                        <a href="#" class="name blue">还木有不想玩了</a>
+                    </li>
+                    <li><a href="#">(广东省惠州市 IP:121.11.255.171)云购了<em class="orange">64</em>人次</a></li>
+                    <li class="last"><a href="#">2013-11-12 08:56:20.473</a></li>
+                </ul>
+            </dd>
+       </dl>
+    </div>
+    <div name="bitem" class="pages">
+        <ul class="pageULEx">
+            <li class="prev_page page_curgray"><a><i></i>上一页</a></li>
+            <li class="curr_page">1</li>
+            <li><a href="javascript:gotoClick();" onclick="javascript:return CodeListFun.gotoPageIndex(11,20);">2</a></li>
+            <li class="next_page"><a href="javascript:gotoClick();" onclick="javascript:return CodeListFun.gotoPageIndex(11,20);">下一页</a></li>
+        </ul>
+    </div>
+</div><div class="SingleT_Tit">晒单 <span>本商品已有<em class="orange">57</em>位幸运用户晒单 总共<em class="orange">795</em>条评论</span></div>
+<div id="divPost" class="Single_Content">
+    <div class="goods_loding" style="display: none; "><img border="0" alt="" src="http://skin.1yyg.com/images/goods_loading.gif">正在加载......</div>
+    <div name="pitem" class="Single_list">
+        <div class="SingleL fl Topiclist-img"><a class="head-img" href="http://u.1yyg.com/1000066052" target="_blank" type="showCard" uweb="1000066052"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/20131105210145983.jpg"></a><a class="blue" href="http://u.1yyg.com/1000066052" target="_blank" rel="nofollow" type="showCard" uweb="1000066052">只想中M3</a><span class="class-icon01"><s></s>云购小将</span></div>
+        <div class="SingleR fl">
+            <div class="SingleR_TC"><i></i> <s></s>
+                <h3><span class="gray02">第91期晒单</span> <a href="http://post.1yyg.com/detail-2992.html" target="_blank">16G闪迪U盘</a> <em class="gray02">昨天 13:00</em></h3>
+                <p class="gray01">最近准备买个U盘用用，我想还不如去晕狗碰碰运气，真的很幸运真的中了，这U盘不错，发货速度很快，但是抱歉 我太过于兴奋忘了把包装拍下来了，希望下次再中，下次一定不会再忘记了，大家要多支持云购。。</p>
+            </div>
+            <ul class="SingleR_pic">
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131105130011561.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131105130017795.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131105130023373.jpg"></li>
+            </ul>
+            <div class="SingleR_Comment" postid="2992" count="0">
+                <div class="Comment_smile gray02"><span><i></i>4人羡慕嫉妒恨</span><span><s></s>0条评论</span></div>
+            </div>
+        </div>
+    </div>
+    <div name="pitem" class="Single_list">
+        <div class="SingleL fl Topiclist-img"><a class="head-img" href="http://u.1yyg.com/1000426976" target="_blank" type="showCard" uweb="1000426976"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/20131016101915698.jpg"></a><a class="blue" href="http://u.1yyg.com/1000426976" target="_blank" rel="nofollow" type="showCard" uweb="1000426976">一元云购5S</a><span class="class-icon02"><s></s>云购少将</span></div>
+        <div class="SingleR fl">
+            <div class="SingleR_TC"><i></i> <s></s>
+                <h3><span class="gray02">第86期晒单</span> <a href="http://post.1yyg.com/detail-2902.html" target="_blank">无心插柳柳成荫,无意间花一块钱中到的</a> <em class="gray02">昨天 02:57</em></h3>
+                <p class="gray01">无意间花一块钱中到的，本来没想云它的，随便点了一下花了一块钱，居然中了要是这个运气换到5s那就好了，现在正在努力云5s，希望这个运气能够保留着！！</p>
+            </div>
+            <ul class="SingleR_pic">
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131103221210826.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131103221238248.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131103221259186.jpg"></li>
+            </ul>
+            <div class="SingleR_Comment" postid="2902" count="0">
+                <div class="Comment_smile gray02"><span><i></i>3人羡慕嫉妒恨</span><span><s></s>0条评论</span></div>
+            </div>
+        </div>
+    </div>
+    <div name="pitem" class="Single_list">
+        <div class="SingleL fl Topiclist-img"><a class="head-img" href="http://u.1yyg.com/1000383388" target="_blank" type="showCard" uweb="1000383388"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/20131101194517825.jpg"></a><a class="blue" href="http://u.1yyg.com/1000383388" target="_blank" rel="nofollow" type="showCard" uweb="1000383388">TMD伤不起啦</a><span class="class-icon01"><s></s>云购小将</span></div>
+        <div class="SingleR fl">
+            <div class="SingleR_TC"><i></i> <s></s>
+                <h3><span class="gray02">第92期晒单</span> <a href="http://post.1yyg.com/detail-2918.html" target="_blank">总算中一个啦  希望在来个手机</a> <em class="gray02">11月04日 21:35</em></h3>
+                <p class="gray01">本人先声明哈我绝不是什么托   不过说真的我也想是托哈  哈哈哈 不然我也不会花500块钱啦才得到个U盘   中了还是真的发货说明这个一元云购还是真的啊  说实话刚开始我是不信这个的  现在中啦还收到啦有点小欣喜  期待中个手机啊  继续支持中</p>
+            </div>
+            <ul class="SingleR_pic">
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131104120437042.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131104120449339.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131104120458010.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131104213359314.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131104213509767.jpg"></li>
+            </ul>
+            <div class="SingleR_Comment" postid="2918" count="0">
+                <div class="Comment_smile gray02"><span><i></i>2人羡慕嫉妒恨</span><span><s></s>0条评论</span></div>
+            </div>
+        </div>
+    </div>
+    <div name="pitem" class="Single_list">
+        <div class="SingleL fl Topiclist-img"><a class="head-img" href="http://u.1yyg.com/1000082639" target="_blank" type="showCard" uweb="1000082639"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/00000000000000000.jpg"></a><a class="blue" href="http://u.1yyg.com/1000082639" target="_blank" rel="nofollow" type="showCard" uweb="1000082639">你妹的在中一个这么难</a><span class="class-icon03"><s></s>云购中将</span></div>
+        <div class="SingleR fl">
+            <div class="SingleR_TC"><i></i> <s></s>
+                <h3><span class="gray02">第88期晒单</span> <a href="http://post.1yyg.com/detail-2930.html" target="_blank">U盘收货啦</a> <em class="gray02">11月04日 14:20</em></h3>
+                <p class="gray01">一个小小的u盘,中与不中都没什么可说的,价格低概率高. 不过这个U盘缩放不太好,还不如72块那个u盘实在..晒单一来拿福分,二来谢谢各位云友的集资.</p>
+            </div>
+            <ul class="SingleR_pic">
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131104141729423.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131104141744861.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131104141803329.jpg"></li>
+            </ul>
+            <div class="SingleR_Comment" postid="2930" count="0">
+                <div class="Comment_smile gray02"><span><i></i>0人羡慕嫉妒恨</span><span><s></s>0条评论</span></div>
+            </div>
+        </div>
+    </div>
+    <div name="pitem" class="Single_list">
+        <div class="SingleL fl Topiclist-img"><a class="head-img" href="http://u.1yyg.com/1000301451" target="_blank" type="showCard" uweb="1000301451"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/20130503173426128.jpg"></a><a class="blue" href="http://u.1yyg.com/1000301451" target="_blank" rel="nofollow" type="showCard" uweb="1000301451">LS龙首</a><span class="class-icon03"><s></s>云购中将</span></div>
+        <div class="SingleR fl">
+            <div class="SingleR_TC"><i></i> <s></s>
+                <h3><span class="gray02">第69期晒单</span> <a href="http://post.1yyg.com/detail-2923.html" target="_blank">又中了个小优盘！</a> <em class="gray02">11月04日 12:55</em></h3>
+                <p class="gray01">前几天优盘送人了，没个优盘用不方便，想起来云购有，继续来云购，果然中了，20%原则见效了！呵呵，这个优盘以前也中过一个，也送人了，所以说，在云购小东西还是容易中的！</p>
+            </div>
+            <ul class="SingleR_pic">
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131104125256501.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131104125324454.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131104125353907.jpg"></li>
+            </ul>
+            <div class="SingleR_Comment" postid="2923" count="0">
+                <div class="Comment_smile gray02"><span><i></i>0人羡慕嫉妒恨</span><span><s></s>0条评论</span></div>
+            </div>
+        </div>
+    </div>
+    <div name="pitem" class="Single_list">
+        <div class="SingleL fl Topiclist-img"><a class="head-img" href="http://u.1yyg.com/1000521113" target="_blank" type="showCard" uweb="1000521113"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/20131106181401909.jpg"></a><a class="blue" href="http://u.1yyg.com/1000521113" target="_blank" rel="nofollow" type="showCard" uweb="1000521113">百度云购</a><span class="class-icon02"><s></s>云购少将</span></div>
+        <div class="SingleR fl">
+            <div class="SingleR_TC"><i></i> <s></s>
+                <h3><span class="gray02">第87期晒单</span> <a href="http://post.1yyg.com/detail-2895.html" target="_blank">小小U盘到货</a> <em class="gray02">11月03日 20:45</em></h3>
+                <p class="gray01">小奖一个.也是花了2元中的.今天刚刚收到货的，挺实用的小东西，这几天卡里面没有余额玩了，我要福分 ，云购的姐姐哥哥快点帮我通过 谢谢了，拜托了.O(∩_∩)O~</p>
+            </div>
+            <ul class="SingleR_pic">
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131103203925086.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131103204028445.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131103204138774.jpg"></li>
+            </ul>
+            <div class="SingleR_Comment" postid="2895" count="0">
+                <div class="Comment_smile gray02"><span><i></i>0人羡慕嫉妒恨</span><span><s></s>0条评论</span></div>
+            </div>
+        </div>
+    </div>
+    <div name="pitem" class="Single_list">
+        <div class="SingleL fl Topiclist-img"><a class="head-img" href="http://u.1yyg.com/1000403361" target="_blank" type="showCard" uweb="1000403361"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/20131106125145381.jpg"></a><a class="blue" href="http://u.1yyg.com/1000403361" target="_blank" rel="nofollow" type="showCard" uweb="1000403361">只买5s了</a><span class="class-icon01"><s></s>云购小将</span></div>
+        <div class="SingleR fl">
+            <div class="SingleR_TC"><i></i> <s></s>
+                <h3><span class="gray02">第90期晒单</span> <a href="http://post.1yyg.com/detail-2881.html" target="_blank">虽然奖品小但是总比没有好</a> <em class="gray02">11月03日 16:12</em></h3>
+                <p class="gray01">因为我一直相信，所以我没有放弃购买！但是我真心觉得这个手机太难中了，像我这种每次买一两元的完全没机会，人家买手机都是几百人次的买，伤不起啊！劝各位不要买太多了！买一两人次就可以咯就算没中也没有什么亏损吧！</p>
+            </div>
+            <ul class="SingleR_pic">
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131103161108708.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131103161131645.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131103161151176.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131103161225176.jpg"></li>
+            </ul>
+            <div class="SingleR_Comment" postid="2881" count="0">
+                <div class="Comment_smile gray02"><span><i></i>0人羡慕嫉妒恨</span><span><s></s>0条评论</span></div>
+            </div>
+        </div>
+    </div>
+    <div name="pitem" class="Single_list">
+        <div class="SingleL fl Topiclist-img"><a class="head-img" href="http://u.1yyg.com/1000852151" target="_blank" type="showCard" uweb="1000852151"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/20131030115158453.jpg"></a><a class="blue" href="http://u.1yyg.com/1000852151" target="_blank" rel="nofollow" type="showCard" uweb="1000852151">钞票已花完看结果</a><span class="class-icon02"><s></s>云购少将</span></div>
+        <div class="SingleR fl">
+            <div class="SingleR_TC"><i></i> <s></s>
+                <h3><span class="gray02">第84期晒单</span> <a href="http://post.1yyg.com/detail-2736.html" target="_blank">3000块购这么烂玩意儿！</a> <em class="gray02">11月01日 17:07</em></h3>
+                <p class="gray01">心里很窝火的啊！为毛人家一元中个吾爱死，终归有人欢喜有人愁... 老子花这么多钱只中个破逼U盘！靠...  福分爱给不给...</p>
+            </div>
+            <ul class="SingleR_pic">
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131031154046550.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131031154123597.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131031154138800.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131031154151675.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131031154202612.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131031154213659.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131101170752591.jpg"></li>
+            </ul>
+            <div class="SingleR_Comment" postid="2736" count="0">
+                <div class="Comment_smile gray02"><span><i></i>1人羡慕嫉妒恨</span><span><s></s>0条评论</span></div>
+            </div>
+        </div>
+    </div>
+    <div name="pitem" class="Single_list">
+        <div class="SingleL fl Topiclist-img"><a class="head-img" href="http://u.1yyg.com/1000582112" target="_blank" type="showCard" uweb="1000582112"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/20131101163815730.jpg"></a><a class="blue" href="http://u.1yyg.com/1000582112" target="_blank" rel="nofollow" type="showCard" uweb="1000582112">买到疯为止</a><span class="class-icon01"><s></s>云购小将</span></div>
+        <div class="SingleR fl">
+            <div class="SingleR_TC"><i></i> <s></s>
+                <h3><span class="gray02">第75期晒单</span> <a href="http://post.1yyg.com/detail-2728.html" target="_blank">等了10天终于发回来了</a> <em class="gray02">10月31日 13:20</em></h3>
+                <p class="gray01">不赖，还带加密软件。还有专属加密软件及2GB云存储空间。花几百了中了两个了都是塑料的，再不中手机就赔大发了，让我中一个手机吧！</p>
+            </div>
+            <ul class="SingleR_pic">
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131031131348692.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131031131650240.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131031131754084.jpg"></li>
+            </ul>
+            <div class="SingleR_Comment" postid="2728" count="0">
+                <div class="Comment_smile gray02"><span><i></i>0人羡慕嫉妒恨</span><span><s></s>0条评论</span></div>
+            </div>
+        </div>
+    </div>
+    <div name="pitem" class="Single_list">
+        <div class="SingleL fl Topiclist-img"><a class="head-img" href="http://u.1yyg.com/1000705125" target="_blank" type="showCard" uweb="1000705125"><img border="0" alt="" src="http://faceimg.1yyg.com/UserFace/20131020233006435.jpg"></a><a class="blue" href="http://u.1yyg.com/1000705125" target="_blank" rel="nofollow" type="showCard" uweb="1000705125">江苏苏州云购</a><span class="class-icon01"><s></s>云购小将</span></div>
+        <div class="SingleR fl">
+            <div class="SingleR_TC"><i></i> <s></s>
+                <h3><span class="gray02">第85期晒单</span> <a href="http://post.1yyg.com/detail-2698.html" target="_blank">哈哈中了中啦</a> <em class="gray02">10月30日 18:24</em></h3>
+                <p class="gray01">终于中奖啦，今天刚收到16G闪迪酷刃U盘，那个高兴呀，哈哈一开始还不信呢，现在终于实现了。。。哈哈，继续云购去……</p>
+            </div>
+            <ul class="SingleR_pic">
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131030181857999.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131030182048030.jpg"></li>
+                <li><img src="http://postimg.1yyg.com/UserPost/Small/20131030182114187.jpg"></li>
+            </ul>
+            <div class="SingleR_Comment" postid="2698" count="3">
+                <div class="Comment_smile gray02"><span><i></i>2人羡慕嫉妒恨</span><span><s></s>3条评论</span></div>
+            </div>
+        </div>
+    </div>
+    <div name="pitem" class="pages">
+        <ul class="pageULEx">
+            <li class="prev_page page_curgray"><a><i>&lt;</i>上一页</a></li>
+            <li class="curr_page">1</li>
+            <li><a href="javascript:gotoClick();" onclick="javascript:return PostFun.gotoPageIndex(11,20);">2</a></li>
+            <li><a href="javascript:gotoClick();" onclick="javascript:return PostFun.gotoPageIndex(21,30);">3</a></li>
+            <li><a href="javascript:gotoClick();" onclick="javascript:return PostFun.gotoPageIndex(31,40);">4</a></li>
+            <li><a href="javascript:gotoClick();" onclick="javascript:return PostFun.gotoPageIndex(41,50);">5</a></li>
+            <li>…</li>
+            <li><a href="javascript:gotoClick();" onclick="javascript:return PostFun.gotoPageIndex(51,60);">6</a></li>
+            <li class="next_page"><a href="javascript:gotoClick();" onclick="javascript:return PostFun.gotoPageIndex(11,20);">下一页</a></li>
+        </ul>
+    </div>
+</div>
+<div id="divGoodsRec" class="list_goodsTj">
+    <div class="list_goodsTjTit">人气推荐</div>
+    <div id="divRecommend" class="list_goodsTjCon">
+        <div class="Roll_Left"><a name="left" href="javascript:void();" class="Roll_enabled">&lt;</a></div>
+        <div class="Roll_Con">
+            <ul id="ulRecommend" style="width: 1820px; left: 0px; ">
+                <li>
+                    <div class="pic"> <a rel="nofollow" href="http://www.1yyg.com/products/21344.html" target="_blank" title="小米（MIUI） 红米手机"><img alt="小米（MIUI） 红米手机" src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20130816134906377.jpg" style=""></a> </div>
+                    <p class="name"> <a href="http://www.1yyg.com/products/21344.html" target="_blank" title="小米（MIUI） 红米手机">小米（MIUI） 红米手机</a> </p>
+                    <p class="money">价值：<span class="rmbgray">1099.00</span></p>
+                    <div class="go_buy"> <a href="http://www.1yyg.com/products/21344.html" target="_blank" title="立即1元云购" class="go_Shopping12" rel="nofollow">立即1元云购</a> </div>
+                </li>
+                <li>
+                    <div class="pic"> <a rel="nofollow" href="http://www.1yyg.com/products/21309.html" target="_blank" title="诺基亚（Nokia）1050手机"><img alt="诺基亚（Nokia）1050手机" src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20130424114718997.jpg" style=""></a> </div>
+                    <p class="name"> <a href="http://www.1yyg.com/products/21309.html" target="_blank" title="诺基亚（Nokia）1050手机">诺基亚（Nokia）1050手机</a> </p>
+                    <p class="money">价值：<span class="rmbgray">199.00</span></p>
+                    <div class="go_buy"> <a href="http://www.1yyg.com/products/21309.html" target="_blank" title="立即1元云购" class="go_Shopping12" rel="nofollow">立即1元云购</a> </div>
+                </li>
+                <li>
+                    <div class="pic"> <a rel="nofollow" href="http://www.1yyg.com/products/20701.html" target="_blank" title="闪迪（SanDisk）酷刃 (CZ50）16GB U盘"><img alt="闪迪（SanDisk）酷刃 (CZ50）16GB U盘" src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20121205160948468.jpg" style=""></a> </div>
+                    <p class="name"> <a href="http://www.1yyg.com/products/20701.html" target="_blank" title="闪迪（SanDisk）酷刃 (CZ50）16GB U盘">闪迪（SanDisk）酷刃 (CZ50）16GB U盘</a> </p>
+                    <p class="money">价值：<span class="rmbgray">72.00</span></p>
+                    <div class="go_buy"> <a href="http://www.1yyg.com/products/20701.html" target="_blank" title="立即1元云购" class="go_Shopping12" rel="nofollow">立即1元云购</a> </div>
+                </li>
+                <li>
+                    <div class="pic"> <a rel="nofollow" href="http://www.1yyg.com/products/21320.html" target="_blank" title="TPOS C4三叶草幸福系列 移动电源"><img alt="TPOS C4三叶草幸福系列 移动电源" src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20130527154606683.jpg" style=""></a> </div>
+                    <p class="name"> <a href="http://www.1yyg.com/products/21320.html" target="_blank" title="TPOS C4三叶草幸福系列 移动电源">TPOS C4三叶草幸福系列 移动电源</a> </p>
+                    <p class="money">价值：<span class="rmbgray">99.00</span></p>
+                    <div class="go_buy"> <a href="http://www.1yyg.com/products/21320.html" target="_blank" title="立即1元云购" class="go_Shopping12" rel="nofollow">立即1元云购</a> </div>
+                </li>
+                <li>
+                    <div class="pic"> <a rel="nofollow" href="http://www.1yyg.com/products/21345.html" target="_blank" title="苹果（Apple）iPhone 5S 16G版 3G手机（预售）"><img alt="苹果（Apple）iPhone 5S 16G版 3G手机（预售）" src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20130911134406272.jpg" style=""></a> </div>
+                    <p class="name"> <a href="http://www.1yyg.com/products/21345.html" target="_blank" title="苹果（Apple）iPhone 5S 16G版 3G手机（预售）">苹果（Apple）iPhone 5S 16G版 3G手机（预售）</a> </p>
+                    <p class="money">价值：<span class="rmbgray">5688.00</span></p>
+                    <div class="go_buy"> <a href="http://www.1yyg.com/products/21345.html" target="_blank" title="立即1元云购" class="go_Shopping12" rel="nofollow">立即1元云购</a> </div>
+                </li>
+                <li>
+                    <div class="pic"> <a rel="nofollow" href="http://www.1yyg.com/products/21346.html" target="_blank" title="小米（MIUI） 小米3 智能手机(16G)"><img alt="小米（MIUI） 小米3 智能手机(16G)" src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20130923164648695.jpg" style=""></a> </div>
+                    <p class="name"> <a href="http://www.1yyg.com/products/21346.html" target="_blank" title="小米（MIUI） 小米3 智能手机(16G)">小米（MIUI） 小米3 智能手机(16G)</a> </p>
+                    <p class="money">价值：<span class="rmbgray">2999.00</span></p>
+                    <div class="go_buy"> <a href="http://www.1yyg.com/products/21346.html" target="_blank" title="立即1元云购" class="go_Shopping12" rel="nofollow">立即1元云购</a> </div>
+                </li>
+                <li>
+                    <div class="pic"> <a rel="nofollow" href="http://www.1yyg.com/products/20702.html" target="_blank" title="闪迪（SanDisk）16G MicroSDHC(TF)存储卡 "><img alt="闪迪（SanDisk）16G MicroSDHC(TF)存储卡 " src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20120320114257599.jpg" style=""></a> </div>
+                    <p class="name"> <a href="http://www.1yyg.com/products/20702.html" target="_blank" title="闪迪（SanDisk）16G MicroSDHC(TF)存储卡 ">闪迪（SanDisk）16G MicroSDHC(TF)存储卡 </a> </p>
+                    <p class="money">价值：<span class="rmbgray">99.00</span></p>
+                    <div class="go_buy"> <a href="http://www.1yyg.com/products/20702.html" target="_blank" title="立即1元云购" class="go_Shopping12" rel="nofollow">立即1元云购</a> </div>
+                </li>
+                <li>
+                    <div class="pic"> <a rel="nofollow" href="http://www.1yyg.com/products/20388.html" target="_blank" title="罗技（Logitech）M185无线鼠标 "><img alt="罗技（Logitech）M185无线鼠标 " src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20110906173223276.jpg" style=""></a> </div>
+                    <p class="name"> <a href="http://www.1yyg.com/products/20388.html" target="_blank" title="罗技（Logitech）M185无线鼠标 ">罗技（Logitech）M185无线鼠标 </a> </p>
+                    <p class="money">价值：<span class="rmbgray">98.00</span></p>
+                    <div class="go_buy"> <a href="http://www.1yyg.com/products/20388.html" target="_blank" title="立即1元云购" class="go_Shopping12" rel="nofollow">立即1元云购</a> </div>
+                </li>
+                <li>
+                    <div class="pic"> <a rel="nofollow" href="http://www.1yyg.com/products/20704.html" target="_blank" title="闪迪（SanDisk）酷捷 (CZ51)16GB U盘 "><img alt="闪迪（SanDisk）酷捷 (CZ51)16GB U盘 " src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20120306200026991.jpg" style=""></a> </div>
+                    <p class="name"> <a href="http://www.1yyg.com/products/20704.html" target="_blank" title="闪迪（SanDisk）酷捷 (CZ51)16GB U盘 ">闪迪（SanDisk）酷捷 (CZ51)16GB U盘 </a> </p>
+                    <p class="money">价值：<span class="rmbgray">88.00</span></p>
+                    <div class="go_buy"> <a href="http://www.1yyg.com/products/20704.html" target="_blank" title="立即1元云购" class="go_Shopping12" rel="nofollow">立即1元云购</a> </div>
+                </li>
+                <li>
+                    <div class="pic"> <a rel="nofollow" href="http://www.1yyg.com/products/20387.html" target="_blank" title="罗技（Logitech）M215无线鼠标 "><img alt="罗技（Logitech）M215无线鼠标 " src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20121205140342680.jpg" style=""></a> </div>
+                    <p class="name"> <a href="http://www.1yyg.com/products/20387.html" target="_blank" title="罗技（Logitech）M215无线鼠标 ">罗技（Logitech）M215无线鼠标 </a> </p>
+                    <p class="money">价值：<span class="rmbgray">118.00</span></p>
+                    <div class="go_buy"> <a href="http://www.1yyg.com/products/20387.html" target="_blank" title="立即1元云购" class="go_Shopping12" rel="nofollow">立即1元云购</a> </div>
+                </li>
+            </ul>
+        </div>
+        <div class="Roll_Right"><a name="right" href="javascript:void();" class="Roll_enabled">&gt;</a></div>
+    </div>
+</div>
+</body>
+</html>

@@ -35,7 +35,8 @@ class MockProductsModel extends \lithium\data\Model {
                             'hits' => 1000,
                             'created' => '1384876800', 
                             'showed' => '1384963200', 
-                            'type_id' => 0, 
+                            'orders' => [],
+                            'results' => [],
                             'status' => 2,
                         ],
                         [
@@ -48,7 +49,8 @@ class MockProductsModel extends \lithium\data\Model {
                             'hits' => 1000,
                             'created' => '1384876800', 
                             'showed' => '1384963200', 
-                            'type_id' => 0, 
+                            'orders' => [],
+                            'results' => [],
                             'status' => 1,
                         ],
                         [
@@ -61,12 +63,12 @@ class MockProductsModel extends \lithium\data\Model {
                             'hits' => 100,
                             'created' => '1384876800', 
                             'showed' => '', 
-                            'type_id' => 0, 
+                            'orders' => [],
+                            'results' => [],
                             'status' => 0,
                         ]
                     ],
                     'shares' => [],
-                    'limits' => [],
                 ];
                 break;
             

@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加日记</title>
+<link type="text/css" rel="stylesheet"  href="css/header.css"/>
+<link type="text/css" rel="stylesheet"  href="css/comm.css"/>
+<link type="text/css" rel="stylesheet"  href="css/product_list.css"/>
+</head>
+
+<body style="background:#fff;">
+</body>
+<div class="header">
+             <div class="site_top">
+                <div class="head_top">
+                 <p class="collect"><a href="javascript:void();" id="addSiteFavorite">收藏1元云购</a></p><p class="Ht-qqicon"><a class="gray01" href="http://help.1yyg.com/info/htm-qqgroup.html" target="_blank">官方QQ群</a></p>
+                 <ul class="login_info" style="display: block;">
+                     <li class="h_login" id="logininfo"><i>您好，欢迎光临！</i><a rel="nofollow" href="http://passport.1yyg.com/login.html?forward=rego" class="gray01">登录</a><span>|</span><a rel="nofollow" href="http://passport.1yyg.com/register.html?forward=rego" class="gray01">注册</a></li>
+                     <li class="h_1yyg">
+                         <a rel="nofollow" href="http://member.1yyg.com/">我的1元云购<b></b></a>
+                         <div class="h_1yyg_eject" style="display: none; ">
+                             <dl>
+                                 <dt><a rel="nofollow" href="http://member.1yyg.com/">我的1元云购<i></i></a></dt>
+                                 <dd><a rel="nofollow" href="http://member.1yyg.com/UserBuyList.html">云购记录</a></dd>
+                                 <dd><a rel="nofollow" href="http://member.1yyg.com/OrderList.html">获得的商品</a></dd>
+                                 <dd><a rel="nofollow" href="http://member.1yyg.com/UserRecharge.html">帐户充值</a></dd>
+                                 <dd><a rel="nofollow" href="http://member.1yyg.com/MemberModify.html">个人设置</a></dd>
+                             </dl>
+                         </div>
+                     </li>
+                     <li class="h_news" id="liMsgTip" style="display:none;">
+                         <a rel="nofollow" href="http://member.1yyg.com/userMessage.html">消息<b></b></a>
+                         <div class="h_news_down" style="display:none;">
+                             <div class="h_news_downT"><a rel="nofollow" href="http://member.1yyg.com/userMessage.html">消息<i></i></a></div>
+                             <div class="h_news_downC"></div>
+                         </div>
+                     </li>
+                     <li class="h_Mobile"><a rel="nofollow" target="_blank" href="http://info.1yyg.com/app/desktop.html">桌面版</a></li>
+                     <li class="h_Mobile"><a rel="nofollow" target="_blank" href="http://info.1yyg.com/app/touch.html">手机版</a></li>
+                     <li class="h_help"><a rel="nofollow" target="_blank" href="http://help.1yyg.com/">帮助</a></li>
+                     <li class="h_inv"><a rel="nofollow" target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2355805906&amp;site=qq&amp;menu=yes">在线客服</a></li>
+                   </ul>
+                </div>
+             </div>
+         </div>
+<div class="head_mid">
+    <div class="head_mid_bg">
+        <h1 class="logo_1yyg"><a class="logo_1yyg_img" href="http://www.1yyg.com" title="1元云购">1元云购</a></h1>
+        <div id="topJackaroo" class="newbie_guide"></div>
+        <div class="head_number">
+            <a href="http://dataserver.1yyg.com/HistoryBuyRecords.html" target="_blank">已<span id="spBuyCount" style="color: rgb(34, 170, 255); background-color: rgb(245, 245, 245); opacity: 1; background-position: initial initial; background-repeat: initial initial; ">7383415</span>人次参与云购</a></div>
+        <div class="head_search">
+            <input type="text" id="txtSearch" class="init" value="" title="输入"红米手机" 试试"><input type="button" id="butSearch" class="search_submit" value="搜索">
+            <div class="keySearch">
+                <a href="http://www.1yyg.com/search/?q=智能手机" target="_blank">智能手机</a>
+                <a href="http://www.1yyg.com/search/?q=3G手机" target="_blank">3G手机</a>
+                <a href="http://www.1yyg.com/search/?q=宝马" target="_blank">宝马</a>
+                <a href="http://www.1yyg.com/search/?q=单反" target="_blank">单反</a>                 
+            </div>
+        </div>
+    </div>
+</div>
+<div class="head_nav">
+     <div class="nav_center">
+         <ul class="nav_list">
+             <li class="home-back"><a href="http://www.1yyg.com/" class="home">首页</a></li>
+             <li class="sort-all" id="slideSort"><a class="sort" href="http://www.1yyg.com/list/m1.html">所有商品</a></li>
+             <li class="new-lottery"><a href="http://dataserver.1yyg.com/lottery.html">最新揭晓</a></li>
+             <li class="share"><a href="http://post.1yyg.com/">晒单分享</a></li>
+             <li class="nav_Cloud"><a href="http://www.1yyg.com/autolottery.html">限时揭晓</a></li>
+             <li class="cooperation"><a rel="nofollow" href="http://member.1yyg.com/ReferAuth.html">邀请</a></li>
+             <li class="what-1yyg"><a rel="nofollow" href="http://help.1yyg.com/info/newbie/index.html" class="what-yg">新手指南</a></li>
+         </ul>
+         <div class="mini_mycart" id="sCart">
+                  <input type="hidden" id="hidChanged" value="0">
+             <a rel="nofollow" href="http://www.1yyg.com/MyCart/CartList.html" id="sCartNavi" class="cart"><s></s>购物车<span id="sCartTotal">0</span></a><a rel="nofollow" href="http://www.1yyg.com/MyCart/CartList.html" class="checkout">去结算</a>
+             <div class="mycart_list" id="sCartlist" style="display: none; z-index: 99999; ">
+                 <div class="goods_loding" id="sCartLoading"><img border="0" alt="" src="http://skin.1yyg.com/images/goods_loading.gif">正在加载......</div>
+                 <p id="p1">共计 <span id="sCartTotal2"> 0</span> 件商品 金额总计：<span id="sCartTotalM" class="rmbred">0.00</span></p>
+                 <h3><input type="button" id="sGotoCart" value="去购物车并结算"></h3>
+             </div>
+         </div>
+     </div>
+ </div>
+<!--产品管理开始-->
+<div class="user_content">
+	<div class="infoList">
+    	<h2>产品管理</h2>
+        
+        <dl class="title_menu">
+        	<dd class="first">标题</dd>
+            <dd>标题</dd>
+            <dd>标题</dd>
+            <dd>标题</dd>
+            <dd>标题</dd>
+            <dd>操作</dd>
+        </dl>
+    	<ul>
+        	<li>
+            	<a href="#" class="product_img"><img src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20130923164648695.jpg"/></a>
+            	<a href="#" class="product_title">TP-LINK TL-WR703N 150M无线迷你型3G路由器</a>
+                <span class="bottom_list">
+                	<a href="#" class="edit">编辑</a>
+                	<a href="#" class="delete">删除</a>
+                	<a href="#" class="shelves">上架</a>
+                </span>
+            </li>
+            <li>
+            	<a href="#" class="product_img"><img src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20130923164648695.jpg"/></a>
+            	<a href="#" class="product_title">TP-LINK TL-WR703N 150M无线迷你型3G路由器</a>
+                <span class="bottom_list">
+                	<a href="#" class="edit">编辑</a>
+                	<a href="#" class="delete">删除</a>
+                	<a href="#" class="shelves">上架</a>
+                </span>
+            </li>
+            <li>
+            	<a href="#" class="product_img"><img src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20130923164648695.jpg"/></a>
+            	<a href="#" class="product_title">TP-LINK TL-WR703N 150M无线迷你型3G路由器</a>
+                <span class="bottom_list">
+                	<a href="#" class="edit">编辑</a>
+                	<a href="#" class="delete">删除</a>
+                	<a href="#" class="shelves">上架</a>
+                </span>
+            </li>
+            <li>
+            	<a href="#" class="product_img"><img src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20130923164648695.jpg"/></a>
+            	<a href="#" class="product_title">TP-LINK TL-WR703N 150M无线迷你型3G路由器</a>
+                <span class="bottom_list">
+                	<a href="#" class="edit">编辑</a>
+                	<a href="#" class="delete">删除</a>
+                	<a href="#" class="shelves">上架</a>
+                </span>
+            </li>
+            <li>
+            	<a href="#" class="product_img"><img src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20130923164648695.jpg"/></a>
+            	<a href="#" class="product_title">TP-LINK TL-WR703N 150M无线迷你型3G路由器</a>
+                <span class="bottom_list">
+                	<a href="#" class="edit">编辑</a>
+                	<a href="#" class="delete">删除</a>
+                	<a href="#" class="shelves">上架</a>
+                </span>
+            </li>
+            <li>
+            	<a href="#" class="product_img"><img src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20130923164648695.jpg"/></a>
+            	<a href="#" class="product_title">TP-LINK TL-WR703N 150M无线迷你型3G路由器</a>
+                <span class="bottom_list">
+                	<a href="#" class="edit">编辑</a>
+                	<a href="#" class="delete">删除</a>
+                	<a href="#" class="shelves">上架</a>
+                </span>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--产品管理结束-->
+ <!--底部-->
+     <div class="footer_content">
+       <div class="footer_line"></div>
+       <div class="footservice">
+           <div class="support">
+               <dl class="ft-newbie">
+                   <dt><span>新手指南</span></dt>
+                   <dd><b></b><a href="http://help.1yyg.com/" rel="nofollow" target="_blank">了解1元云购</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-questiondetail.html" rel="nofollow" target="_blank">常见问题</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-agreement.html" rel="nofollow" target="_blank">服务协议</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-userExperience.html" rel="nofollow" target="_blank">会员福分经验值</a></dd>
+               </dl>
+               <dl class="ft-wares">
+                   <dt><span>云购保障</span></dt>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-genuinetwo.html" rel="nofollow" target="_blank">1元云购保障体系</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-genuine.html" rel="nofollow" target="_blank">正品保障</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-securepayment.html" rel="nofollow" target="_blank">安全支付</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-suggestion.html" rel="nofollow" target="_blank">投诉建议</a></dd>
+               </dl>
+               <dl class="ft-delivery">
+                   <dt><span>商品配送</span></dt>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-ship.html" rel="nofollow" target="_blank">商品配送</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-deliveryfees.html" rel="nofollow" target="_blank">配送费用</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-prodcheck.html" rel="nofollow" target="_blank">商品验货与签收</a></dd>
+                   <dd><b></b><a href="http://help.1yyg.com/htm-shiptwo.html" rel="nofollow" target="_blank">长时间未收到商品</a></dd>
+               </dl>
+               <dl class="ft-ygjj">
+                   <dt><span>云购基金</span></dt>
+                   <dd><b></b><a href="http://info.1yyg.com/fund/" rel="nofollow" target="_blank">云购基金</a></dd>
+                   <dd><b></b><a href="http://info.1yyg.com/fund/" rel="nofollow" target="_blank">社会活动</a></dd>
+               </dl>
+               <dl class="ft-fwrx">
+                   <dt><span>服务热线</span></dt>
+                   <dd class="ft-fwrx-tel"><i></i></dd>
+                   <dd class="ft-fwrx-time">周一至周五 8:30-18:30</dd>
+                   <dd class="ft-fwrx-service"><span class="ft-qqicon"><a href="http://help.1yyg.com/info/htm-qqgroup.html" rel="nofollow" target="_blank" style="text-indent:0em; background:none;width:160px;">官方QQ群①：<em class="orange Fb">89834747</em></a></span><span class="ft-qqicon"><a href="http://help.1yyg.com/info/htm-qqgroup.html" rel="nofollow" target="_blank" style="text-indent:0em; background:none;width:160px;">官方QQ群②：<em class="orange Fb">190818578</em></a></span></dd>
+               </dl>
+               <dl class="ft-weixin">
+                   <dt><span>微信扫一扫</span></dt>
+                   <dd class="ft-weixin-img"><s></s></dd>
+                   <dd class="gray02"></dd>
+               </dl>
+           </div>
+       </div>
+       <div class="service-promise">
+           <ul>
+               <li class="sp-fair"><a href="http://help.1yyg.com/htm-genuinetwo.html" rel="nofollow" target="_blank"><span></span></a></li>
+               <li class="sp-wares"><a href="http://help.1yyg.com/htm-genuine.html" rel="nofollow" target="_blank"><span></span></a></li>
+               <li class="sp-free-delivery"><a href="http://help.1yyg.com/htm-deliveryfees.html" rel="nofollow" target="_blank"><span></span></a></li>
+               <li class="sp-business service-promise-border-r0"><a href="http://help.1yyg.com/info/htm-business.html" rel="nofollow" target="_blank"><span></span></a></li>
+           </ul>
+       </div>
+       <div class="service_date">
+           <div class="Service_Time">
+               <p>服务器时间</p>
+               <span id="sp_ServerTime">17:18:41</span>
+           </div>
+           <div class="Service_Fund">
+               <a href="http://info.1yyg.com/fund/" target="_blank">
+                   <p>云购公益基金</p>
+                   <span id="spanFundTotal">1073979.25</span>
+               </a>
+           </div>
+       </div>
+</div>
+    <div class="footer">
+    <div class="footer_links">
+        <a href="http://www.1yyg.com/" rel="nofollow">首页</a>
+        <b></b>
+          <a href="http://help.1yyg.com/htm-about.html" rel="nofollow">关于云购</a>
+        <b></b>
+          <a href="http://help.1yyg.com/htm-privacy.html" rel="nofollow">隐私声明</a>
+        <b></b>
+          <a href="http://help.1yyg.com/info/htm-business.html" rel="nofollow">合作专区</a>
+        <b></b>
+          <a href="http://help.1yyg.com/info/htm-jobs.html" rel="nofollow">加入云购</a>
+        <b></b>
+        <a href="http://group.1yyg.com/" rel="nofollow">云购圈</a>
+        <b></b>
+        <a href="http://www.1yyg.com/link.html" rel="nofollow">友情链接</a>
+        <b></b>
+          <a href="http://help.1yyg.com/htm-contactus.html" rel="nofollow">联系我们</a>
+      </div>
+    <div class="copyright">Copyright  © 2011 - 2013,  版权所有  1yyg.com  粤ICP备09213115号-1</div>
+      <div class="footer_icon" style="width:599px;">
+        <ul>
+            <li class="fi_ectrustchina"><a target="_blank" href="http://www.1yyg.com/url.html?t=1"><span>可信网站</span></a></li>
+            <li class="fi_315online"><a target="_blank" href="http://www.1yyg.com/url.html?t=2"><span>深圳市市场监督管理局</span></a></li>
+            <li class="fi_cnnic"><a target="_blank" href="http://www.1yyg.com/url.html?t=3"><span>中国电子商务诚信单位</span></a></li>
+              <li class="fi_anxibao"><a target="_blank" href="http://www.1yyg.com/url.html?t=6"><span>安信保</span></a></li>
+            <li class="fi_pingan"><a target="_blank" href="http://www.1yyg.com/url.html?t=4"><span>平安银行</span></a></li>
+            <li class="fi_qh"><a target="_blank" href="http://www.1yyg.com/url.html?t=5"><span>前海股权交易中心</span></a></li>
+        </ul>
+    </div>
+</div>
+<div class="hCollectCon">
+    <div class="hCollectCon2">
+        <div class="hCollect">
+            <ul>
+                <li><a target="_blank" href="http://www.1yyg.com" class="hyyg" title="1元云购">1元云购</a></li>
+                <li><a target="_blank" href="http://www.1yyg.com/autolottery.html" class="hauto" title="限时揭晓">限时揭晓</a></li>
+                <li><a target="_blank" href="http://www.baidu.com" class="hbaidu" title="百度">百度</a></li>
+                <li><a id="btnAdd" href="javascript:;" class="hadd">编辑</a></li>
+            </ul>
+        </div>
+     </div>
+</div>
+</html>
