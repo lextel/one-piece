@@ -33,8 +33,8 @@ $this->scripts($this->resLoader->script('jquery.fileupload.js'));
       </li>
       <li>
         <div class="bottom_side">
-            <input type="hidden" value="<?= $share['periodId'] ?>" name="periodId"/>
-            <input type="hidden" value="<?= $share['productId']?>" name="productId"/>
+            <input type="hidden" value="<?= $share['periodId'] ?>" name="period_id"/>
+            <input type="hidden" value="<?= $share['productId']?>" name="product_id"/>
             <input type="submit" class="published" value="提交"/>
             <input type="reset" class="canal" value="重置"/>
         </div>

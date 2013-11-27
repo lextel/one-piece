@@ -1,26 +1,24 @@
 @charset "utf-8";
 /* CSS Document */
 .orange {color: #F60;}
-.home {
-background: #F40;
-border: 1px solid #E53D00;
-box-shadow: inset 0 0 15px #E53D00;
-height: 33px;
-overflow: hidden;
-font-weight: bold;
-line-height: 32px;
-}
 .head_nav .nav_list li a:hover{background:#F40;border: 1px solid #F40;}
 .list_class {width: 978px;background: white;border: 1px solid #E4E4E4;padding-bottom: 10px;border-top: none;zoom: 1;position: relative;overflow: hidden;}
 .list_class dl {padding-top: 10px;float: left;}
 .list_class dt {float: left;width: 53px;text-align: center;line-height: 22px;color: #BBB;}
 .list_class dd {float: left;width: 860px;overflow: hidden;}
 .list_class dd ul {float: left;}
-.list_class dd li {float: left;width: 80px;height: 24px;overflow: hidden;margin-bottom: 2px;margin-right: 10px;}
-.list_class dd a.ClassCur {background: #F60;color: white;padding: 5px;white-space: nowrap;}
+.list_class dd li {float: left;width: 130px;height: 24px;overflow: hidden;margin-bottom: 2px;margin-right: 10px;}
+.list_class dd a.ClassCur {background: #F60;color: white;padding: 2px 5px 2px 5px;white-space: nowrap;}
 .list_class dd a {line-height: 22px;height: 24px;overflow: hidden;padding: 2px 5px 2px 5px;color: #666;white-space: nowrap;}
 a.list_classMore:visited, a.list_classMore:hover, a.list_classMore:active {color: #2AF;}
 a.list_classMore {border: 1px solid #EEE;display: inline-block;position: absolute;bottom: 10px;right: 10px;padding: 2px 8px 1px 8px;_padding: 3px 8px 3px 8px;color: #2AF;}
+.list_classMore i {
+	width: 8px;
+	height: 8px;
+	overflow: hidden;
+	display: inline-block;
+	background-position: right -158px !important;
+}
 .list_Sort {width: 978px;height: 48px;background: white;border: 1px solid #E4E4E4;border-top: none;}
 .list_Sort dl {float: left;padding-top: 10px;}
 .list_Sort dt {float: left;width: 53px;text-align: center;padding-top: 4px;color: #BBB;}
@@ -34,22 +32,15 @@ a.list_classMore {border: 1px solid #EEE;display: inline-block;position: absolut
 	display: inline-block;
 	float: left;
 }
-.list_Sort dl dd a i{
+.list_Sort dd .Price_Sort i{
 	background-position: 0 -170px;
 	width:7px;
 	height:9px;
 	display:inline-block;
 	cursor:pointer;
-	margin-left:8px;
-}
-.goods_tj, .goods_xp, .goods_rq, .goods_xs, .list_classMore i, .MoreClick i, .list_Sort dd a i, .SortCur b, .SortCur s {
-background: url(../img/goods_tj.png) no-repeat;
 }
 /*用户信息*/
 .user_content{width:980px;margin:40px auto 0;overflow:hidden;}
-.wrap h2{ height: 30px;font-size: 18px;border-top: 1px dashed #DBDBDB;line-height: 30px;padding: 10px 0;}
-.wrap h2 .insert_p{ display:block; float:right; color:#333;}
-.wrap h2 .insert_p:hover{color:#f60; text-decoration:underline;}
 .user_nav{}
 .user_pic{float:left; width:70px;height:70px;overflow:hidden;}
 .user_info{float:left;}
@@ -115,14 +106,11 @@ h1 {font-size: 25px;font-weight: bold;color: #494949;margin: 0;}
 .stream_c_r p{ margin:10px 0 0 20px; color:#666;}
 /*添加商品*/
 .add_product{width:100%; overflow:hidden;}
-.add_product .return_list{ font-size:16px; color:#333; display:block; float:right;}
-.add_product .return_list:hover{ text-decoration:underline; color:#f60;}
 .add_product h2{height:30px; font-size:18px; border-top:1px dashed #dbdbdb; line-height:30px;}
 .add_product ul{margin-top:20px; overflow:hidden;}
-.add_product ul li{ margin-bottom:10px; overflow:hidden;}
-.add_product ul .content_li{ margin-left:56px;}
+.add_product ul li{ margin-bottom:10px; width:100%; overflow:hidden;}
 .add_product ul li textarea{ float:left;height:250px; font-size:14px; width:580px; border:1px solid #dbdbdb;}
-.text_nums div label.error{
+.add_product ul li .error{
 	float:left;
 	height: 30px;
 	line-height:30px;
@@ -133,20 +121,16 @@ h1 {font-size: 25px;font-weight: bold;color: #494949;margin: 0;}
 	overflow: hidden;
 	display: inline-block;
 }
-.share_edit{ margin-left:53px;}
-.share_edit div label{ display:block; float:left; margin-right:5px;}
-.edui-editor{ height:250px; overflow:hidden;}
 .add_product ul li h4{ margin-left:44px;}
-.add_product ul li div label{font-size:14px; }
-.text_nums div input{height:30px; border:1px solid #dbdbdb; width:200px;float:left; margin-left:5px; text-indent:10px; }
+.add_product ul li div label{font-size:14px;}
+.text_nums div input{height:30px; border:1px solid #dbdbdb; width:200px;float:left; margin-left:5px; }
 .text_nums div label{display: block;float: left;height: 30px;line-height: 30px;text-align: right; width:80px; font-size:14px;}
 .add_product ul .radio_nums input{height:30px; padding-top:8px; float:left; margin:0 10px;}
-.add_product ul li div select{height:26px; line-height:26px; border:1px solid #dbdbdb; float:left; margin-left:5px;}
+.add_product ul li div select{height:26px; line-height:26px; border:1px solid #dbdbdb; float:left;}
 .add_product ul .radio_nums { margin-left:65px;}
 .add_product ul .radio_nums label{ float:left; height:30px; line-height:30px;}
 .add_product ul .radio_select label{ float:left; height:30px; line-height:30px;}
-.bottom_side{height:36px; width:100%; margin:10px 0 0 65px;}
-.content_li .error{ margin-left:30px;color:red;}
+.bottom_side{height:36px; width:100%; margin-left:50px;}
 .bottom_side  input{
 	display:block; 
 	width:60px; 
@@ -159,7 +143,7 @@ h1 {font-size: 25px;font-weight: bold;color: #494949;margin: 0;}
 	border-radius:3px;
 	margin-left:20px;
 }
-.bottom_side input{ float:left;background:#f60; color:#fff; cursor:pointer}
+.bottom_side input{ float:left;background:#f60; color:#fff;}
 .bottom_side input{ float:left;}
 .add_product ul li dl {margin-left:74px;}
 .add_product ul li dl dd{
@@ -186,29 +170,6 @@ h1 {font-size: 25px;font-weight: bold;color: #494949;margin: 0;}
 	color:#fff; 
 	border-radius:4px;
 	border:1px  solid #e05b02;
-	position: relative;
-}
-.add_p_img dd img {
-	width:38px;
-	height: 38px;
-}
-#upload {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
-    opacity: 0;
-    -ms-filter: 'alpha(opacity=0)';
-    direction: ltr;
-    cursor: pointer;
-    width: 38px;
-    height: 38px;
-}
-.none {
-	width:0 !important;
-	height:0 !important;
-	opacity: 0;
-    -ms-filter: 'alpha(opacity=0)';
 }
 .help-contact .Customer {
 	width: 128px;
@@ -241,26 +202,19 @@ h1 {font-size: 25px;font-weight: bold;color: #494949;margin: 0;}
 .help_right .help_right_c p{font-size:14px; line-height:22px; margin-bottom:10px;}
 .help_right .help_right_c h4{font-size:14px; font-weight:bold; margin-bottom:8px;}
 /*产品管理*/
-.edit_product{ width:980px; margin:0 auto; margin:20px 0; border-top:1px  solid #ddd; padding-top:20px;}
-.edit_product li{ height:40px; line-height:40px; border-bottom:1px dashed #ddd;}
-.edit_product li a{ color:#333; display:block; float:left; font-size:14px;}
-.edit_product li .bottom_list{display: block; float:right;}
-.edit_product li .bottom_list a{
-	width:50px; 
-	background:#2af; 
-	border-radius:5px; 
-	margin-right:5px; 
-	height:30px; 
-	float:left; 
-	color:#FFF; 
-	text-align:center; 
-	line-height:30px;
-	margin-top:4px;
-}
-.pager ul li{ float:left; margin-right:10px; height:40px; line-height:40px;}
-.pager ul li a{ color:#333; font-size:14px;} 
-.pager ul li a:hover,.edit_product li a:hover{ color:#f60;} 
-.pager ul li.active a{ color:#f60; text-decoration:underline;}
+.infoList{width:700px; overflow:hidden; margin-bottom:20px;}
+.infoList h2{height: 36px;line-height: 36px;font-size: 18px;}
+.infoList ul{ margin-top:10px;}
+.infoList ul li{ border-bottom:1px  dashed #ddd; height:40px; line-height:40px; margin:5px 0;} 
+.infoList ul li a{ display:block;} 
+.infoList ul li a.product_title{ float:left; color:#333;} 
+.infoList ul li a.product_img{ float:left; margin-right:10px;}
+.infoList ul li a.product_img img{ width:36px; height:36px;overflow:hidden;}
+.infoList ul li .bottom_list{ float:right; display:block; margin-top:5px;} 
+.infoList ul li .bottom_list a{ width:50px; background:#2af; border-radius:5px; margin-right:5px; height:30px; float:left; color:#FFF; text-align:center; line-height:30px; }  
+.infoList .title_menu{ width:696px; overflow:hidden; margin:10px 0; border-top:2px solid #49B8FF; border-bottom:1px solid #dbdbdb; border-left:1px solid #dbdbdb }
+.infoList .title_menu dd{ height:36px; line-height:36px; background:#f5f5f5; border-right:1px solid #dbdbdb;float:left; text-align:center; width:115px; cursor: pointer}
+.infoList .title_menu .first{ background:#49B8FF; color:#FFF;}
 /*开奖列表*/
 .Newpublish {width: 980px;margin: 0 auto;}
 .NewpublishL {width: 733px;float: left;overflow: hidden;}
@@ -360,7 +314,8 @@ h1 {font-size: 25px;font-weight: bold;color: #494949;margin: 0;}
 	background: url(../img/lottery-1.png) center top no-repeat;
 }
 .publishC-tit {margin: 4px 8px 0 155px;}
-.Pour-time {width: 174px;height: 52px;background: #F60;margin-left: 155px;margin-top: 13px;overflow: hidden;}
+.Pour-time,.calculating {width: 174px;height: 52px;background: #F60;margin-left: 165px;margin-top: 13px;overflow: hidden;}
+.calculating{text-align: center;line-height: 52px;font-size: 22px;color: white;font-weight: bold;}
 .publishCen li.lottery .details {text-align: center;line-height: 26px;color: white;background: #F60;}
 .Pour-time b {
 	width: 55px;
@@ -728,6 +683,7 @@ autoOld ul.autoOldlist .Progress-bar {height: 55px;}
 	font-family: arial;
 	text-indent: 8px;
 	float: left;
+	border:1px #ddd solid;
 }
 .login .login_bg .login_box ul li.ts_wrong {
 	width: 284px;
@@ -735,11 +691,11 @@ autoOld ul.autoOldlist .Progress-bar {height: 55px;}
 	padding: 3px 0 5px 18px;
 	color: #D00;
 	clear:both;
-	background: url(http://skin.1yyg.com/img/arrow_button.png) no-repeat -170px -74px;
+	background: url(../img/arrow_button.png) no-repeat -170px -74px;
 }
 .login .login_bg .login_box ul li span {height: 30px;line-height: 30px;display: block;float: left;}
 .login .login_bg .login_box ul li span.fog {padding: 0 5px;color: gray;}
-.login .login_bg .login_box ul li.ts {width: 340px;text-indent: 36px;padding: 3px 0 5px 0;color: #BFBFBF;}
+.login .login_bg .login_box ul li.ts {width: 340px;text-indent: 55px; height:26px;color: #BFBFBF; background-position:37px 4px;}
 .login .login_bg .login_box ul li.end {width: 304px;padding: 10px 0 0 36px; overflow:hidden;}
 .login .login_bg .login_box ul li input.login_init {
 	background: url(../img/arrow_button.png) no-repeat 0 -112px;
@@ -864,6 +820,109 @@ background: url(../img/login_new.png) no-repeat;
 	vertical-align: -4px;
 }
 .login_ConInput .login_Membut {margin-left: 140px;}
+/*找回密码*/
+.find_title {
+	height: 40px;
+	line-height:40px;
+	text-indent:30px;
+	border-bottom: 1px solid #E3E3E3;
+	background: #ddd;
+	font-size:16px;
+	font-weight:bold;
+	color:#666;
+}
+.login_CMobile_Complete p{
+	font-size:14px;
+}
+
+.login_Content{
+	margin:0 auto;
+	overflow:hidden;
+}
+.login_CMobile_Complete {
+	padding: 64px 0 70px 200px;
+}
+.login_CMobile_Complete dl {
+	margin:20px 0;
+	overflow:hidden;
+}
+.login_input_text{
+	width:70px;
+	height:33px;
+	line-height:33px;
+	text-indent:10px;
+	border:1px solid #bbb;
+	display:block;
+	float:left;
+}
+.login_CMobile_Complete dl dd{
+	float:left;
+	height:35px;
+}
+.login_CMobile_Complete dl dd span{
+	display:block;
+	height:35px;
+	float:left;
+	margin-left:15px;
+	line-height:35px;
+	
+}
+.login_CMobile_Complete dl dd span a{
+	font-size:14px;
+	text-decoration:underline;
+	color:#0CF;
+	vertical-align:middle;
+}
+.login_CMobile_Complete dl dt {
+	width: 150px;
+	height: 35px;
+	overflow: hidden;
+	line-height: 35px;
+	font-size: 14px;
+	text-align: right;
+	color: #666;
+	float:left;
+}
+.login_CMobile_Complete button {
+	background: #F60;
+	color: white;
+	width:70px;
+	height: 33px;
+	line-height: 33px;
+	border-radius:3px;
+	font-size:16px;
+	margin:20px 0 0 150px;
+	text-align: center;
+	padding: 0 10px;
+	cursor: pointer;
+}
+
+.login_CMobile_CodeW {
+	width: 234px;
+	height: 33px;
+	line-height: 33px;
+	padding-left: 3px;
+	border: 1px solid #BBB;
+	font-size: 14px;
+	vertical-align: middle;
+	float: left;
+}
+.login_Explain {
+	width: 715px;
+	padding: 34px 0 50px 155px;
+	margin: 0 auto;
+	border-top: 1px dotted #CDCDCD;
+}
+.login_Explain p{
+	color:#999;
+}
+
+.login_Explain p a{
+	color:#2af;
+	text-decoration:underline;
+}
+
+
 .Mem_orangebut {
 	width: 162px;
 	height: 36px;
@@ -924,29 +983,6 @@ background: url(../img/login_new.png) no-repeat;
 	margin-top: 1px;
 	margin-left: -1px;
 	margin-bottom: 0;
-}
-.list_Sort dd a.SortCur i{
-	background-position:-22px -170px;
-}
-.list_Sort dd a.SortCur s{
-	background-position: -43px -170px;
-} 
-.list_Sort dd a s{
-	width: 7px;
-	height: 9px;
-	display: inline-block;
-	overflow: hidden;
-	cursor: pointer;
-	margin-left: 7px;
-	background:	url(../img/goods_tj.png) no-repeat 0px -170px;
-} 
-.list_Sort dd .Price_Sort i, .list_Sort dd .SortCur b, .list_Sort dd .SortCur s {
-	width: 7px;
-	height: 9px;
-	display: inline-block;
-	overflow: hidden;
-	cursor: pointer;
-	margin-left:7px;
 }
 
 .share_list {width: 980px;padding: 0 0 20px 0;background: #F7F7F7;overflow: hidden;zoom: 1;}
@@ -1056,7 +1092,7 @@ background: url(../img/login_new.png) no-repeat;
 }
 .moodm .smile i {background-position: 0 -30px !important;}
 .moodm .smile i {width: 13px;height: 11px;display: inline-block;background-position: 0 -72px;position: absolute;left: 4px;top: 7px;}
-.tsed, .ts, .smile i, .smile-have i, .much i {background: url(../img/share_icon.png);}
+.tsed, .ts, .smile i, .smile-have i, .much i {background: url(../img/share_icon.png )no-repeat;}
 .moodm .much {
 	padding-left: 18px;
 	color: #999;
@@ -1082,6 +1118,9 @@ span.bds_more, .bds_tools a {display: block;font-family: '宋体',Arial;height: 
 .Comment-txt {width: 99.4%;height: 87px;border: 1px solid #987;}
 .Comment_login {width: 99.4%;height: 48px;line-height: 48px;position: absolute;top: 0;left: 1px;background: #EEE;text-align: center;border: 1px solid #C2C2C2;}
 .Comment_single {width: 713px;margin: 0 auto 0;padding: 15px;color: #666;border-bottom: 1px solid #EEE;}
+.Comment_button{ float:right; margin-top:10px;}
+.Comment_button span i{color:#f60;}
+.Comment_button button{ height:26px; background:#f60; text-align:center; line-height:26px; color:#fff; border-radius:3px; padding:0 10px; cursor:pointer;}
 .clearfix {display: block;}
 .User_head {width: 30px;height: 30px;float: left;}
 .User_head img {width: 50px;height: 50px;}
@@ -1094,6 +1133,7 @@ span.bds_more, .bds_tools a {display: block;font-family: '宋体',Arial;height: 
 .C_summary img {vertical-align: middle;}
 .C_summary .Reply-r {position: absolute;bottom: 0;right: 0;font-family: 宋体;}
 .C_summary .Reply-r a {margin-left: 10px;}
+
 /*右边内容*/
 .hidden {display: none;}
 .Comment_right {float: right;width: 234px;overflow:hidden;}
@@ -1132,16 +1172,16 @@ span.bds_more, .bds_tools a {display: block;font-family: '宋体',Arial;height: 
 .victory_head img {height: 50px;width: 50px;display: block;font-size: 0;overflow: hidden;vertical-align: top;}
 .victory_User {font-family: Arial,Helvetica,sans-serif;font-size: 12px;height: 18px;color: #676767;white-space: nowrap;}
 .victory_User .blue {margin-right: 5px;}
-.Comment_share {width: 203px;overflow: hidden;}
+.Comment_share {width: 203px;overflow: hidden; padding:0 16px;}
 .Comment_share h4 {font-size: 14px;font-weight: bold;color: #666;height: 20px;margin-top: 15px;}
 .New-single {width: 203px;overflow: hidden;margin-top: 11px;padding-bottom: 15px;border-bottom: 1px dotted #D9D9D9;}
 .New-single-C {margin-top: 5px;}
+.New-single-C a{color:#666;}
 .New-singleImg {background: #E9E9E9;width: 203px;height: 72px;position: relative;margin-top: 10px;}
 .New-singleImg .arrow {position: absolute;left: 15px;top: -7px;}
 .New-singleImg .arrow_Rleft em {margin-left: 4px;margin-top: 3px;}
 .New-singleImg .arrow em {color: #E9E9E9;height: 5px;width: 12px;font-size: 14px;line-height: 14px;overflow: hidden;position: absolute;}
 .New-singleImg img {width: 60px;height: 60px;float: left;margin: 6px 0 0 6px;display: inline;}
-.New-single p a{color:#666;}
 /*帮助中心开始*/
 .help_center{width:980px; margin:10px auto 0; overflow:hidden;}
 .help_left{width:196px; float:left; overflow:hidden; border:1px solid #dbdbdb;}
@@ -1191,20 +1231,3 @@ span.bds_more, .bds_tools a {display: block;font-family: '宋体',Arial;height: 
 	top:5px;
 }
 /*帮助中心结束*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -80,4 +80,6 @@ function utf_substr($str,$len){
     return join($new_str);
 }
 
+
+
 ?>

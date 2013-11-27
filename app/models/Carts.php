@@ -2,8 +2,8 @@
 
 namespace app\models;
 
-use lithium\storage\Session;
 use app\models\Periods;
+use lithium\storage\Session;
 
 class Carts extends \lithium\data\Model {
 

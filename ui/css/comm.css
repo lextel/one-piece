@@ -1118,6 +1118,15 @@ span.bds_more, .bds_tools a {display: block;font-family: '宋体',Arial;height: 
 .Comment-txt {width: 99.4%;height: 87px;border: 1px solid #987;}
 .Comment_login {width: 99.4%;height: 48px;line-height: 48px;position: absolute;top: 0;left: 1px;background: #EEE;text-align: center;border: 1px solid #C2C2C2;}
 .Comment_single {width: 713px;margin: 0 auto 0;padding: 15px;color: #666;border-bottom: 1px solid #EEE;}
+.Comment_button{ float:right; margin-top:10px;}
+.Comment_button span i{color:#f60;}
+.Comment_button .published{ height:26px; background:##58BEFF;border: 1px solid #1BA3FA; text-align:center; line-height:26px; color:#fff; border-radius:3px; padding:0 10px; cursor:pointer;}
+.Comment_button .disBtn {
+    background: none repeat scroll 0 0 #EDEDED;
+	border: 1px solid #CFCFCF;
+	color: #A5A5A5;
+	cursor: default;
+}
 .clearfix {display: block;}
 .User_head {width: 30px;height: 30px;float: left;}
 .User_head img {width: 50px;height: 50px;}
@@ -1130,6 +1139,7 @@ span.bds_more, .bds_tools a {display: block;font-family: '宋体',Arial;height: 
 .C_summary img {vertical-align: middle;}
 .C_summary .Reply-r {position: absolute;bottom: 0;right: 0;font-family: 宋体;}
 .C_summary .Reply-r a {margin-left: 10px;}
+
 /*右边内容*/
 .hidden {display: none;}
 .Comment_right {float: right;width: 234px;overflow:hidden;}

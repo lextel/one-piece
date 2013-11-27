@@ -30,10 +30,14 @@ class MongoClient {
     /**
      * 初始化
      */
-    public function __construct() {
+    public function __construct($collection = '') {
 
         $config = Connections::get('default', ['config' => true]);
         $conn = new Mongo();
+        if(empty($collection)) {
+            $collection = $config['database'];
+        }
+        
         $this->_query = $conn->$config['database']->$config['database'];
     }
 
@@ -70,12 +74,25 @@ class MongoClient {
      *
      * @return integer
      */
-    public function count($conditions) {
+    public function count($conditions=[]) {
 
         $this->_conditions($conditions);
         //var_dump($conditions);
 
         return $this->_query->count($conditions);
+    }
+
+    /**
+     * 更新
+     * 
+     * @param $conditions array 查询条件
+     * @param $query      array 修改器
+     * 
+     * @return 
+     */
+    public function update($conditions, $query) {
+
+        return $this->_query->update($conditions, $query);
     }
 
     /**
@@ -96,5 +113,9 @@ class MongoClient {
                 $conditions[$key] = (int) $condition;
             }
         }
+    }
+
+    public function getConn(){
+        return $this->_query;
     }
 }

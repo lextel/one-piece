@@ -5,7 +5,7 @@ $this->styles($this->resLoader->css('product_list.css'));
 <div class="Current_nav"><a href="/">首页</a> &gt; <?=$crumbs; ?></div>
 <div id="current" class="list_Curtit">
     <h1 class="fl"><?=$crumbs; ?></h1>
-    <span id="spTotalCount">(共<em class="orange"><?=$total?></em>件相关商品)</span>
+    <span id="spTotalCount">(共<em class="orange"><?=$total;?></em>件相关商品)</span>
 </div>
 
 <!-- 分类开始 -->

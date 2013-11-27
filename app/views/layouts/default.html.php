@@ -111,11 +111,9 @@
                         'product' => ['name' => '所有商品', 'url' => '/products', 'class' => 'sort-all'],
                         'lottery'   => ['name' => '最新揭晓', 'url' => '/lotterys', 'class' => 'new-lottery'],
                         'share'   => ['name' => '晒单分享', 'url' => '/shares', 'class' => 'share'],
-                        'limit'   => ['name' => '限时揭晓', 'url' => '/limits', 'class' => 'nav_Cloud'],
                         'cooperation'   => ['name' => '邀请', 'url' => '/cooperation', 'class' => 'cooperation'],
                         'new'   => ['name' => '新手指南', 'url' => '/new', 'class' => 'what-1yyg'],
                     ];
-
 
                     foreach($navs as $key => $nav) {
                         $class = '';
@@ -125,11 +123,11 @@
                         echo "<li class='{$nav['class']}{$class}'><a href='{$nav['url']}'>{$nav['name']}</a></li>";
                     }
                 ?>
-
             </ul>
             <div class="mini_mycart" id="sCart">
                 <?php
                 $carts = $this->cart->get();
+
                 $item = 0;
                 $quantity = 0;
                 $cart = '';

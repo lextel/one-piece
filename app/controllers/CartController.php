@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Carts;
+use app\models\Orders;
 use app\extensions\helper\Yeepay;
 use lithium\action\DispatchException;
 
@@ -126,7 +127,11 @@ EOD;
 
     // 返回
     public function payResult() {
-        
+
+        // 支付成功处理
+        Orders::order();
+        die;
+
         if(isset($_REQUEST['r0_Cmd'])) {
             $yeepay = new Yeepay();
             $return = $yeepay->getCallBackValue($r0_Cmd,$r1_Code,$r2_TrxId,$r3_Amt,$r4_Cur,$r5_Pid,$r6_Order,$r7_Uid,$r8_MP,$r9_BType,$hmac);

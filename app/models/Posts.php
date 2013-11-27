@@ -7,22 +7,38 @@ use app\extensions\helper\MongoClient;
 class Posts extends \lithium\data\Model {
 
     /**
-     * _id    
-     * from_id          所属会员ID
-     * to_id            发送至会员ID
-     * parent_id        父级ID
-     * product_id       产品ID
-     * period_id        期数ID
-     * title            标题
-     * content          内容
-     * images           图片
-     * comment          评论数目
-     * comments         评论
-     * hits             浏览数目
-     * good             赞
-     * status           状态 0 未审核 1 已审核
-     * created          创建时间
+     * mongodb posts数据结构
+     *
+     * @var array
      */
+    protected $_schema = [
+        '_id'        => ['type' => 'id'],             // UUID
+        'from_id'    => ['type' => 'integer'],        // 所属会员ID
+        'to_id'      => ['type' => 'integer'],        // 发送至会员ID
+        'type_id'    => ['type' => 'integer'],        // 类型 晒单 短信息 
+        'parent_id'  => ['type' => 'integer'],        // 父级ID
+        'product_id' => ['type' => 'string'],         // 产品ID
+        'period_id'  => ['type' => 'string'],         // 期数ID
+        'title'      => ['type' => 'string'],         // 标题
+        'content'    => ['type' => 'string'],         // 内容
+        'images'     => ['type' => 'array'],          // 图片
+        'comment'    => ['type' => 'integer'],        // 评论数目
+        'comments'   => ['type' => 'array'],          // 评论
+        'hits'       => ['type' => 'integer'],        // 浏览数目
+        'good'       => ['type' => 'integer'],        // 赞
+        'status'     => ['type' => 'integer'],        // 状态 0 未审核 1 已审核
+        'created'    => ['type' => 'date'],           // 添加时间
+    ];
+
+    /**
+     * 类型指定
+     *
+     */
+    public static $typeIds = [
+        'share' => 1,
+        'feeds' => 2,
+    ];
+
 
 	public $validates = array();
 
@@ -54,23 +70,27 @@ class Posts extends \lithium\data\Model {
         }
 
         return $shares;
-
-
     }
 
     /**
      * 已晒单
      *
+     * @param $options array 查询条件
+     *
+     * @return array
      */
     private static function _myShare($options) {
-        $userId = $options['userId'];
 
-        $mo = new MongoClient();
-        $rs = $mo->find([], ['shares' => ['$elemMatch' => ['user_id' => $userId]]]);
+        $userId = (int)$options['userId'];
+
+        if(isset($options['getTotal']) && $options['getTotal']) {
+            $rs =  Posts::find(['from_id' => $userId, 'type_id' => 1])->count();
+        } else {
+            $rs = Posts::find(['from_id' => $userId, 'type_id' => 1], [], ['created' => 'desc'], $options['limit'], $options['page'])->to('array');
+        }
 
         return $rs;
     }
-
 
     /**
      * 未晒单
@@ -84,53 +104,193 @@ class Posts extends \lithium\data\Model {
         $userId = $options['userId'];
     
         $mo = new MongoClient();
-        // 所有中奖的
-        $rs = $mo->find([], ['periods' => ['$elemMatch' => ['user_id' => $userId]]]);
 
-        // @TODO: 排除已经晒单的
+        // 已经晒单的
+        $options['type_id'] = 1;
+        $shared = self::_myShare($options);
 
-        /*
+        // 未晒单数据
+        if(isset($options['getTotal']) && $options['getTotal'] == true) {
+            $rs = $mo->count(['periods' => ['$elemMatch' => ['user_id' => $userId]]]);
+            $rs = $rs - $shared;
+        } else {
+            $rs = $mo->find(['periods' => ['$elemMatch' => ['user_id' => $userId]]], ['title', 'periods' => ['$elemMatch' => ['user_id' => $userId]]]);
 
-        $conditions = ['periods.user_id' => $userId];
-        $products = Products::find('all', ['conditions' => $conditions])->to('array');
+            $shares = self::_formatMyUnShare($rs);
 
-        $shares = [];
-        foreach($products as $product) {
-            foreach($product['periods'] as $period) {
-                if(isset($period['user_id']) && $period['user_id'] == $userId) {
-                    $data = [
-                        'productId' => $product['_id'],
-                        'title'     => $product['title'],
-                        'images'    => $product['images'],
-                        'periodId'  => $period['id'],
-                        'userId'    => $period['user_id'],
-                    ];
-
-                    $rs = Posts::first([
-                                        'conditions' => [
-                                            'from_id' => $userId, 
-                                            'product_id' => $product['_id'], 
-                                            'period_id' => $period['id']
-                                            ]
-                                        ]);
-                    if(($rs && $typeId == 1) || (!$rs && $typeId == 2)) {
-                        $shares[] = $data;
+            // 排除已晒单 
+            foreach($shared as $share) {
+                foreach($shares as $k => $r) {
+                    if($share['product_id'] == $r['productId'] && $share['period_id'] == $r['periodId']) {
+                        unset($shares[$k]);
                     }
                 }
             }
+
+            $limit = isset($options['limit']) ? $options['limit'] : 0;
+            $page  = isset($options['page']) ? $options['page'] : 1;
+            $offset = ($page-1)*$limit;
+
+            $rs = array_slice($shares, $offset, $limit);
         }
 
-        $limit = isset($options['limit']) ? $options['limit'] : 0;
-        $page  = isset($options['page']) ? $options['page'] : 1;
-        $offset = ($page-1)*$limit;
+        return $rs;
+    }
 
-        return isset($options['getTotal']) && $options['getTotal'] ? count($shares) : array_slice($shares, $offset, $limit);
-        */
+    /**
+     * 整理已晒单数据
+     *
+     * @param $rs array 查询结果
+     *
+     * @return array 整理过的结果
+     */
+    private static function _formatMyShare($rs) {
+
+        $newData = [];
+        foreach($rs as $value) {
+            foreach($value['shares'] as $share) {
+                $newData[] = [
+                    'productId' => $value['_id'],
+                    'periodId' => $share['period_id'],
+                    'title'    => $value['title'],
+                    'shareTitle' => $share['title'],
+                    'status' => $share['status'],
+                ];
+            }
+        }
+
+        return $newData;
+    }
+
+    /**
+     * 整理未晒单数据
+     *
+     * @param $rs array 查询结果
+     *
+     * @return array 整理过的结果
+     */
+    private static function _formatMyUnShare($rs) {
+
+        $newData = [];
+        foreach ($rs as $key => $value) {
+            foreach($value['periods'] as $period) {
+                $newData[] = [
+                    'productId' => $value['_id'],
+                    'periodId' => $period['id'],
+                    'title' => $value['title'],
+                ];
+            }
+        }
+
+        return $newData;
+    }
+
+    /**
+     * 获取所有晒单
+     *
+     * @param $options array 查询参数
+     *
+     * @return array
+     */
+    public static function listShares($options) {
+
+        $status = $options['typeId'] == 1 ? 1 : 0;
+
+        if(isset($options['getTotal']) && $options['getTotal']) {
+            $rs = Posts::find('all', ['conditions' => ['status' => $status, 'type_id' => 1]])->count();
+        } else {
+
+            $rs = Posts::find('all', ['conditions' => ['type_id' => 1, 'status' => $status], 'sort' => ['created' => 'desc']], $options['limit'], $options['page'])->to('array');
+        }
+
+        return $rs;
+    }
+
+    /**
+     * 首页获取晒单
+     *
+     * @param $options array 查询参数
+     *
+     * @return array
+     */
+    public static function shareIndex($options) {
+
+        $status = $options['status'];
+        if(isset($options['getTotal']) && $options['getTotal']) {
+            $rs = Posts::find('all', ['conditions' => ['status' => $status, 'type_id' => 1], 'order' => ['created' => 'desc']])->count();
+        } else {
+            $rs = Posts::find('all', ['conditions' => ['status' => $status, 'type_id' => 1], 'order' => ['created' => 'desc']])->to('array');
+            $rs = self::_formatShare($rs);
+        }
+
+        return $rs;
+    }
+
+    /**
+     * 晒单详情
+     *
+     * @param $productId integer 商品ID
+     * @param $periodId  integer 期数ID
+     *
+     * @return array
+     */
+    public static function shareView($productId, $periodId) {
+
+        return Posts::find('first', ['conditions' => ['product_id' => $productId , 'period_id' => $periodId, 'type_id' => 1]])->to('array');
+    } 
+
+    /**
+     * 晒单瀑布流
+     *
+     * @param $rs array 查询数据
+     *
+     * @return array
+     */
+    private function _formatShare($rs) {
+
+        $newData = [];
+        $i = 0;
+        foreach($rs as $value) {
+
+            $data = [
+                'productId' => $value['product_id'],
+                'periodId'  => $value['period_id'],
+                'title'     => $value['title'],
+                'content'   => utf_substr($value['content'], 50),
+                'image'     => $value['images'][0],
+                'user_id'   => $value['from_id'],
+                'good'      => $value['good'],
+                'comment'   => $value['comment'],
+                'created'   => $value['created'],
+            ];
+
+            $j = $i%4;
+            $i++;
+
+            if($j == 0 ) {
+                $newData[0][] = $data;
+            }
+
+            if($j == 1) {
+                $newData[1][] = $data;
+            }
+
+            if($j == 2) {
+                $newData[2][] = $data;
+            }
+
+            if($j == 3) {
+                $newData[3][] = $data;
+            }
+
+        }
+
+        return $newData;
     }
 
 
     /**
-     * 获取当前会员可以晒单的信息
+     * 获取指定晒单信息
      *
      * @param $productId string  产品ID
      * @param $peroidId  integer 期数ID
@@ -149,25 +309,80 @@ class Posts extends \lithium\data\Model {
     }
 
     /**
-     * 保存晒单
+     * 审核晒单
+     *
+     * @param $productId mongoid 商品ID
+     * @param $periodId  integer 期数ID
+     *
+     * @return boolean
+     */
+    public function checkShare($productId, $periodId) {
+
+        $conditions = ['product_id' => $productId, 'period_id' => $periodId, 'type_id' => 1];
+
+        $query = ['status' => 1];
+
+        return Posts::update($query, $conditions, ['atomic' => false]);
+    }
+
+    /**
+     * 删除晒单
+     *
+     * @param $productId mongoid 商品ID
+     * @param $periodId  integer 期数ID
+     *
+     * @return boolean
+     */
+    public function deleteShare($productId, $periodId) {
+
+        $conditions = ['product_id' => $productId, 'period_id' => $periodId, 'type_id' => 1];
+
+        return Posts::remove($conditions);
+    }
+
+    /**
+     * 保存发布
      *
      * @param $data array 提交数据
      *
      * @return boolean 
      */
-    public function insert($data) {
+    public static function add($data) {
+
+        switch ($data['type_id']) {
+            case '1':
+                $rs = self::_addShare($data);
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+
+        return $rs;
+    }
+
+    /**
+     * 保存晒单
+     *
+     * @param $data array 提交数据
+     *
+     * @return boolean
+     */
+    public static function _addShare($data) {
 
         $data['status']    = 0;
         $data['parent_id'] = 0;
         $data['from_id']   = USER_ID;
-        $data['created']   = time();
+        $data['good']      = 0;
+        $data['hits']      = 0;
+        $data['comment']   = 0;
+        $data['comments']  = [];
+        $data['created']   = date('Y-m-d H:i:s');
 
-        $conditions = ['_id'=> $data['productId']];
-        unset($data['productId']);
+        $share = Posts::create($data);
 
-        $query = ['$push' => ['shares' => $data]];
-
-        return Products::update($query, $conditions,['atomic' => false]);
+        return $share->save();
     }
 
     

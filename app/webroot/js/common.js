@@ -137,7 +137,9 @@ $(function(){
         var productId = $(this).attr('productId');
         var periodId  = $(this).attr('periodId');
 
-
+        $('#p1').remove();
+        $('div.settlement').remove();
+        $('ul.mycartcur').remove();
         $('#sCartLoading').show();
         $('#sCartlist').show();
 
@@ -170,20 +172,20 @@ $(function(){
     });
 
     // 结算按钮
-    $(document).on('click', '#sGotoCart', function(){
+    $(document).on('click', '#sGotoCart, .checkout', function(){
         window.location.href = '/cart/index';
     });
 
     // 购物车移进出
     $('#sCart').hover(function() {
-        $('#sCartlist').show();
+        if($('ul.mycartcur').length != 0 )
+            $('#sCartlist').show();
     }, function() {
         $('#sCartlist').hide();
     });
 
 
     // 购物车页面
-
     var jiaFun = function(){
         $('.jia').unbind('click');
         var productId = $(this).attr('productId');
@@ -294,7 +296,6 @@ $(function(){
 
     // 全选反选
     $('#ckAll').click(function () {
-        // console.log(this.checked);
         if (this.checked) {//全选
             $('input[name="ids[]"]').prop('checked', true);
         } else {
@@ -323,9 +324,10 @@ $(function(){
         });
     }
 
+    // 删除所有商品
     $('#AllDelete').bind('click', allDeleteFun);
 
-
+    // 支付页面
     $('#but_ok').click(function() {
         if($('li.end').length == 0) {
             return false;
@@ -362,10 +364,15 @@ function showCarts(data) {
     }
     cart += '<p id="p1">共计 <span id="CartTotal2">'+item+'</span> 件商品 金额总计：<span id="CartTotalM" class="rmbred">'+quantity+'.00</span></p>';
     cart += '<div class="settlement"><input type="button" id="sGotoCart" value="去购物车并结算"></div>';
-
+    cart += '<div class="goods_loding" id="sCartLoading" style="display: none;"><img border="0" alt="" src="/img/goods_loading.gif">正在加载......</div>';
     $('#sCartTotal').html(item);
     $('#sCartLoading').hide();
     $('#sCartlist').html(cart);
+
+    if($('ul.mycartcur').length == 0) {
+        $('#sCartlist').hide();
+        return false;
+    }
 }
 
 // 显示购买几率

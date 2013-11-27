@@ -6,7 +6,7 @@ use app\models\Products;
 
 class SearchController extends \lithium\action\Controller {
 
-	public function index() {
+    public function index() {
 
         $request  = $this->request;
         $limit    = Page::$page;
@@ -23,8 +23,7 @@ class SearchController extends \lithium\action\Controller {
         $sortList = Sort::sort('search', $sort, $sortBy);
 
         return compact('products', 'limit', 'page', 'total', 'sortList');
-
-	}
+    }
 }
 
 ?>
