@@ -9,12 +9,17 @@ use lithium\action\DispatchException;
 
 class CartController extends \lithium\action\Controller {
 
+    private $_navCurr = 'cart';
+
     // 购物车页面
     public function index() {
 
         $carts = Carts::get();
 
-        return compact('carts');
+        // 当前导航
+        $navCurr = $this->_navCurr;
+
+        return compact('carts', 'navCurr');
     }
 
 
@@ -78,7 +83,10 @@ class CartController extends \lithium\action\Controller {
 
         $carts = Carts::get(true);
 
-        return compact('carts');
+        // 当前导航
+        $navCurr = $this->_navCurr;
+
+        return compact('carts', 'navCurr');
     }
 
     // 确认支付

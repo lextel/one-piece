@@ -1120,7 +1120,13 @@ span.bds_more, .bds_tools a {display: block;font-family: '宋体',Arial;height: 
 .Comment_single {width: 713px;margin: 0 auto 0;padding: 15px;color: #666;border-bottom: 1px solid #EEE;}
 .Comment_button{ float:right; margin-top:10px;}
 .Comment_button span i{color:#f60;}
-.Comment_button button{ height:26px; background:#f60; text-align:center; line-height:26px; color:#fff; border-radius:3px; padding:0 10px; cursor:pointer;}
+.Comment_button .published{ height:26px; background:##58BEFF;border: 1px solid #1BA3FA; text-align:center; line-height:26px; color:#fff; border-radius:3px; padding:0 10px; cursor:pointer;}
+.Comment_button .disBtn {
+    background: none repeat scroll 0 0 #EDEDED;
+	border: 1px solid #CFCFCF;
+	color: #A5A5A5;
+	cursor: default;
+}
 .clearfix {display: block;}
 .User_head {width: 30px;height: 30px;float: left;}
 .User_head img {width: 50px;height: 50px;}

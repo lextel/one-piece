@@ -60,9 +60,9 @@ $this->styles($this->resLoader->css('product_list.css'));
                 </div>
             </div>
         </div-->
-        <div class="Comment_Reply clearfix">
+        <div id="bottomComment" class="Comment_Reply clearfix">
             <div class="Comment-pic" name="userFace">
-                <img name="imgUserPhoto" src="http://faceimg.1yyg.com/UserFace/20131125203540957.jpg">
+                <img name="imgUserPhoto" src="<?php echo $share['from_id'];?>">
             </div>
             <div class="Comment_form">
                 <div id="divCommTo" class="Comment-name" style="display:none;"></div>
@@ -70,8 +70,8 @@ $this->styles($this->resLoader->css('product_list.css'));
                     <textarea id="comment" name="comment" class="Comment-txt"></textarea>
                 </div>
                 <div class="Comment_button" id="counter">
-                    <span>您还可以输入<i>140</i>个字！</span>
-                    <button class="disBtn">发表评论</button>
+                    <span>您还可以输入<i>150</i>个字！</span>
+                    <button class="published" id="<?php echo $share['_id'];?>">发表评论</button>
                 </div>
             </div>
         </div>
@@ -82,54 +82,83 @@ $this->styles($this->resLoader->css('product_list.css'));
                 }).keyup(function(){
                     commentCount();
                 });
+
+                $('#counter > button').click(function() {
+                    var id = $(this).attr('id');
+                    var content = $('#comment').val();
+
+                    if(!$(this).hasClass('disBtn')) {
+                        $.ajax({
+                            type: 'post',
+                            url: '/posts/addComment',
+                            data: {id:id, content:content},
+                            beforeSend: function() {
+                                console.log('对话框');
+                            },
+                            success: function(data) {
+                                if(data.status == 1) {
+                                    var obj = $('#commentMain');
+                                    loadComment(obj);
+                                }
+
+                            }
+                        });
+                    }
+                });
             });
 
             function commentCount() {
                 var len = $('#comment').val().length;
-                var left = 140 - len;
+                var left = 150 - len;
                 if(left >= 0) {
                     $('#counter > span').html('您还可以输入<i>'+left+'</i>个字！');
+                    $('#counter > button').removeClass('disBtn');
                 } else {
-                    left = len - 140;
+                    left = len - 150;
+                    $('#counter > button').addClass('disBtn');
                     $('#counter > span').html('<span class="orange">已超过'+left+'个字了，删除一些吧！</span>');
                 }
 
             }
         </script>
         <div id="commentMain" class="qcomment_main" style="">
-            <ul>
-                <?php
-                foreach($posts as $post) {
-                ?>
-                <li class="Comment_single">
-                    <div class="Comment_box_con clearfix">
-                        <div class="User_head"><a rel="nofollow" href="<?php echo $post['user_id']; ?>" target="_blank" title="<?php echo $post['user_id']; ?>"><img src="<?php echo $post['user_id']; ?>" alt=""></a></div>
-                        <div class="Comment_con">
-                            <div class="Comment_User"><span><a class="blue" href="<?php echo $post['user_id']; ?>" target="_blank"><?php echo $post['user_id']; ?></a></span></div>
-                            <div class="C_summary"><?php echo $post['content']; ?><span class="Summary-time"><?php echo $this->times->friendlyDate($post['created']); ?></span><span class="Reply-r"><a class="blue signReplay" href="javascript:;">回复(<b>0</b>)</a>
-                                <input name="replyDataState" type="hidden" value="0">
-                                </span></div>
-                        </div>
-                        <div name="Replybox" class="qcomment_box_reply" style="display: none;">
-                            <div class="qcomment_box_reply_topbj"></div>
-                            <div name="ReplyForm" class="qcomment_reply_module"></div>
-                            <div name="ReplyList" class="qcomment_reply_list_module"></div>
-                            <div class="Comment_Collapse" style="display: none; "><a href="#">收起<b></b></a></div>
-                        </div>
-                        <div class="qhackbox"></div>
-                        <div class="qcomment_box_bottom"></div>
-                    </div>
-                </li>
-                <?php
-                }
-                ?>
-            </ul>
-            <!--分页开始-->
-            <div id="divPageNav" class="pages" style="">
-                <?= $this->Paginator->paginate();?>
-            </div>
-            <!--分页结束-->
         </div>
+        <script type="text/javascript">
+            var postId = '<?php echo $share['_id']; ?>';
+            commonInit = true;
+            $(function(){
+                var obj = $('#commentMain');
+                obj.attr('url', '/posts/comment/' + postId);
+                loadComment(obj);
+
+                // 分页点击激活ajax
+                $(document).on('click', '#divPageNav > ul > li > a', function(){
+                    loadComment($(this));
+                });
+            });
+
+            function loadComment(obj) {
+                var url = obj.attr('url');
+                $.ajax({
+                    url: url,
+                    type: 'get',
+                    success: function(data) {
+                        $('#commentMain').html(data);
+
+                        if(!commonInit) 
+                            $("html,body").animate({scrollTop: $("#bottomComment").offset().top}, 500);
+
+                        commonInit = false;
+                       // 分页强制转ajax
+                        $('#divPageNav > ul > li > a').each(function(){
+                            var url = $(this).attr('href');
+                            $(this).attr('href', 'javascript:void(0);');
+                            $(this).attr('url', url);
+                        });
+                    }
+                });
+            }
+        </script>
         <!--用户评论列表开始-->
         <div class="Comment_main clearfix" id="CommentMain"></div>
         <!--用户评论部分结束--> 

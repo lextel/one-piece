@@ -111,7 +111,6 @@
                         'product' => ['name' => '所有商品', 'url' => '/products', 'class' => 'sort-all'],
                         'lottery'   => ['name' => '最新揭晓', 'url' => '/lotterys', 'class' => 'new-lottery'],
                         'share'   => ['name' => '晒单分享', 'url' => '/shares', 'class' => 'share'],
-                        'cooperation'   => ['name' => '邀请', 'url' => '/cooperation', 'class' => 'cooperation'],
                         'new'   => ['name' => '新手指南', 'url' => '/new', 'class' => 'what-1yyg'],
                     ];
 

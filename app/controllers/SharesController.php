@@ -59,15 +59,12 @@ class SharesController extends \lithium\action\Controller {
         $limit     = Page::$page;
 
         $share = Posts::shareView($productId, $periodId);
-        $share['_id'] = 888;
         $total = Posts::find('all', ['conditions' => ['parent_id' => $share['_id']]])->count();
-
-        $posts = Posts::find('all', ['conditions' => ['parent_id' => $share['_id']], 'page' => $page, 'limit' => $limit])->to('array');
 
         // 当前导航
         $navCurr = $this->_navCurr;
 
-        return compact('navCurr', 'share', 'limit', 'page', 'total', 'posts');
+        return compact('navCurr', 'share', 'limit', 'page', 'total');
     }
 
     // 晒单管理
