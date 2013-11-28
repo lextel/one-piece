@@ -112,7 +112,7 @@ class SharesController extends \lithium\action\Controller {
 
         if($rs)
             $return = ['status' => 1];
-        else 
+        else
             $return = ['status' => 0];
 
         return $this->render(['json' => $return]);
@@ -129,7 +129,7 @@ class SharesController extends \lithium\action\Controller {
 
         if($rs)
             $return = ['status' => 1];
-        else 
+        else
             $return = ['status' => 0];
 
         return $this->render(['json' => $return]);

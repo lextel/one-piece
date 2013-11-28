@@ -120,4 +120,5 @@ Router::connect('/posts/comment/{:postId}/{:args}', 'Posts::comment');
 
 Router::connect('/{:controller}/{:action}/page:{:page:[0-9]+}/{:args}');
 Router::connect('/{:controller}/{:action}/{:args}');
+
 ?>
