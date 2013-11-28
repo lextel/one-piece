@@ -142,5 +142,5 @@ Libraries::add('li3_docs');
 Libraries::add('li3_paginate');
 Libraries::add('li3_mustache');
 Libraries::add('Imagine');
-
+Libraries::add('li3_server');
 ?>

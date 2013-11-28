@@ -124,6 +124,10 @@ Router::connect('/posts/comment/{:postId}/page:{:page:[0-9]+}/{:args}', 'Posts::
 Router::connect('/posts/comment/{:postId:[0-9]+}/{:args}', 'Posts::comment');
 
 Router::connect('/shares/add/{:productId}/{:periodId}', 'Shares::add');
+
+
+
 Router::connect('/{:controller}/{:action}/page:{:page:[0-9]+}/{:args}');
 Router::connect('/{:controller}/{:action}/{:args}');
+
 ?>
