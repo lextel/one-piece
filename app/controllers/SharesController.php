@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use app\models\Posts;
+use app\models\Products;
+use app\extensions\helper\Sort;
 use app\extensions\helper\Page;
 use app\extensions\helper\Uploader;
 use lithium\storage\Session;
@@ -26,10 +28,13 @@ class SharesController extends \lithium\action\Controller {
         $total = Posts::shareIndex(compact('status', 'getTotal'));
         $shares = Posts::shareIndex(compact('limit', 'page', 'status', 'sort', 'sortBy'));
 
+        // 排序标签
+        $sortList = Sort::sort('shares', compact('sort', 'sortBy'));
+
         // 当前导航
         $navCurr = $this->_navCurr;
 
-        return compact('shares', 'limit', 'page', 'total', 'typeId', 'navCurr');
+        return compact('shares', 'limit', 'page', 'total', 'typeId', 'navCurr', 'sortList');
 	}
 
     // 我的晒单列表
@@ -50,6 +55,7 @@ class SharesController extends \lithium\action\Controller {
         return $this->render(['data' => compact('shares', 'limit', 'page', 'total', 'typeId', 'navCurr'), 'layout' => 'user']);
     }
 
+    // 晒单详情
     public function view() {
 
         $request   = $this->request;
@@ -61,10 +67,21 @@ class SharesController extends \lithium\action\Controller {
         $share = Posts::shareView($productId, $periodId);
         $total = Posts::find('all', ['conditions' => ['parent_id' => $share['_id']]])->count();
 
+        // 更新浏览次数
+        $post = Posts::find('first', ['conditions' => ['parent_id' => 0, 'product_id' => $productId, 'period_id' => $periodId]]);
+        $post->hits = $post->hits+1;
+        $post->save();
+
+        // 获取本期获奖者
+        $winner = Products::view($productId, $periodId);
+
+        // 正在进行
+        $active = Products::view($productId, 0);
+
         // 当前导航
         $navCurr = $this->_navCurr;
 
-        return compact('navCurr', 'share', 'limit', 'page', 'total');
+        return compact('navCurr', 'share', 'limit', 'page', 'total', 'winner', 'active');
     }
 
     // 晒单管理

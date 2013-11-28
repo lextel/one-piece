@@ -14,7 +14,7 @@
 .goods-iten:hover{border: 1px solid #FFD7BC; display: block;}
 .goods-iten .pic a {display: inline-block;margin-top: 10px;}
 .goods-iten .goods_xs {width: 49px;height: 45px;display: inline-block;background-position: right -192px;position: absolute;right: 0;_right: -1px;top: 0;z-index: 1;}
-.goods_tj, .goods_xp, .goods_rq, .goods_xs, .list_classMore i, .MoreClick i, .Price_Sort i, .SortCur b, .SortCur s {
+.goods_tj, .goods_xp, .goods_rq, .goods_xs, .list_classMore i, .MoreClick i, .Price_Sort i,.Price_Sort s, .SortCur b, .SortCur s, {
 background: url(../img/goods_tj.png) no-repeat;}
 .goods-iten .pic img {width: 200px;height: 200px;}
 .goods-iten .name {height: 20px;line-height: 18px;margin-bottom: 5px;overflow: hidden;padding: 0 10px;}
@@ -115,7 +115,7 @@ background: url(../img/goods_tj.png) no-repeat;}
 .pages {overflow: hidden;height: 50px;border-top: 1px solid #E4E4E4; line-height:50px;}
 .pages ul{float: right;margin: 10px 10px 0 0;overflow: hidden;}
 .pages ul li{float:left; min-width:22px; padding:0 5px; text-align:center; height:30px; line-height:30px; border-radius:5px;border: 1px solid #DEDEDE; margin-right:10px;}
-.pages ul li a{color:#333;}
+.pages ul li a{color:#333; display:block;}
 .pages ul li.active{
 	background:#f60;
 }
@@ -123,7 +123,9 @@ background: url(../img/goods_tj.png) no-repeat;}
 	color:#fff;
 }
 .pages ul li a:hover{color:#f60;}
-
+.pages ul li.active a:hover{
+	color:#fff;
+}
 
 /*人气推荐*/
 .list_goodsTj {width: 980px;background: white;margin: 10px auto 20px auto;_margin: 10px auto 10px auto;}
@@ -1006,7 +1008,22 @@ background: url(../img/new-class-icon.png);
 .ygRecord a{color:#999;}
 .ygRecord a:hover{color:#f60;}
 
-
+.NoConMsg {
+text-align: center;
+padding: 40px 0;
+background: white;
+margin: 10px auto 0;
+border: 1px solid #E4E4E4;
+}
+.NoConMsg span {
+	height: 110px;
+	line-height: 90px;
+	padding-left: 80px;
+	display: inline-block;
+	font-size: 18px;
+	color: #999;
+	background:url(../img/webmsg.png) no-repeat 0 -90px;
+}
 
 
 

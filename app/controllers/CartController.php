@@ -57,11 +57,10 @@ class CartController extends \lithium\action\Controller {
         $id = $this->request->data['productId'];
         $periodId = $this->request->data['periodId'];
         $quantity = $this->request->data['quantity'];
-        $method = $this->request->data['method'];
 
-        $rs = ['status' => 0];
-        if(!empty($id) && !empty($periodId) && !empty($method)) {
-            $rs = Carts::modify($id, $periodId, $quantity, $method);
+        $rs = ['status' => 0, 'remain' => 0];
+        if(!empty($id) && !empty($periodId)) {
+            $rs = Carts::modify($id, $periodId, $quantity);
         }
 
         return $this->render(['json' => $rs]);
@@ -138,6 +137,8 @@ EOD;
 
         // 支付成功处理
         Orders::order();
+
+        echo '支付成功！！！（骗你的）<a href="/">返回</a>';
         die;
 
         if(isset($_REQUEST['r0_Cmd'])) {

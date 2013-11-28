@@ -23,7 +23,6 @@ class Posts extends \lithium\data\Model {
         'content'    => ['type' => 'string'],         // 内容
         'images'     => ['type' => 'array'],          // 图片
         'comment'    => ['type' => 'integer'],        // 评论数目
-        'comments'   => ['type' => 'array'],          // 评论
         'hits'       => ['type' => 'integer'],        // 浏览数目
         'good'       => ['type' => 'integer'],        // 赞
         'status'     => ['type' => 'integer'],        // 状态 0 未审核 1 已审核
@@ -216,16 +215,58 @@ class Posts extends \lithium\data\Model {
     public static function shareIndex($options) {
 
         $status = $options['status'];
+        $options = self::handleSort($options);
         if(isset($options['getTotal']) && $options['getTotal']) {
-            $rs = Posts::find('all', ['conditions' => ['status' => $status, 'type_id' => 1], 'order' => ['created' => 'desc']])->count();
+            $rs = Posts::find('all', ['conditions' => ['status' => $status, 'type_id' => 1]])->count();
         } else {
-            $rs = Posts::find('all', ['conditions' => ['status' => $status, 'type_id' => 1], 'order' => ['created' => 'desc']])->to('array');
+            $rs = Posts::find('all', ['conditions' => ['status' => $status, 'type_id' => 1], 'order' => $options['order']])->to('array');
             $rs = self::_formatShare($rs);
         }
 
         return $rs;
     }
 
+    /**
+     * 处理排序
+     *
+     * @param $options array 排序数组 添加排序到$options['order']并删除无关字段
+     * @param 默认排序
+     *
+     * @return viod
+     */
+    public static function handleSort($options, $default = []) {
+
+        $options['sortBy'] = isset($options['sortBy']) && $options['sortBy'] == 'asc' ? 'asc' : 'desc';
+        $default = empty($default) ?  ['created' => 'desc'] : $default;
+
+        if(isset($options['sort'])) {
+            switch ($options['sort']) {
+                case 'hits':
+                    $options['order'] = ['hits' => $options['sortBy']];
+                    break;
+                case 'comment':
+                    $options['order'] = [ 'comment' => $options['sortBy']];
+                    break;
+                case 'created':
+                    $options['order'] = ['created' => $options['sortBy']];
+                    break;
+                case 'price':
+                    $options['order'] = [ 'price' => $options['sortBy']];
+                    break;
+                default:
+                    $options['order'] = $default;
+                    break;
+            }
+        } else {
+            $options['order'] = $default;
+        }
+
+        unset($options['sortBy'], $options['sort']);
+
+        return $options;
+    }
+
+    
     /**
      * 晒单详情
      *

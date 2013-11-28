@@ -60,6 +60,7 @@ class ProductsController extends \lithium\action\Controller {
 
     // 商品管理
     public function dashboard() {
+        
         $limit = Page::$page;
         $page  = $this->request->page ? : 1;
         $sort = 'created';
@@ -99,7 +100,7 @@ class ProductsController extends \lithium\action\Controller {
 
             Session::write('message', $message);
 
-            $this->redirect('Products::dashboard');
+            return $this->redirect('Products::dashboard');
         }
 
         $navCurr = $this->_navCurr;
@@ -160,7 +161,10 @@ class ProductsController extends \lithium\action\Controller {
         // var_dump($product);
         // $dump = ob_get_clean();
 
-        return compact('product', 'dump');
+         // 当前导航
+        $navCurr = $this->_navCurr;
+
+        return compact('product', 'dump', 'navCurr');
     }
 
 

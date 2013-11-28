@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <?php echo $this->html->charset();?>
-    <title>商城 &gt; <?php echo $this->title(); ?></title>
+    <title><?php echo $this->title(); ?> &gt; 商城</title>
     <?php echo $this->html->style(array('header', 'common')); ?>
     <?php echo $this->html->script(['jquery', 'common']);?>
     <?php echo $this->scripts(); ?>
@@ -15,7 +15,7 @@
         <div class="site_top">
             <div class="head_top">
                 <p class="collect">
-                    <a href="javascript:void(0);" id="addSiteFavorite">收藏1元云购</a>
+                    <a href="javascript:void(0);" id="addSiteFavorite">收藏积分云购</a>
                 </p>
                 <ul class="login_info" style="display: block;">
                     <li class="h_login" id="logininfo"> <i>您好，欢迎光临！</i>
@@ -24,15 +24,11 @@
                         <a rel="nofollow" href="javascript:void(0);" class="gray01">注册</a>
                     </li>
                     <li class="h_1yyg">
-                        <a rel="nofollow" href="javascript:void(0);">
-                            我的1元云购 <b></b>
-                        </a>
+                        <a rel="nofollow" href="/users/center">我的云购<b></b></a>
                         <div class="h_1yyg_eject" style="display: none; ">
                             <dl>
                                 <dt>
-                                    <a rel="nofollow" href="javascript:void(0);">
-                                        我的1元云购 <i></i>
-                                    </a>
+                                    <a rel="nofollow" href="/users/center">我的云购<i></i></a>
                                 </dt>
                                 <dd>
                                     <a rel="nofollow" href="javascript:void(0);">云购记录</a>
@@ -63,12 +59,6 @@
                             <div class="h_news_downC"></div>
                         </div>
                     </li>
-                    <!--li class="h_Mobile">
-                        <a rel="nofollow" target="_blank" href="javascript:void(0);">桌面版</a>
-                    </li>
-                    <li class="h_Mobile">
-                        <a rel="nofollow" target="_blank" href="javascript:void(0);">手机版</a>
-                    </li-->
                     <li class="h_help">
                         <a rel="nofollow" target="_blank" href="javascript:void(0);">帮助</a>
                     </li>
@@ -84,20 +74,20 @@
     <div class="head_mid">
         <div class="head_mid_bg">
             <h1 class="logo_1yyg">
-                <a class="logo_1yyg_img" href="javascript:void(0);" title="1元云购">1元云购</a>
+                <a class="logo_1yyg_img" href="/" title="积分云购">积分云购</a>
             </h1>
             <div id="topJackaroo" class="newbie_guide"></div>
             <div class="head_number">
                 <a href="javascript:void(0);" target="_blank">已<span id="spBuyCount" style="color: rgb(34, 170, 255); background-color: rgb(245, 245, 245); opacity: 1; background-position: initial initial; background-repeat: initial initial; ">7383415</span>人次参与云购</a>
             </div>
             <div class="head_search">
-                <input type="text" id="txtSearch" class="init" value="" title="输入"红米手机" 试试">    
+                <input type="text" id="txtSearch" class="init" value="" title='输入"手机" 试试'>    
                 <input type="button" id="butSearch" class="search_submit" value="搜索">    
                 <div class="keySearch">
-                    <a href="javascript:void(0);" target="_blank">智能手机</a>
-                    <a href="javascript:void(0);" target="_blank">3G手机</a>
-                    <a href="javascript:void(0);" target="_blank">宝马</a>
-                    <a href="javascript:void(0);" target="_blank">单反</a>
+                    <a href="/search/index/智能手机" target="_blank">智能手机</a>
+                    <a href="/search/index/3G手机" target="_blank">3G手机</a>
+                    <a href="/search/index/宝马" target="_blank">宝马</a>
+                    <a href="/search/index/单反" target="_blank">单反</a>
                 </div>
             </div>
         </div>
@@ -111,7 +101,7 @@
                         'product' => ['name' => '所有商品', 'url' => '/products', 'class' => 'sort-all'],
                         'lottery'   => ['name' => '最新揭晓', 'url' => '/lotterys', 'class' => 'new-lottery'],
                         'share'   => ['name' => '晒单分享', 'url' => '/shares', 'class' => 'share'],
-                        'new'   => ['name' => '新手指南', 'url' => '/new', 'class' => 'what-1yyg'],
+                        'newbie'   => ['name' => '新手指南', 'url' => '/help/newbie', 'class' => 'what-1yyg'],
                     ];
 
                     foreach($navs as $key => $nav) {
@@ -124,23 +114,37 @@
                 ?>
             </ul>
             <div class="mini_mycart" id="sCart">
-                <input type="hidden" id="hidChanged" value="0">
+                <?php
+                $carts = $this->cart->get();
+
+                $item = 0;
+                $quantity = 0;
+                $cart = '';
+                foreach($carts as $k => $v) {
+                    $item++;
+                    $cart .= '<ul class="mycartcur">';
+                    $cart .= '<li class="img"><a href="#"><img src="'.$v['image'].'"></a></li>';
+                    $cart .= '<li class="title"><h3><a href="#">'.$v['title'].'</a></h3><div class="rmbred"><i>1.00 </i>x <i>'.$v['quantity'].'</i><a class="delGood" index="'.$item.'" href="javascript:void(0);">删除</a></div></li>';
+                    $cart .= '</ul>';
+                    $quantity += $v['quantity'];
+                }
+                $cart .= '<p id="p1">共计 <span id="CartTotal2">'.$item.'</span> 件商品 金额总计：<span id="CartTotalM" class="rmbred">'.$quantity.'.00</span></p>';
+                $cart .= '<div class="settlement"><input type="button" id="sGotoCart" value="去购物车并结算"></div>';
+                ?>
                 <a rel="nofollow" href="javascript:void(0);" id="sCartNavi" class="cart">
-                    <s></s>购物车<span id="sCartTotal">0</span>
+                    <s></s>购物车<span id="sCartTotal"><?=$item;?></span>
                 </a>
                 <a rel="nofollow" href="javascript:void(0);" class="checkout">去结算</a>
                 <div class="mycart_list" id="sCartlist" style="display: none; z-index: 99999; ">
-                    <div class="goods_loding" id="sCartLoading">
-                        <img border="0" alt="" src="http://skin.1yyg.com/images/goods_loading.gif">正在加载......</div>
-                    <p id="p1">    共计<span id="sCartTotal2">0</span>    件商品 金额总计：<span id="sCartTotalM" class="rmbred">0.00</span></p>
-                    <h3>
-                        <input type="button" id="sGotoCart" value="去购物车并结算"></h3>
+                    <?php echo $cart;?>
+                    <div class="goods_loding" id="sCartLoading" style="display: none;"><img border="0" alt="" src="/img/goods_loading.gif">正在加载......</div>
                 </div>
             </div>
         </div>
     </div>
     <!--header内容结束-->
-    <!--中间内容开始-->  
+    <!--中间内容开始-->
+    <div class="Current_nav"><a href="/">首页</a> &gt; <?php echo $this->title(); ?></div>
     <div class="wrap" id="loadingPicBlock">
       <div class="user_content">
         <div class="user_nav">
@@ -148,12 +152,20 @@
                 <a href="#"><img src="http://img3.douban.com/icon/u49925310-4.jpg" alt="weelion"></a>
             </div>
             <div class="user_info">
-                <h1>luky</h1>
-                 <ul>
+                <h1>
+                    XXXX
+                    <div id="edit_signature" style="display: inline;font-weight: 400" class="j a_edit_signature edtext pl">
+                        修改头像 修改资料
+                    </div>
+                </h1>
+                <ul>
+                    <li><a href="/users/center">我的云购</a></li>
+                    <li><a href="/orders/user">云购记录</a></li>
+                    <li><a href="/product/my">获得的商品</a></li>
+                    <li><a href="/shares/share">晒单分享</a></li>
                     <li><a href="/products/dashboard">商品管理</a></li>
                     <li><a href="/shares/dashboard">晒单管理</a></li>
-                    <li><a href="/shares/share">晒单</a></li>
-                 </ul>
+                </ul>
             </div>
         </div>
       </div>
@@ -178,7 +190,7 @@
                          <span>新手指南</span>
                      </dt>
                      <dd> <b></b>
-                         <a href="javascript:void(0);" rel="nofollow" target="_blank">了解1元云购</a>
+                         <a href="javascript:void(0);" rel="nofollow" target="_blank">了解积分云购</a>
                      </dd>
                      <dd> <b></b>
                          <a href="javascript:void(0);" rel="nofollow" target="_blank">常见问题</a>
@@ -198,7 +210,7 @@
                      </dt>
                      <dd>
                          <b></b>
-                         <a href="javascript:void(0);" rel="nofollow" target="_blank">1元云购保障体系</a>
+                         <a href="javascript:void(0);" rel="nofollow" target="_blank">积分云购保障体系</a>
                      </dd>
                      <dd>
                          <b></b>

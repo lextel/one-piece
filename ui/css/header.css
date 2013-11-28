@@ -268,6 +268,11 @@ div, ul, li, dl, dt, dd, table, td, input {
 	float: left;
 	font-family: Arial, "宋体";
 }
+.head_search .text {
+	text-align:left;
+	color:#666;
+	font-weight:bold;
+}
 .head_search .search_submit {
 	width: 46px;
 	height: 28px;

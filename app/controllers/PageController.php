@@ -12,5 +12,4 @@ class PageController extends \lithium\action\Controller {
 
 		return $this->render(['template' => '../_errors/404']);
 	}
-	
 }

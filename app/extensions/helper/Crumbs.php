@@ -25,7 +25,9 @@ class Crumbs {
 			case 'productList':
 				$crumb = self::_productList($options);
 				break;
-			
+			case 'searchList':
+				$crumb = self::_searchList($options);
+				break;
 			default:
 				$crumb = '';
 				break;
@@ -49,6 +51,18 @@ class Crumbs {
 		} else {
 			return '所有分类';
 		}
+	}
+
+	/**
+	 * 搜索列表面包屑
+	 *
+	 * @param @options array 参数
+	 *
+	 * @return string
+	 */
+	private function _searchList($options) {
+		
+		return  '';
 	}
 
 }

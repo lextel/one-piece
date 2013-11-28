@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <?php echo $this->html->charset();?>
-    <title>商城 &gt; <?php echo $this->title(); ?></title>
+    <title><?php echo $this->title(); ?> &gt; 积分云购</title>
     <?php echo $this->html->style(array('header', 'common')); ?>
     <?php echo $this->html->script(['jquery', 'common']);?>
     <?php echo $this->scripts(); ?>
@@ -15,24 +15,20 @@
         <div class="site_top">
             <div class="head_top">
                 <p class="collect">
-                    <a href="javascript:void(0);" id="addSiteFavorite">收藏1元云购</a>
+                    <a href="javascript:void(0);" id="addSiteFavorite">收藏积分云购</a>
                 </p>
                 <ul class="login_info" style="display: block;">
                     <li class="h_login" id="logininfo"> <i>您好，欢迎光临！</i>
-                        <a rel="nofollow" href="javascript:void(0);" class="gray01">登录</a>
+                        <a rel="nofollow" href="/users/login" class="gray01">登录</a>
                         <span>|</span>
-                        <a rel="nofollow" href="javascript:void(0);" class="gray01">注册</a>
+                        <a rel="nofollow" href="/users/register" class="gray01">注册</a>
                     </li>
                     <li class="h_1yyg">
-                        <a rel="nofollow" href="javascript:void(0);">
-                            我的1元云购 <b></b>
-                        </a>
+                        <a rel="nofollow" href="/users/center">我的云购<b></b></a>
                         <div class="h_1yyg_eject" style="display: none; ">
                             <dl>
                                 <dt>
-                                    <a rel="nofollow" href="javascript:void(0);">
-                                        我的1元云购 <i></i>
-                                    </a>
+                                    <a rel="nofollow" href="/users/center">我的云购<i></i></a>
                                 </dt>
                                 <dd>
                                     <a rel="nofollow" href="javascript:void(0);">云购记录</a>
@@ -63,14 +59,8 @@
                             <div class="h_news_downC"></div>
                         </div>
                     </li>
-                    <!--li class="h_Mobile">
-                        <a rel="nofollow" target="_blank" href="javascript:void(0);">桌面版</a>
-                    </li>
-                    <li class="h_Mobile">
-                        <a rel="nofollow" target="_blank" href="javascript:void(0);">手机版</a>
-                    </li-->
                     <li class="h_help">
-                        <a rel="nofollow" target="_blank" href="javascript:void(0);">帮助</a>
+                        <a rel="nofollow" target="_blank" href="/help">帮助</a>
                     </li>
                     <li class="h_inv">
                         <a rel="nofollow" target="_blank" href="javascript:void(0);">在线客服</a>
@@ -84,20 +74,20 @@
     <div class="head_mid">
         <div class="head_mid_bg">
             <h1 class="logo_1yyg">
-                <a class="logo_1yyg_img" href="javascript:void(0);" title="1元云购">1元云购</a>
+                <a class="logo_1yyg_img" href="/" title="积分云购">积分云购</a>
             </h1>
             <div id="topJackaroo" class="newbie_guide"></div>
             <div class="head_number">
                 <a href="javascript:void(0);" target="_blank">已<span id="spBuyCount" style="color: rgb(34, 170, 255); background-color: rgb(245, 245, 245); opacity: 1; background-position: initial initial; background-repeat: initial initial; ">7383415</span>人次参与云购</a>
             </div>
             <div class="head_search">
-                <input type="text" id="txtSearch" class="init" value="" title="输入"红米手机" 试试">    
+                <input type="text" id="txtSearch" class="init" value="" title='输入"手机" 试试'>    
                 <input type="button" id="butSearch" class="search_submit" value="搜索">    
                 <div class="keySearch">
-                    <a href="javascript:void(0);" target="_blank">智能手机</a>
-                    <a href="javascript:void(0);" target="_blank">3G手机</a>
-                    <a href="javascript:void(0);" target="_blank">宝马</a>
-                    <a href="javascript:void(0);" target="_blank">单反</a>
+                    <a href="/search/index/智能手机" target="_blank">智能手机</a>
+                    <a href="/search/index/3G手机" target="_blank">3G手机</a>
+                    <a href="/search/index/宝马" target="_blank">宝马</a>
+                    <a href="/search/index/单反" target="_blank">单反</a>
                 </div>
             </div>
         </div>
@@ -114,7 +104,7 @@
                         'product' => ['name' => '所有商品', 'url' => '/products', 'class' => 'sort-all'],
                         'lottery' => ['name' => '最新揭晓', 'url' => '/lotterys', 'class' => 'new-lottery'],
                         'share'   => ['name' => '晒单分享', 'url' => '/shares', 'class' => 'share'],
-                        'new'     => ['name' => '新手指南', 'url' => '/new', 'class' => 'what-1yyg'],
+                        'newbie'  => ['name' => '新手指南', 'url' => '/help/newbie', 'class' => 'what-1yyg'],
                     ];
 
                     foreach($navs as $key => $nav) {
@@ -251,12 +241,12 @@
                      <dd class="ft-fwrx-service">
                          <span class="ft-qqicon">
                              <a href="javascript:void(0);" rel="nofollow" target="_blank" style="text-indent:0em; background:none;width:160px;">
-                                 官方QQ群①： <em class="orange Fb">89834747</em>
+                                 官方QQ群①： <em class="orange Fb">888888</em>
                              </a>
                          </span>
                          <span class="ft-qqicon">
                              <a href="javascript:void(0);" rel="nofollow" target="_blank" style="text-indent:0em; background:none;width:160px;">
-                                 官方QQ群②： <em class="orange Fb">190818578</em>
+                                 官方QQ群②： <em class="orange Fb">888888</em>
                              </a>
                          </span>
                      </dd>
@@ -301,12 +291,6 @@
                  <p>服务器时间</p>
                  <span id="sp_ServerTime">17:18:41</span>
              </div>
-             <div class="Service_Fund">
-                 <a href="javascript:void(0);" target="_blank">
-                     <p>云购公益基金</p>
-                     <span id="spanFundTotal">1073979.25</span>
-                 </a>
-             </div>
          </div>
      </div>
      <!--底部内容结束-->
@@ -327,7 +311,7 @@
               <b></b>
               <a href="javascript:void(0);">联系我们</a>
           </div>
-          <div class="copyright">Copyright  © 2011 - 2013,  版权所有  1yyg.com  粤ICP备09213115号-1</div>
+          <div class="copyright">Copyright  © 2013  版权所有  jfyg.com  粤ICP备xxxxxx号-1</div>
           <div class="footer_icon" style="width:599px;">
               <ul>
                   <li class="fi_ectrustchina">
