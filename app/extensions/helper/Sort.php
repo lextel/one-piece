@@ -11,7 +11,7 @@ class Sort {
 
     static $orderBy = [
         'products' => [
-            'showed'  => '揭晓时间',
+            'remain'  => '揭晓时间',
             'hits'    => '人气',
             'remain'  => '剩余人次',
             'created' => '最新',
@@ -24,6 +24,11 @@ class Sort {
             'created' => '最新',
             'price'   => '价格'
         ],
+        'shares' => [
+            'created' => '最新晒单',
+            'hits' => '人气晒单',
+            'comment' => '评论最多',
+        ]
     ];
 
     /**

@@ -1,3 +1,7 @@
+<?php
+$this->title('晒单分享');
+$this->styles($this->resLoader->css('product_list.css'));
+?>
 <div class="Current_nav">
     <a href="/">首页</a> &gt; 晒单分享
 </div>
@@ -9,9 +13,11 @@
     <dl>
         <dt>排序</dt>
         <dd>
-            <a href="http://post.1yyg.com/list.html" id="new" class="SortCur">最新晒单</a>
-            <a href="http://post.1yyg.com/list.html?r=20" id="popularity" class="">人气晒单</a>
-            <a href="http://post.1yyg.com/list.html?r=30" id="comment" class="">评论最多</a>
+            <?php
+                foreach($sortList as $list) {
+                    echo $list;
+                }
+            ?>
         </dd>
     </dl>
 </div>
@@ -42,8 +48,7 @@
                         </dd>
                         <dd class="share_info gray01"><?php echo $share['content']; ?></dd>
                         <dd class="message hidden" style="display: block;">
-                            <span class="smile gray03"> <i></i> <b>羡慕( <em num="3620"><?php echo $share['good'];?></em>
-                                    )</b> 
+                            <span class="smile gray03">羡慕( <em num="3620"><?php echo $share['good'];?></em>)
                             </span>
                             <span class="much">
                                 <a target="_blank" rel="nofollow" href="/shares/view/<?php echo $share['productId']; ?>/<?php echo $share['periodId']; ?>" class="gray03"> <i></i>

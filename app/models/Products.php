@@ -179,13 +179,15 @@ class Products extends \lithium\data\Model {
     /**
      * 处理排序
      *
-     * @param & $options array 排序数组 添加排序到$options['order']并删除无关字段
+     * @param $options array 排序数组 添加排序到$options['order']并删除无关字段
+     * @param 默认排序
      *
      * @return viod
      */
-    public static function handleSort($options) {
+    public static function handleSort($options, $default = []) {
 
         $options['sortBy'] = isset($options['sortBy']) && $options['sortBy'] == 'asc' ? 'asc' : 'desc';
+        $default = empty($default) ?  ['sort' => 'showed' ,'sortBy' => 'asc'] : $default;
 
         if(isset($options['sort'])) {
             switch ($options['sort']) {
@@ -205,11 +207,11 @@ class Products extends \lithium\data\Model {
                     $options['order'] = ['sort' => 'price' ,'sortBy' => $options['sortBy']];
                     break;
                 default:
-                    $options['order'] = ['sort' => 'showed' ,'sortBy' => 'asc'];
+                    $options['order'] = $default;
                     break;
             }
         } else {
-            $options['order'] = ['sort' => 'showed' ,'sortBy' => 'asc'];
+            $options['order'] = $default;
         }
 
         unset($options['sortBy'], $options['sort']);

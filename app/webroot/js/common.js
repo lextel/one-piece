@@ -185,93 +185,87 @@ $(function(){
     });
 
 
-    // 购物车页面
-    var jiaFun = function(){
-        $('.jia').unbind('click');
-        var productId = $(this).attr('productId');
-        var periodId = $(this).attr('periodId');
+    // 购物车页面 修改购物数量
+
+    var productId = '';
+    var periodId = '';
+    var mT; // modifyTimer
+
+    // 购物车数量输入框选中
+    $('input[id^=txtNum]').hover(function(){
+        $(this).select();
+    });
+
+    var modifyFun = function(){
         var quantity = $('#txtNum' + productId).val();
-        $.ajax({
-            url: '/cart/modify',
-            data: {productId: productId, periodId:periodId, quantity:quantity, method: 'add'},
-            dataType: 'json',
-            type: 'post',
-            success: function(data) {
-                if(data.status < 3) {
-                    var msg = '';
-                    switch(data.status) {
-                        case 2:
-                            msg = '此商品剩余人次不足';
-                            break;
-                        case 1:
-                            msg = '本期已经结束';
-                            break;
-                        case 0:
-                            msg = '参数有误';
-                            break
-                    }
+        var remain = $('#rm' + productId).val();
 
-                    alert(msg);
-                } else {
-                    quantity = data.q;
-                    $('#txtNum' + productId).val(quantity);
-                    $('.xj' + productId).html('￥'+quantity+'.00');
-                    var total = parseInt($('#moenyCount').html());
-                    total++;
-                    $('#moenyCount').html(total+'.00')
-                }
-                $('.jia').bind('click', jiaFun);
-            }
-        });
-    };
-
-    $('.jia').bind('click', jiaFun);
-
-    var jianFun = function(){
-        $('.jian').unbind('click');
-        var productId = $(this).attr('productId');
-        var periodId = $(this).attr('periodId');
-        var quantity = $('#txtNum' + productId).val();
-        if(quantity == '1'){
-            $(this).parent().parent().next().show().delay(1000).fadeOut();
-            return false;
+        var reNum = /^\d*$/;
+        if(!reNum.test(quantity) || quantity < 1) {
+            $('#txtNum' + productId).parent().parent().next().html('最少需云购1人次').show().delay(1000).fadeOut();
+            quantity = 1;
         }
-        $.ajax({
+
+         $.ajax({
             url: '/cart/modify',
-            data: {productId: productId, periodId:periodId, quantity:quantity, method: 'del'},
+            data: {productId: productId, periodId:periodId, quantity:quantity},
             dataType: 'json',
             type: 'post',
             success: function(data) {
 
-                if(data.status < 3) {
-                    var msg = '';
-                    switch(data.status) {
-                        case 2:
-                            msg = '此商品剩余人次不足';
-                            break;  
-                        case 1:
-                            msg = '本期已经结束';
-                            break;
-                        case 0:
-                            msg = '参数有误';
-                            break
-                    }
-
-                    alert(msg);
+                // 成功
+                if(data.status == 1) {
+                    quantity = data.quantity;
                 } else {
-                    quantity = data.q;
-                    $('#txtNum' + productId).val(quantity);
-                    $('.xj' + productId).html('￥'+quantity+'.00');
-                    var total = parseInt($('#moenyCount').html());
-                    total--;
-                    $('#moenyCount').html(total+'.00')
+
+                    if(data.remain == 0) {
+                        alert('本期可能已经结束，请购买下一期。');
+                        window.location.href = window.location.href;
+                    } else if(quantity > data.remain) {
+                        $('#txtNum' + productId).parent().parent().next().html('最多云购' + data.remain).show().delay(1000).fadeOut();
+                        quantity = data.remain;
+                    }
+                    
                 }
-                $('.jian').bind('click', jianFun);
+
+                $('#txtNum' + productId).val(quantity);
+                $('#rm' + productId).html(data.remain);
+                $('.xj' + productId).html('￥'+quantity+'.00');
+                updateCartTotal();
+            },
+            error: function() {
+                alert('请求出错');
             }
         });
     };
 
-    $('.jian').bind('click', jianFun);
+    $('.jia').click(function(){
+        clearTimeout(mT);
+        productId = $(this).attr('productId');
+        periodId = $(this).attr('periodId');
+        var quantity = $('#txtNum' + productId).val();
+        quantity++;
+        $('#txtNum' + productId).val(quantity);
+        mT = setTimeout(modifyFun, 500);
+    });
+
+    $('.jian').click(function(){
+        clearTimeout(mT);
+        productId = $(this).attr('productId');
+        periodId = $(this).attr('periodId');
+        var quantity = $('#txtNum' + productId).val();
+        quantity--;
+        $('#txtNum' + productId).val(quantity);
+        mT = setTimeout(modifyFun, 500);
+    });
+
+    // 直接输入数量
+    $('input[id^=txtNum]').keyup(function() {
+        clearTimeout(mT);
+        productId = $(this).attr('productId');
+        periodId = $(this).attr('periodId');
+        mT = setTimeout(modifyFun, 500);
+    });
 
 
     // 删除产品
@@ -336,9 +330,42 @@ $(function(){
     });
 
 
+    // 搜索默认提示
+    $('#txtSearch').val($('#txtSearch').attr('title'));
+    $('#txtSearch').focus(function(){
+        if($(this).val() == $(this).attr('title')) {
+            $(this).val('');
+        }
+        $(this).addClass('text');
+    });
+    $('#txtSearch').blur(function(){
+        if($(this).val() == '') {
+            $('#txtSearch').val($('#txtSearch').attr('title'));
+            $(this).removeClass('text');
+        }
+    });
+
+    // 搜索
+    $('#butSearch').click(function(){
+        gotoSearch();
+    });
+
+    $("#txtSearch").keyup(function(){
+        if(event.keyCode == 13) {
+            gotoSearch();
+        }
+    });
+
+
 });
 
+function gotoSearch() {
+    if($('#txtSearch').val() == $('#txtSearch').attr('title') || $('#txtSearch').val() == '') {
+         return false;
+    }
 
+    window.location.href='/search/index/' + $('#txtSearch').val();
+}
 
 function updateCartTotal() {
     var total = 0;

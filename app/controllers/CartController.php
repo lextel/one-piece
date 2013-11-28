@@ -9,12 +9,17 @@ use lithium\action\DispatchException;
 
 class CartController extends \lithium\action\Controller {
 
+    private $_navCurr = 'cart';
+
     // 购物车页面
     public function index() {
 
         $carts = Carts::get();
 
-        return compact('carts');
+        // 当前导航
+        $navCurr = $this->_navCurr;
+
+        return compact('carts', 'navCurr');
     }
 
 
@@ -52,11 +57,10 @@ class CartController extends \lithium\action\Controller {
         $id = $this->request->data['productId'];
         $periodId = $this->request->data['periodId'];
         $quantity = $this->request->data['quantity'];
-        $method = $this->request->data['method'];
 
-        $rs = ['status' => 0];
-        if(!empty($id) && !empty($periodId) && !empty($method)) {
-            $rs = Carts::modify($id, $periodId, $quantity, $method);
+        $rs = ['status' => 0, 'remain' => 0];
+        if(!empty($id) && !empty($periodId)) {
+            $rs = Carts::modify($id, $periodId, $quantity);
         }
 
         return $this->render(['json' => $rs]);
@@ -78,7 +82,10 @@ class CartController extends \lithium\action\Controller {
 
         $carts = Carts::get(true);
 
-        return compact('carts');
+        // 当前导航
+        $navCurr = $this->_navCurr;
+
+        return compact('carts', 'navCurr');
     }
 
     // 确认支付
@@ -130,6 +137,8 @@ EOD;
 
         // 支付成功处理
         Orders::order();
+
+        echo '支付成功！！！（骗你的）<a href="/">返回</a>';
         die;
 
         if(isset($_REQUEST['r0_Cmd'])) {

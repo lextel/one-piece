@@ -66,21 +66,27 @@ class Carts extends \lithium\data\Model {
         }
 
         $data = [];
-        if(is_array($carts)) {
-            foreach($carts as $k => $cart) {
-                $product = Products::find('first', ['conditions' => ['_id' => $cart['id']]])->to('array');
-                $data[$k] = ['title' => utf_substr($product['title'], 46), 'image' => $product['images'][0]] + $cart;
-                if($more) {
-                    $idx = count($product['periods']) - 1;
-                    $period = $product['periods'][$idx];
+        if(!is_array($carts)) return $data;
 
-                    $data[$k] += [
-                        'price' => $period['price'],
-                        'person' => $period['person'],
-                        'remain' => $period['remain'],
-                    ];
-                }
+
+        foreach($carts as $k => $cart) {
+
+            $conditions = ['_id' => $cart['id']];
+            $product = Products::find('first', ['conditions' => $conditions])->to('array');
+            $addtion = ['title' => $product['title'], 'image' => $product['images'][0]];
+            
+            if($more) {
+                $idx = count($product['periods']) - 1;
+                $period = $product['periods'][$idx];
+
+                $addtion += [
+                    'price' => $period['price'],
+                    'person' => $period['person'],
+                    'remain' => $period['remain'],
+                ];
             }
+
+            $data[$k] =$addtion + $cart;
         }
 
         return $data;
@@ -153,7 +159,6 @@ class Carts extends \lithium\data\Model {
 
     /**
      * 清空购物车
-     *
      */
     public static function clear() {
 
@@ -167,44 +172,43 @@ class Carts extends \lithium\data\Model {
      * @param $id       mongoid 商品ID
      * @param $periodId integer 期数
      * @param $quantity integer 数量
-     * @param $method   string  修改方式
      *
-     * @return integer 状态 0参数错误 1已经开奖 2 剩余数量不足 3 成功
+     * @return array
      */
-    public static function modify($id, $periodId, $quantity, $method) {
+    public static function modify($id, $periodId, $quantity) {
 
         $product = Products::find('first', ['conditions' => ['_id' => $id]])->to('array');
         $period = $product['periods'][$periodId-1];
 
+        // 不是可购买状态
         if($period['status'] > 0) {
-            return ['status' => 1];
+            return ['status' => 0, 'remain' => 0];
         }
 
+        $status = 1;
+        // 购买数量大于剩余数量
         if($period['remain'] < $quantity) {
-            return ['status' => 2];
+            $status = 0;
+            $quantity = $period['remain'];
         }
 
         $carts = self::get();
         foreach($carts as $k => $cart) {
-            if($cart['id'] == $id && $cart['periodId'] == $periodId && $method == 'add') {
-                $carts[$k]['quantity']++;
-                $q = $carts[$k]['quantity'];
-            } else if($cart['id'] == $id && $cart['periodId'] == $periodId && $method == 'del') {
-                if($carts[$k]['quantity'] > 0) {
-                    $carts[$k]['quantity']--;
+            if($cart['id'] == $id && $cart['periodId'] == $periodId) {
+                // 如果被卖完了
+                if($period['remain'] == 0) {
+                    unset($carts[$k]);
+                } else {
+                    $carts[$k]['quantity'] = $quantity;
                 }
-
-                $q = $carts[$k]['quantity'];
-            }
+            } 
         }
+
+        $carts = array_values($carts);
 
         self::set($carts);
 
-        return ['status' => 3, 'q' => $q];
+        return ['status' => $status, 'quantity' => $quantity, 'remain' => $period['remain']];
     }
-
-
 }
-
-
 ?>

@@ -98,34 +98,25 @@ Router::connect('/products/index/{:catId:[0-9]+}/{:brandId:[0-9]+}/{:args}', 'Pr
 Router::connect('/products/index/{:catId:[0-9]+}/page:{:page:[0-9]+}/{:args}', 'Products::index');
 Router::connect('/products/index/{:catId:[0-9]+}/{:args}', 'Products::index');
 Router::connect('/products/index/{:catId:[0-9]+}/{:brandId:[0-9]+}/page:{:page:[0-9]+}/{:args}', 'Products::index');
-
-
-
 Router::connect('/products/view/{:id}/{:periodId}', 'Products::view');
-
 Router::connect('/products/cat/{:catId:[0-9]+}/{:args}', 'Products::cat');
 Router::connect('/products/brand/{:catId:[0-9]+}/{:args}', 'Products::brand');
-
 Router::connect('/products/listing/{:status}/{:tagId}/{:id}', 'Products::listing');
 Router::connect('/products/listing/{:status}/{:id}', 'Products::listing');
-
 Router::connect('/products/edit/{:id}', 'Products::edit');
+
+Router::connect('/search/index/{:title}/page:{:page:[0-9]+}/{:args}', 'Search::index');
+Router::connect('/search/index/{:title}/{:args}', 'Search::index');
 
 Router::connect('/shares/share/{:typeId:[0-9]+}/{:args}', 'Shares::share');
 Router::connect('/shares/share/{:typeId:[0-9]+}/page:{:page:[0-9]+}/{:args}', 'Shares::share');
-
 Router::connect('/shares/dashboard/{:typeId:[0-9]+}/{:args}', 'Shares::dashboard');
 Router::connect('/shares/dashboard/{:typeId:[0-9]+}/page:{:page:[0-9]+}/{:args}', 'Shares::dashboard');
-
-
 Router::connect('/shares/view/{:productId}/{:periodId}', 'Shares::view');
-
-Router::connect('/posts/comment/{:postId}/page:{:page:[0-9]+}/{:args}', 'Posts::comment');
-Router::connect('/posts/comment/{:postId:[0-9]+}/{:args}', 'Posts::comment');
-
 Router::connect('/shares/add/{:productId}/{:periodId}', 'Shares::add');
 
-
+Router::connect('/posts/comment/{:postId}/page:{:page:[0-9]+}/{:args}', 'Posts::comment');
+Router::connect('/posts/comment/{:postId}/{:args}', 'Posts::comment');
 
 Router::connect('/{:controller}/{:action}/page:{:page:[0-9]+}/{:args}');
 Router::connect('/{:controller}/{:action}/{:args}');

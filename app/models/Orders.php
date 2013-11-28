@@ -8,6 +8,22 @@ use app\models\Products;
 
 class Orders extends \lithium\data\Model {
 
+    /**
+     * mongodb orders数据结构
+     *
+     * @var array
+     */
+    protected $_schema = [
+        '_id'        => ['type' => 'id'],             // UUID
+        'user_id'    => ['type' => 'integer'],        // 所属会员ID
+        'product_id' => ['type' => 'integer'],        // 商品ID
+        'period_id'  => ['type' => 'integer'],        // 期数ID
+        'codes'      => ['type' => 'array'],          // 云购码 
+        'count'      => ['type' => 'integer'],        // 云购数量
+        'created'    => ['type' => 'string'],         // 时间（到毫秒）
+    ];
+
+
 	/**
      * 下订单
      */
@@ -66,7 +82,6 @@ class Orders extends \lithium\data\Model {
                 $product->save();
 
                 self::next($product);
-
             }
     	}
     }

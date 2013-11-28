@@ -166,9 +166,6 @@ div, ul, li, dl, dt, dd, table, td, input {
 	color: #666;
 	padding-right: 8px;
 }
-.gray01 {
-	color: #666;
-}
 .login_info .h_login span {
 	padding: 0 7px;
 	color: #EEE;
@@ -216,7 +213,6 @@ div, ul, li, dl, dt, dd, table, td, input {
 }
 .head_mid .head_mid_bg .logo_1yyg {
 	float: left;
-	background: url() 2px 0 no-repeat;
 	margin-top: 10px;
 	margin-right: 10px;
 	display: inline;
@@ -432,6 +428,18 @@ div, ul, li, dl, dt, dd, table, td, input {
 	height: 58px;
 	border:1px solid #dbdbdb;
 }
+.mycart_list ul li.img a{ 
+	width: 58px;
+	height: 58px;
+	display:block;
+	text-align:center;
+} 
+.mycart_list ul li.img a img{ 	
+	max-width: 58px;
+	display:block;
+	vertical-align:middle;
+	width:expression(document.body.clientWidth > 58?"58":"auto" )
+} 
 .mycart_list ul li.title {
 	width:160px;
 	margin-left:10px;
@@ -446,15 +454,18 @@ div, ul, li, dl, dt, dd, table, td, input {
 .mycart_list ul li .rmbred {
 	color: #F60;
 	height:23px;
-    display:inline-block;
     margin-top:5px;
+	position:relative;
+	width:auto;
 }
 .mycart_list ul li .rmbred i{
 	display:inline-block;
 }
 .mycart_list ul li .rmbred .delGood {
-	display:inline-block;
-	margin-left:80px;
+	position:absolute;
+	top:0;
+	right:0;
+	display:block;
 	text-decoration:underline;
 }
 .mycart_list dl dd.del {
@@ -536,7 +547,7 @@ div, ul, li, dl, dt, dd, table, td, input {
 	color: #BBB;
 	font-family: 宋体;
 	height: 25px;
-	margin: 0 auto;
+	margin: 10px auto 0;
 }
 .Current_nav a {
 	color: #BBB;

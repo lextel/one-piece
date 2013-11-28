@@ -1,6 +1,9 @@
 @charset "utf-8";
 /* CSS Document */
 .orange {color: #F60;}
+.gray01 {
+	color: #666;
+}
 .head_nav .nav_list li a:hover{background:#F40;border: 1px solid #F40;}
 .list_class {width: 978px;background: white;border: 1px solid #E4E4E4;padding-bottom: 10px;border-top: none;zoom: 1;position: relative;overflow: hidden;}
 .list_class dl {padding-top: 10px;float: left;}
@@ -11,7 +14,7 @@
 .list_class dd a.ClassCur {background: #F60;color: white;padding: 2px 5px 2px 5px;white-space: nowrap;}
 .list_class dd a {line-height: 22px;height: 24px;overflow: hidden;padding: 2px 5px 2px 5px;color: #666;white-space: nowrap;}
 a.list_classMore:visited, a.list_classMore:hover, a.list_classMore:active {color: #2AF;}
-a.list_classMore {border: 1px solid #EEE;display: inline-block;position: absolute;bottom: 10px;right: 10px;padding: 2px 8px 1px 8px;_padding: 3px 8px 3px 8px;color: #2AF;}
+a.list_classMore {border: 1px solid #EEE;display: inline-block;position: absolute;bottom: 10px;right: 10px;padding: 2px 8px 1px 8px;color: #2AF;}
 .list_classMore i {
 	width: 8px;
 	height: 8px;
@@ -19,6 +22,8 @@ a.list_classMore {border: 1px solid #EEE;display: inline-block;position: absolut
 	display: inline-block;
 	background-position: right -158px !important;
 }
+.goods_tj, .goods_xp, .goods_rq, .goods_xs, .list_classMore i, .MoreClick i,.list_Sort dd  i,.list_Sort dd s, .SortCur b, .SortCur s{
+background: url(../img/goods_tj.png) no-repeat;}
 .list_Sort {width: 978px;height: 48px;background: white;border: 1px solid #E4E4E4;border-top: none;}
 .list_Sort dl {float: left;padding-top: 10px;}
 .list_Sort dt {float: left;width: 53px;text-align: center;padding-top: 4px;color: #BBB;}
@@ -32,8 +37,24 @@ a.list_classMore {border: 1px solid #EEE;display: inline-block;position: absolut
 	display: inline-block;
 	float: left;
 }
-.list_Sort dd .Price_Sort i{
+.list_Sort dd  i{
+	background-position: -21px -170px;
+	width:7px;
+	height:9px;
+	margin-left:5px;
+	display:inline-block;
+	cursor:pointer;
+}
+.list_Sort dd  s{
 	background-position: 0 -170px;
+	width:7px;
+	height:9px;
+	margin-left:5px;
+	display:inline-block;
+	cursor:pointer;
+}
+.list_Sort dl dd a.SortCur s{
+	background-position: -43px -170px;
 	width:7px;
 	height:9px;
 	display:inline-block;
@@ -41,7 +62,6 @@ a.list_classMore {border: 1px solid #EEE;display: inline-block;position: absolut
 }
 /*用户信息*/
 .user_content{width:980px;margin:40px auto 0;overflow:hidden;}
-.user_nav{}
 .user_pic{float:left; width:70px;height:70px;overflow:hidden;}
 .user_info{float:left;}
 h1 {font-size: 25px;font-weight: bold;color: #494949;margin: 0;}
@@ -108,7 +128,8 @@ h1 {font-size: 25px;font-weight: bold;color: #494949;margin: 0;}
 .add_product{width:100%; overflow:hidden;}
 .add_product h2{height:30px; font-size:18px; border-top:1px dashed #dbdbdb; line-height:30px;}
 .add_product ul{margin-top:20px; overflow:hidden;}
-.add_product ul li{ margin-bottom:10px; width:100%; overflow:hidden;}
+.add_product ul li{ margin:10px; width:100%; overflow:hidden;}
+.add_product ul li.content_li{ margin-left:63px;}
 .add_product ul li textarea{ float:left;height:250px; font-size:14px; width:580px; border:1px solid #dbdbdb;}
 .add_product ul li .error{
 	float:left;
@@ -123,10 +144,10 @@ h1 {font-size: 25px;font-weight: bold;color: #494949;margin: 0;}
 }
 .add_product ul li h4{ margin-left:44px;}
 .add_product ul li div label{font-size:14px;}
-.text_nums div input{height:30px; border:1px solid #dbdbdb; width:200px;float:left; margin-left:5px; }
+.text_nums div input{height:30px; border:1px solid #dbdbdb; width:200px;float:left; margin-left:5px; text-indent:10px; }
 .text_nums div label{display: block;float: left;height: 30px;line-height: 30px;text-align: right; width:80px; font-size:14px;}
 .add_product ul .radio_nums input{height:30px; padding-top:8px; float:left; margin:0 10px;}
-.add_product ul li div select{height:26px; line-height:26px; border:1px solid #dbdbdb; float:left;}
+.add_product ul li div select{height:26px; line-height:26px; min-width:100px; border:1px solid #dbdbdb; float:left; margin-left:5px;text-indent:5px;}
 .add_product ul .radio_nums { margin-left:65px;}
 .add_product ul .radio_nums label{ float:left; height:30px; line-height:30px;}
 .add_product ul .radio_select label{ float:left; height:30px; line-height:30px;}
@@ -144,33 +165,87 @@ h1 {font-size: 25px;font-weight: bold;color: #494949;margin: 0;}
 	margin-left:20px;
 }
 .bottom_side input{ float:left;background:#f60; color:#fff;}
-.bottom_side input{ float:left;}
 .add_product ul li dl {margin-left:74px;}
 .add_product ul li dl dd{
-	width:38px; 
-	height:38px; 
-	margin:10px 5px; 
+	width:80px; 
+	height:80px; 
+	margin:5px; 
 	position:relative; 
-	float:left; 
+	float:left;
+	text-align:center; 
 	border:1px solid #dbdbdb;
 }
+.add_product ul li dl dd img{
+	height:80px;
+	max-width:80px; 
+	vertical-align:middle;
+    width:expression(document.body.clientWidth > 80?"80px":"auto" )
+}
 .add_product ul li dl dd s{
-	width:8px; 
-	height:8px; 
+	width:15px; 
+	height:15px; 
 	position:absolute; 
-	top:4px;
-	left:30px;
+	top:2px;
+	right:2px;
+	cursor:pointer;
 	background:url(../img/login_new.png) no-repeat;
-	background-position:-38px -22px;
+	background-position:-18px -19px;
 }
 .add_product ul li dl dd.insert_bottom{ 
-	line-height:38px; 
-	text-align:center; 
-	background:#f60; 
-	color:#fff; 
-	border-radius:4px;
-	border:1px  solid #e05b02;
+	height: 30px;
+	width: 60px;
+	line-height: 30px;
+	text-align: center;
+	background: #F60;
+	color: white;
+	border-radius: 3px;
+	border: 1px solid #E05B02;
+	overflow: hidden;
+	position:relative;
 }
+.add_product ul li dl dd.insert_bottom input{ 
+	height: 30px;
+	width: 60px;
+	position:absolute;
+	cursor:pointer;
+	top:0;
+	left:0;
+	Opacity:0;
+}
+/*编辑商品*/
+.wrap h2{ height:30px; line-height:30px; font-size:16px; width:750px; font-weight:bold;}
+.wrap h2 .insert_p{ float:right; display:block; color:#666;text-decoration:underline}
+.wrap h2 .insert_p:hover{color:#f60; }
+.edit_product{ width:750px; overflow:hidden; margin:10px 0; border-top:1px solid #dbdbdb; padding:10px 0;}
+.edit_product li{ height:33px; line-height:33px; border-bottom:1px dashed #dbdbdb; padding:5px 0px;}
+.edit_product li a{ display:block; color:#333; font-size:14px; width:80%; float:left;}
+.edit_product li a:hover{color:#f60; }
+.edit_product li .bottom_list{ float:right; display:block; width:20%;}
+.edit_product li .bottom_list a{
+	 width:34%; 
+	 height:26px;
+	 float:right;
+	 line-height:26px;
+	 text-align:center;
+	 background:#2af;
+	 color:#fff;
+	 font-size:12px;
+	 margin-left:10px;
+	 border-radius:3px;
+	 border:1px solid #1c96e3;
+}
+.edit_product li .bottom_list a:hover{
+	 background:#269ee9;
+}
+
+
+
+
+
+
+
+
+
 .help-contact .Customer {
 	width: 128px;
 	height: 26px;
@@ -215,6 +290,7 @@ h1 {font-size: 25px;font-weight: bold;color: #494949;margin: 0;}
 .infoList .title_menu{ width:696px; overflow:hidden; margin:10px 0; border-top:2px solid #49B8FF; border-bottom:1px solid #dbdbdb; border-left:1px solid #dbdbdb }
 .infoList .title_menu dd{ height:36px; line-height:36px; background:#f5f5f5; border-right:1px solid #dbdbdb;float:left; text-align:center; width:115px; cursor: pointer}
 .infoList .title_menu .first{ background:#49B8FF; color:#FFF;}
+
 /*开奖列表*/
 .Newpublish {width: 980px;margin: 0 auto;}
 .NewpublishL {width: 733px;float: left;overflow: hidden;}
@@ -990,28 +1066,54 @@ background: url(../img/login_new.png) no-repeat;
 .goods_share_listC ul {width: 980px;}
 .goods_share_listC li {width: 235px;overflow: hidden;padding: 10px 0 0 0;margin-right: 13px;display: inline;float: left;}
 .goods_share_listC .share_list_content {width: 233px;border: 1px solid #E4E4E4;position: relative;background: white;margin: 0 auto 10px;}
-.share_list_content dt {width: 223px;padding: 6px;position: relative;display: block;}
+.share_list_content dt { width:223px;padding: 6px;position: relative;display: block;}
 .share_list_content dt a {display: block;}
 .share_list_content dt img {width: 220px;}
-.share_list_content dd {padding-left: 6px;padding-right: 6px;position: relative;}
+.share_list_content dd {padding:0 10px;position: relative;}
 .share-name .name-img {width: 35px;overflow: hidden;float: left;}
 .share-name .name-img img {width: 35px;height: 35px;margin-top: 2px;}
 .share-name .share-name-r {margin-left: 35px;color: #666;text-align: left;padding-left: 5px;}
-.share-name .share-name-r span {width: 180px;overflow: hidden;display: inline-block;}
-.share_list_content dd {padding-left: 6px;padding-right: 6px;position: relative;}
-.share_list_content dd {padding-left: 6px;padding-right: 6px;position: relative;}
-.message {text-align: left;height: 24px;padding-bottom: 8px;margin-top: 8px;}
-.message .smile {padding: 4px 6px 2px 22px;float: left;position: relative;margin-right: 5px;margin-left: 40px;border-radius: 3px;font-family: 宋体;font-size: 12px;}
-.message .gray03 {color: #BABABA;}
-.message .smile i {width: 13px;height: 11px;display: inline-block;background-position: 0 -72px;position: absolute;left: 4px;top: 7px;}
-.tsed, .ts, .Close a, .smile_message i, .smile i, .smile-have i, .much i, .icon, .icon1 {
-	background: url(../img/share_icon.png);
+.share-name .share-name-r span {width: 180px;overflow: hidden;display: inline-block; color:#999;}
+.share-name .share-name-r .Fb{ font-weight:bold;}
+.share_list_content dd.share_info { padding-left:50px; height:60px;}
+.share_list_content .message {height:24px; padding:10px 0 10px 40px;}
+.message span,.moodm span{	
+    float: left;
+	position: relative; 
+	width:80px; 
+	height:24px;
+	line-height:24px;
+	text-indent:26px; 
+	display:block;
 }
-.message .much {float: left;font-family: 宋体;font-size: 12px;}
-.message .much a {display: inline-block;position: relative;padding: 4px 5px 2px 19px;}
-.message .much i {width: 15px;height: 14px;background-position: 0 -58px;position: absolute;left: 0;top: 7px;}
-.text-h10 {height: 0;overflow: hidden;}
-.goods_share_listC li.share-liR {float: right;margin-right: 0;}
+.message .smile ,.moodm .smile {
+	background:url(../img/share_icon.png) no-repeat 10px -85px;
+}
+.envy{
+	width:80px;
+	height:24px;
+	line-height:24px;
+	text-indent:28px; 
+	opacity:0;
+	position:absolute;
+	background:url(../img/envy.png) no-repeat;
+	top:-30px;
+	display:none;
+	left:0;
+	color:#33bb00;
+}
+.message .smile:hover,.moodm .smile:hover {
+	color:#fff;
+	cursor:pointer;
+	background:url(../img/envy.png) no-repeat 0 -38px;
+}
+
+.message .much a,.moodm .much a{display:block;position: relative; color:#333;background: url(../img/share_icon.png) no-repeat 10px -58px;}
+.message .much a:hover,.moodm .much a:hover{
+	color:#f60;
+	text-decoration:none;
+	background: url(../img/share_icon.png) no-repeat 10px -109px;
+}
 /*晒单分享详细内容*/
 .share_box {width: 978px;margin: 0 auto 20px auto;text-align: left;background: url(../img/share_linebg.png) repeat-y;border: 1px solid #E1E1E1; overflow:hidden;}
 /*左边内容*/
@@ -1062,7 +1164,7 @@ background: url(../img/login_new.png) no-repeat;
 	border: 1px solid #E4E4E4;
 	color: #fff;
 	font-weight: normal;
-	background:f60;
+	background:#f60;
 	border-radius: 3px;
 }
 .share_content {
@@ -1079,30 +1181,7 @@ background: url(../img/login_new.png) no-repeat;
 .share_content p {margin: 10px auto 0;text-align: center;text-indent: 0;}
 .mood {height: 50px; }
 .moodwm {width: 400px;height: 24px;margin:0 auto}
-.moodm {float: left;width: 220px;}
-.moodm .smile {
-	padding: 4px 10px 2px 22px;
-	display: inline-block;
-	position: relative;
-	margin-right: 8px;
-	border-radius: 3px;
-	font-family: 宋体;
-	font-size: 12px;
-	background: #F60;display: inline-block;color: white;
-}
-.moodm .smile i {background-position: 0 -30px !important;}
-.moodm .smile i {width: 13px;height: 11px;display: inline-block;background-position: 0 -72px;position: absolute;left: 4px;top: 7px;}
-.tsed, .ts, .smile i, .smile-have i, .much i {background: url(../img/share_icon.png )no-repeat;}
-.moodm .much {
-	padding-left: 18px;
-	color: #999;
-	padding: 4px 5px 2px 22px;
-	display: inline-block;
-	position: relative;
-	font-family: 宋体;
-	font-size: 12px;
-}
-.moodm .much i {width: 15px;height: 14px;display: inline-block;background-position: 0 -58px;position: absolute;left: 0;top: 7px;}
+.moodm {width: 220px; margin:0 auto;}
 .moodwm .share span.fen {float: left;vertical-align: middle;color: #999;display: inline-block;line-height: 26px;}
 #bdshare {_overflow-x: hidden;z-index: 999999;padding-bottom: 2px;font-size: 12px;float: left;text-align: left!important;zoom: 1;}
 #bdshare a, #bdshare_s a, #bdshare_pop a {text-decoration: none;cursor: pointer;}
@@ -1120,7 +1199,13 @@ span.bds_more, .bds_tools a {display: block;font-family: '宋体',Arial;height: 
 .Comment_single {width: 713px;margin: 0 auto 0;padding: 15px;color: #666;border-bottom: 1px solid #EEE;}
 .Comment_button{ float:right; margin-top:10px;}
 .Comment_button span i{color:#f60;}
-.Comment_button button{ height:26px; background:#f60; text-align:center; line-height:26px; color:#fff; border-radius:3px; padding:0 10px; cursor:pointer;}
+.Comment_button .published{ height:26px; background:#58BEFF;border: 1px solid #1BA3FA; text-align:center; line-height:26px; color:#fff; border-radius:3px; padding:0 10px; cursor:pointer;}
+.Comment_button .disBtn {
+    background: none repeat scroll 0 0 #EDEDED;
+	border: 1px solid #CFCFCF;
+	color: #A5A5A5;
+	cursor: default;
+}
 .clearfix {display: block;}
 .User_head {width: 30px;height: 30px;float: left;}
 .User_head img {width: 50px;height: 50px;}
