@@ -115,19 +115,22 @@ $this->styles($this->resLoader->css('product_list.css'));
                 });
             });
 
-            function commentCount() {
-                var len = $('#comment').val().length;
-                var left = 150 - len;
-                if(left >= 0) {
-                    $('#counter > span').html('您还可以输入<i>'+left+'</i>个字！');
-                    $('#counter > button').removeClass('disBtn');
-                } else {
-                    left = len - 150;
-                    $('#counter > button').addClass('disBtn');
-                    $('#counter > span').html('<span class="orange">已超过'+left+'个字了，删除一些吧！</span>');
-                }
-
-            }
+        function commentCount() {
+          var fontlen = 150;
+          var len = $('#comment').val().length;
+          var left = fontlen - len;
+          if(left > 0 && len > 0) {
+            $('#counter > span').html('您还可以输入<i>'+left+'</i>个字！');
+            $('#counter > button').removeClass('disBtn');
+          } else if(len == 0) {
+            $('#counter > span').html('您还可以输入<i>'+fontlen+'</i>个字！');
+            $('#counter > button').addClass('disBtn');
+          } else {
+            left = len - fontlen;
+            $('#counter > button').addClass('disBtn');
+            $('#counter > span').html('<span class="orange">已超过'+left+'个字了，删除一些吧！</span>');
+          }
+        }
         </script>
         <div id="commentMain" class="qcomment_main" style="">
         </div>

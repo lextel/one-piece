@@ -1,6 +1,8 @@
 <?php
 $this->title('新用户注册');
 $this->styles($this->resLoader->css('product_list.css'));
+$this->scripts($this->resLoader->script('jquery.validate.js'));
+$this->scripts($this->resLoader->script('additional-methods.min.js'))
 ?>
 <div class="login_layout">
     <div class="login_title">
@@ -8,33 +10,36 @@ $this->styles($this->resLoader->css('product_list.css'));
         <ul class="login_process">
             <li class="login_processCur"><b>1</b>填写注册信息</li>
             <li class="login_arrow"></li>
-            <li><b>2</b>验证邮箱/验证手机</li>
-            <li class="login_arrow"></li>
-            <li><b>3</b>完成注册</li>
+            <li><b>2</b>完成注册</li>
         </ul>
         <span>已经是会员？<a id="hylinkLoginPage" class="blue Fb" href="/users/login">登录</a></span>
     </div>
-    <div class="login_ConInput">
-        <dl>
-            <dt>邮箱地址或手机号码：</dt>
-            <dd><input id="userAccount" type="text" name="txtUserAccount" class="login_input_text" value=""></dd>
-            <dd><p class="tips_txt_Wrong"><s></s>请输入邮箱地址或手机号码</p></dd>
-        </dl>
-        <dl>
-            <dt>密码：</dt>
-            <dd><input id="password" type="password" name="txtPassword" class="login_input_text" value="" maxlength="20"></dd>
-            <dd></dd>
-        </dl>
-        <dl>
-            <dt>确认密码：</dt>
-            <dd><input id="passwordAgain" type="password" name="txtPasswordAgain" class="login_input_text" value="" maxlength="20"></dd>
-            <dd></dd>
-        </dl>
-        <div class="login_Membut">
-            <a id="btnSubmitRegister" href="javascript:void(0);" class="Mem_orangebut">同意以下协议，提交</a>
-            <input name="hidRegisterForward" type="hidden" id="hidRegisterForward" value="http://member.1yyg.com/ReferAuth.html">
+    <form id="register" action="/users/register" method="post">
+        <div class="login_ConInput">
+            <dl>
+                <dt>邮箱地址：</dt>
+                <dd>
+                    <input id="username" type="text" name="username"  value="">
+                </dd>
+            </dl>
+            <dl>
+                <dt>密码：</dt>
+                <dd>
+                    <input id="password" type="password" name="password" class="login_input_text" value="" maxlength="20">
+                </dd>
+            </dl>
+            <dl>
+                <dt>确认密码：</dt>
+                <dd>
+                    <input id="repassword" type="password" name="repassword" class="login_input_text" value="" maxlength="20">
+                </dd>
+            </dl>
+            <div class="login_Membut">
+                <a id="btnSubmitRegister" href="javascript:void(0);" class="Mem_orangebut">同意以下协议，提交</a>
+                <input name="hidRegisterForward" type="hidden" id="hidRegisterForward" value="">
+            </div>
         </div>
-    </div>
+    </form>
     <div class="Service_Agreement">    
         <h2>服务协议</h2>
         <p class="Service_em">欢迎您访问并使用充满互动乐趣的购物网站-1元云购(www.1yyg.com)，作为为用户提供全新、有趣购物模式的互联网公司，1元云购通过在线网站为您提供各项相关服务。当使用1元云购的各项具体服务时，您和1元云购都将受到本服务协议所产生的制约，1元云购会不断推出新的服务，因此所有服务都将受此服务条款的制约。请您在注册前务必认真阅读此服务协议的内容并确认，如有任何疑问，应向1元云购咨询。一旦您确认本服务协议后，本服务协议即在用户和1元云购之间产生法律效力。您在注册过程中点击"同意以下条款提交注册信息"按钮即表示您完全接受本协议中的全部条款。随后按照页面给予的提示完成全部的注册步骤。</p>
@@ -106,4 +111,37 @@ $this->styles($this->resLoader->css('product_list.css'));
         <p>3、本协议的规定是可分割的，如本协议任何规定被裁定为无效或不可执行，该规定可被删除而其余条款应予以执行。</p>
         <p>4、如双方就本协议内容或其执行发生任何争议，双方应尽力友好协商解决；协商不成时，任何一方均可向本站所在地的人民法院提起诉讼。    </p>
     </div>
-    </div>
+</div>
+<script type="text/javascript">
+    // 添加商品表单验证
+    $('#register').validate({
+        rules: {
+            username: {
+                required: true,
+                email: true,
+                remote: "/users/check"
+            },
+            password: "required",
+            repassword: {
+                equalTo: "#password"
+            },
+        },
+        messages: {
+            username: {
+                required:"邮箱地址不能为空",
+                email:"请输入正确的邮箱地址",
+                remote: '已被注册，换一个吧',
+            },
+            password: "密码不能为空",
+            repassword: "两次密码不一致",
+        },
+        ignore: [],
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
+
+    $('#btnSubmitRegister').click(function() {
+        $('#register').submit();
+    });
+</script>

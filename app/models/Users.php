@@ -23,10 +23,10 @@ class Users extends \lithium\data\Model{
       $checkUser = $this->mongo->findOne(['username'=>$username]);
 
       if (empty($checkUser)){
-          return json_encode(['check'=>0]);
+          return json_encode(['check'=>1]);
       }
 
-      return json_encode(['check'=>1]);
+      return json_encode(['check'=>0]);
     }
 
     public function register($username, $password){
