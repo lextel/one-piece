@@ -57,6 +57,54 @@ class Users extends \lithium\data\Model{
       $uploader = new Uploader();
       $rs = $uploader->upload($file,'avatar',['jpg','png','gif']);
 
+      if($rs['status']){
+        return $this->saveAvatar($rs);
+      }
+
       return json_encode($rs);
+    }
+
+    private function saveAvatar($avatar){
+      try{
+        $data = $this->mongo->update(['username'=>$username],['$set'=>['avatar'=>$avatar['path']]]);
+      } catch(MongoCursorException $e){
+        return json_encode(['status'=>false]);
+      } catch(MongoCursorTimeoutException $time){
+        return json_encode(['status'=>false]);
+      }
+
+      if(!$data['updatedExisting']){
+        return json_encode(['status'=>false]);
+      }
+
+      $data = $this->mongo->findOne(['username'=>$username],['avatar']);
+      return json_encode($data);
+    }
+
+    public function nick($username, $nick){
+      try{
+        $data = $this->mongo->update(['username'=>$username],['$set'=>['nick'=>$nick]]);
+      } catch(MongoCursorException $e){
+        return json_encode(['nick'=>0]);
+      } catch(MongoCursorTimeoutException $time){
+        return json_encode(['nick'=>0]);
+      }
+
+      if(!$data['updatedExisting']){
+        return json_encode(['nick'=>0]);
+      }
+
+      $data = $this->mongo->findOne(['username'=>$username],['nick']);
+      return json_encode($data);
+    }
+
+    public function info($username){
+      $info = $this->mongo->findOne(['username'=>$username]);
+
+      if(empty($info)){
+        return json_encode(['info'=>0]);
+      }
+
+      return json_encode($info);
     }
 }
