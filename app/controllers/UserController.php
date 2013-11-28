@@ -45,4 +45,20 @@ class UserController extends \lithium\action\Controller {
 
         return $user->avatar($file['file']);
     }
+
+    public function sample(){
+        $username = $this->request->args[0];
+        $password = $this->request->args[1];
+
+        return $this->sampleLogin($username, $password);
+    }
+
+    const URL = 'http://localhost:8000/user';
+    public function sampleLogin($username,$password){
+      $method = '/login/';
+
+      $api = self::URL.$method.$username.'/'.$password;
+      $api = http_parse_message(http_get($api));
+      return $api->body;
+    }
 }
