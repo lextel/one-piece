@@ -25,7 +25,7 @@ class Products extends \lithium\data\Model {
         '_id'      => ['type' => 'id', 'length' => 10, 'null' => false, 'default' => null],             // UUID
         'cat_id'   => ['type' => 'integer', 'length' => 5, 'null' => false, 'default' => 0],            // 分类ID
         'brand_id' => ['type' => 'integer', 'length' => 5, 'default' => 0],                             // 品牌ID
-        'type_id'  => ['type' => 'integer', 'length' => 5],                                             // 类型
+        // 'type_id'  => ['type' => 'integer', 'length' => 5],                                             // 类型
         'tag_id'   => ['type' => 'integer', 'length' => 5],                                             // 标识
         'title'    => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null],        // 标题
         'feature'  => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null],        // 特性
@@ -35,8 +35,8 @@ class Products extends \lithium\data\Model {
         'content'  => ['type' => 'string', 'length' => 10000, 'null' => false, 'default' => null],      // 详情
         'images'   => ['type' => 'array', 'length' => null, 'null' => false, 'default' => null],        // 图片
         'periods'  => ['type' => 'array', 'length' => null, 'null' => false, 'default' => null],        // 期数数据
-        'shares'   => ['type' => 'array', 'length' => null, 'null' => false, 'default' => null],        // 晒单数据
-        'limits'   => ['type' => 'array'],                                                              // 限时计划
+        // 'shares'   => ['type' => 'array', 'length' => null, 'null' => false, 'default' => null],        // 晒单数据
+        // 'limits'   => ['type' => 'array'],                                                              // 限时计划
         'hits'     => ['type' => 'integer', 'length' => 10, 'null' => false, 'default' => 0],           // 当期人气
         'status'   => ['type' => 'integer', 'length' => 1, 'null' => false, 'default' => 0],            // 上下架 0 未上架 1下架中 2 已上架
         'showed'   => ['type' => 'integer'],                                                            // 揭晓时间
@@ -86,12 +86,12 @@ class Products extends \lithium\data\Model {
         $data['showed']  = 0;
         $data['tag_id']  = 0;
         $data['created'] = date('Y-m-d H:i:s');
-        $data['price']   = sprintf('%.2f',$data['price']);
-        $data['person']  = intval($data['price']);
+        $data['price']   = intval($data['price']);
+        $data['person']  = $data['price'];
         $data['remain']  = $data['person'];
         $data['periods'] = [];
-        $data['shares']  = [];
-        $data['limits']  = [];
+        // $data['shares']  = [];
+        // $data['limits']  = [];
 
         return $data;
     }
@@ -358,13 +358,14 @@ class Products extends \lithium\data\Model {
         $periods = Periods::periods($product['_id']);
         $periodIds = Periods::periodIds($periods, $periodId, true);
 
+        $shareTotal = Posts::find('all', ['conditions'=>['type_id' => 1, 'product_id' => $product['_id'], 'parent_id'=>0]])->count();
+
         $info = [];
         $info['id']           = $product['_id'];
         $info['title']        = $product['title'];
         $info['feature']      = $product['feature'];
         $info['content']      = $product['content'];
         $info['images']       = $product['images'];
-        $info['orders']       = $period['orders'];
         $info['results']      = $period['results'];
         $info['price']        = $period['price'];
         $info['person']       = $period['person'];
@@ -373,10 +374,11 @@ class Products extends \lithium\data\Model {
         $info['periodId']     = $periodId;
         $info['periodIds']    = $periodIds;
         $info['percent']      = $percent;
+        $info['orders']       = [];
         $info['width']        = self::DETAILS_WIDTH * $percent / 100;
-        $info['shareTotal']   = count($product['shares']);                                      // 晒单数目
+        $info['shareTotal']   = $shareTotal;                                                    // 晒单数目
         $info['showFeature']  = $this->_showFeature($periodId, count($periodIds));              // 显示特性
-        $info['showWinner']   = $this->_showWinner($product['_id'],$periods, $periodId, $info);                 // 上期获奖者
+        $info['showWinner']   = $this->_showWinner($product['_id'],$periods, $periodId, $info); // 上期获奖者
         $info['showLimit']    = $this->_showLimit($period, $info);                              // 限时揭晓
         $info['showFull']     = $this->_showFull($period['remain']);                            // 人次是否已满
         $info['showCounting'] = $this->_showCounting($period['status']);                        // 显示正在计算

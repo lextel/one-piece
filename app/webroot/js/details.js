@@ -1,5 +1,14 @@
 $(function(){
 
+    // 图片切换
+    $('#mycarousel > li').hover(function() {
+        var parent = $(this).parent();
+        var idx = $(this).index();
+        parent.children().removeClass('curr');
+        parent.children().eq(idx).addClass('curr');
+        $('#viewImage').attr('src', parent.children().eq(idx).find('img').attr('src'));
+    });
+
     // 期数展开收起功能
     var p = $("#btnOpenPeriod");
     var E = false;
@@ -66,6 +75,8 @@ $(function(){
             countTime();
         }
     }
+
+
 });
 
 // 滚动到商品内容

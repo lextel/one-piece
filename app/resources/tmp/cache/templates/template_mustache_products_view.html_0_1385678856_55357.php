@@ -56,22 +56,26 @@
                 <img id="imgGoodsPic" alt="" src="{{ images.0 }}" style="width:396px; height:396px; display:none;">
                 <div id="middlePicBox" class="middlePicBox" style="position: relative; ">
                     <span id="BigViewImage" class="jqzoom" style="outline-style: none; cursor: crosshair; display: block; position: relative; height: 396px; width: 396px; ">
-                        <img id="" style="width: 396px; height: 396px; position: absolute; top: 0px; left: 0px; " src="{{ images.0 }}">
+                        <img id="viewImage" style="width: 396px; height: 396px; position: absolute; top: 0px; left: 0px; " src="{{ images.0 }}">
                     </span>
                 </div>
                 <div class="smallPicList">
                     <div class="hidden" style="display: none; "></div>
                     <div class="jcarousel-clip">
                         <ul id="mycarousel" style="width: 378px; left: 0px; display: block; ">
-                            {{# images }}
-                            <li class="curr"><img width="48" height="48" src="{{ . }}" alt="" name=""></li>
-                            {{/ images }}
+                            <?php
+                            foreach($product['images'] as $k => $image):
+                                $class = $k == 0 ? 'curr' : '';
+                            ?>
+                            <li class="<?php echo $class; ?>"><img width="48" height="48" src="<?php echo $image; ?>" alt="" name=""></li>
+                            <?php endforeach; ?>
                             <div class="hackbox"></div>
                         </ul>
                     </div>
                     <div class="hidden" style="display: none; "></div>
                 </div>
             </div>
+            {{# showWinner }}
             <div class="Pro_GetPrize">
                 <h2>上期获得者</h2>
                 <div class="GetPrize">
@@ -86,6 +90,7 @@
                     </dl>
                 </div>
             </div>
+            {{/ showWinner }}
             {{/ showActive }}
         </div>
         <div class="Pro_Detright">
@@ -250,10 +255,14 @@
                 {{^ showResult }}
                 <li class="Product_DetT"><span>商品详情</span></li>
                 {{/ showResult }}
+
+                
                 {{# showResult }}
                 <li class="All_RecordT"><span>计算结果</span></li>
                 {{/ showResult }}
+                {{^ showSoldOut }}
                 <li class="All_RecordT"><span>所有参与记录</span></li>
+                {{/ showSoldOut }}
                 <li class="Single_ConT"><span>晒单</span></li>
             </ul>
             {{^ showResult }}
@@ -493,6 +502,7 @@
     </div>
     <!-- 计算结果结束 -->
     {{/ showResult }}
+    {{^ showSoldOut }}
     <!-- 参与者记录开始 -->
     <div id="divBuyRecord" class="AllRecord_Content">
         <div name="bitem" class="AllRecordCon">
@@ -539,6 +549,7 @@
         </div>
     </div>
     <!-- 参与者记录结束 -->
+    {{/ showSoldOut }}
     <!-- 晒单开始 -->
     <div id="divPost" class="Single_Content">
         <div class="goods_loding" style="display: none; "><img border="0" alt="" src="http://skin.1yyg.com/images/goods_loading.gif">正在加载......</div>

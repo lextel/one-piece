@@ -39,7 +39,8 @@ class UsersController extends \lithium\action\Controller {
             $api = self::URL.$method.$username;
             $rs = file_get_contents($api);
             $rs = json_decode($rs);
-            $status = $rs->check == 1 ? 'false' : 'true';
+
+            $status = $rs->check == 1 ? 'true' : 'false';
 
             $this->render(['text' => $status]);
         }
@@ -54,8 +55,6 @@ class UsersController extends \lithium\action\Controller {
 
         $rs = file_get_contents($api);
         $rs = json_decode($rs);
-
-
 
 		
 		return $this->render();

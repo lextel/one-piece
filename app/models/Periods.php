@@ -50,7 +50,7 @@ class Periods extends \lithium\data\Model {
         $period['price'] = $product['price'];
         $period['person'] = $product['person'];
         $period['remain'] = $product['remain'];
-        $period['orders'] = [];
+        // $period['orders'] = [];
         $period['results'] = [];
         $period['hits']  = 0;
         $period['code'] = '';
