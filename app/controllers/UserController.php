@@ -44,6 +44,21 @@ class UserController extends \lithium\action\Controller {
         return $user->avatar($file['file']);
     }
 
+    public function nick(){
+      $username = $this->request->args[0];
+      $nick = $this->request->args[1];
+
+      $user = new Users();
+      return $user->nick($username, $nick);
+    }
+
+    public function info(){
+      $username = $this->request->args[0];
+      $user = new Users();
+
+      return $user->info($username);
+    }
+
     public function sample(){
         $username = $this->request->args[0];
         $password = $this->request->args[1];

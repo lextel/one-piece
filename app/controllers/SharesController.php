@@ -37,6 +37,22 @@ class SharesController extends \lithium\action\Controller {
         return compact('shares', 'limit', 'page', 'total', 'typeId', 'navCurr', 'sortList');
 	}
 
+    // 商品详情晒单
+    public function product() {
+
+        $request = $this->request;
+        $page    = $request->page ? : 1;
+        $limit   = Page::$page;
+        $productId = $request->productId;
+
+        $conditions = ['product_id' => $productId, 'type_id' => 1, 'status' => 1, 'parent_id' => 0];
+        $total = Posts::find('all', compact('conditions'))->count();
+        $shares = Posts::find('all', compact('limit', 'page', 'conditions'))->to('array');
+
+        $this->render(['data' => compact('shares', 'total', 'page', 'limit'),'layout' => false]);
+
+    }
+
     // 我的晒单列表
     public function share() {
 

@@ -115,6 +115,9 @@ Router::connect('/shares/dashboard/{:typeId:[0-9]+}/page:{:page:[0-9]+}/{:args}'
 Router::connect('/shares/view/{:productId}/{:periodId}', 'Shares::view');
 Router::connect('/shares/add/{:productId}/{:periodId}', 'Shares::add');
 
+Router::connect('/shares/product/{:productId}/page:{:page:[0-9]+}/{:args}', 'Shares::product');
+Router::connect('/shares/product/{:productId}/{:args}', 'Shares::product');
+
 Router::connect('/posts/comment/{:postId}/page:{:page:[0-9]+}/{:args}', 'Posts::comment');
 Router::connect('/posts/comment/{:postId}/{:args}', 'Posts::comment');
 
