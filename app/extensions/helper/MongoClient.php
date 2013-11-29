@@ -37,8 +37,9 @@ class MongoClient {
         if(empty($collection)) {
             $collection = $config['database'];
         }
+
         
-        $this->_query = $conn->$config['database']->$config['database'];
+        $this->_query = $conn->$config['database']->$collection;
     }
 
     /**

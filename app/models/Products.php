@@ -367,14 +367,14 @@ class Products extends \lithium\data\Model {
         $info['content']      = $product['content'];
         $info['images']       = $product['images'];
         $info['results']      = $period['results'];
-        $info['price']        = $period['price'];
+        $info['showed']       = $period['showed'];
+        $info['price']        = sprintf('%.2f', $period['price']);
         $info['person']       = $period['person'];
         $info['remain']       = $period['remain'];
         $info['join']         = $join;
         $info['periodId']     = $periodId;
         $info['periodIds']    = $periodIds;
         $info['percent']      = $percent;
-        $info['orders']       = [];
         $info['width']        = self::DETAILS_WIDTH * $percent / 100;
         $info['shareTotal']   = $shareTotal;                                                    // 晒单数目
         $info['showFeature']  = $this->_showFeature($periodId, count($periodIds));              // 显示特性
@@ -495,7 +495,7 @@ class Products extends \lithium\data\Model {
         $show = false;
         if($period['status'] == 2) {    // 已经揭晓状态
             $show = true;
-            $info['code']    = str_split($period['code']);
+            $info['code']    = str_split($period['code']+10000001);
             $info['userId']  = $period['user_id'];
             $info['ordered'] = date('Y-m-d H:i:s', $period['ordered']);
             $info['showed']  = date('Y-m-d H:i:s', $period['showed']);

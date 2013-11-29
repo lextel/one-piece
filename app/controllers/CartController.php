@@ -138,7 +138,7 @@ EOD;
         // 支付成功处理
         Orders::order();
 
-        echo '支付成功！！！（骗你的）<a href="/">返回</a>';
+        echo '恭喜你，支付成功！！！<a href="/">返回</a>';
         die;
 
         if(isset($_REQUEST['r0_Cmd'])) {

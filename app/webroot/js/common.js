@@ -113,7 +113,7 @@ $(function(){
 
 
     // 立即1元购
-    $('.go_Shopping').click(function() {
+    $('.go_Shopping, .Det_Shopbut').click(function() {
 
         var quantity  = 1;
         var productId = $(this).attr('productId');

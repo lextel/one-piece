@@ -27,7 +27,7 @@ use lithium\console\Dispatcher as ConsoleDispatcher;
  *
  * Sets the default timezone used by all date/time functions.
  */
-date_default_timezone_set('UTC');
+date_default_timezone_set('PRC');
 
 /**
  * Locales

@@ -21,7 +21,7 @@ class Periods extends \lithium\data\Model {
         'hits'    => ['type' => 'integer', 'length' => 10, 'null' => false, 'default' => 0],               // 人气
         'code'    => ['type' => 'string', 'length' => 20],                                                 // 中奖号码
         'user_id' => ['type' => 'integer', 'length' => 10],                                                // 中奖会员ID
-        'ordered' => ['type' => 'date'],                                                                   // 中奖购买时间
+        'ordered' => ['type' => 'string'],                                                                   // 中奖购买时间
         'results' => ['type' => 'array'],                                                                  // 中奖计算条件
         'orders'  => ['type' => 'array'],                                                                  // 本期订单
         'created' => ['type' => 'date'],                                                                   // 开始时间

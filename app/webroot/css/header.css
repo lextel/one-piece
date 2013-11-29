@@ -34,6 +34,7 @@ body {
 	font-weight: bold;
 	line-height: 32px;
 }
+.active{ background:#f60; color:#fff;}
 .collect a, .h_tel, .h_1yyg b, .h_1yyg_eject i, .head_search .search_submit, .mini_mycart a.cart s, .tipsCancel, .login_info .h_news b, .login_info .h_news i, .h_Mobileicon, .DetailsT_Cart s, .login_info .h_inv a, .login_info .h_inv a:hover {
 	background:url(../img/headbg11.png) no-repeat;
 }
@@ -755,12 +756,9 @@ element.style {
 	width: 99px;
 	padding: 5px 0 0 15px;
 	height: 43px;
-	text-align: left;
 	background: #F60;
-	border-radius: 2px;
-	display: block;
-	float: left;
-	margin: 0 3px;
+	border-radius: 5px;
+	margin:0 auto;
 }
 .service_date .Service_Time p {
 	height: 16px;
@@ -985,12 +983,14 @@ clear: both;
 	margin: 0 0 0 4px;
 	float: left;
 	border: 1px solid #DDD;
-	opacity: 0.8;
+	opacity: 0.6;
 	font-family: Arial;
 	line-height: 16px;
 	text-align: center;
 	background: #FEFEFE;
-	cursor: pointer;
+}
+.banner ul li a {
+	display:block;
 }
 .recommend {
 	width: 230px;

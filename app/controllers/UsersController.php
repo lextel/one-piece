@@ -47,17 +47,18 @@ class UsersController extends \lithium\action\Controller {
     }
 
 	public function login() {
-        $username = $this->request->data['username'];
-        $password = $this->request->data['password'];
 
-        $method   = '/login/';
-        $api = self::URL.$method.$username.'/'.$password;
+        // $username = $this->request->data['username'];
+        // $password = $this->request->data['password'];
 
-        $rs = file_get_contents($api);
-        $rs = json_decode($rs);
+        // $method   = '/login/';
+        // $api = self::URL . $method . $username . '/' . $password;
+
+        // $rs = file_get_contents($api);
+        // $rs = json_decode($rs);
 
 		
-		return $this->render();
+		// return $this->render();
 	}
 
     public function center() {

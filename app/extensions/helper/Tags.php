@@ -16,4 +16,19 @@ class Tags {
     ];
 
     static $limit = ['class' => 'goods_xs', 'name' => '限时'];
+
+    /**
+     * 返回tag名称数组
+     *
+     * @return array 返回 $array[1] = 推荐 形式
+     */
+    public static function tags() {
+
+        $array = [];
+        foreach(self::$tags as $key => $cat) {
+            $array[$key] = $cat['name'];
+        }
+
+        return $array;
+    }
 }

@@ -2,6 +2,16 @@
 /* CSS Document */
 a{color:#333;}
 @charset "utf-8";
+* {
+	margin:0;
+	padding:0;
+	list-style:none;
+	text-decoration:none;
+	border:0;
+}
+.blue{color:#2af;}
+body{font: 12px/1.5 Tahoma,Arial,"宋体",Helvetica,sans-serif;}
+.orange {color: #F60;}
 .logo {
 	width:980px;
 	height:62px;
@@ -2477,3 +2487,110 @@ div.pageDialogMain .login_qq_tips_txt p {
 	padding:0;
 	margin:0;
 }
+
+/*元购记录*/
+.ygRecord{width:980px; background:#f7f7f7; margin:10px auto;}
+.ygRecord h3 {
+	width: 980px;
+	height: 37px;
+	overflow: hidden;
+	background: #F6F6F6 url(../img/ygRecord.png) no-repeat 20px -68px;
+}
+.ygRecord h3 span {
+	width: 400px;
+	padding: 0 0 0 50px;
+	display: block;
+	float: left;
+	line-height: 38px;
+	font-size: 14px;
+	color: #F60;
+	font-weight: bold;
+}
+.ygRecord h3 p {
+	float: right;
+	line-height: 37px;
+	padding: 0 20px 0 0;
+	color: #4A91D4;
+	font-size:12px;
+}
+.ygRecord h3 p a{
+	color:#4A91D4
+} 
+.ygRecord h3 p a:hover,.ygRecord div.endpage a:hover{
+	color:#f60;
+	text-decoration:underline;
+}
+.ygRecord ul.Record_title {
+	width: 978px;
+	height: 33px;
+	background: #F6F6F6 url(../img/ygRecord.png) 0 -30px;
+	border: 1px solid #DADADA;
+}
+.ygRecord ul.Record_title li.time, .ygRecord ul.Record_content li.time, .ygRecord ul.Record_contents li.time {
+	width: 220px;
+}
+.ygRecord ul.Record_title li {
+	line-height: 33px;
+	color: #C2C2C2;
+	float: left;
+	padding: 0 0 0 20px
+}
+.ygRecord ul.Record_title li.nem, .ygRecord ul.Record_content li.nem, .ygRecord ul.Record_contents li.nem, .ygRecord div.RecordOnehundred ul li.nem {
+	width: 130px;
+}
+.ygRecord ul.Record_title li.name, .ygRecord ul.Record_content li.name, .ygRecord ul.Record_contents li.name, .ygRecord div.RecordOnehundred ul li.name {
+	width: 470px;
+}
+.ygRecord ul.Record_title li.much, .ygRecord ul.Record_content li.much, .ygRecord ul.Record_contents li.much {
+	width: 78px;
+}
+.ygRecord ul.Record_contents {
+	background: #FBFBFB;
+}
+.ygRecord div.endpage {
+	width: 960px;
+	height: 37px;
+	line-height: 37px;
+	color: #4A91D4;
+	text-align: right;
+	background: #F6F6F6;
+	border-top: 1px solid #DADADA;
+	padding: 0 20px 0 0;
+}
+.ygRecord ul.Record_content li, .ygRecord ul.Record_contents li, .ygRecord div.RecordOnehundred ul li {
+	color: #666;
+	height: 17px;
+	line-height: 17px;
+	float: left;
+	display: block;
+	overflow: hidden;
+	padding: 9px 0 9px 20px;
+}
+.ygRecord ul.Record_content, .ygRecord ul.Record_contents, .ygRecord .Recordnone, .ygRecord .Recordloading, .ygRecord .RecordError {
+	width: 978px;
+	height: 35px;
+	border-left: 1px solid #DADADA;
+	border-right: 1px solid #DADADA;
+	border-bottom: 1px solid #F1F1F1;
+}
+
+.ygRecord ul.Record_content li.name a, .ygRecord ul.Record_contents li.name a, .ygRecord div.RecordOnehundred ul li.name a {
+	line-height: 17px;
+	color: #4A91D4;
+}
+.ygRecord ul li a:hover{
+	color: #f60;
+}
+.ygRecord ul.Record_contents li.name a:hover{
+	color: #f60;
+}
+.ygRecord div.endpage a{
+	color:#4A91D4;
+}
+
+
+
+
+
+
+

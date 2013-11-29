@@ -7,6 +7,7 @@ namespace app\controllers;
 
 use app\models\Periods;
 use app\models\Products;
+use app\models\Orders;
 use app\models\Carts;
 use lithium\storage\Session;
 use app\extensions\helper\Page;
@@ -16,6 +17,7 @@ use app\extensions\helper\Tags;
 use app\extensions\helper\Brands;
 use app\extensions\helper\Crumbs;
 use app\extensions\helper\Uploader;
+use app\extensions\helper\MongoClient;
 
 class ProductsController extends \lithium\action\Controller {
 
@@ -80,7 +82,75 @@ class ProductsController extends \lithium\action\Controller {
 
     // 开奖结果
     public function lottery() {
+
+        $productId = $this->request->productId;
+        $periodId  = $this->request->periodId;
+
+        $model = new Products();
+        $product = $model->view($productId, $periodId);
+
+        $result = ['status' => 0];
+        if(
+            $product['periods'][0]['remain'] == 0 && 
+            $product['periods'][0]['showed'] < time() && 
+            $product['periods'][0]['status'] == 2
+          )
+        {
+           $result = [
+                    'status' => 1, 
+                    'code'   => str_split($product['periods'][0]['code']+10000001), 
+                    'userId' => $product['periods'][0]['user_id'],
+                    'ordered' => date('Y-m-d H:i:s',$product['periods'][0]['ordered']),
+                    'showed' => date('Y-m-d H:i:s',$product['periods'][0]['showed']),
+                    ];
+
+        }
+
+        $result = ['status' => 1];
+
+        $this->render(['json' => $result]);
+    }
+
+    // 开奖脚本
+    public function crontab() {
+        set_time_limit(0);
+        while (true) {
+
+            // 获得所有可以开奖的商品期数
+            $mo = new MongoClient();
+            $data = $mo->getConn()->find(['periods' => ['$elemMatch' => ['status' => 0, 'remain' => 0, 'showed' => ['$ne' => 0, '$lte' => time()]]]], ['periods']);
+            $products = iterator_to_array($data);
+
+            foreach($products as $id => $product) {
+                foreach($product['periods'] as $period) {
+                    if($period['showed'] < time() && $period['status'] == 0 && $period['remain'] == 0) {
+
+                        $info = Orders::winnerInfo($period['ordered'], $period['person']);
+                        $userId = Orders::winnerUser($id, $period['id'], $info['code']);
+
+                        $idx = $period['id'] - 1;
+                        $query = [
+                        '$set' => [
+                                'periods.'.$idx.'.results' => $info['results'],
+                                'periods.'.$idx.'.total'   => $info['total'],
+                                'periods.'.$idx.'.code'    => $info['code'],
+                                'periods.'.$idx.'.user_id' => $userId,
+                                'periods.'.$idx.'.status'  => 2,
+                               ]
+                        ];
+
+                        $conditions = ['_id' => $id];
+                        Products::update($query, $conditions, ['atomic' => false]);
+                    }
+                }
+            }
         
+
+            sleep(1);
+        }
+
+        $this->render(['text' => '计划任务']);
+
     }
 
     // 添加商品
@@ -88,6 +158,8 @@ class ProductsController extends \lithium\action\Controller {
 
         $data = $this->request->data;
         $cats = Cats::cats();
+        $tags = Tags::tags();
+
         $product = Products::create($data);
 
         if($this->request->is('post')) {
@@ -105,7 +177,7 @@ class ProductsController extends \lithium\action\Controller {
 
         $navCurr = $this->_navCurr;
 
-        return $this->render(['data' => compact('product', 'cats', 'navCurr'), 'layout' => 'user']);
+        return $this->render(['data' => compact('product', 'cats', 'tags', 'navCurr'), 'layout' => 'user']);
     }
 
     // 编辑商品
@@ -116,6 +188,7 @@ class ProductsController extends \lithium\action\Controller {
 
         $data = $this->request->data;
         $cats = Cats::cats();
+        $tags = Tags::tags();
 
         $product = Products::first(['conditions' => ['_id' => $id]]);
         if(empty($product)) return $this->redirect('Page::notfound');
@@ -132,10 +205,11 @@ class ProductsController extends \lithium\action\Controller {
             return $this->redirect('Products::dashboard');
         }
 
+        $tagId   = $product->tagId;
         $catId   = $product->cat_id;
         $brandId = $product->brand_id;
 
-        return $this->render(['data' => compact('product', 'cats', 'brands', 'catId', 'brandId', 'navCurr'), 'layout' => 'user']);
+        return $this->render(['data' => compact('product', 'cats', 'tags', 'brands', 'tagId','catId', 'brandId', 'navCurr'), 'layout' => 'user']);
     }
 
     // 浏览商品
@@ -155,11 +229,6 @@ class ProductsController extends \lithium\action\Controller {
 
         // 添加人气
 
-        // @TODO 页面渲染用
-        $dump = '';
-        // ob_start();
-        // var_dump($product);
-        // $dump = ob_get_clean();
 
          // 当前导航
         $navCurr = $this->_navCurr;

@@ -178,7 +178,7 @@ body{ background:#fff !important;}
 	padding: 0 11px;
 	overflow: hidden;
 }
-.hot .hot-list li:hover{
+.hot .hot-list .list-block:hover{
 	border: 1px solid #FFAE3C;
 	height: 358px;
 	z-index: 99;

@@ -22,9 +22,7 @@ foreach($shares as $share) {
 }
 if(empty($shares)) {
 ?>
-<div id="divPost" class="Single_Content" style="">
    <div class="NoConMsg"><span>暂无晒单记录哦~！</span></div>
-</div>
 <?php
 }
 ?>

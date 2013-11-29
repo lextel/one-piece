@@ -20,6 +20,9 @@ $this->scripts($this->resLoader->script('umeditor/lang/zh-cn/zh-cn.js'));
                   <?=$this->form->field(['feature' => '特性'], ['style' => 'width:400px']); ?>
               </li>
               <li class="text_nums">
+                  <?=$this->form->field(['tag_id' => '标签'], ['type' => 'select', 'list' => $tags]); ?>
+              </li>
+              <li class="text_nums">
                   <?php
                   $cats = ['' => '--请选择--'] + $cats;
                   ?>
