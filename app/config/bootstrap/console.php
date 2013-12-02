@@ -15,6 +15,7 @@ use lithium\core\Environment;
  *
  */
 Dispatcher::applyFilter('run', function($self, $params, $chain) {
+  //echo $params['request'];
 	Environment::set($params['request']);
 	return $chain->next($self, $params, $chain);
 });

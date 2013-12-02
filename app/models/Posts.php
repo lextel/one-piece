@@ -15,7 +15,7 @@ class Posts extends \lithium\data\Model {
         '_id'        => ['type' => 'id'],             // UUID
         'from_id'    => ['type' => 'integer'],        // 所属会员ID
         'to_id'      => ['type' => 'integer'],        // 发送至会员ID
-        'type_id'    => ['type' => 'integer'],        // 类型 晒单 短信息 
+        'type_id'    => ['type' => 'integer'],        // 类型 晒单 短信息
         'parent_id'  => ['type' => 'integer'],        // 父级ID
         'product_id' => ['type' => 'string'],         // 产品ID
         'period_id'  => ['type' => 'string'],         // 期数ID
@@ -47,7 +47,7 @@ class Posts extends \lithium\data\Model {
      * @param $options['useId']     integer  会员ID
      *        $options['typeId']    integer  1 已晒单 2未晒单
      *        $options['getTotal']  boolean  是否是统计总数
-     *        $options['page']      integer     
+     *        $options['page']      integer
      *        $options['limit']     integer  条数
      *
      * @return intger|array  $data['productId']
@@ -101,7 +101,7 @@ class Posts extends \lithium\data\Model {
     private static function _myUnShare($options) {
 
         $userId = $options['userId'];
-    
+
         $mo = new MongoClient();
 
         // 已经晒单的
@@ -117,7 +117,7 @@ class Posts extends \lithium\data\Model {
 
             $shares = self::_formatMyUnShare($rs);
 
-            // 排除已晒单 
+            // 排除已晒单
             foreach($shared as $share) {
                 foreach($shares as $k => $r) {
                     if($share['product_id'] == $r['productId'] && $share['period_id'] == $r['periodId']) {
@@ -266,7 +266,7 @@ class Posts extends \lithium\data\Model {
         return $options;
     }
 
-    
+
     /**
      * 晒单详情
      *
@@ -278,7 +278,7 @@ class Posts extends \lithium\data\Model {
     public static function shareView($productId, $periodId) {
 
         return Posts::find('first', ['conditions' => ['product_id' => $productId , 'period_id' => $periodId, 'type_id' => 1]])->to('array');
-    } 
+    }
 
     /**
      * 晒单瀑布流
@@ -287,7 +287,7 @@ class Posts extends \lithium\data\Model {
      *
      * @return array
      */
-    private function _formatShare($rs) {
+    private static function _formatShare($rs) {
 
         $newData = [];
         $i = 0;
@@ -386,7 +386,7 @@ class Posts extends \lithium\data\Model {
      *
      * @param $data array 提交数据
      *
-     * @return boolean 
+     * @return boolean
      */
     public static function add($data) {
 
@@ -394,7 +394,7 @@ class Posts extends \lithium\data\Model {
             case '1':
                 $rs = self::_addShare($data);
                 break;
-            
+
             default:
                 # code...
                 break;
@@ -426,7 +426,7 @@ class Posts extends \lithium\data\Model {
         return $share->save();
     }
 
-    
+
 }
 
 ?>
