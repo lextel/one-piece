@@ -16,7 +16,7 @@ class Crumbs {
 	 *
 	 * @param $type    string 类型
 	 * @param $options array  参数
-	 * 
+	 *
 	 * @return string
 	 */
 	public static function get($type, $options) {
@@ -44,7 +44,7 @@ class Crumbs {
 	 *
 	 * @return string
 	 */
-	private function _productList($options) {
+	private static function _productList($options) {
 
 		if(isset($options['catId']) && !empty($options['catId'])) {
 			return Cats::name($options['catId']);
@@ -60,8 +60,8 @@ class Crumbs {
 	 *
 	 * @return string
 	 */
-	private function _searchList($options) {
-		
+	private static function _searchList($options) {
+
 		return  '';
 	}
 
