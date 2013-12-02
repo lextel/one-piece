@@ -80,6 +80,11 @@ define('USER_ID', 1);
 define('UNSET_USER_ID', 2);
 
 /**
+ * 1元等于几积分
+ */
+define('CREDITS', 10);
+
+/**
  * Locate and load Lithium core library files.  Throws a fatal error if the core can't be found.
  * If your Lithium core directory is named something other than `lithium`, change the string below.
  */

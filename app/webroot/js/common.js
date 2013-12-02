@@ -355,8 +355,6 @@ $(function(){
             gotoSearch();
         }
     });
-
-
 });
 
 function gotoSearch() {

@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Orders;
+use app\models\Users;
 use app\extensions\helper\Page;
 use lithium\action\DispatchException;
 
@@ -22,8 +23,12 @@ class OrdersController extends \lithium\action\Controller {
         $periodId = $request->periodId;
 
         $conditions = ['product_id' => $productId, 'period_id' => $periodId];
+        $order = ['_id' => 'desc'];
         $total = Orders::find('all', compact('conditions'))->count();
-        $orders = Orders::find('all', compact('limit', 'page', 'conditions'))->to('array');
+        $orders = Orders::find('all', compact('limit', 'page', 'conditions', 'order'))->to('array');
+        foreach($orders as $k => $order) {
+            $orders[$k]['user'] = Users::profile($order['user_id']);
+        }
 
         $this->render(['data' => compact('orders', 'total', 'page', 'limit'),'layout' => false]);
 	}

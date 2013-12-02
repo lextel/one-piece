@@ -18,47 +18,34 @@
                     <a href="javascript:void(0);" id="addSiteFavorite">收藏积分云购</a>
                 </p>
                 <ul class="login_info" style="display: block;">
+                    <?php if(!$this->user->id()): ?>
                     <li class="h_login" id="logininfo"> <i>您好，欢迎光临！</i>
                         <a rel="nofollow" href="/users/login" class="gray01">登录</a>
                         <span>|</span>
                         <a rel="nofollow" href="/users/register" class="gray01">注册</a>
                     </li>
+                    <?php endif; ?>
+                    <?php if($this->user->id()): ?>
+                    <li class="h_wel" id="logininfo">
+                        <a href="/users/info" class="gray01">
+                            <img style="width: 30px; height: 30px" src="<?php echo $this->user->avatar(); ?>">
+                            <?php echo $this->user->nickname(); ?>
+                        </a
+                        >&nbsp;&nbsp;
+                        <a href="/users/logout" class="gray01">[退出]</a>
+                    </li>
+                    <?php endif; ?>
                     <li class="h_1yyg">
                         <a rel="nofollow" href="/users/center">我的云购<b></b></a>
-                        <div class="h_1yyg_eject" style="display: none; ">
-                            <dl>
-                                <dt>
-                                    <a rel="nofollow" href="/users/center">我的云购<i></i></a>
-                                </dt>
-                                <dd>
-                                    <a rel="nofollow" href="javascript:void(0);">云购记录</a>
-                                </dd>
-                                <dd>
-                                    <a rel="nofollow" href="javascript:void(0);">获得的商品</a>
-                                </dd>
-                                <dd>
-                                    <a rel="nofollow" href="javascript:void(0);">帐户充值</a>
-                                </dd>
-                                <dd>
-                                    <a rel="nofollow" href="javascript:void(0);">个人设置</a>
-                                </dd>
-                            </dl>
-                        </div>
                     </li>
-                    <li class="h_news" id="liMsgTip" style="display:none;">
-                        <a rel="nofollow" href="javascript:void(0);">
-                            消息 <b></b>
+                    <?php if($this->user->id()): ?>
+                    <li class="h_news" id="liMsgTip">
+                        <a rel="nofollow" href="/users/message">
+                            消息(0) <b></b>
                         </a>
-                        <div class="h_news_down" style="display:none;">
-                            <div class="h_news_downT">
-                                <a rel="nofollow" href="javascript:void(0);">
-                                    消息
-                                    <i></i>
-                                </a>
-                            </div>
-                            <div class="h_news_downC"></div>
-                        </div>
                     </li>
+                    <?php endif; ?>
+
                     <li class="h_help">
                         <a rel="nofollow" target="_blank" href="/help">帮助</a>
                     </li>

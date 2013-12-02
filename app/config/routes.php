@@ -104,6 +104,7 @@ Router::connect('/products/brand/{:catId:[0-9]+}/{:args}', 'Products::brand');
 Router::connect('/products/listing/{:status}/{:tagId}/{:id}', 'Products::listing');
 Router::connect('/products/listing/{:status}/{:id}', 'Products::listing');
 Router::connect('/products/edit/{:id}', 'Products::edit');
+Router::connect('/products/lottery/{:productId}/{:periodId}', 'Products::lottery');
 
 Router::connect('/search/index/{:title}/page:{:page:[0-9]+}/{:args}', 'Search::index');
 Router::connect('/search/index/{:title}/{:args}', 'Search::index');

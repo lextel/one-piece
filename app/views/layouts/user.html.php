@@ -18,49 +18,36 @@
                     <a href="javascript:void(0);" id="addSiteFavorite">收藏积分云购</a>
                 </p>
                 <ul class="login_info" style="display: block;">
+                    <?php if(!$this->user->id()): ?>
                     <li class="h_login" id="logininfo"> <i>您好，欢迎光临！</i>
-                        <a rel="nofollow" href="javascript:void(0);" class="gray01">登录</a>
+                        <a rel="nofollow" href="/users/login" class="gray01">登录</a>
                         <span>|</span>
-                        <a rel="nofollow" href="javascript:void(0);" class="gray01">注册</a>
+                        <a rel="nofollow" href="/users/register" class="gray01">注册</a>
                     </li>
+                    <?php endif; ?>
+                    <?php if($this->user->id()): ?>
+                    <li class="h_wel" id="logininfo">
+                        <a href="/users/info" class="gray01">
+                            <img style="width: 30px; height: 30px" src="<?php echo $this->user->avatar(); ?>">
+                            <?php echo $this->user->nickname(); ?>
+                        </a
+                        >&nbsp;&nbsp;
+                        <a href="/users/logout" class="gray01">[退出]</a>
+                    </li>
+                    <?php endif; ?>
                     <li class="h_1yyg">
                         <a rel="nofollow" href="/users/center">我的云购<b></b></a>
-                        <div class="h_1yyg_eject" style="display: none; ">
-                            <dl>
-                                <dt>
-                                    <a rel="nofollow" href="/users/center">我的云购<i></i></a>
-                                </dt>
-                                <dd>
-                                    <a rel="nofollow" href="javascript:void(0);">云购记录</a>
-                                </dd>
-                                <dd>
-                                    <a rel="nofollow" href="javascript:void(0);">获得的商品</a>
-                                </dd>
-                                <dd>
-                                    <a rel="nofollow" href="javascript:void(0);">帐户充值</a>
-                                </dd>
-                                <dd>
-                                    <a rel="nofollow" href="javascript:void(0);">个人设置</a>
-                                </dd>
-                            </dl>
-                        </div>
                     </li>
-                    <li class="h_news" id="liMsgTip" style="display:none;">
-                        <a rel="nofollow" href="javascript:void(0);">
-                            消息 <b></b>
+                    <?php if($this->user->id()): ?>
+                    <li class="h_news" id="liMsgTip">
+                        <a rel="nofollow" href="/users/message">
+                            消息(0) <b></b>
                         </a>
-                        <div class="h_news_down" style="display:none;">
-                            <div class="h_news_downT">
-                                <a rel="nofollow" href="javascript:void(0);">
-                                    消息
-                                    <i></i>
-                                </a>
-                            </div>
-                            <div class="h_news_downC"></div>
-                        </div>
                     </li>
+                    <?php endif; ?>
+
                     <li class="h_help">
-                        <a rel="nofollow" target="_blank" href="javascript:void(0);">帮助</a>
+                        <a rel="nofollow" target="_blank" href="/help">帮助</a>
                     </li>
                     <li class="h_inv">
                         <a rel="nofollow" target="_blank" href="javascript:void(0);">在线客服</a>
@@ -149,13 +136,13 @@
       <div class="user_content">
         <div class="user_nav">
             <div class="user_pic">
-                <a href="#"><img src="http://img3.douban.com/icon/u49925310-4.jpg" alt="weelion"></a>
+                <a href="/users/profile"><img style="width: 60px; height: 60px" src="<?php echo $this->user->avatar();?>" alt="<?php echo $this->user->nickname();?>"></a>
             </div>
             <div class="user_info">
                 <h1>
-                    XXXX
+                    <?php echo $this->user->nickname();?>
                     <div id="edit_signature" style="display: inline;font-weight: 400" class="j a_edit_signature edtext pl">
-                        修改头像 修改资料
+                        <a href="/users/profile">修改资料</a> 积分：<?php echo $this->user->credits();?> <a href="/users/recharge">[充值]</a>
                     </div>
                 </h1>
                 <ul>
@@ -163,8 +150,11 @@
                     <li><a href="/orders/user">云购记录</a></li>
                     <li><a href="/product/my">获得的商品</a></li>
                     <li><a href="/shares/share">晒单分享</a></li>
+                    <li><a href="/users/message">消息</a></li>
+                    <?php if($this->user->role() == 100) : ?>
                     <li><a href="/products/dashboard">商品管理</a></li>
                     <li><a href="/shares/dashboard">晒单管理</a></li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>

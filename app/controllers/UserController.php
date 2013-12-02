@@ -1,12 +1,10 @@
 <?php
-/*
- *
- *  废弃的代码
- *
+/**
+ *  会员中心
  *
  */
 namespace app\controllers;
-use app\models\Users;
+use app\models\User;
 
 class UserController extends \lithium\action\Controller {
 
@@ -14,7 +12,7 @@ class UserController extends \lithium\action\Controller {
         $username = $this->request->args[0];
         $password = $this->request->args[1];
 
-        $user = new Users();
+        $user = new User();
         return $user->register($username, $password);
     }
 
@@ -22,20 +20,28 @@ class UserController extends \lithium\action\Controller {
         $username = $this->request->args[0];
         $password = $this->request->args[1];
 
-        $user = new Users();
+        $user = new User();
         return $user->login($username, $password);
+    }
+
+    public function auth() {
+        $id = $this->request->args[0];
+        $auth = $this->request->args[1];
+
+        $user = new User();
+        return $user->auth($id, $auth);
     }
 
     public function check(){
         $username = $this->request->args[0];
 
-        $user = new Users();
+        $user = new User();
         return $user->check($username);
     }
 
     public function avatar(){
         $file = $this->request->args[0];
-        $user = new Users();
+        $user = new User();
 
         if(empty($file)){
           return json_encode(['status'=>0]);
@@ -48,13 +54,13 @@ class UserController extends \lithium\action\Controller {
       $username = $this->request->args[0];
       $nick = $this->request->args[1];
 
-      $user = new Users();
+      $user = new User();
       return $user->nick($username, $nick);
     }
 
     public function info(){
       $username = $this->request->args[0];
-      $user = new Users();
+      $user = new User();
 
       return $user->info($username);
     }

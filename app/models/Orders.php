@@ -5,6 +5,7 @@ namespace app\models;
 use app\models\Carts;
 use app\models\Periods;
 use app\models\Products;
+use app\extensions\helper\User;
 use app\extensions\helper\MongoClient;
 
 class Orders extends \lithium\data\Model {
@@ -18,7 +19,7 @@ class Orders extends \lithium\data\Model {
      */
     protected $_schema = [
         '_id'        => ['type' => 'id'],             // UUID
-        'user_id'    => ['type' => 'integer'],        // 所属会员ID
+        'user_id'    => ['type' => 'string'],        // 所属会员ID
         'product_id' => ['type' => 'string'],         // 商品ID
         'period_id'  => ['type' => 'integer'],        // 期数ID
         'codes'      => ['type' => 'array'],          // 云购码 
@@ -33,122 +34,159 @@ class Orders extends \lithium\data\Model {
     public static function order() {
 
     	$carts = Carts::get(true);
+        $info = new User;
+        $userId = $info->id();
+
+        $user = Users::find('first', ['conditions' => ['_id' => $userId]]);
+
+        $total = 0;
+        foreach($carts as $cart) {
+            $total += $cart['quantity'];
+        }
+
+        if($user->credits < $total * CREDITS) {
+            die('积分不足请充值');
+        }
 
     	foreach($carts as $cart) {
             $time = microtime(true);
 
     		$conditions = ['_id' => $cart['id']];
-    		$product = Products::find('first', ['conditions' => $conditions])->to('array');
     		$period = Periods::period($cart['id'], $cart['periodId']);
-
-    		$orderTotal = 0;
-    		$codes = [];
-
-            $orders = Orders::find('all', ['conditions' => ['product_id' => $cart['id'], 'period_id' => $cart['periodId']]])->to('array');
-    		foreach($orders as $order) {
-    			$orderTotal += count($order['count']);
-    			$codes = array_merge($codes, $order['codes']);
-    		}
 
             $idx = $cart['periodId'] - 1;
 
-    		// 如果未满人
-			if($orderTotal <= $period['person']) {
-                $myCodes = [];
-                
-    			for ($i=0; $i < $cart['quantity']; $i++) { 
-    				$myCodes[] = self::code($codes, $period['person']);
-    			}
-                
-                $codeTotal = count($myCodes);
-	    		$data = [
-	    			'user_id'    => USER_ID,
-                    'product_id' => $cart['id'],
-                    'period_id'  => $cart['periodId'],
-	    			'ordered'    => $time,
-	    			'codes'      => $myCodes,
-	    			'count'      => $codeTotal,
-	    		];
+    		// 不满人直接生成号码
+			if($period['remain'] - $cart['quantity'] > 0) {
+                $myCodes = array_slice($period['tickets'], 0, $cart['quantity']);
+                $quantity = $cart['quantity'];
+			} else { // 满人生成号码
+                $myCodes = array_slice($period['tickets'], 0, $period['remain']);
+                $quantity = $period['remain'];
+            }
 
-                // 写入orders表
-                $order = Orders::create($data);
-                $order->save();
 
-                // 更新剩余数量
-	    		$query = [
-                    '$inc' => [
-                        'remain' => -$codeTotal, 
-                        'periods.'.$idx.'.remain' => -$codeTotal
-                        ], 
-                     
-                    ];
+            // 写入orders表
+            $data = [
+                'user_id'    => $userId,
+                'product_id' => $cart['id'],
+                'period_id'  => $cart['periodId'],
+                'ordered'    => $time,
+                'codes'      => $myCodes,
+                'count'      => $quantity,
+            ];
+            $order = Orders::create($data);
+            $order->save();
 
-	    		Products::update($query, $conditions, ['atomic' => false]);
-			}
+            // 更新剩余数量
+            $query = [
+                '$inc' => [
+                    'remain' => -$quantity, 
+                    'periods.'.$idx.'.remain' => -$quantity
+                    ], 
+                '$set' => [
+                    'periods.'.$idx.'.tickets' =>  array_slice($period['tickets'], $quantity, $period['remain'])
+                    ]
+                ];
 
-            // 如果刚满人
-            if($orderTotal + $codeTotal == $period['person']) {
+            Products::update($query, $conditions, ['atomic' => false]);
+
+            $user->credits = $user->credits - $quantity * CREDITS;
+            $user->save();
+
+            // 如果超过人数
+            if($period['remain'] - $cart['quantity'] <= 0) {
+
                 // 写入揭晓时间
                 $query = [
                     '$set' => [
-                            'periods.'.$idx.'.showed' => time() + self::SHOW_TIME * 60,
-                            'periods.'.$idx.'.ordered' => $time,
-                           ]
-                    ];
+                        'periods.'.$idx.'.showed' => time() + self::SHOW_TIME * 60,
+                        'periods.'.$idx.'.ordered' => $time,
+                    ]
+                ];
                 Products::update($query, $conditions, ['atomic' => false]);
 
-                self::next($cart['id']);
+                // 结束这一期
+                $product = Products::find('first', ['conditions' => $conditions]);
+                $product->remain= $product->person;
+                $product->save();
+
+                // 开启新一期
+                $leave = $cart['quantity'] - $period['remain'];
+                if($product->status == 2) {
+                    Periods::add($product->_id);
+                    
+                    // 超额部分购买下一期 
+                    if($leave > 0) {
+
+                        $user->credits = $user->credits - $leave * CREDITS;
+                        $user->save();
+
+                        $time = microtime(true);
+                        $nextPeriod = Periods::period($cart['id'], $cart['periodId']);
+                        $myCodes = array_slice($nextPeriod['tickets'], 0, $leave);
+                        $idx++;
+
+                        $data = [
+                            'user_id'    => $userId,
+                            'product_id' => $cart['id'],
+                            'period_id'  => $cart['periodId']+1,
+                            'ordered'    => $time,
+                            'codes'      => $myCodes,
+                            'count'      => $leave,
+                        ];
+                        $order = Orders::create($data);
+                        $order->save();
+
+                        // 更新剩余数量
+                        $query = [
+                            '$inc' => [
+                                'remain' => -$leave, 
+                                'periods.'.$idx.'.remain' => -$leave
+                                ], 
+                            '$set' => [
+                                'periods.'.$idx.'.tickets' =>  array_slice($nextPeriod['tickets'], $leave, $nextPeriod['remain']),
+                                'periods.'.$idx.'.hits' => $product->hits
+                                ]
+                            ];
+
+                        Products::update($query, $conditions, ['atomic' => false]);
+                    }
+                }
+
+                // 如果正在下价更新为下架状态
+                if($product->status == 1) {
+                    $product->status = 0;
+                    $product->save();
+
+                    if($leave > 0) {
+                        $user->credits = $user->credits + $leave * CREDITS;
+                        $user->save();
+                    }
+                }
             }
     	}
+
+        Carts::clear();
     }
 
+    public static function view($productId, $periodId) {
 
-    /**
-     * 进入揭晓状态下一步
-     *
-     * @param $product object 商品对象
-     *
-     * @return void
-     */
-    public static function next($id) {
+        $page = 1;
+        $limit = 6;
+        $order = ['_id' => 'desc'];
 
-        $product = Products::find('first', ['conditions' => ['_id' => $id]]);
-        $product->remain= $product->person;
-        $product->save();
+        $conditions = ['product_id' => (string)$productId, 'period_id' => $periodId];
+        $orders = Orders::find('all', compact('limit', 'page', 'conditions', 'order'))->to('array');
 
-        // 如果是上架自动新增一期
-        if($product->status == 2) {
-            Periods::add($product->_id);
+        foreach($orders as $k => $order) {
+            $orders[$k]['user'] = Users::profile($order['user_id']);
         }
 
-        // 如果正在下价更新为下架状态
-        if($product->status == 1) {
-            $product->status = 0;
-            $product->save();
-        }
+        return $orders;
+
     }
 
-    /**
- 	 * 生成云购码
- 	 *
- 	 * @param $codes    array   已经使用
- 	 * @param $person   integer 最大数目
-     *
-     * @return string   返回单个云购码
-     */
-    public static function code(&$codes, $person) {
-
-    	$code = rand(1, $person);
-
-        // time()
-
-    	if(in_array($code, $codes))
-    		$code = self::code($codes, $person);
-
-        $codes[] = $code;
-
-    	return $code;
-    }
 
     /**
      * 获奖信息

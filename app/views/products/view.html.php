@@ -62,7 +62,7 @@ $(function(){
 });
 
 <?php
-// print_r($product);
+if($product['showFull'] && !$product['showResult']) :
 ?>
 
 function countDown() {
@@ -142,6 +142,10 @@ function countDown() {
       sh=setInterval(showResult,1000);
     }
 }
+<?php
+endif;
+?>
+
 
 function showResult() {
   $.ajax({
@@ -152,8 +156,8 @@ function showResult() {
         if(data.status == 1) {
           $('.calculate').hide();
           var codes = '';
-          for(var i in code) {
-            codes += '<li class="Code_'+code+'">'+code+'<b></b></li>';
+          for(var i in data.code) {
+            codes += '<li class="Code_'+data.code[i]+'">'+data.code[i]+'<b></b></li>';
            }
           $('.Announced_FrameCodeMal').html(codes);
           var winner = '<dl>';
@@ -165,7 +169,7 @@ function showResult() {
               winner += '</dd>';
               winner += '</dl>';
 
-          $('.Announced_FrameGet').html('winner');
+          $('.Announced_FrameGet').html(winner);
           $('.Announced_Frame').show();
           clearInterval(sh);
         }

@@ -2,13 +2,13 @@
 
 namespace app\controllers;
 
-// use app\models\Users;
+use app\models\Users;
 use lithium\storage\Session;
+use app\extensions\helper\User;
+use app\extensions\helper\Uploader;
 use lithium\action\DispatchException;
 
 class UsersController extends \lithium\action\Controller {
-
-    const URL = 'http://www.pp.com/user';
 
 	public function register() {
         
@@ -16,12 +16,11 @@ class UsersController extends \lithium\action\Controller {
 
             $username = $this->request->data['username'];
             $password = $this->request->data['password'];
-            $method   = '/register/';
-            $api = self::URL.$method.$username.'/'.$password;
 
-            $rs = file_get_contents($api);
-            $rs = json_decode($rs);
-            if($rs->insert == 1) {
+            $user = new Users;
+            $rs = $user->register($username, $password);
+
+            if($rs) {
                 return $this->redirect('/users/center');
             } else {
                 $message = ['status' => 'fail', 'message' => '注册失败'];
@@ -35,12 +34,11 @@ class UsersController extends \lithium\action\Controller {
 
         if($this->request->is('get')) {
             $username = $this->request->query['username'];
-            $method   = '/check/';
-            $api = self::URL.$method.$username;
-            $rs = file_get_contents($api);
-            $rs = json_decode($rs);
+            
+            $user = new Users;
+            $rs = $user->check($username);
 
-            $status = $rs->check == 1 ? 'true' : 'false';
+            $status = $rs ? 'true' : 'false';
 
             $this->render(['text' => $status]);
         }
@@ -48,22 +46,121 @@ class UsersController extends \lithium\action\Controller {
 
 	public function login() {
 
-        // $username = $this->request->data['username'];
-        // $password = $this->request->data['password'];
+        if($this->request->is('post')) {
 
-        // $method   = '/login/';
-        // $api = self::URL . $method . $username . '/' . $password;
+            $username = $this->request->data['username'];
+            $password = $this->request->data['password'];
 
-        // $rs = file_get_contents($api);
-        // $rs = json_decode($rs);
+            $user = new Users;
+            $rs = $user->login($username, $password);
 
-		
-		// return $this->render();
+            if($rs) {
+                return $this->redirect('/users/center');
+
+            } else {
+                $message = ['status' => 'fail', 'message' => '登录失败'];
+                Session::write('message', $message);
+                return $this->redirect('/users/login');
+            }
+        }
+
 	}
 
     public function center() {
 
+        $user = new Users;
+        if(!$user->auth()) {
+            return $this->redirect('Users::login');
+        }
+
         return $this->render(['layout' => 'user']);
+    }
+
+    public function profile() {
+
+        $userModel = new Users;
+        if($this->request->is('post')) {
+            $rs = $userModel->saveProfile($this->request->data);
+            if($rs) {
+                $message = ['status' => 'success', 'message' => '修改成功'];
+                
+                return $this->redirect('users::center');
+            } else {
+                $message = ['status' => 'fail', 'message' => '修改失败'];
+            }
+
+            Session::write('message', $message);
+        }
+
+        $user = $userModel->profile();
+
+        return compact('user');
+    }
+
+    // 上传商品图片
+    public function upload() {
+
+        $data = $this->request->data;
+        if(!empty($data) && isset($data['file'])) {
+            $file = $data['file'];
+
+            // 替换成会员ID
+            $info = new User;
+            $id = $info->id();
+            $name = substr($file['name'], 0, -4);
+            $file['name'] = str_replace($name, $id, $file['name']);
+
+            $uploader = new Uploader();
+            $result = $uploader->upload($file, 'avatar', ['jpg', 'png', 'gif']);
+
+        }else{
+
+            $result = ['status' => false];
+        }
+
+        // 上传组件IE采用Iframe模式需要返回文件头text/plain
+        if(isset($_SERVER['HTTP_ACCEPT']) && strpos($_SERVER['HTTP_ACCEPT'], 'application/json') !== false) {
+            header('Content-type: application/json');
+        } else {
+            header('Content-type: text/plain');
+        }
+
+        return $this->render(['json' => $result]);
+    }
+
+    public function oldPassword() {
+
+        $password = $this->request->query['password'];
+
+        $user = new Users;
+        $rs = $user->oldPassword($password);
+
+        $this->render(['text' => $rs ? 'true' : 'false']);
+    }
+
+    public function logout() {
+
+        $user = new Users;
+        $user->logout();
+
+        return $this->redirect('/');
+    }
+
+    public function recharge() {
+
+        return $this->render(['layout' => 'user']);
+    }
+
+    public function doRecharge() {
+        $money = $this->request->data['money'];
+        $info = new User;
+        $id = $info->id();
+
+        $user =  Users::find('first', ['conditions' => ['_id' => $id]]);
+        $user->credits = $user->credits + $money * CREDITS;
+        $user->save();
+        die('充值成功');
+
     }
 
 

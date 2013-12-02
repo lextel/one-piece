@@ -21,7 +21,8 @@ class Periods extends \lithium\data\Model {
         'hits'    => ['type' => 'integer', 'length' => 10, 'null' => false, 'default' => 0],               // 人气
         'code'    => ['type' => 'string', 'length' => 20],                                                 // 中奖号码
         'user_id' => ['type' => 'integer', 'length' => 10],                                                // 中奖会员ID
-        'ordered' => ['type' => 'string'],                                                                   // 中奖购买时间
+        'ordered' => ['type' => 'string'],                                                                 // 中奖购买时间
+        'tickets' => ['type' => 'array'],                                                                  // 随机号码
         'results' => ['type' => 'array'],                                                                  // 中奖计算条件
         'orders'  => ['type' => 'array'],                                                                  // 本期订单
         'created' => ['type' => 'date'],                                                                   // 开始时间
@@ -45,12 +46,18 @@ class Periods extends \lithium\data\Model {
         $conditions = ['_id' => $id];
         $product = Products::find('first', ['conditions' => $conditions, 'fields' => $fields])->to('array');
 
+        $ts = [];
+        for($i = 1; $i <= $product['person']; $i++) {
+            $ts[] = $i;
+        }
+        shuffle($ts);
+
         $period = [];
         $period['id'] = self::autoId($id);
         $period['price'] = $product['price'];
         $period['person'] = $product['person'];
         $period['remain'] = $product['remain'];
-        // $period['orders'] = [];
+        $period['tickets'] = $ts;
         $period['results'] = [];
         $period['hits']  = 0;
         $period['code'] = '';

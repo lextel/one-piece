@@ -2,8 +2,9 @@
 
 namespace app\models;
 
-use app\models\Periods;
+use app\models\Users;
 use lithium\storage\Session;
+use app\extensions\helper\User;
 
 class Carts extends \lithium\data\Model {
 
@@ -43,8 +44,12 @@ class Carts extends \lithium\data\Model {
      */
     public static function set($carts) {
 
-        if(USER_ID) {
-            Session::write('myCart', $carts);
+        $info = new User;
+        $id = $info->id();
+        if($id) {
+            $user = Users::find('first', ['conditions' => ['_id' => $id]]);
+            $user->cart = $carts;
+            $user->save();
         }  else {
             Session::write('cart', $carts);
         }
@@ -59,8 +64,11 @@ class Carts extends \lithium\data\Model {
      */
     public static function get($more = false) {
 
-        if(USER_ID) {
-            $carts = Session::read('myCart');
+        $info = new User;
+        $id = $info->id();
+        if($id) {
+            $user = Users::find('first', ['conditions' => ['_id' => $id], 'fields' => ['cart']])->to('array');
+            $carts = $user['cart'];
         }  else {
             $carts = Session::read('cart');
         }
@@ -162,8 +170,16 @@ class Carts extends \lithium\data\Model {
      */
     public static function clear() {
 
-        Session::write('myCart', []);
-        Session::write('cart', []);
+        $info = new User;
+        $id = $info->id();
+        if($id) {
+            $user = Users::find('first', ['conditions' => ['_id' => $id], 'fields' => ['cart']]);
+            $user->cart = [];
+            $user->save();
+        }  else {
+            Session::write('cart', []);
+        }
+ 
     }
 
     /**

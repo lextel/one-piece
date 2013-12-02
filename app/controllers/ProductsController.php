@@ -89,7 +89,7 @@ class ProductsController extends \lithium\action\Controller {
         $model = new Products();
         $product = $model->view($productId, $periodId);
 
-        $result = ['status' => 0];
+        $result = ['status' => $product['periods'][0]['status'] == 2];
         if(
             $product['periods'][0]['remain'] == 0 && 
             $product['periods'][0]['showed'] < time() && 
@@ -98,15 +98,13 @@ class ProductsController extends \lithium\action\Controller {
         {
            $result = [
                     'status' => 1, 
-                    'code'   => str_split($product['periods'][0]['code']+10000001), 
+                    'code'   => str_split($product['periods'][0]['code']+10000000), 
                     'userId' => $product['periods'][0]['user_id'],
                     'ordered' => date('Y-m-d H:i:s',$product['periods'][0]['ordered']),
                     'showed' => date('Y-m-d H:i:s',$product['periods'][0]['showed']),
                     ];
 
         }
-
-        $result = ['status' => 1];
 
         $this->render(['json' => $result]);
     }
@@ -224,11 +222,13 @@ class ProductsController extends \lithium\action\Controller {
         $product = $model->view($id, $periodId, true);
 
         if(empty($product)) {
-            return $this->redirect('Products::notfound');
+            return $this->redirect('Page::notfound');
         }
 
         // 添加人气
-
+        $conditions = ['_id' => $id];
+        $query = ['$inc' => ['hits' => 1]];
+        Products::update($query, $conditions, ['atomic' => false]);
 
          // 当前导航
         $navCurr = $this->_navCurr;

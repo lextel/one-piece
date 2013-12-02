@@ -1,1 +1,1 @@
-{ "options" : { "create" : "users" }, "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "products.users", "name" : "_id_" } ] }
+{ "options" : { "create" : "users" }, "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "products.users", "name" : "_id_" }, { "v" : 1, "key" : { "username" : 1 }, "unique" : true, "ns" : "products.users", "background" : 1, "name" : "username_idx" } ] }
