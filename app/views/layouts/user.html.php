@@ -28,7 +28,7 @@
                     <?php if($this->user->id()): ?>
                     <li class="h_wel" id="logininfo">
                         <a href="/users/info" class="gray01">
-                            <img style="width: 30px; height: 30px" src="<?php echo $this->user->avatar(); ?>">
+                            <img src="<?php echo $this->user->avatar(); ?>">
                             <?php echo $this->user->nickname(); ?>
                         </a
                         >&nbsp;&nbsp;
@@ -308,12 +308,6 @@
              <div class="Service_Time">
                  <p>服务器时间</p>
                  <span id="sp_ServerTime">17:18:41</span>
-             </div>
-             <div class="Service_Fund">
-                 <a href="javascript:void(0);" target="_blank">
-                     <p>云购公益基金</p>
-                     <span id="spanFundTotal">1073979.25</span>
-                 </a>
              </div>
          </div>
      </div>

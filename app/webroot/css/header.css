@@ -60,6 +60,10 @@ img {
 .login_info .h_1yyg a, .login_info .h_1yyg a:visited, .login_info .h_news a, .login_info .h_news a:visited, .login_info .h_inv a, .login_info .h_inv a:visited, .login_info .h_help a, .h_help .h_1yyg a:visited, .login_info .h_Mobile a, .login_info .h_Mobile a:visited {
 	color: #666;
 }
+.goods_hot .goods_left .new_lottery ul li:hover {
+	border-color: #EBEBEB;
+	background: #F3F3F3;
+}
 .login_info .h_1yyg a:hover, .login_info .h_news a:hover, .login_info .h_inv a:hover, .h_help .h_1yyg a:hover, .login_info .h_Mobile a:hover, .h_login a:hover, .nav_class ul li a:hover, .list_class dd a:hover, .list_Sort dd a:hover, .End_Detailslist .name a:hover, .Single_list .SingleR_TC h3 a:hover {
 	color: #f60;
 }
@@ -118,7 +122,23 @@ div, ul, li, dl, dt, dd, table, td, input {
 	float: left;
 	display: inline;
 	margin-top: 6px;
-	margin-top: 5pxurl(0);
+}
+.login_info .h_wel {
+	color: #666;
+	padding: 0 7px;
+}
+.login_info .h_wel a{
+	display:inline-block;
+}
+.login_info .h_wel a:hover{
+	color:#f60;
+}
+.login_info .h_wel img {
+	width: 15px;
+	height: 15px;
+	vertical-align: middle;
+	margin-right: 5px;
+	overflow:hidden;
 }
 .login_info .h_login {
 	padding: 0 7px;
@@ -335,21 +355,16 @@ div, ul, li, dl, dt, dd, table, td, input {
 .head_nav ul.nav_list li.what-1yyg {
 	width: 116px;
 }
-.head_nav ul.nav_list li.home-back a {
-	width: 84px;
-}
 .head_nav .nav_list li a {
 	float: left;
 	width: 100%;
 	text-align: center;
 	height: 35px;
 	overflow: hidden;
-	line-height: 32px;
-	_line-height: 34px;
+	line-height: 35px;
 	font-size: 14px;
 	font-family: 微软雅黑, 宋体;
 	color: white;
-	border: 1px solid #F60;
 }
 /*购物车*/
 .head_nav .mini_mycart {

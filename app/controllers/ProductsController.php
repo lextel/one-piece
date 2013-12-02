@@ -5,10 +5,11 @@
  */
 namespace app\controllers;
 
+use app\models\Carts;
+use app\models\Users;
+use app\models\Orders;
 use app\models\Periods;
 use app\models\Products;
-use app\models\Orders;
-use app\models\Carts;
 use lithium\storage\Session;
 use app\extensions\helper\Page;
 use app\extensions\helper\Cats;
@@ -29,7 +30,7 @@ class ProductsController extends \lithium\action\Controller {
 
         $request  = $this->request;
         $limit    = Page::$page;
-        $page     = $request->page ? : 1;
+        $page     = $request->page ? $request->page : 1;
         $catId    = $request->catId;
         $brandId  = $request->brandId;
         $sort     = isset($request->query['sort']) ? $request->query['sort'] : '';
@@ -64,7 +65,7 @@ class ProductsController extends \lithium\action\Controller {
     public function dashboard() {
         
         $limit = Page::$page;
-        $page  = $this->request->page ? : 1;
+        $page  = $this->request->page ? $this->request->page : 1;
         $sort = 'created';
         $sortBy = 'desc';
 
@@ -89,6 +90,8 @@ class ProductsController extends \lithium\action\Controller {
         $model = new Products();
         $product = $model->view($productId, $periodId);
 
+        $user = Users::profile($product['periods'][0]['user_id']);
+
         $result = ['status' => $product['periods'][0]['status'] == 2];
         if(
             $product['periods'][0]['remain'] == 0 && 
@@ -96,9 +99,12 @@ class ProductsController extends \lithium\action\Controller {
             $product['periods'][0]['status'] == 2
           )
         {
+
            $result = [
                     'status' => 1, 
                     'code'   => str_split($product['periods'][0]['code']+10000000), 
+                    'avatar' => $user['avatar'],
+                    'name'   => $user['nickname'],
                     'userId' => $product['periods'][0]['user_id'],
                     'ordered' => date('Y-m-d H:i:s',$product['periods'][0]['ordered']),
                     'showed' => date('Y-m-d H:i:s',$product['periods'][0]['showed']),

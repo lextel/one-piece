@@ -28,7 +28,7 @@
                     <?php if($this->user->id()): ?>
                     <li class="h_wel" id="logininfo">
                         <a href="/users/info" class="gray01">
-                            <img style="width: 30px; height: 30px" src="<?php echo $this->user->avatar(); ?>">
+                            <img src="<?php echo $this->user->avatar(); ?>">
                             <?php echo $this->user->nickname(); ?>
                         </a
                         >&nbsp;&nbsp;

@@ -161,9 +161,9 @@ function showResult() {
            }
           $('.Announced_FrameCodeMal').html(codes);
           var winner = '<dl>';
-              winner += '<dt><a rel="nofollow" href="" target="_blank" title=""><img width="60" height="60" src="'+data.userId+'"></a></dt>';
+              winner += '<dt><a rel="nofollow" href="/users/info/'+data.userId+'" target="_blank" title=""><img width="60" height="60" src="'+data.avatar+'"></a></dt>';
               winner += '<dd class="gray02">';
-              winner += '<p>恭喜<a href="" target="_blank" class="blue" title="">'+data.userId+'</a>获得</p>';
+              winner += '<p>恭喜<a href="" target="_blank" class="blue" title="">'+data.nickname+'</a>获得</p>';
               winner += '<p>揭晓时间：'+data.ordered+'</p>';
               winner += '<p>云购时间：'+data.showed+'</p>';
               winner += '</dd>';

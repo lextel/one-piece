@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <?php echo $this->html->charset();?>
-    <title><?php echo $this->title(); ?> &gt; 积分云购</title>
+    <title><?php echo $this->title(); ?> &gt; 商城</title>
     <?php echo $this->html->style(array('header', 'common')); ?>
     <?php echo $this->html->script(['jquery', 'common']);?>
     <?php echo $this->scripts(); ?>
@@ -28,7 +28,7 @@
                     <?php if($this->user->id()): ?>
                     <li class="h_wel" id="logininfo">
                         <a href="/users/info" class="gray01">
-                            <img style="width: 30px; height: 30px" src="<?php echo $this->user->avatar(); ?>">
+                            <img src="<?php echo $this->user->avatar(); ?>">
                             <?php echo $this->user->nickname(); ?>
                         </a
                         >&nbsp;&nbsp;
@@ -79,9 +79,6 @@
             </div>
         </div>
     </div>
-    <?php
-    if(!isset($navCurr) || (isset($navCurr) && $navCurr != 'cart')) {
-    ?>
     <div class="head_nav">
         <div class="nav_center">
             <ul class="nav_list">
@@ -89,9 +86,9 @@
                     $navs = [
                         'home'    => ['name' => '首页', 'url' => '/', 'class' => 'home-back'],
                         'product' => ['name' => '所有商品', 'url' => '/products', 'class' => 'sort-all'],
-                        'lottery' => ['name' => '最新揭晓', 'url' => '/lotterys', 'class' => 'new-lottery'],
+                        'lottery'   => ['name' => '最新揭晓', 'url' => '/lotterys', 'class' => 'new-lottery'],
                         'share'   => ['name' => '晒单分享', 'url' => '/shares', 'class' => 'share'],
-                        'newbie'  => ['name' => '新手指南', 'url' => '/help/newbie', 'class' => 'what-1yyg'],
+                        'newbie'   => ['name' => '新手指南', 'url' => '/help/newbie', 'class' => 'what-1yyg'],
                     ];
 
                     foreach($navs as $key => $nav) {
@@ -133,9 +130,43 @@
         </div>
     </div>
     <!--header内容结束-->
-    <?php } ?>
-    <!--中间内容开始-->  
+    <!--中间内容开始-->
+    <div class="Current_nav"><a href="/">首页</a> &gt; <?php echo $this->title(); ?></div>
     <div class="wrap" id="loadingPicBlock">
+      <div class="user_content">
+        <div class="user_nav">
+            <div class="user_pic">
+                <a href="/users/profile"><img style="width: 60px; height: 60px" src="<?php echo $this->user->avatar();?>" alt="<?php echo $this->user->nickname();?>"></a>
+            </div>
+            <div class="user_info">
+                <h1>
+                    <?php echo $this->user->nickname();?>
+                    <div id="edit_signature" style="display: inline;font-weight: 400" class="j a_edit_signature edtext pl">
+                        <a href="/users/profile">修改资料</a> 积分：<?php echo $this->user->credits();?> <a href="/users/recharge">[充值]</a>
+                    </div>
+                </h1>
+                <ul>
+                    <li><a href="/users/center">我的云购</a></li>
+                    <li><a href="/orders/user">云购记录</a></li>
+                    <li><a href="/product/my">获得的商品</a></li>
+                    <li><a href="/shares/share">晒单分享</a></li>
+                    <li><a href="/users/message">消息</a></li>
+                    <?php if($this->user->role() == 100) : ?>
+                    <li><a href="/products/dashboard">商品管理</a></li>
+                    <li><a href="/shares/dashboard">晒单管理</a></li>
+                    <?php endif; ?>
+                </ul>
+            </div>
+        </div>
+      </div>
+        <?php
+            $flash = $this->session->message();
+            if (is_string($flash)) {
+                echo "<p class='success'>{$flash}</p>";
+            } else if(is_array($flash)) {
+                echo "<p class='{$flash['status']}'>{$flash['message']}</p>";
+            }
+        ?>
         <?php echo $this->content(); ?>
     </div>
     <!--中间内容结束-->
@@ -149,7 +180,7 @@
                          <span>新手指南</span>
                      </dt>
                      <dd> <b></b>
-                         <a href="javascript:void(0);" rel="nofollow" target="_blank">了解1元云购</a>
+                         <a href="javascript:void(0);" rel="nofollow" target="_blank">了解积分云购</a>
                      </dd>
                      <dd> <b></b>
                          <a href="javascript:void(0);" rel="nofollow" target="_blank">常见问题</a>
@@ -169,7 +200,7 @@
                      </dt>
                      <dd>
                          <b></b>
-                         <a href="javascript:void(0);" rel="nofollow" target="_blank">1元云购保障体系</a>
+                         <a href="javascript:void(0);" rel="nofollow" target="_blank">积分云购保障体系</a>
                      </dd>
                      <dd>
                          <b></b>
@@ -228,12 +259,12 @@
                      <dd class="ft-fwrx-service">
                          <span class="ft-qqicon">
                              <a href="javascript:void(0);" rel="nofollow" target="_blank" style="text-indent:0em; background:none;width:160px;">
-                                 官方QQ群①： <em class="orange Fb">888888</em>
+                                 官方QQ群①： <em class="orange Fb">89834747</em>
                              </a>
                          </span>
                          <span class="ft-qqicon">
                              <a href="javascript:void(0);" rel="nofollow" target="_blank" style="text-indent:0em; background:none;width:160px;">
-                                 官方QQ群②： <em class="orange Fb">888888</em>
+                                 官方QQ群②： <em class="orange Fb">190818578</em>
                              </a>
                          </span>
                      </dd>
@@ -298,7 +329,7 @@
               <b></b>
               <a href="javascript:void(0);">联系我们</a>
           </div>
-          <div class="copyright">Copyright  © 2013  版权所有  jfyg.com  粤ICP备xxxxxx号-1</div>
+          <div class="copyright">Copyright  © 2011 - 2013,  版权所有  1yyg.com  粤ICP备09213115号-1</div>
           <div class="footer_icon" style="width:599px;">
               <ul>
                   <li class="fi_ectrustchina">

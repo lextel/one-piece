@@ -19,9 +19,10 @@ class Orders extends \lithium\data\Model {
      */
     protected $_schema = [
         '_id'        => ['type' => 'id'],             // UUID
-        'user_id'    => ['type' => 'string'],        // 所属会员ID
+        'user_id'    => ['type' => 'string'],         // 所属会员ID
         'product_id' => ['type' => 'string'],         // 商品ID
         'period_id'  => ['type' => 'integer'],        // 期数ID
+        'ip'         => ['type' => 'string'],         // 云购IP
         'codes'      => ['type' => 'array'],          // 云购码 
         'count'      => ['type' => 'integer'],        // 云购数量
         'created'    => ['type' => 'string'],         // 时间（到毫秒）
@@ -72,6 +73,7 @@ class Orders extends \lithium\data\Model {
                 'product_id' => $cart['id'],
                 'period_id'  => $cart['periodId'],
                 'ordered'    => $time,
+                'ip'         => getIp(),
                 'codes'      => $myCodes,
                 'count'      => $quantity,
             ];
@@ -209,9 +211,16 @@ class Orders extends \lithium\data\Model {
             $times = explode('.', $time);
 
             $total += date('His', $times[0]) . $times[1];
+
+            $user = Users::profile($order['user_id']);
+            $product = Products::find('first', ['conditions' => ['_id' => $order['product_id']]]);
+
             $results[] = [
                 'user_id'    => $order['user_id'],
+                'nickname'   => $user['nickname'],
+                'avatar'     => $user['avatar'],
                 'ordered'    => $order['ordered'],
+                'name'       => $product->name,
                 'period_id'  => $order['period_id'],
                 'product_id' => $order['product_id'],
                 'count'      => $order['count'],

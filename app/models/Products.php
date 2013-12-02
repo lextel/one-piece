@@ -362,7 +362,7 @@ class Products extends \lithium\data\Model {
         $shareTotal = Posts::find('all', ['conditions'=>['type_id' => 1, 'product_id' => $product['_id'], 'parent_id'=>0]])->count();
 
         $orders = Orders::view($product['_id'], $periodId);
-        // print_r($orders);
+
         $info = [];
         $info['id']           = $product['_id'];
         $info['title']        = $product['title'];
@@ -496,13 +496,16 @@ class Products extends \lithium\data\Model {
      */
     private function _showResult($period, &$info) {
 
+        $user = Users::profile($period['user_id']);
         $show = false;
         if($period['status'] == 2) {    // 已经揭晓状态
             $show = true;
-            $info['code']    = str_split($period['code']+10000000);
-            $info['userId']  = $period['user_id'];
-            $info['ordered'] = date('Y-m-d H:i:s', $period['ordered']);
-            $info['showed']  = date('Y-m-d H:i:s', $period['showed']);
+            $info['code']     = str_split($period['code']+10000000);
+            $info['userId']   = $period['user_id'];
+            $info['avatar']   = $user['avatar'];
+            $info['nickname'] = $user['nickname'];
+            $info['ordered']  = date('Y-m-d H:i:s', $period['ordered']);
+            $info['showed']   = date('Y-m-d H:i:s', $period['showed']);
         }
 
         return $show;

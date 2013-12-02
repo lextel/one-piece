@@ -170,9 +170,9 @@
 					</div>
 					<div class="Announced_FrameGet">
 						<dl>
-							<dt><a rel="nofollow" href="{{ userId }}" target="_blank" title="{{ userId }}"><img width="60" height="60" src="http://faceimg.1yyg.com/UserFace/20130524205654556.jpg"></a></dt>
+							<dt><a rel="nofollow" href="/users/info/{{ userId }}" target="_blank" title="{{ nickname }}"><img width="60" height="60" src="{{ avatar }}"></a></dt>
 							<dd class="gray02">
-								<p>恭喜<a href="{{ userId }}" target="_blank" class="blue" title="他妈的在不中不玩啦">{{ userId }}</a>获得</p>
+								<p>恭喜<a href="/users/info/{{ userId }}" target="_blank" class="blue" title="{{ nickname }}">{{ nickname }}</a>获得</p>
 								<p>揭晓时间：{{ showed }}</p>
 								<p>云购时间：{{ ordered }}</p>
 							</dd>
@@ -248,7 +248,7 @@
                     <div id="divRecordTab">
                     <div class="Newest_Con">
                         <ul>
-                            <?php //print_r($product);?>
+                            <?php //print_r($product); ?>
                             <?php foreach($product['orders'] as $order) :?>
                             <li>
                                 <a rel="nofollow" href="javascript:void(0);" target="_blank">
@@ -289,8 +289,6 @@
                 {{^ showResult }}
                 <li class="Product_DetT"><span>商品详情</span></li>
                 {{/ showResult }}
-
-                
                 {{# showResult }}
                 <li class="All_RecordT"><span>计算结果</span></li>
                 {{/ showResult }}
@@ -327,19 +325,26 @@
         <div class="ygRecord" style="">
             <div class="yghelp"> 1、取该商品最后购买时间前网站所有商品的最后100条购买时间记录 <br>
                 2、每个时间记录按时、分、秒、毫秒依次排列取数值 <br>
-                3、将这100个数值之和除以该商品总参与人次后取余数，余数加上10000001 即为"幸运云购码"。 </div>
+                3、将这100个数值之和除以该商品总参与人次后取余数，余数加上10000000 即为"幸运云购码"。 </div>
             <ul class="Record_title">
                 <li class="time">云购时间</li>
                 <li class="nem">会员账号</li>
                 <li class="name">商品名称</li>
                 <li class="much">云购人次</li>
             </ul>
+            <?php
+            foreach($product['results'] as $rs) :
+                // print_r($rs);
+            ?>
             <ul class="Record_content">
                 <li class="time"><b>2013-11-02</b>21:17:15.017</li>
                 <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000299895" target="_blank">15978****99</a></li>
                 <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19448.html" target="_blank">（第178期）小米（MIUI） 小米3 智能手机(16G)</a></li>
                 <li class="much">1人次</li>
             </ul>
+            <?php
+            endforeach;
+            ?>
             <ul class="Record_content">
                 <li class="time"><b>2013-11-02</b>21:17:14.994</li>
                 <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000299895" target="_blank">15978****99</a></li>
