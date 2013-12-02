@@ -163,6 +163,9 @@ class Users extends \lithium\data\Model {
 
         $user = Users::find('first', ['conditions' => ['_id' => $id]])->to('array');
 
+        $user['avatar']   = !empty($user['avatar']) ? $user['avatar'] : '/images/avatar/5/d/529af03b7572a79415000029.jpg';
+        $user['nickname'] = !empty($user['nickname']) ? $user['nickname'] : hidUsername($user['username']);
+
         return $user;
     }
 

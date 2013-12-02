@@ -412,6 +412,7 @@ h1 {
 	width:100%;
 	overflow:hidden;
 }
+
 .add_product ul li.content_li {
 	margin-left:63px;
 }
@@ -436,8 +437,11 @@ h1 {
 .add_product ul li h4 {
 	margin-left:44px;
 }
-.add_product ul li div label {
+.add_product ul .share_edit  label {
 	font-size:14px;
+	display: block;
+	float: left;
+	margin:0 5px 0 50px;
 }
 .text_nums div input {
 	height:30px;

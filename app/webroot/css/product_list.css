@@ -961,7 +961,7 @@ background: url(../img/new-class-icon.png);
 }
 .ygRecord div.RecordOnehundred ul li.time {width: 177px;}
 .ygRecord div.RecordOnehundred ul li.time b {font-weight: normal;margin-right: 15px;}
-.ygRecord div.RecordOnehundred ul li.timeVal {color: #F60;padding-left: 4px;text-align: left;width: 88px;}
+.ygRecord div.RecordOnehundred ul li.timeVal {color: #F60;padding-left: 1px;text-align: left;width: 88px;}
 /*计算结果*/
 .ygRecord .RecordOnehundred .ResultBox {
 	background: #F90;

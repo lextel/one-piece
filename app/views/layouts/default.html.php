@@ -30,8 +30,7 @@
                         <a href="/users/info" class="gray01">
                             <img src="<?php echo $this->user->avatar(); ?>">
                             <?php echo $this->user->nickname(); ?>
-                        </a
-                        >&nbsp;&nbsp;
+                        </a>&nbsp;&nbsp;
                         <a href="/users/logout" class="gray01">[退出]</a>
                     </li>
                     <?php endif; ?>

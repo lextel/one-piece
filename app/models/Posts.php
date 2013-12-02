@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use MongoId;
+use app\extensions\helper\User;
 use app\extensions\helper\MongoClient;
 
 class Posts extends \lithium\data\Model {
@@ -293,19 +295,25 @@ class Posts extends \lithium\data\Model {
         $i = 0;
         foreach($rs as $value) {
 
+            echo $value['form_id'];
+
+            $user = Users::profile($value['from_id']);
+
             $data = [
                 'productId' => $value['product_id'],
                 'periodId'  => $value['period_id'],
                 'title'     => $value['title'],
-                'content'   => utf_substr($value['content'], 50),
+                'content'   => $value['content'],
                 'image'     => $value['images'][0],
                 'user_id'   => $value['from_id'],
                 'good'      => $value['good'],
                 'comment'   => $value['comment'],
                 'created'   => $value['created'],
+                'avatar'    => $user['avatar'],
+                'nickname'  => $user['nickname'],
             ];
 
-            $j = $i%4;
+            $j = $i % 4;
             $i++;
 
             if($j == 0 ) {
@@ -341,12 +349,17 @@ class Posts extends \lithium\data\Model {
      *               $data['periodId']
      */
     public static function share($productId, $periodId,  $userId=0) {
-        $userId = empty($userId) ? USER_ID : $userId;
 
-        $conditions = ['_id' => $productId, 'periods.id' => (int)$periodId, 'periods.user_id' => (int)$userId];
-        $shares = Products::find('all', ['conditions' => $conditions, 'fields' => ['title']])->to('array');
+        $info = new User;
+        $id = $info->id();
+        $userId = empty($userId) ? $id : $userId;
+        
+        $mo = new MongoClient();
+        $productId = new MongoId($productId);
+        $rs = $mo->getConn()->find(['_id' => $productId, 'periods' => ['$elemMatch' => ['id' => (int)$periodId, 'user_id' => $userId]]]);
+        $rs = iterator_to_array($rs, false);
 
-        return empty($shares) ? [] : ['title' => $shares[$productId]['title'], 'periodId' => $periodId];
+        return empty($rs) ? [] : ['title' => $rs[0]['title'], 'periodId' => $periodId];
     }
 
     /**
@@ -357,7 +370,7 @@ class Posts extends \lithium\data\Model {
      *
      * @return boolean
      */
-    public function checkShare($productId, $periodId) {
+    public static function checkShare($productId, $periodId) {
 
         $conditions = ['product_id' => $productId, 'period_id' => $periodId, 'type_id' => 1];
 
@@ -374,7 +387,7 @@ class Posts extends \lithium\data\Model {
      *
      * @return boolean
      */
-    public function deleteShare($productId, $periodId) {
+    public static function deleteShare($productId, $periodId) {
 
         $conditions = ['product_id' => $productId, 'period_id' => $periodId, 'type_id' => 1];
 

@@ -259,12 +259,12 @@
                      <dd class="ft-fwrx-service">
                          <span class="ft-qqicon">
                              <a href="javascript:void(0);" rel="nofollow" target="_blank" style="text-indent:0em; background:none;width:160px;">
-                                 官方QQ群①： <em class="orange Fb">89834747</em>
+                                 官方QQ群①： <em class="orange Fb">8888888</em>
                              </a>
                          </span>
                          <span class="ft-qqicon">
                              <a href="javascript:void(0);" rel="nofollow" target="_blank" style="text-indent:0em; background:none;width:160px;">
-                                 官方QQ群②： <em class="orange Fb">190818578</em>
+                                 官方QQ群②： <em class="orange Fb">8888888</em>
                              </a>
                          </span>
                      </dd>
@@ -329,7 +329,7 @@
               <b></b>
               <a href="javascript:void(0);">联系我们</a>
           </div>
-          <div class="copyright">Copyright  © 2011 - 2013,  版权所有  1yyg.com  粤ICP备09213115号-1</div>
+          <div class="copyright">Copyright  © 2013,  版权所有    粤ICP备xxxx号-1</div>
           <div class="footer_icon" style="width:599px;">
               <ul>
                   <li class="fi_ectrustchina">

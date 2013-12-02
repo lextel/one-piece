@@ -11,16 +11,15 @@ class LotterysController extends \lithium\action\Controller {
 
 	public function index() {
 
-<<<<<<< HEAD
+
         $mo = new MongoClient;
-        $rs = $mo->getConn()->find(['periods' => ['$elemMatch' => ['remain' => 0, 'status' => 2]]]);
+        $rs = $mo->getConn()->find(['periods.status' => 2], ['periods.status']);
         $rs = iterator_to_array($rs);
-        // print_r($rs);
+        print_r($rs);die;
 		
-=======
->>>>>>> 71d1e38ff803eedad3145280fd7ecca53ea61695
+
 		// 当前导航
-    $navCurr = $this->_navCurr;
+        $navCurr = $this->_navCurr;
 
 		return $this->render(['data' => compact('navCurr')]);
 	}

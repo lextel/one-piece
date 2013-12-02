@@ -29,7 +29,7 @@ if(empty($shares)) {
 </ul>
 
 
-<? echo '<div class="pager">'; ?>
+<? echo '<div class="pages">'; ?>
 <?= $this->Paginator->paginate();?>
 <? echo '</div>'; ?>
 <script type="text/javascript">

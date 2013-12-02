@@ -8,6 +8,9 @@ use app\extensions\helper\Page;
 
 class SearchController extends \lithium\action\Controller {
 
+    const STATUS    = 1;
+    const GET_TOTAL = true;
+
     public function index() {
 
         $request  = $this->request;
@@ -16,8 +19,8 @@ class SearchController extends \lithium\action\Controller {
         $page     = $request->page ? : 1;
         $sort     = isset($request->query['sort']) ? $request->query['sort'] : '';
         $sortBy   = isset($request->query['sortBy']) ? $request->query['sortBy'] : '';
-        $status   = 1;
-        $getTotal = true;
+        $status   = self::STATUS;
+        $getTotal = self::GET_TOTAL;
         $total = Products::lists(compact('status', 'title', 'getTotal'));
         $products = Products::lists(compact('limit', 'page', 'title', 'status', 'sort', 'sortBy'), true);
 

@@ -108,8 +108,4 @@
         $('#listing_down').find('span').html('');
         $('#listing_down').dialog('open');
     });
-
-
-
-
 </script>

@@ -9,7 +9,6 @@ $this->title('会员中心 > 我的晒单');
 <?php if($typeId == 2) { ?>
 <?= $this->mustache->render('shares/share', compact('shares')); ?>
 <?php } else { 
-
     foreach($shares as $share) {
     ?>
     <ul class="edit_product">
@@ -23,6 +22,6 @@ $this->title('会员中心 > 我的晒单');
         } 
      } 
      ?>
-<? echo '<div class="pager">'; ?>
+<? echo '<div class="pages">'; ?>
 <?= $this->Paginator->paginate();?>
 <? echo '</div>'; ?>

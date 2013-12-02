@@ -75,7 +75,7 @@ class User extends \lithium\template\Helper {
 
 	public function avatar() {
 		
-		return  $this->_avatar ? $this->_avatar : '/images/avatar/5/d/529af03b7572a79415000029.jpg';
+		return  $this->_avatar;
 	}
 
 	public function level() {

@@ -19,12 +19,12 @@ $(function(){
           loadShare(obj);
     }
 
-  // 晒单分页点击激活ajax
-  $(document).on('click', '#divPost > #divPageNav > ul > li > a', function(){
-      loadShare($(this));
-  });
+    // 晒单分页点击激活ajax
+    $(document).on('click', '#divPost > #divPageNav > ul > li > a', function(){
+        loadShare($(this));
+    });
 
-  // 加载晒单
+    // 加载晒单
     if($('.All_RecordT').length > 0) {
         var obj = $('#divBuyRecord');
         obj.attr('url', '/orders/product/<?php echo $product['id'];?>/<?php echo $product['periodId']; ?>');
@@ -145,7 +145,6 @@ function countDown() {
 <?php
 endif;
 ?>
-
 
 function showResult() {
   $.ajax({

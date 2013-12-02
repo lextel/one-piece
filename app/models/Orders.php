@@ -10,7 +10,7 @@ use app\extensions\helper\MongoClient;
 
 class Orders extends \lithium\data\Model {
 
-    const SHOW_TIME     = 5;    // 倒计时揭晓时间
+    const SHOW_TIME     = 1;    // 倒计时揭晓时间
 
     /**
      * mongodb orders数据结构
@@ -212,15 +212,17 @@ class Orders extends \lithium\data\Model {
 
             $total += date('His', $times[0]) . $times[1];
 
-            $user = Users::profile($order['user_id']);
+            $user = new Users;
+            $userInfo = $user->profile($order['user_id']);
             $product = Products::find('first', ['conditions' => ['_id' => $order['product_id']]]);
 
             $results[] = [
                 'user_id'    => $order['user_id'],
+                'name'       => $product->name,
                 'nickname'   => $user['nickname'],
                 'avatar'     => $user['avatar'],
                 'ordered'    => $order['ordered'],
-                'name'       => $product->name,
+                'ip'         => $order['ip'],
                 'period_id'  => $order['period_id'],
                 'product_id' => $order['product_id'],
                 'count'      => $order['count'],

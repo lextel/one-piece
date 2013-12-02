@@ -140,4 +140,14 @@ if((string)$ip->code=='1'){
 }
 
 
+// 隐藏用户名
+function hidUsername($username) {
+
+   $names = explode('@', $username);
+   $len = strlen($names[0])/2;
+   $names[0] = substr_replace($names[0],str_repeat('*',$len),ceil(($len)/2),$len);
+
+   return implode('@', $names);
+}
+
 ?>

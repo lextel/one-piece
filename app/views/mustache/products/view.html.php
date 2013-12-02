@@ -325,218 +325,43 @@
         <div class="ygRecord" style="">
             <div class="yghelp"> 1、取该商品最后购买时间前网站所有商品的最后100条购买时间记录 <br>
                 2、每个时间记录按时、分、秒、毫秒依次排列取数值 <br>
-                3、将这100个数值之和除以该商品总参与人次后取余数，余数加上10000000 即为"幸运云购码"。 </div>
+                3、将这100个数值之和除以该商品总参与人次后取余数，余数加上10000001 即为"幸运云购码"。 </div>
             <ul class="Record_title">
                 <li class="time">云购时间</li>
                 <li class="nem">会员账号</li>
                 <li class="name">商品名称</li>
                 <li class="much">云购人次</li>
             </ul>
-            <?php
-            foreach($product['results'] as $rs) :
-                // print_r($rs);
-            ?>
-            <ul class="Record_content">
-                <li class="time"><b>2013-11-02</b>21:17:15.017</li>
-                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000299895" target="_blank">15978****99</a></li>
-                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19448.html" target="_blank">（第178期）小米（MIUI） 小米3 智能手机(16G)</a></li>
-                <li class="much">1人次</li>
-            </ul>
-            <?php
-            endforeach;
-            ?>
-            <ul class="Record_content">
-                <li class="time"><b>2013-11-02</b>21:17:14.994</li>
-                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000299895" target="_blank">15978****99</a></li>
-                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19645.html" target="_blank">（第53期）索尼（Sony）NWZ-B172F(2G) Mp3播放器</a></li>
-                <li class="much">1人次</li>
-            </ul>
-            <ul class="Record_content">
-                <li class="time"><b>2013-11-02</b>21:17:14.992</li>
-                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000299895" target="_blank">15978****99</a></li>
-                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19544.html" target="_blank">（第181期）苹果（Apple）iPhone 5S 16G版 3G手机（预售）</a></li>
-                <li class="much">1人次</li>
-            </ul>
-            <ul class="Record_content">
-                <li class="time"><b>2013-11-02</b>21:17:13.758</li>
-                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000304056" target="_blank">Forever翶鄕e</a></li>
-                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19448.html" target="_blank">（第178期）小米（MIUI） 小米3 智能手机(16G)</a></li>
-                <li class="much">10人次</li>
-            </ul>
-            <ul class="Record_content">
-                <li class="time"><b>2013-11-02</b>21:17:08.711</li>
-                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000189893" target="_blank">打开蓝肥猫的</a></li>
-                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19544.html" target="_blank">（第181期）苹果（Apple）iPhone 5S 16G版 3G手机（预售）</a></li>
-                <li class="much">2人次</li>
-            </ul>
             <div class="RecordOnehundred">
-                <h4>截止该商品最后购买时间【2013-11-02 21:17:06.446】最后100条全站购买时间记录</h4>
+                <h4>截止该商品最后购买时间【{{ ordered }}】最后100条全站购买时间记录</h4>
                 <div class="FloatBox"></div>
-                <ul class="Record_content">
-                    <li class="time"><b>2013-11-02</b>21:17:06.446</li>
-                    <li class="timeVal">211706446</li>
-                    <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000676058" target="_blank">还木有不想玩</a></li>
-                    <li class="name"><a class="gray02" href="http://www.1yyg.com/product/18255.html" target="_blank">（第94期）闪迪（SanDisk）酷捷 (CZ51)16GB U盘 </a></li>
-                    <li class="much">64人次</li>
-                </ul>
-                <ul class="Record_content">
-                    <li class="time"><b>2013-11-02</b>21:17:01.977</li>
-                    <li class="timeVal">211701977</li>
-                    <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000064838" target="_blank">最后再一次不</a></li>
-                    <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19544.html" target="_blank">（第181期）苹果（Apple）iPhone 5S 16G版 3G手机（预售）</a></li>
-                    <li class="much">1人次</li>
-                </ul>
-                <ul class="Record_content">
-                    <li class="time"><b>2013-11-02</b>21:17:01.461</li>
-                    <li class="timeVal">211701461</li>
-                    <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000144820" target="_blank">天下太平</a></li>
-                    <li class="name"><a class="gray02" href="http://www.1yyg.com/product/18642.html" target="_blank">（第32期）三星（SAMSUNG）Galaxy Note 3 N9008 3G手机</a></li>
-                    <li class="much">10人次</li>
-                </ul>
-                <ul class="Record_content">
-                    <li class="time"><b>2013-11-02</b>21:16:56.149</li>
-                    <li class="timeVal">211656149</li>
-                    <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000656566" target="_blank">15077****38</a></li>
-                    <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19586.html" target="_blank">（第854期）小米（MIUI） 红米手机</a></li>
-                    <li class="much">20人次</li>
-                </ul>
-                <ul class="Record_content">
-                    <li class="time"><b>2013-11-02</b>21:16:52.406</li>
-                    <li class="timeVal">211652406</li>
-                    <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000999046" target="_blank">ai*@qq.com</a></li>
-                    <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19209.html" target="_blank">（第3期）索尼（SONY）Xperia Z1 L39h 3G手机</a></li>
-                    <li class="much">1人次</li>
-                </ul>
-                <ul class="Record_content">
-                    <li class="time"><b>2013-11-02</b>21:16:52.383</li>
-                    <li class="timeVal">211652383</li>
-                    <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000999046" target="_blank">ai*@qq.com</a></li>
-                    <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19448.html" target="_blank">（第178期）小米（MIUI） 小米3 智能手机(16G)</a></li>
-                    <li class="much">1人次</li>
-                </ul>
-                <ul class="Record_content">
-                    <li class="time"><b>2013-11-02</b>21:16:44.367</li>
-                    <li class="timeVal">211644367</li>
-                    <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000795342" target="_blank">13469****30</a></li>
-                    <li class="name"><a class="gray02" href="http://www.1yyg.com/product/18015.html" target="_blank">（第19期）三星（Samsung）840系列MZ-7TD120BW 120G固态硬盘</a></li>
-                    <li class="much">2人次</li>
-                </ul>
-                <ul class="Record_content">
-                    <li class="time"><b>2013-11-02</b>21:16:38.180</li>
-                    <li class="timeVal">211638180</li>
-                    <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000105182" target="_blank">18606****49</a></li>
-                    <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19388.html" target="_blank">（第233期）TPOS C4三叶草幸福系列 移动电源</a></li>
-                    <li class="much">2人次</li>
-                </ul>
-                <ul class="Record_content">
-                    <li class="time"><b>2013-11-02</b>21:16:24.010</li>
-                    <li class="timeVal">211624010</li>
-                    <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000211614" target="_blank">矮挫穷</a></li>
-                    <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19586.html" target="_blank">（第854期）小米（MIUI） 红米手机</a></li>
-                    <li class="much">40人次</li>
-                </ul>
-                <ul class="Record_content">
-                    <li class="time"><b>2013-11-02</b>21:16:24.008</li>
-                    <li class="timeVal">211624008</li>
-                    <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000211614" target="_blank">矮挫穷</a></li>
-                    <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19007.html" target="_blank">（第16期）魅族（Meizu）MX2 16G 3G智能手机</a></li>
-                    <li class="much">25人次</li>
-                </ul>
-                <ul class="Record_content">
-                    <li class="time"><b>2013-11-02</b>21:16:14.555</li>
-                    <li class="timeVal">211614555</li>
-                    <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000771554" target="_blank">是不是必须改</a></li>
-                    <li class="name"><a class="gray02" href="http://www.1yyg.com/product/18642.html" target="_blank">（第32期）三星（SAMSUNG）Galaxy Note 3 N9008 3G手机</a></li>
-                    <li class="much">1人次</li>
-                </ul>
-                <ul class="Record_content">
-                    <li class="time"><b>2013-11-02</b>21:16:13.353</li>
-                    <li class="timeVal">211613353</li>
-                    <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000658344" target="_blank">zhuzhu520</a></li>
-                    <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19544.html" target="_blank">（第181期）苹果（Apple）iPhone 5S 16G版 3G手机（预售）</a></li>
-                    <li class="much">9人次</li>
-                </ul>
-                <ul class="Record_content">
-                    <li class="time"><b>2013-11-02</b>21:16:13.351</li>
-                    <li class="timeVal">211613351</li>
-                    <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000658344" target="_blank">zhuzhu520</a></li>
-                    <li class="name"><a class="gray02" href="http://www.1yyg.com/product/18373.html" target="_blank">（第67期）苹果（Apple）iPhone 5 16G智能手机</a></li>
-                    <li class="much">1人次</li>
-                </ul>
-                <ul class="Record_content">
-                    <li class="time"><b>2013-11-02</b>21:16:12.430</li>
-                    <li class="timeVal">211612430</li>
-                    <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000393967" target="_blank">13032****01</a></li>
-                    <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19448.html" target="_blank">（第178期）小米（MIUI） 小米3 智能手机(16G)</a></li>
-                    <li class="much">1人次</li>
-                </ul>
-                <ul class="Record_content">
-                    <li class="time"><b>2013-11-02</b>21:16:09.508</li>
-                    <li class="timeVal">211609508</li>
-                    <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000532049" target="_blank">该到我了</a></li>
-                    <li class="name"><a class="gray02" href="http://www.1yyg.com/product/18085.html" target="_blank">（第33期）苹果（Apple）iPad mini平板电脑 16G 3G版</a></li>
-                    <li class="much">1人次</li>
-                </ul>
-                <ul class="Record_content">
-                    <li class="time"><b>2013-11-02</b>21:16:09.492</li>
-                    <li class="timeVal">211609492</li>
-                    <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000532049" target="_blank">该到我了</a></li>
-                    <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19544.html" target="_blank">（第181期）苹果（Apple）iPhone 5S 16G版 3G手机（预售）</a></li>
-                    <li class="much">2人次</li>
-                </ul>
-                <ul class="Record_content">
-                    <li class="time"><b>2013-11-02</b>21:16:04.414</li>
-                    <li class="timeVal">211604414</li>
-                    <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000771554" target="_blank">是不是必须改</a></li>
-                    <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19209.html" target="_blank">（第3期）索尼（SONY）Xperia Z1 L39h 3G手机</a></li>
-                    <li class="much">3人次</li>
-                </ul>
-                <ul class="Record_content">
-                    <li class="time"><b>2013-11-02</b>21:16:00.592</li>
-                    <li class="timeVal">211600592</li>
-                    <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000170981" target="_blank">始终無中</a></li>
-                    <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19368.html" target="_blank">（第13期）中国黄金 Au9999 薄片财富金条10g</a></li>
-                    <li class="much">1人次</li>
-                </ul>
+            <?php
+                $total = 0;
+                foreach($product['results'] as $rs) :
+                    $times = explode('.', $rs['ordered']);
+                    $timeVal = date('His', $times[0]).$times[1];
+                    $total += $timeVal;
+            ?>
+            <ul class="Record_content">
+                <li class="time"><b><?php echo date('Y-m-d', $times[0]); ?></b><?php echo date('H:i:s', $times[0]); ?>.<?php echo $times[1]; ?></li>
+                <li class="timeVal"><?php echo $timeVal; ?></li>
+                <li class="nem"><a class="gray02" href="/users/info/<?php echo $rs['user_id'];?>" target="_blank"><?php echo $rs['nickname'];?></a></li>
+                <li class="name"><a class="gray02" href="/products/view/<?php echo $rs['product_id'];?>/<?php echo $rs['period_id'];?>" target="_blank">（第<?php echo $rs['period_id'];?>期）<?php echo $rs['name'];?></a></li>
+                <li class="much"><?php echo $rs['count'];?>人次</li>
+            </ul>
+            <?php
+                endforeach;
+                $totalFloat = floatval($total);
+                $code = fmod($totalFloat,$product['person']);
+            ?>
                 <div class="ResultBox">
                     <h2>计算结果</h2>
-                    <p class="num4">求和：<span class="Fb">21148203195</span>(上面100条云购记录时间取值相加之和)<br>
-                        取余： <span class="Fb">21148203195</span>(100条时间记录之和)<span class="Fb"> % 88</span>(本商品总需参与人次) <span class="Fb"> = 75</span>(余数)<br>
-                        结果：<span class="Fb">75</span>(余数
-                        )<span class="Fb"> + 10000001 = <em>10000076</em></span> </p>
-                    <b>最终结果：10000076</b> </div>
+                    <p class="num4">求和：<span class="Fb"><?php echo $total; ?></span>(上面<?php echo count($product['results']); ?>条云购记录时间取值相加之和)<br>
+                        取余： <span class="Fb"><?php echo $total; ?></span>(<?php echo count($product['results']); ?>条时间记录之和)<span class="Fb"> % {{ person }}</span>(本商品总需参与人次) <span class="Fb"> = <?php echo $code; ?></span>(余数)<br>
+                        结果：<span class="Fb"><?php echo $code; ?></span>(余数
+                        )<span class="Fb"> + 10000001 = <em><?php echo $code+10000001;?></em></span> </p>
+                    <b>最终结果：<?php echo $code+10000001;?></b> </div>
             </div>
-            <ul class="Record_content">
-                <li class="time"><b>2013-11-02</b>21:13:06.405</li>
-                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000879137" target="_blank">最后三次</a></li>
-                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19092.html" target="_blank">（第49期）三星（Samsung）Galaxy S4 I9500 3G手机</a></li>
-                <li class="much">1人次</li>
-            </ul>
-            <ul class="Record_content">
-                <li class="time"><b>2013-11-02</b>21:13:06.405</li>
-                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000879137" target="_blank">最后三次</a></li>
-                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19092.html" target="_blank">（第49期）三星（Samsung）Galaxy S4 I9500 3G手机</a></li>
-                <li class="much">1人次</li>
-            </ul>
-            <ul class="Record_content">
-                <li class="time"><b>2013-11-02</b>21:13:06.405</li>
-                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000879137" target="_blank">最后三次</a></li>
-                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19092.html" target="_blank">（第49期）三星（Samsung）Galaxy S4 I9500 3G手机</a></li>
-                <li class="much">1人次</li>
-            </ul>
-            <ul class="Record_content">
-                <li class="time"><b>2013-11-02</b>21:13:06.405</li>
-                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000879137" target="_blank">最后三次</a></li>
-                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19092.html" target="_blank">（第49期）三星（Samsung）Galaxy S4 I9500 3G手机</a></li>
-                <li class="much">1人次</li>
-            </ul>
-            <ul class="Record_content">
-                <li class="time"><b>2013-11-02</b>21:13:06.405</li>
-                <li class="nem"><a class="gray02" href="http://u.1yyg.com/1000879137" target="_blank">最后三次</a></li>
-                <li class="name"><a class="gray02" href="http://www.1yyg.com/product/19092.html" target="_blank">（第49期）三星（Samsung）Galaxy S4 I9500 3G手机</a></li>
-                <li class="much">1人次</li>
-            </ul>
-            <div id="loadCalRes" class="goods_loding" style="display: none; "><img border="0" alt="" src="http://skin.1yyg.com/images/goods_loading.gif">正在加载......</div>
         </div>
     </div>
     <!-- 计算结果结束 -->

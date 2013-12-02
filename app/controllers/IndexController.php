@@ -12,6 +12,10 @@ class IndexController extends \lithium\action\Controller {
 
         $shares = Posts::shareIndex(['limit' => 4, 'page' => 1, 'status' => 1]);
 
+
+        print_r($shares);
+        //die;
+
         // 导航
         $navCurr = $this->_navCurr;
 

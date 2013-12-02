@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Posts;
 use app\models\Products;
+use app\extensions\helper\User;
 use app\extensions\helper\Sort;
 use app\extensions\helper\Page;
 use app\extensions\helper\Uploader;
@@ -25,8 +26,8 @@ class SharesController extends \lithium\action\Controller {
 
         $status = 1;
         $getTotal = true;
-        $total = Posts::shareIndex(compact('status', 'getTotal'));
-        $shares = Posts::shareIndex(compact('limit', 'page', 'status', 'sort', 'sortBy'));
+        $total = Posts::indexShare(compact('status', 'getTotal'));
+        $shares = Posts::indexShare(compact('limit', 'page', 'status', 'sort', 'sortBy'));
 
         // 排序标签
         $sortList = Sort::sort('shares', compact('sort', 'sortBy'));
@@ -41,7 +42,7 @@ class SharesController extends \lithium\action\Controller {
     public function product() {
 
         $request = $this->request;
-        $page    = $request->page ? : 1;
+        $page    = $request->page ? $request->page : 1;
         $limit   = Page::$page;
         $productId = $request->productId;
 
@@ -57,11 +58,12 @@ class SharesController extends \lithium\action\Controller {
     public function share() {
 
         $request = $this->request;
-        $typeId  = $request->typeId ? : 1;
-        $page    = $request->page ? : 1;
+        $typeId  = $request->typeId ? $request->typeId : 1;
+        $page    = $request->page ? $request->page : 1;
         $limit   = Page::$page;
 
-        $userId = USER_ID;
+        $info = new User;
+        $userId = $info->id();
         $total = Posts::myShare(['userId' => $userId, 'typeId' => $typeId, 'getTotal' => true]);
         $shares = Posts::myShare(compact('limit', 'page', 'userId', 'typeId'));
 
@@ -175,12 +177,16 @@ class SharesController extends \lithium\action\Controller {
             return $this->redirect('Shares::share');
         }
 
-        $share = Posts::share($productId, $periodId, USER_ID);
-        $share['productId'] = $productId;
+        $info = new User;
+        $userId = $info->id();
 
+        $share = Posts::share($productId, $periodId, $userId);
+        
         if(empty($share)) {
             return $this->redirect('Shares::share');
         }
+
+        $share['productId'] = $productId;
 
         // 当前导航
         $navCurr = $this->_navCurr;

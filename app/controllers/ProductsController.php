@@ -102,9 +102,9 @@ class ProductsController extends \lithium\action\Controller {
 
            $result = [
                     'status' => 1, 
-                    'code'   => str_split($product['periods'][0]['code']+10000000), 
+                    'code'   => str_split($product['periods'][0]['code']+10000001), 
                     'avatar' => $user['avatar'],
-                    'name'   => $user['nickname'],
+                    'name'   => isset($user['nickname']) ? $user['nickname'] : hidUsername($user['username']),
                     'userId' => $product['periods'][0]['user_id'],
                     'ordered' => date('Y-m-d H:i:s',$product['periods'][0]['ordered']),
                     'showed' => date('Y-m-d H:i:s',$product['periods'][0]['showed']),
@@ -117,6 +117,8 @@ class ProductsController extends \lithium\action\Controller {
 
     // 开奖脚本
     public function crontab() {
+
+        $award = new awards();
         set_time_limit(0);
         while (true) {
 
@@ -134,17 +136,19 @@ class ProductsController extends \lithium\action\Controller {
 
                         $idx = $period['id'] - 1;
                         $query = [
-                        '$set' => [
-                                'periods.'.$idx.'.results' => $info['results'],
-                                'periods.'.$idx.'.total'   => $info['total'],
-                                'periods.'.$idx.'.code'    => $info['code'],
-                                'periods.'.$idx.'.user_id' => $userId,
-                                'periods.'.$idx.'.status'  => 2,
-                               ]
+                                'results' => $info['results'],
+                                'total'   => $info['total'],
+                                'code'    => $info['code'],
+                                'user_id' => $userId,
+                                'status'  => 2,
+                                'pid' =>$product[_id],
+                            
                         ];
 
-                        $conditions = ['_id' => $id];
-                        Products::update($query, $conditions, ['atomic' => false]);
+                        $award->insert($query);
+
+                        //$conditions = ['_id' => $id];
+                        //Products::update($query, $conditions, ['atomic' => false]);
                     }
                 }
             }

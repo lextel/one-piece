@@ -85,8 +85,11 @@ class PostsController extends \lithium\action\Controller {
 		$post->comment++;
 		$post->save();
 
+        $info = new User;
+        $userId = $info->id();
+
 		$data = [
-			'user_id' => USER_ID,
+			'user_id' => $userId,
 			'parent_id' => $parentId,
 			'content' => $content,
 			'created' => time(),

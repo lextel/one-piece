@@ -500,10 +500,10 @@ class Products extends \lithium\data\Model {
         $show = false;
         if($period['status'] == 2) {    // 已经揭晓状态
             $show = true;
-            $info['code']     = str_split($period['code']+10000000);
+            $info['code']     = str_split($period['code']+10000001);
             $info['userId']   = $period['user_id'];
             $info['avatar']   = $user['avatar'];
-            $info['nickname'] = $user['nickname'];
+            $info['nickname'] = isset($user['nickname']) ? $user['nickname'] : hidUsername($user['username']);
             $info['ordered']  = date('Y-m-d H:i:s', $period['ordered']);
             $info['showed']   = date('Y-m-d H:i:s', $period['showed']);
         }
