@@ -15,6 +15,7 @@ class Products extends \lithium\data\Model {
     const LIST_WIDTH    = 213;  // 列表进度条总宽度
     const DETAILS_WIDTH = 447;  // 详情进度条总宽度
     const SHOW_TIME     = 5;    // 倒计时揭晓时间
+    const HAD_SHOWED    = 2;    // 已经揭晓状态
 
     /**
      * mongodb products数据结构
@@ -496,9 +497,9 @@ class Products extends \lithium\data\Model {
      */
     private function _showResult($period, &$info) {
 
-        $user = Users::profile($period['user_id']);
         $show = false;
         if($period['status'] == 2) {    // 已经揭晓状态
+            $user = Users::profile($period['user_id']);
             $show = true;
             $info['code']     = str_split($period['code']+10000001);
             $info['userId']   = $period['user_id'];
@@ -556,6 +557,102 @@ class Products extends \lithium\data\Model {
         }
 
         return $show;
+    }
+
+    /**
+     * 通过ID获取标题
+     *
+     * @param $productId mongoid 商品ID
+     *
+     * @return string
+     */
+    public function getTitleById($productId) {
+
+        $product = Products::find('first', ['conditions' => ['_id' => $productId], 'fields' => ['title']]);
+
+        return $product->title;
+    }
+
+    /**
+     * 人气商品
+     *
+     * @param $limit integer 获取多少个商品
+     *
+     * @return array
+     */
+    public function hots($limit = 6) {
+
+        $options = ['sort' => 'hits', 'sortBy' => 'desc', 'limit' => $limit, 'page' => 1];
+
+        $lists = self::lists($options, true);
+
+        return $limit == 1 ? array_shift($lists) : $lists;
+    }
+
+    /**
+     * 获取揭晓信息
+     */
+    public function lottery($options) {
+
+        $mo = new MongoClient();
+        $fields = ['periods.showed' => 1, 'periods.id' => 1, 'periods.code' => 1, 'periods.user_id' => 1, 'periods.status' => 1,'title' => 1, 'images'=>1, 'price'=>1];
+        $products = $mo->getConn()->find(['periods.showed' => ['$gt' => 0]], $fields);
+        $products = iterator_to_array($products, true);
+
+        if(isset($options['getTotal'])  && $options['getTotal']) {
+
+            $total = 0;
+            foreach($products as $product) {
+                foreach($product['periods'] as $period) {
+                    if($period['showed'] > 0) {
+                        $total++;
+                    }
+                }
+            }
+
+            return $total;
+        } else {
+
+            $lotterys = [];
+            $i = 0;
+            $sort = [];
+            $userModel = new Users();
+            $orderModel = new Orders();
+            foreach($products as $product) {
+                foreach($product['periods'] as $period) {
+                    if($period['showed'] > 0) {
+                        $lotterys[$i] = [
+                            'title'     => $product['title'],
+                            'images'    => $product['images'],
+                            'price'    => $product['price'],
+                            'productId' => (string)$product['_id'],
+                            'code'      => $period['code'],
+                            'showed'    => $period['showed'],
+                            'periodId'  => $period['id'],
+                        ];
+
+                        if($period['status'] == self::HAD_SHOWED && !empty($period['user_id'])) {
+                            $lotterys[$i]['userId'] = $period['user_id'];
+                            $user = $userModel->profile($period['user_id']);
+                            $lotterys[$i]['avatar'] = $user['avatar'];
+                            $lotterys[$i]['nickname'] = $user['nickname'];
+                            $lotterys[$i]['reg_ip'] = $user['reg_ip'];
+                            $lotterys[$i]['total'] = $orderModel->codeTotalByPeriod((string)$product['_id'], $period['id'], $period['user_id']);
+                        }
+                        $i++;
+                        $sort[] = $period['showed'];
+                    }
+                }
+            }
+
+            array_multisort($sort, SORT_DESC, $lotterys);
+
+            $offset = ($options['page'] - 1) * $options['limit'];
+            $limit = $options['limit'];
+
+            return array_slice($lotterys, $offset, $limit);
+        }
+
     }
 
 

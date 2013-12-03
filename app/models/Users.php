@@ -161,10 +161,14 @@ class Users extends \lithium\data\Model {
             $id = $info->id();
         }
 
-        $user = Users::find('first', ['conditions' => ['_id' => $id]])->to('array');
+        $userModel = Users::find('first', ['conditions' => ['_id' => $id]]);
 
-        $user['avatar']   = !empty($user['avatar']) ? $user['avatar'] : '/images/avatar/5/d/529af03b7572a79415000029.jpg';
-        $user['nickname'] = !empty($user['nickname']) ? $user['nickname'] : hidUsername($user['username']);
+        $user = [];
+        if($userModel != null) {
+            $user = $userModel->to('array');
+            $user['avatar']   = !empty($user['avatar']) ? $user['avatar'] : '/images/avatar/5/d/529af03b7572a79415000029.jpg';
+            $user['nickname'] = !empty($user['nickname']) ? $user['nickname'] : hidUsername($user['username']);
+        }
 
         return $user;
     }

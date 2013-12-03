@@ -97,6 +97,11 @@ class UsersController extends \lithium\action\Controller {
         return compact('user');
     }
 
+    public function info() {
+        echo '编写中...';
+        die;
+    }
+
     // 上传商品图片
     public function upload() {
 

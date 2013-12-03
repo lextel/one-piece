@@ -242,9 +242,9 @@ class Orders extends \lithium\data\Model {
     /**
      * 获得得奖的会员信息
      *
-     * @param $productId mongoid 
-     * @param $periodId  integer
-     * @param $code      integer 
+     * @param $productId mongoid 商品ID
+     * @param $periodId  integer 期数
+     * @param $code      integer 中奖号码
      *
      * @return user_id
      */
@@ -259,6 +259,52 @@ class Orders extends \lithium\data\Model {
 
         return $order['user_id'];
     }
+
+    /**
+     * 获取某期的云购次数
+     *
+     * @param $productId mongoid  商品ID
+     * @param $periodId  integer  期数
+     * @param $userId    mongoid  会员ID
+     *
+     */
+    public function codeTotalByPeriod($productId, $periodId, $userId) {
+        $mo = new MongoClient('orders');
+        $rs = $mo->getConn()->find(['product_id' => $productId, 'period_id' => $periodId, 'user_id' => $userId ]);
+
+        $orders = iterator_to_array($rs);
+
+        $total = 0;
+        foreach($orders as $order) {
+            $total += $order['count'];
+        }
+
+        return $total;
+    }
+
+    /**
+     * 正在云购
+     *
+     *
+     */
+    public function ordering() {
+        $mo = new MongoClient('orders');
+        $rs = $mo->getConn()->find([], ['user_id', 'period_id', 'product_id', 'ordered'])->limit(12)->sort(['ordered' => 1]);
+        $orders = iterator_to_array($rs);
+
+        // 填充附加信息
+        $userModel = new Users;
+        $productModel = new Products;
+        foreach($orders as $k => $order) {
+            $user = $userModel->profile($order['user_id']);
+            $orders[$k]['nickname'] =  $user['nickname'];
+            $orders[$k]['avatar'] =  $user['avatar'];
+            $orders[$k]['title'] =  $productModel->getTitleById($order['product_id']);
+        }
+
+        return $orders;
+    }
+
 
 }
 

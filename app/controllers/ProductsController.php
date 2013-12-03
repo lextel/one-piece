@@ -90,7 +90,8 @@ class ProductsController extends \lithium\action\Controller {
         $model = new Products();
         $product = $model->view($productId, $periodId);
 
-        $user = Users::profile($product['periods'][0]['user_id']);
+        $userModel = new Users;
+        $user = $userModel->profile($product['periods'][0]['user_id']);
 
         $result = ['status' => $product['periods'][0]['status'] == 2];
         if(

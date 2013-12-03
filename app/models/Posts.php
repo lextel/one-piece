@@ -293,11 +293,12 @@ class Posts extends \lithium\data\Model {
 
         $newData = [];
         $i = 0;
+        $userModel = new Users;
         foreach($rs as $value) {
 
             echo $value['form_id'];
 
-            $user = Users::profile($value['from_id']);
+            $user = $userModel->profile($value['from_id']);
 
             $data = [
                 'productId' => $value['product_id'],

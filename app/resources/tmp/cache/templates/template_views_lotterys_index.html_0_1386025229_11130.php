@@ -64,7 +64,7 @@ $this->styles($this->resLoader->css('product_list.css'));
                     </ul>
                     </div>
                     <div class="pages">
-                    <?= $this->Paginator->paginate();?>
+                    <?php echo $this->Paginator->paginate(); ?>
                     </div>
                         </div>
                    </div>

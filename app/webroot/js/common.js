@@ -355,6 +355,23 @@ $(function(){
             gotoSearch();
         }
     });
+
+    // 正在云购
+    var scrtime;
+    $("#buyList").hover(function(){
+         clearInterval(scrtime);
+    },function(){
+        scrtime = setInterval(function(){
+                var ul = $("#buyList");
+                var liHeight = ul.find("li:last").height();
+                ul.animate({marginTop : liHeight + "px"}, 1000,function(){
+                    ul.find("li:last").prependTo(ul)
+                    // ul.find("li:first").hide();
+                    ul.css({marginTop:0});
+                    // ul.find("li:first").show();
+                });        
+        },3000);
+     }).trigger("mouseleave");
 });
 
 function gotoSearch() {

@@ -7,8 +7,8 @@
         <dd>
             <ul>
                 <li>
-                    <a href="javascript:void(0);" class="head_pic"><img style="width:30px; height:30px" src="<?php echo $order['user']['avatar']; ?>"></a>
-                    <a href="javascript:void(0);" class="name blue"><?php echo $order['user']['nickname']; ?></a>
+                    <a href="/users/info/<?php echo $order['user_id']; ?>" class="head_pic"><img style="width:30px; height:30px" src="<?php echo $order['user']['avatar']; ?>"></a>
+                    <a href="/users/info/<?php echo $order['user_id']; ?>" class="name blue"><?php echo $order['user']['nickname']; ?></a>
                 </li>
                 <li>云购了<em class="orange"><?php echo $order['count']; ?></em>人次</li>
                 <?php 

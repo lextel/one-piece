@@ -26,8 +26,10 @@ class OrdersController extends \lithium\action\Controller {
         $order = ['_id' => 'desc'];
         $total = Orders::find('all', compact('conditions'))->count();
         $orders = Orders::find('all', compact('limit', 'page', 'conditions', 'order'))->to('array');
+
+        $user = new Users;
         foreach($orders as $k => $order) {
-            $orders[$k]['user'] = Users::profile($order['user_id']);
+            $orders[$k]['user'] = $user->profile($order['user_id']);
         }
 
         $this->render(['data' => compact('orders', 'total', 'page', 'limit'),'layout' => false]);
