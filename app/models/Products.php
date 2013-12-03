@@ -649,10 +649,50 @@ class Products extends \lithium\data\Model {
 
             return array_slice($lotterys, $offset, $limit);
         }
-
     }
 
+    /**
+     * 商品获奖者列表
+     *
+     * @param $productId mongoid 商品列表
+     *
+     * @return array
+     */
+    public function awardUsers($productId, $periodId = 0) {
 
+        $product = Products::find('first', ['conditions' => ['_id' => $productId], 'fields' => ['periods', 'title'], 'limit' => 6]);
+
+        $periods = [];
+        if($product != null) {
+            $periods = $product->to('array');
+        }
+
+        $users = [];
+        $userModel = new Users();
+        $postModel = new Posts();
+
+        if(isset($periods['periods'])) {
+            foreach($periods['periods'] as $period) {
+
+                if($period['status'] == 2 && $period['id'] != $periodId) {
+
+                    $info = $userModel->profile($period['user_id']);
+                    $hadShare = $postModel->hadShare($periods['_id'], $period['id']);
+
+                    $users[] = [
+                        'nickname'  => $info['nickname'],
+                        'avatar'    => $info['avatar'],
+                        'userId'    => $period['user_id'],
+                        'productId' => $productId,
+                        'periodId'  => $period['id'],
+                        'hadShare'  => $hadShare,
+                    ];
+                }
+            }
+        }
+
+        return $users;
+    }
 }
 
 // 图片验证规则

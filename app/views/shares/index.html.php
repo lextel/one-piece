@@ -48,7 +48,7 @@ $this->styles($this->resLoader->css('product_list.css'));
                         </dd>
                         <dd class="share_info gray01"><?php echo $share['content']; ?></dd>
                         <dd class="message hidden" style="display: block;">
-                            <span class="smile gray03">羡慕( <em num="3620"><?php echo $share['good'];?></em>)
+                            <span class="smile gray03">羡慕( <em num="<?php echo $share['shareId'];?>"><?php echo $share['good'];?></em>)
                             </span>
                             <span class="much">
                                 <a target="_blank" rel="nofollow" href="/shares/view/<?php echo $share['productId']; ?>/<?php echo $share['periodId']; ?>" class="gray03"> <i></i>

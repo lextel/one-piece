@@ -125,6 +125,8 @@ Router::connect('/posts/comment/{:postId}/page:{:page:[0-9]+}/{:args}', 'Posts::
 Router::connect('/posts/comment/{:postId}/{:args}', 'Posts::comment');
 Router::connect('/posts/notice/{:postId}/{:args}', 'Posts::notice');
 
+Router::connect('/users/info/{:userId}', 'Users::info');
+
 Router::connect('/{:controller}/{:action}/page:{:page:[0-9]+}/{:args}');
 Router::connect('/{:controller}/{:action}/{:args}');
 

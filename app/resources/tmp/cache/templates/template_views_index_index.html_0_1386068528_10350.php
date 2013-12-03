@@ -144,19 +144,19 @@ $this->styles($this->resLoader->css('product_list.css'));
             ?>
             <dl>
                 <dt>
-                    <a rel="nofollow" href="/shares/view/<?php echo $share[0]['productId'];?>/<?php echo $share[0]['periodId'];?>" target="_blank">
-                        <img alt="" src="<?php echo $share[0]['image'];?>" style="">
+                    <a rel="nofollow" href="/shares/view/<?php echo $share['productId'];?>/<?php echo $share['periodId'];?>" target="_blank">
+                        <img alt="" src="<?php echo $share['image'];?>" style="">
                     </a>
                 </dt>
                 <dd class="bg">
                     <ul>
                         <li class="name">
                             <span>
-                                <a href="/shares/view/<?php echo $share[0]['productId'];?>/<?php echo $share[0]['periodId'];?>" target="_blank"><?php echo $share[0]['title'];?></a>
+                                <a href="/shares/view/<?php echo $share['productId'];?>/<?php echo $share['periodId'];?>" target="_blank"><?php echo $share['title'];?></a>
                             </span> 
-                            获得者：<a rel="nofollow" class="blue" href="/users/info/<?php echo $share[0]['userId'];?>" target="_blank"><?php echo $share[0]['nickname'];?></a>
+                            获得者：<a rel="nofollow" class="blue" href="/users/info/<?php echo $share['userId'];?>" target="_blank"><?php echo $share['nickname'];?></a>
                         </li>
-                        <li class="content"><?php echo $share[0]['content'];?></li>
+                        <li class="content"><?php echo $share['content'];?></li>
                     </ul>
                 </dd>
             </dl>

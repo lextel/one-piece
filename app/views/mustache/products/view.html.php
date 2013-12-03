@@ -80,9 +80,9 @@
                 <h2>上期获得者</h2>
                 <div class="GetPrize">
                     <dl>
-                        <dt><a rel="nofollow" href="javascript:void(0);" src="http://faceimg.1yyg.com/UserFace/20131105093925504.jpg"></a></dt>
+                        <dt><a rel="nofollow" href="javascript:void(0);" src="#"></a></dt>
                         <dd class="gray02">
-                            <p>恭喜 <a href="javascript:void(0);" class="blue">坑才不坑爹</a> (北京市) 获得了本商品</p>
+                            <p>恭喜 <a href="javascript:void(0);" class="blue">未实现</a> 获得了本商品</p>
                             <p>揭晓时间：2013-11-06 12:07:03.647</p>
                             <p>云购时间：2013-11-05 22:48:17.193</p>
                             <p>幸运云购码：<em class="orange Fb">10001873</em></p>
@@ -120,6 +120,7 @@
                     <div class="announceing_get">
                         <img src="/img/10.gif">
                     </div>
+                    <div class="Announced_FrameBm"></div>
                 </div>
                 <!--倒计时 end-->
                 <!--计算中 begin-->

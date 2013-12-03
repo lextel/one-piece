@@ -215,6 +215,7 @@ class Posts extends \lithium\data\Model {
      * 首页获取晒单
      *
      * @param $options array 查询参数
+     *                       $options['isPinterest']  // 是否返回瀑布流
      *
      * @return array
      */
@@ -226,7 +227,7 @@ class Posts extends \lithium\data\Model {
             $rs = Posts::find('all', ['conditions' => ['status' => $status, 'type_id' => self::IS_SHARE]])->count();
         } else {
             $rs = Posts::find('all', ['conditions' => ['status' => $status, 'type_id' => self::IS_SHARE], 'order' => $options['order']])->to('array');
-            $rs = self::_formatShare($rs);
+            $rs = self::_formatShare($rs, $options['isPinterest']);
         }
 
         return $rs;
@@ -287,29 +288,30 @@ class Posts extends \lithium\data\Model {
     }
 
     /**
-     * 晒单瀑布流
+     * 格式化晒单数据
      *
-     * @param $rs array 查询数据
+     * @param $rs            array   晒单数据
+     * @param $isPinterest   boolean 是否瀑布流返回
      *
      * @return array
      */
-    private static function _formatShare($rs) {
+    private static function _formatShare($rs, $isPinterest) {
 
         $newData = [];
         $i = 0;
         $userModel = new Users;
         foreach($rs as $value) {
 
-            // echo $value['form_id'];
-
             $user = $userModel->profile($value['from_id']);
 
             $data = [
+                'shareId'   => $value['_id'],
                 'productId' => $value['product_id'],
                 'periodId'  => $value['period_id'],
                 'title'     => $value['title'],
                 'content'   => $value['content'],
                 'image'     => $value['images'][0],
+                'images'    => $value['images'],
                 'userId'    => $value['from_id'],
                 'good'      => $value['good'],
                 'comment'   => $value['comment'],
@@ -318,23 +320,28 @@ class Posts extends \lithium\data\Model {
                 'nickname'  => $user['nickname'],
             ];
 
-            $j = $i % 4;
-            $i++;
+            if($isPinterest) {
 
-            if($j == 0 ) {
-                $newData[0][] = $data;
-            }
+                $j = $i % 4;
+                $i++;
 
-            if($j == 1) {
-                $newData[1][] = $data;
-            }
+                if($j == 0 ) {
+                    $newData[0][] = $data;
+                }
 
-            if($j == 2) {
-                $newData[2][] = $data;
-            }
+                if($j == 1) {
+                    $newData[1][] = $data;
+                }
 
-            if($j == 3) {
-                $newData[3][] = $data;
+                if($j == 2) {
+                    $newData[2][] = $data;
+                }
+
+                if($j == 3) {
+                    $newData[3][] = $data;
+                }
+            } else {
+                $newData[] = $data;
             }
 
         }
@@ -402,6 +409,12 @@ class Posts extends \lithium\data\Model {
     /**
      * 获取晒单评论
      *
+     * @param $options array 参数
+     *                       $options['getTotal']  // 获取数量
+     *                       $options['limit']     // 数量
+     *                       $options['page']      // 分页
+     *
+     * @return mix
      */
     public function comment($options) {
 
@@ -471,6 +484,7 @@ class Posts extends \lithium\data\Model {
     /**
      * 获取公告
      *
+     * @return array
      */
     public function notice() {
 
@@ -483,6 +497,13 @@ class Posts extends \lithium\data\Model {
         return $notices;
     }
 
+    /**
+     * 获取通知详情
+     *
+     * @param $postId integer 通知ID
+     *
+     * @return array
+     */
     public function noticeDetails($postId) {
         $post = Posts::find('first', ['conditions' => ['_id' => $postId, 'type_id' => self::IS_NOTICE]]);
 
@@ -492,6 +513,23 @@ class Posts extends \lithium\data\Model {
         }
 
         return $details;
+    }
+
+    /**
+     * 是否已经晒单
+     *
+     * @param $productId mongoid 商品ID
+     * @param $periodId  integer 期数
+     * 
+     * @return boolean
+     */
+    public function hadShare($productId, $periodId) {
+        
+        $conditions = ['product_id' => $productId, 'period_id' => (string)$periodId, 'type_id' => self::IS_SHARE];
+        $post = Posts::find('first', ['conditions' => $conditions]);
+
+
+        return $post == null ? false : true;
     }
 
 

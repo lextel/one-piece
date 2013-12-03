@@ -102,7 +102,7 @@ class ProductsController extends \lithium\action\Controller {
 
         $user = Users::profile($product['periods'][0]['user_id']);
 
-        $result = ['status' => $product['periods'][0]['status'] == 2];
+        $result = ['status' => 0];
         if(
             $product['periods'][0]['remain'] == 0 && 
             $product['periods'][0]['showed'] < time() && 

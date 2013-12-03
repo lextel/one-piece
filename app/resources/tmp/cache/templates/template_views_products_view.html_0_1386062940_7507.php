@@ -5,13 +5,10 @@ $this->scripts($this->resLoader->script('details.js'));
 $this->title($product['title']);
 ?>
 <div class="Current_nav"><a href="/">首页</a> &gt; <a href="/products">所有分类</a>  &gt; 商品详情</div>
-<?php
-   // print_r($product);
-?>
 <?php echo $this->mustache->render('products/view', compact('product')); ?>
-
 <script>
 $(function(){
+
     // 加载晒单
     if($('.Single_ConT').length > 0) {
         var obj = $('#divPost');
@@ -66,7 +63,8 @@ if($product['showFull'] && !$product['showResult']) :
 ?>
 
 function countDown() {
-     var endtime = new Date("<?php echo date('Y-m-d H:i:s', $product['showed']); ?>");  
+
+     var endtime = new Date("<?php echo date('M d, Y H:i:s', $product['showed']); ?>");  
      var nowtime = new Date();  
      var second = parseInt((endtime.getTime()-nowtime.getTime())/1000);  
      var min = parseInt((second/60)%60);  
@@ -74,18 +72,19 @@ function countDown() {
      var c= new Date();
      var msec = c.getMilliseconds();
 
+
     if(min < 10) {
-        min = '0' + min;
+        min = '0' + min.toString();
     }
 
     if(sec < 10) {
-        sec = '0' + sec;
+        sec = '0' + sec.toString();
     }
 
     if(msec < 100) {
-        msec = '0' + msec;
+        msec = '0' + msec.toString();
     } else if(msec < 10) {
-        msec = '00' + msec;
+        msec = '00' + msec.toString();
     }
 
     var lefttime = '';
@@ -174,7 +173,6 @@ function showResult() {
         }
     }
   });
-
 }
 
 shareInit = true;

@@ -1,4 +1,7 @@
-<div class="Current_nav"><a href="/">首页</a> &gt; 公告内容</div>
+<?php
+$this->title('云购动态');
+?>
+<div class="Current_nav"><a href="/">首页</a> &gt; 动态内容</div>
 <div id="divTopicShow" class="detail-content">
 <div class="detail-Ctitle">
     <!--div class="detail-Ctimg">

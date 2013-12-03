@@ -16,6 +16,7 @@ class SharesController extends \lithium\action\Controller {
 
     const IS_PASS = 1;
     const GET_TOTAL = true;
+    const IS_PINTEREST = true;
 
     private $_navCurr = 'share';
 
@@ -31,8 +32,10 @@ class SharesController extends \lithium\action\Controller {
 
         $status = self::IS_PASS;
         $getTotal = self::GET_TOTAL;
+        $isPinterest = self::IS_PINTEREST;
         $total = Posts::shareIndex(compact('status', 'getTotal'));
-        $shares = Posts::shareIndex(compact('limit', 'page', 'status', 'sort', 'sortBy'));
+        $shares = Posts::shareIndex(compact('limit', 'page', 'status', 'isPinterest', 'sort', 'sortBy'));
+        // print_r($shares);
 
         // 排序标签
         $sortList = Sort::sort('shares', compact('sort', 'sortBy'));
@@ -106,10 +109,19 @@ class SharesController extends \lithium\action\Controller {
         // 正在进行
         $active = Products::view($productId, 0);
 
+        // 其他期获奖者
+        $productModel = new Products();
+        $awardUsers = $productModel->awardUsers($productId, $periodId);
+
+        // 最新晒单
+        $postModel = new Posts();
+        $shares = $postModel->shareIndex(['limit' => 4, 'status' => 1, 'isPinterest' => false]);
+        // print_r($shares);
+
         // 当前导航
         $navCurr = $this->_navCurr;
 
-        return compact('navCurr', 'share', 'limit', 'page', 'total', 'winner', 'active');
+        return compact('navCurr', 'share', 'limit', 'page', 'total', 'winner', 'active', 'awardUsers', 'shares');
     }
 
     // 晒单管理

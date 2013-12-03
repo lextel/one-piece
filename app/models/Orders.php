@@ -10,7 +10,7 @@ use app\extensions\helper\MongoClient;
 
 class Orders extends \lithium\data\Model {
 
-    const SHOW_TIME     = 1;    // 倒计时揭晓时间
+    const SHOW_TIME = 5;    // 倒计时揭晓时间
 
     /**
      * mongodb orders数据结构
@@ -31,6 +31,8 @@ class Orders extends \lithium\data\Model {
 
 	/**
      * 下订单
+     *
+     * @return void
      */
     public static function order() {
 
@@ -172,6 +174,11 @@ class Orders extends \lithium\data\Model {
         Carts::clear();
     }
 
+    /**
+     * 商品详情页购买调用
+     *
+     * @return array
+     */
     public static function view($productId, $periodId) {
 
         $page = 1;
@@ -285,9 +292,10 @@ class Orders extends \lithium\data\Model {
     /**
      * 正在云购
      *
-     *
+     * @return array
      */
     public function ordering() {
+
         $mo = new MongoClient('orders');
         $rs = $mo->getConn()->find([], ['user_id', 'period_id', 'product_id', 'ordered'])->limit(12)->sort(['ordered' => 1]);
         $orders = iterator_to_array($rs);

@@ -106,7 +106,7 @@ class PostsController extends \lithium\action\Controller {
 
 
 		$post = Posts::find('first', ['conditions' => ['_id' => $parentId]]);
-		$post->comment++;
+		$post->comment = $post->comment + 1;
 		$post->save();
 
         $info = new User;

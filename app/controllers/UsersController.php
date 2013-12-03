@@ -98,8 +98,17 @@ class UsersController extends \lithium\action\Controller {
     }
 
     public function info() {
-        echo '编写中...';
-        die;
+
+        $userId = $this->request->userId;
+        if(empty($userId)) {
+            $info = new User();
+            $userId = $info->id();
+        }
+
+        $userModel = new Users();
+        $user = $userModel->profile($userId);
+
+        return compact('user');
     }
 
     public function message() {
