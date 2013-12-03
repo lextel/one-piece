@@ -6,6 +6,47 @@
 .gray01 {
 	color: #666;
 }
+ .goods_xp {
+	width: 49px;
+	height: 45px;
+	display: inline-block;
+	background-position: right -49px;
+	position: absolute;
+	right: 0;
+	_right: -1px;
+	top: 0;
+	z-index: 1;
+}
+ .goods_xs {
+	width: 49px;
+	height: 45px;
+	display: inline-block;
+	background-position: right -192px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 1;
+}
+ .goods_tj {
+	width: 49px;
+	height: 45px;
+	display: inline-block;
+	background-position: right 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 1;
+}
+.goods_rq {
+	width: 49px;
+	height: 45px;
+	display: inline-block;
+	background-position: right -100px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 1;
+}
 /*分页*/
 .pages {
 	overflow: hidden;
@@ -2458,9 +2499,14 @@ autoOld ul.autoOldlist .Progress-bar {
 	overflow: hidden;
 }
 .share-getinfo .getinfo-name {
-	width: 143px;
+	width: 160px;
 	overflow: hidden;
 }
+.share-getinfo .getinfo-name a{
+	width:86px;
+	display:inline-block;
+}
+
 .share-Conduct {
 	float: left;
 	width: 338px;
@@ -2919,3 +2965,57 @@ span.bds_more, .bds_tools a {
 	top:5px;
 }
 /*帮助中心结束*/
+/*公告*/
+.detail-content {
+	padding: 15px 17px 15px 17px;
+	border-top: 2px solid #F4F4F4;
+	background:#fff;
+	overflow:hidden;
+}
+.detail-Ctitle .detail-Ctimg .fl-img {
+	padding-top: 3px;
+}
+.layout980 .fl-img {
+	display: block;
+	text-align: center;
+	overflow: hidden;
+	float: left;
+}
+.layout980 .fl-img img {
+	display: block;
+}
+.detail-Ctimg img {
+	width: 50px;
+	height: 50px;
+}
+.detail-Ctl {
+	margin-left: 60px;
+	width: 641px;
+}
+.detail-tit {
+	font-size: 16px;
+	padding-right: 70px;
+	line-height: 24px;
+	font-weight: bold;
+	color: #666;
+	display: block;
+	position: relative;
+}
+.class-icon01, .class-icon02, .class-icon03, .class-icon04, .class-icon05, .class-icon06, .class-icon07 {
+	display: inline-block;
+	position: relative;
+	padding-left: 17px;
+	padding-right: 5px;
+	line-height: 20px!important;
+	color: #666;
+}
+.class-icon07 s {
+	background-position: -106px -1px;
+}
+
+.class-icon01 s, .class-icon02 s, .class-icon03 s, .class-icon04 s, .class-icon05 s, .class-icon06 s, .class-icon07 s {
+	background: url(../img/new-class-icon.png);
+}
+
+
+

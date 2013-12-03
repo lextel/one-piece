@@ -34,14 +34,17 @@ class User extends \lithium\template\Helper {
 		} else {
 			extract($userInfo);
 
-			$this->_info = $userInfo;
-			$this->_user     = Users::find('first', ['conditions' => ['_id' => $id]]);
+			$userModel = new Users();
+			$user = $userModel->profile($id);
+
+			$this->_info     = $userInfo;
+			$this->_user     = $user;
 			$this->_id       = $id;
-			$this->_nickname = $this->_user->nickname;
-			$this->_avatar   = $this->_user->avatar;
-			$this->_role     = $this->_user->role;;
-			$this->_credits  = $this->_user->credits;
-			$this->_exp      = $this->_user->exp;
+			$this->_nickname = $this->_user['nickname'];
+			$this->_avatar   = $this->_user['avatar'];
+			$this->_role     = $this->_user['role'];
+			$this->_credits  = $this->_user['credits'];
+			$this->_exp      = $this->_user['exp'];
 			$this->_auth     = $auth;
 			$this->_time     = $time;
 		}

@@ -148,7 +148,7 @@
                 <ul>
                     <li><a href="/users/center">我的云购</a></li>
                     <li><a href="/orders/user">云购记录</a></li>
-                    <li><a href="/product/my">获得的商品</a></li>
+                    <li><a href="/products/my">获得的商品</a></li>
                     <li><a href="/shares/share">晒单分享</a></li>
                     <li><a href="/users/message">消息</a></li>
                     <?php if($this->user->role() == 100) : ?>

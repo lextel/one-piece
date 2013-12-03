@@ -84,6 +84,11 @@ body{ background:#fff !important;}
 	width: 150px;
 	text-align: center;
 }
+.goods_left .new_lottery ul li span strong{
+	width: 93px;
+	display: inline-block;
+	overflow: hidden;
+}
 .new_lottery ul li.first_li {
 	width: 150px;
 	height: 202px;
@@ -189,17 +194,7 @@ body{ background:#fff !important;}
 	width: 185px;
 	padding: 9px 8px;
 }
-.list-block .goods_xp {
-	width: 49px;
-	height: 45px;
-	display: inline-block;
-	background-position: right -49px;
-	position: absolute;
-	right: 0;
-	_right: -1px;
-	top: 0;
-	z-index: 1;
-}
+
 .goods_tj, .goods_xp, .goods_rq, .goods_xs {
 	background: url(../img/goods_tj.png) no-repeat;
 }
@@ -503,6 +498,11 @@ body{ background:#fff !important;}
 	border-bottom: 1px solid #FFEED8;
 	margin: 0;
 	color: #F60;
+}
+.share_show .show dl dd.bg ul li.name .blue{
+	display: inline-block;
+	width: 100px;
+	overflow:hidden;
 }
 .share_show .show dl dd.bg ul li.name span a {
 	width: 150px;

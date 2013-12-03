@@ -85,14 +85,11 @@ class Products extends \lithium\data\Model {
         $data['hits']    = 0;
         $data['status']  = 0;
         $data['showed']  = 0;
-        $data['tag_id']  = 0;
         $data['created'] = date('Y-m-d H:i:s');
         $data['price']   = intval($data['price']);
         $data['person']  = $data['price'];
         $data['remain']  = $data['person'];
         $data['periods'] = [];
-        // $data['shares']  = [];
-        // $data['limits']  = [];
 
         return $data;
     }
@@ -637,7 +634,7 @@ class Products extends \lithium\data\Model {
                             $lotterys[$i]['avatar'] = $user['avatar'];
                             $lotterys[$i]['nickname'] = $user['nickname'];
                             $lotterys[$i]['reg_ip'] = $user['reg_ip'];
-                            $lotterys[$i]['total'] = $orderModel->codeTotalByPeriod((string)$product['_id'], $period['id'], $period['user_id']);
+                            $lotterys[$i]['total'] = $orderModel->countByPeriod((string)$product['_id'], $period['id'], $period['user_id']);
                         }
                         $i++;
                         $sort[] = $period['showed'];

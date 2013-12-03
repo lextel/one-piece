@@ -36,11 +36,11 @@ $this->styles($this->resLoader->css('product_list.css'));
                                 <img src="<?php echo $share['image'];?>"></a>
                         </dt>
                         <dd class="share-name gray02">
-                            <a href="<?php echo $share['user_id'];?>" class="name-img">
-                                <img border="0" alt="" src="<?php echo $share['user_id'];?>"></a>
+                            <a href="/users/info/<?php echo $share['userId'];?>" class="name-img">
+                                <img border="0" alt="" src="<?php echo $share['avatar'];?>"></a>
                             <div class="share-name-r">
                                 <span class="gray03">
-                                    <a rel="nofollow" href="<?php echo $share['user_id'];?>" class="blue"><?php echo $share['user_id'];?></a>
+                                    <a rel="nofollow" href="/users/info/<?php echo $share['userId'];?>" class="blue"><?php echo $share['nickname'];?></a>
                                     <?php echo $this->times->friendlyDate($share['created'])?>
                                 </span>
                                 <a class="Fb gray01" href="/shares/view/<?php echo $share['productId']; ?>/<?php echo $share['periodId']; ?>" target="_blank"><?php echo $share['title'];?></a>
@@ -64,10 +64,125 @@ $this->styles($this->resLoader->css('product_list.css'));
                 }
                 ?>
              </li>
-            
             <li>
+              <?php
+                    if(isset($shares[1])) {
+                    foreach($shares[1] as $share) {
+                ?>
+                <div class="share_list_content">
+                    <dl>
+                        <dt>
+                            <a target="_blank" href="/shares/view/<?php echo $share['productId']; ?>/<?php echo $share['periodId']; ?>">
+                                <img src="<?php echo $share['image'];?>"></a>
+                        </dt>
+                        <dd class="share-name gray02">
+                            <a href="/users/info/<?php echo $share['userId'];?>" class="name-img">
+                                <img border="0" alt="" src="<?php echo $share['avatar'];?>"></a>
+                            <div class="share-name-r">
+                                <span class="gray03">
+                                    <a rel="nofollow" href="/users/info/<?php echo $share['userId'];?>" class="blue"><?php echo $share['nickname'];?></a>
+                                    <?php echo $this->times->friendlyDate($share['created'])?>
+                                </span>
+                                <a class="Fb gray01" href="/shares/view/<?php echo $share['productId']; ?>/<?php echo $share['periodId']; ?>" target="_blank"><?php echo $share['title'];?></a>
+                            </div>
+                        </dd>
+                        <dd class="share_info gray01"><?php echo $share['content']; ?></dd>
+                        <dd class="message hidden" style="display: block;">
+                            <span class="smile gray03">羡慕( <em num="3620"><?php echo $share['good'];?></em>)
+                            </span>
+                            <span class="much">
+                                <a target="_blank" rel="nofollow" href="/shares/view/<?php echo $share['productId']; ?>/<?php echo $share['periodId']; ?>" class="gray03"> <i></i>
+                                    评论 <em>(<?php echo $share['comment'];?>)</em>
+                                </a>
+                            </span>
+                        </dd>
+                    </dl>
+                    <p class="text-h10"></p>
+                </div>
+                <?php
+                    }
+                }
+                ?>
+            </li>
+            <li>
+              <?php
+                    if(isset($shares[2])) {
+                    foreach($shares[2] as $share) {
+                ?>
+                <div class="share_list_content">
+                    <dl>
+                        <dt>
+                            <a target="_blank" href="/shares/view/<?php echo $share['productId']; ?>/<?php echo $share['periodId']; ?>">
+                                <img src="<?php echo $share['image'];?>"></a>
+                        </dt>
+                        <dd class="share-name gray02">
+                            <a href="/users/info/<?php echo $share['userId'];?>" class="name-img">
+                                <img border="0" alt="" src="<?php echo $share['avatar'];?>"></a>
+                            <div class="share-name-r">
+                                <span class="gray03">
+                                    <a rel="nofollow" href="/users/info/<?php echo $share['userId'];?>" class="blue"><?php echo $share['nickname'];?></a>
+                                    <?php echo $this->times->friendlyDate($share['created'])?>
+                                </span>
+                                <a class="Fb gray01" href="/shares/view/<?php echo $share['productId']; ?>/<?php echo $share['periodId']; ?>" target="_blank"><?php echo $share['title'];?></a>
+                            </div>
+                        </dd>
+                        <dd class="share_info gray01"><?php echo $share['content']; ?></dd>
+                        <dd class="message hidden" style="display: block;">
+                            <span class="smile gray03">羡慕( <em num="3620"><?php echo $share['good'];?></em>)
+                            </span>
+                            <span class="much">
+                                <a target="_blank" rel="nofollow" href="/shares/view/<?php echo $share['productId']; ?>/<?php echo $share['periodId']; ?>" class="gray03"> <i></i>
+                                    评论 <em>(<?php echo $share['comment'];?>)</em>
+                                </a>
+                            </span>
+                        </dd>
+                    </dl>
+                    <p class="text-h10"></p>
+                </div>
+                <?php
+                    }
+                }
+                ?>
             </li>
             <li class="share-liR">
+                <?php
+                    if(isset($shares[3])) {
+                    foreach($shares[3] as $share) {
+                ?>
+                <div class="share_list_content">
+                    <dl>
+                        <dt>
+                            <a target="_blank" href="/shares/view/<?php echo $share['productId']; ?>/<?php echo $share['periodId']; ?>">
+                                <img src="<?php echo $share['image'];?>"></a>
+                        </dt>
+                        <dd class="share-name gray02">
+                            <a href="/users/info/<?php echo $share['userId'];?>" class="name-img">
+                                <img border="0" alt="" src="<?php echo $share['avatar'];?>"></a>
+                            <div class="share-name-r">
+                                <span class="gray03">
+                                    <a rel="nofollow" href="/users/info/<?php echo $share['userId'];?>" class="blue"><?php echo $share['nickname'];?></a>
+                                    <?php echo $this->times->friendlyDate($share['created'])?>
+                                </span>
+                                <a class="Fb gray01" href="/shares/view/<?php echo $share['productId']; ?>/<?php echo $share['periodId']; ?>" target="_blank"><?php echo $share['title'];?></a>
+                            </div>
+                        </dd>
+                        <dd class="share_info gray01"><?php echo $share['content']; ?></dd>
+                        <dd class="message hidden" style="display: block;">
+                            <span class="smile gray03">羡慕( <em num="3620"><?php echo $share['good'];?></em>)
+                            </span>
+                            <span class="much">
+                                <a target="_blank" rel="nofollow" href="/shares/view/<?php echo $share['productId']; ?>/<?php echo $share['periodId']; ?>" class="gray03"> <i></i>
+                                    评论 <em>(<?php echo $share['comment'];?>)</em>
+                                </a>
+                            </span>
+                        </dd>
+                    </dl>
+                    <p class="text-h10"></p>
+                </div>
+                <?php
+                    }
+                }
+                ?>
                 
             </li>
         </ul>

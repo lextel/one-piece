@@ -123,6 +123,7 @@ Router::connect('/orders/product/{:productId}/{:periodId}/{:args}', 'Orders::pro
 
 Router::connect('/posts/comment/{:postId}/page:{:page:[0-9]+}/{:args}', 'Posts::comment');
 Router::connect('/posts/comment/{:postId}/{:args}', 'Posts::comment');
+Router::connect('/posts/notice/{:postId}/{:args}', 'Posts::notice');
 
 Router::connect('/{:controller}/{:action}/page:{:page:[0-9]+}/{:args}');
 Router::connect('/{:controller}/{:action}/{:args}');

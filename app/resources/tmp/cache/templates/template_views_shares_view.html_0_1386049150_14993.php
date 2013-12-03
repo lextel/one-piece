@@ -14,12 +14,12 @@ $this->styles($this->resLoader->css('product_list.css'));
                 <div class="share_time"> 晒单时间：<span><?php echo $this->times->friendlyDate($share['created']); ?></span></div>
             </div>
             <div class="share_goods">
-                <div class="share-get"> <i></i> <a class="fl-img" href="<?php echo $winner['periods'][0]['user_id']; ?>" target="_blank"><img src="<?php echo $winner['periods'][0]['user_id']; ?>"></a>
+                <div class="share-get"> <i></i> <a class="fl-img" href="/users/info/<?php echo $winner['user']['_id']; ?>" target="_blank"><img src="<?php echo $winner['user']['avatar']; ?>"></a>
                     <div class="share-getinfo">
-                        <p class="getinfo-name">幸运获得者：<a class="blue Fb" href="<?php echo $winner['periods'][0]['user_id']; ?>" target="_blank"><?php echo $winner['periods'][0]['user_id']; ?></a></p>
-                        <p>总共云购：<b class="orange"><?php echo count($winner['periods'][0]['orders']); ?></b>人次</p>
+                        <p class="getinfo-name">幸运获得者：<a class="blue Fb" href="/users/info/<?php echo $winner['user']['_id']; ?>" target="_blank"><?php echo $winner['user']['nickname']; ?></a></p>
+                        <p>总共云购：<b class="orange"><?php echo count($winner['orderTotal']); ?></b>人次</p>
                         <p>幸运云购码：<?php echo $winner['periods'][0]['code']; ?></p>
-                        <p>揭晓时间：<?php echo $winner['periods'][0]['ordered']; ?></p>
+                        <p>揭晓时间：<?php echo $this->times->friendlyDate($winner['periods'][0]['showed']); ?></p>
                     </div>
                 </div>
                 <div class="share-Conduct">
@@ -53,24 +53,24 @@ $this->styles($this->resLoader->css('product_list.css'));
                 </div>
             </div>
         </div>
-        <input name="hidReplyCount" type="hidden" id="hidReplyCount" value="7">
-        <input name="hidUserFace" type="hidden" id="hidUserFace" value="00000000000000000.jpg">
-        <!--div id="bottomComment" class="qcomment_bottom_reply clearfix">
+        <?php if(!$this->user->id()) : ?>
+        <div id="bottomComment" class="qcomment_bottom_reply clearfix">
             <div class="Comment_Reply clearfix">
-                <div class="Comment-pic"><img name="imgUserPhoto" src="http://faceimg.1yyg.com/UserFace/00000000000000000.jpg"></div>
+                <div class="Comment-pic"><img name="imgUserPhoto" src="/images/avatar/5/d/529af03b7572a79415000029.jpg"></div>
                 <div class="Comment_form">
                     <div id="divCommTo" class="Comment-name" style="display:none;"></div>
                     <div class="Comment_textbox">
                         <textarea id="replyTAM0" name="replyTA" class="hidden Comment-txt"></textarea>
-                        <div id="notLogin" name="replyLogin" class="Comment_login" runat="server">请您<a href="javascript:;" class="blue" name="replyLoginBtn">登录</a>或<a href="http://passport.1yyg.com/register.html?forward=rego" class="blue">注册</a>后再回复评论</div>
+                        <div id="notLogin" name="replyLogin" class="Comment_login" runat="server">请您<a href="/users/login" class="blue" name="replyLoginBtn">登录</a>或<a href="/users/register" class="blue">注册</a>后再回复评论</div>
                         <input type="button" id="btnReplyMsgM0" name="btnReplyMsg" class="hidden">
                     </div>
                 </div>
             </div>
-        </div-->
+        </div>
+        <?php else : ?>
         <div id="bottomComment" class="Comment_Reply clearfix">
             <div class="Comment-pic" name="userFace">
-                <img name="imgUserPhoto" src="<?php echo $share['from_id'];?>">
+                <img name="imgUserPhoto" src="<?php echo $this->user->avatar()?>">
             </div>
             <div class="Comment_form">
                 <div id="divCommTo" class="Comment-name" style="display:none;"></div>
@@ -83,6 +83,7 @@ $this->styles($this->resLoader->css('product_list.css'));
                 </div>
             </div>
         </div>
+        <?php endif; ?>
         <script type="text/javascript">
             $(function() {
                 $('#comment').keydown(function(){
@@ -170,6 +171,7 @@ $this->styles($this->resLoader->css('product_list.css'));
                 });
             }
         </script>
+        
         <!--用户评论列表开始-->
         <div class="Comment_main clearfix" id="CommentMain"></div>
         <!--用户评论部分结束--> 
@@ -184,33 +186,33 @@ $this->styles($this->resLoader->css('product_list.css'));
             <ul>
                 <ul>
                     <li class="victory_info">
-                        <div class="victory_head"><a class="blue" href="http://u.1yyg.com/1001425527" title="不之谜" target="_blank"><img src="http://faceimg.1yyg.com/UserFace/20131107113923463.jpg"></a></div>
-                        <p class="victory_User"><a class="blue" href="http://u.1yyg.com/1001425527" title="不之谜" target="_blank">不之谜</a>获得了第959期</p>
+                        <div class="victory_head"><a class="blue" href="#" title="不之谜" target="_blank"><img src="#"></a></div>
+                        <p class="victory_User"><a class="blue" href="#" title="不之谜" target="_blank">不之谜</a>获得了第959期</p>
                         <p><span class="gray03">暂未晒单</span></p>
                     </li>
                     <li class="victory_info">
-                        <div class="victory_head"><a class="blue" href="http://u.1yyg.com/1000000091" title="向5S钱进" target="_blank"><img src="http://faceimg.1yyg.com/UserFace/20131105102304740.jpg"></a></div>
-                        <p class="victory_User"><a class="blue" href="http://u.1yyg.com/1000000091" title="向5S钱进" target="_blank">向5S钱进</a>获得了第958期</p>
+                        <div class="victory_head"><a class="blue" href="#" title="向5S钱进" target="_blank"><img src="#"></a></div>
+                        <p class="victory_User"><a class="blue" href="#" title="向5S钱进" target="_blank">向5S钱进</a>获得了第958期</p>
                         <p><span class="gray03">暂未晒单</span></p>
                     </li>
                     <li class="victory_info">
-                        <div class="victory_head"><a class="blue" href="http://u.1yyg.com/1000174153" title="只对土豪有感" target="_blank"><img src="http://faceimg.1yyg.com/UserFace/20131024162740995.jpg"></a></div>
-                        <p class="victory_User"><a class="blue" href="http://u.1yyg.com/1000174153" title="只对土豪有感" target="_blank">只对土豪</a>获得了第957期</p>
+                        <div class="victory_head"><a class="blue" href="#" title="只对土豪有感" target="_blank"><img src="#"></a></div>
+                        <p class="victory_User"><a class="blue" href="#" title="只对土豪有感" target="_blank">只对土豪</a>获得了第957期</p>
                         <p><span class="gray03">暂未晒单</span></p>
                     </li>
                     <li class="victory_info">
-                        <div class="victory_head"><a class="blue" href="http://u.1yyg.com/1000101873" title="否极泰来" target="_blank"><img src="http://faceimg.1yyg.com/UserFace/20131012090235772.jpg"></a></div>
-                        <p class="victory_User"><a class="blue" href="http://u.1yyg.com/1000101873" title="否极泰来" target="_blank">否极泰来</a>获得了第956期</p>
+                        <div class="victory_head"><a class="blue" href="#" title="否极泰来" target="_blank"><img src="#"></a></div>
+                        <p class="victory_User"><a class="blue" href="#" title="否极泰来" target="_blank">否极泰来</a>获得了第956期</p>
                         <p><span class="gray03">暂未晒单</span></p>
                     </li>
                     <li class="victory_info">
-                        <div class="victory_head"><a class="blue" href="http://u.1yyg.com/1000987381" title="qxoqxo" target="_blank"><img src="http://faceimg.1yyg.com/UserFace/20131106091025577.jpg"></a></div>
-                        <p class="victory_User"><a class="blue" href="http://u.1yyg.com/1000987381" title="qxoqxo" target="_blank">qxoqxo</a>获得了第955期</p>
+                        <div class="victory_head"><a class="blue" href="#" title="qxoqxo" target="_blank"><img src="#"></a></div>
+                        <p class="victory_User"><a class="blue" href="#" title="qxoqxo" target="_blank">qxoqxo</a>获得了第955期</p>
                         <p><span class="gray03">暂未晒单</span></p>
                     </li>
                     <li class="victory_info">
-                        <div class="victory_head"><a class="blue" href="http://u.1yyg.com/1000268557" title="whc-top" target="_blank"><img src="http://faceimg.1yyg.com/UserFace/20130822010721313.jpg"></a></div>
-                        <p class="victory_User"><a class="blue" href="http://u.1yyg.com/1000268557" title="whc-top" target="_blank">whc-top</a>获得了第954期</p>
+                        <div class="victory_head"><a class="blue" href="#" title="whc-top" target="_blank"><img src="#"></a></div>
+                        <p class="victory_User"><a class="blue" href="#" title="whc-top" target="_blank">whc-top</a>获得了第954期</p>
                         <p><span class="gray03">暂未晒单</span></p>
                     </li>
                 </ul>
@@ -219,36 +221,36 @@ $this->styles($this->resLoader->css('product_list.css'));
         <div class="Comment_share">
             <h4>最新晒单</h4>
             <div class="New-single">
-                <p class="New-single-time"><a class="blue" href="http://u.1yyg.com/1000898861" target="_blank">土豪-姐姐请你来做客</a>今天 07:33</p>
-                <p class="New-single-C"><a href="http://post.1yyg.com/detail-3048.html" target="_blank">感谢云购抱着中500万的心态来玩云购吧<br>
+                <p class="New-single-time"><a class="blue" href="#" target="_blank">土豪-姐姐请你来做客</a>今天 07:33</p>
+                <p class="New-single-C"><a href="#" target="_blank">感谢云购抱着中500万的心态来玩云购吧<br>
                     大家一起来玩云购吧<br>
                     (*^__^*)&nbsp;嘻嘻……<br>
                     只要坚持就会中奖<br>
                     …</a></p>
                 <div class="New-singleImg">
                     <div class="arrow arrow_Rleft"><em>◆</em></div>
-                    <a href="http://post.1yyg.com/detail-3048.html" target="_blank"><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131107073308851.jpg" style=""><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131107073313304.jpg" style=""><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131107073317726.jpg" style=""></a></div>
+                    <a href="#" target="_blank"><img border="0" alt="" src="#" style=""><img border="0" alt="" src="#" style=""><img border="0" alt="" src="#" style=""></a></div>
             </div>
             <div class="New-single">
-                <p class="New-single-time"><a class="blue" href="http://u.1yyg.com/1000753487" target="_blank">花了这么多还不中</a>今天 00:08</p>
-                <p class="New-single-C"><a href="http://post.1yyg.com/detail-3047.html" target="_blank">在QQ上无意看到一元云购，第一次云购，看着他们1块2块就可以中了手机，那个嫉妒羡慕恨啊~~接着我…</a></p>
+                <p class="New-single-time"><a class="blue" href="#" target="_blank">花了这么多还不中</a>今天 00:08</p>
+                <p class="New-single-C"><a href="#" target="_blank">在QQ上无意看到一元云购，第一次云购，看着他们1块2块就可以中了手机，那个嫉妒羡慕恨啊~~接着我…</a></p>
                 <div class="New-singleImg">
                     <div class="arrow arrow_Rleft"><em>◆</em></div>
-                    <a href="http://post.1yyg.com/detail-3047.html" target="_blank"><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131107000658504.jpg" style=""><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131107000707676.jpg" style=""><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131107000716238.jpg" style=""></a></div>
+                    <a href="#" target="_blank"><img border="0" alt="" src="#" style=""><img border="0" alt="" src="#" style=""><img border="0" alt="" src="#" style=""></a></div>
             </div>
             <div class="New-single">
-                <p class="New-single-time"><a class="blue" href="http://u.1yyg.com/1000956863" target="_blank">中吧中吧我要中奖</a>昨天 23:51</p>
-                <p class="New-single-C"><a href="http://post.1yyg.com/detail-3046.html" target="_blank">第一次中奖，也是朋友叫我玩，结果一玩就不可收拾。总投了快3000大元就中了这玩意，真心感动悲催…</a></p>
+                <p class="New-single-time"><a class="blue" href="#" target="_blank">中吧中吧我要中奖</a>昨天 23:51</p>
+                <p class="New-single-C"><a href="#" target="_blank">第一次中奖，也是朋友叫我玩，结果一玩就不可收拾。总投了快3000大元就中了这玩意，真心感动悲催…</a></p>
                 <div class="New-singleImg">
                     <div class="arrow arrow_Rleft"><em>◆</em></div>
-                    <a href="http://post.1yyg.com/detail-3046.html" target="_blank"><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131106235105088.jpg" style=""><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131106235117322.jpg" style=""><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131106235124807.jpg" style=""></a></div>
+                    <a href="#" target="_blank"><img border="0" alt="" src="#" style=""><img border="0" alt="" src="#" style=""><img border="0" alt="" src="#" style=""></a></div>
             </div>
             <div class="New-single">
-                <p class="New-single-time"><a class="blue" href="http://u.1yyg.com/1000092511" target="_blank">中次奖z不容易</a>昨天 22:52</p>
-                <p class="New-single-C"><a href="http://post.1yyg.com/detail-3045.html" target="_blank">MX2TD版，终于到手了，很漂亮!没及时发货加上咱是偏远地区云友，发的EMS所以才到手。给客服说过要…</a></p>
+                <p class="New-single-time"><a class="blue" href="#" target="_blank">中次奖z不容易</a>昨天 22:52</p>
+                <p class="New-single-C"><a href="#" target="_blank">MX2TD版，终于到手了，很漂亮!没及时发货加上咱是偏远地区云友，发的EMS所以才到手。给客服说过要…</a></p>
                 <div class="New-singleImg">
                     <div class="arrow arrow_Rleft"><em>◆</em></div>
-                    <a href="http://post.1yyg.com/detail-3045.html" target="_blank"><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131106224447442.jpg" style=""><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131106224745066.jpg" style=""><img border="0" alt="" src="http://img.1yyg.com/UserPost/Small/20131106224913878.jpg" style=""></a></div>
+                    <a href="#" target="_blank"><img border="0" alt="" src="#" style=""><img border="0" alt="" src="#" style=""><img border="0" alt="" src="#" style=""></a></div>
             </div>
         </div>
     </div>

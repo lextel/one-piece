@@ -27,8 +27,6 @@ if(empty($shares)) {
     <li style="text-align: center; padding-bottom: 20px">冷冷清清，凄凄惨惨戚戚！~</li>
 <?php } ?>
 </ul>
-
-
 <? echo '<div class="pages">'; ?>
 <?= $this->Paginator->paginate();?>
 <? echo '</div>'; ?>

@@ -17,7 +17,6 @@
 .goods_tj, .goods_xp, .goods_rq, .goods_xs, .list_classMore i, .MoreClick i, .Price_Sort i,.Price_Sort s, .SortCur b, .SortCur s, {
 background: url(../img/goods_tj.png) no-repeat;}
 .goods-iten .pic img {width: 200px;height: 200px;}
-.goods-iten .pic a i{ position:absolute;top:0; right:0; background-position:0 -49px;width: 52px;height: 45px;}
 .goods-iten .name {height: 20px;line-height: 18px;margin-bottom: 5px;overflow: hidden;padding: 0 10px;}
 .goods-iten .money {font-family: 宋体;text-align: left;color: #999;text-indent: 10px;}
 .goods-iten .goods_Curbor {

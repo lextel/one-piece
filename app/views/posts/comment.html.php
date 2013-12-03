@@ -1,22 +1,22 @@
     <ul>
         <?php
-            foreach($posts as $post) {
+            foreach($comments as $comment) {
         ?>
         <li class="Comment_single">
             <div class="Comment_box_con clearfix">
                 <div class="User_head">
-                    <a rel="nofollow" href="<?php echo $post['user_id']; ?>" target="_blank" title="<?php echo $post['user_id']; ?>">
-                        <img src="<?php echo $post['user_id']; ?>" alt=""></a>
+                    <a rel="nofollow" href="/users/info/<?php echo $comment['user_id']; ?>" target="_blank" title="<?php echo $comment['user']['nickname']; ?>">
+                        <img src="<?php echo $comment['user']['avatar']; ?>" alt=""></a>
                 </div>
                 <div class="Comment_con">
                     <div class="Comment_User">
                         <span>
-                            <a class="blue" href="<?php echo $post['user_id']; ?>" target="_blank"><?php echo $post['user_id']; ?></a>
+                            <a class="blue" href="/users/info/<?php echo $comment['user_id']; ?>" target="_blank"><?php echo $comment['user']['nickname']; ?></a>
                         </span>
                     </div>
                     <div class="C_summary">
-                        <?php echo $post['content']; ?>
-                        <span class="Summary-time"><?php echo $this->times->friendlyDate($post['created']); ?></span>
+                        <?php echo $comment['content']; ?>
+                        <span class="Summary-time"><?php echo $this->times->friendlyDate($comment['created']); ?></span>
                     </div>
                 </div>
                 <div class="qhackbox"></div>

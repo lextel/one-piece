@@ -8,6 +8,9 @@ use app\extensions\helper\MongoClient;
 
 class Posts extends \lithium\data\Model {
 
+    const IS_SHARE = 1;
+    const IS_NOTICE = 3;
+
     /**
      * mongodb posts数据结构
      *
@@ -15,10 +18,10 @@ class Posts extends \lithium\data\Model {
      */
     protected $_schema = [
         '_id'        => ['type' => 'id'],             // UUID
-        'from_id'    => ['type' => 'integer'],        // 所属会员ID
-        'to_id'      => ['type' => 'integer'],        // 发送至会员ID
+        'from_id'    => ['type' => 'string'],        // 所属会员ID
+        'to_id'      => ['type' => 'string'],        // 发送至会员ID
         'type_id'    => ['type' => 'integer'],        // 类型 晒单 短信息
-        'parent_id'  => ['type' => 'integer'],        // 父级ID
+        'parent_id'  => ['type' => 'string'],        // 父级ID
         'product_id' => ['type' => 'string'],         // 产品ID
         'period_id'  => ['type' => 'string'],         // 期数ID
         'title'      => ['type' => 'string'],         // 标题
@@ -82,12 +85,13 @@ class Posts extends \lithium\data\Model {
      */
     private static function _myShare($options) {
 
-        $userId = (int)$options['userId'];
+        $userId = $options['userId'];
 
+        $conditions = ['from_id' => $userId, 'type_id' => self::IS_SHARE];
         if(isset($options['getTotal']) && $options['getTotal']) {
-            $rs =  Posts::find(['from_id' => $userId, 'type_id' => 1])->count();
+            $rs =  Posts::find('all', ['conditions' => $conditions])->count();
         } else {
-            $rs = Posts::find(['from_id' => $userId, 'type_id' => 1], [], ['created' => 'desc'], $options['limit'], $options['page'])->to('array');
+            $rs = Posts::find('all', ['conditions' => $conditions, 'order' => ['created' => 'desc'], 'limit' => $options['limit'], 'page' =>  $options['page']])->to('array');
         }
 
         return $rs;
@@ -198,10 +202,10 @@ class Posts extends \lithium\data\Model {
         $status = $options['typeId'] == 1 ? 1 : 0;
 
         if(isset($options['getTotal']) && $options['getTotal']) {
-            $rs = Posts::find('all', ['conditions' => ['status' => $status, 'type_id' => 1]])->count();
+            $rs = Posts::find('all', ['conditions' => ['status' => $status, 'type_id' => self::IS_SHARE]])->count();
         } else {
 
-            $rs = Posts::find('all', ['conditions' => ['type_id' => 1, 'status' => $status], 'sort' => ['created' => 'desc']], $options['limit'], $options['page'])->to('array');
+            $rs = Posts::find('all', ['conditions' => ['type_id' => self::IS_SHARE, 'status' => $status], 'sort' => ['created' => 'desc']], $options['limit'], $options['page'])->to('array');
         }
 
         return $rs;
@@ -219,9 +223,9 @@ class Posts extends \lithium\data\Model {
         $status = $options['status'];
         $options = self::handleSort($options);
         if(isset($options['getTotal']) && $options['getTotal']) {
-            $rs = Posts::find('all', ['conditions' => ['status' => $status, 'type_id' => 1]])->count();
+            $rs = Posts::find('all', ['conditions' => ['status' => $status, 'type_id' => self::IS_SHARE]])->count();
         } else {
-            $rs = Posts::find('all', ['conditions' => ['status' => $status, 'type_id' => 1], 'order' => $options['order']])->to('array');
+            $rs = Posts::find('all', ['conditions' => ['status' => $status, 'type_id' => self::IS_SHARE], 'order' => $options['order']])->to('array');
             $rs = self::_formatShare($rs);
         }
 
@@ -279,7 +283,7 @@ class Posts extends \lithium\data\Model {
      */
     public static function shareView($productId, $periodId) {
 
-        return Posts::find('first', ['conditions' => ['product_id' => $productId , 'period_id' => $periodId, 'type_id' => 1]])->to('array');
+        return Posts::find('first', ['conditions' => ['product_id' => $productId , 'period_id' => $periodId, 'type_id' => self::IS_SHARE]])->to('array');
     }
 
     /**
@@ -296,7 +300,7 @@ class Posts extends \lithium\data\Model {
         $userModel = new Users;
         foreach($rs as $value) {
 
-            echo $value['form_id'];
+            // echo $value['form_id'];
 
             $user = $userModel->profile($value['from_id']);
 
@@ -306,7 +310,7 @@ class Posts extends \lithium\data\Model {
                 'title'     => $value['title'],
                 'content'   => $value['content'],
                 'image'     => $value['images'][0],
-                'user_id'   => $value['from_id'],
+                'userId'    => $value['from_id'],
                 'good'      => $value['good'],
                 'comment'   => $value['comment'],
                 'created'   => $value['created'],
@@ -373,7 +377,7 @@ class Posts extends \lithium\data\Model {
      */
     public static function checkShare($productId, $periodId) {
 
-        $conditions = ['product_id' => $productId, 'period_id' => $periodId, 'type_id' => 1];
+        $conditions = ['product_id' => $productId, 'period_id' => $periodId, 'type_id' => self::IS_SHARE];
 
         $query = ['status' => 1];
 
@@ -390,9 +394,30 @@ class Posts extends \lithium\data\Model {
      */
     public static function deleteShare($productId, $periodId) {
 
-        $conditions = ['product_id' => $productId, 'period_id' => $periodId, 'type_id' => 1];
+        $conditions = ['product_id' => $productId, 'period_id' => $periodId, 'type_id' => self::IS_SHARE];
 
         return Posts::remove($conditions);
+    }
+
+    /**
+     * 获取晒单评论
+     *
+     */
+    public function comment($options) {
+
+        $conditions = ['parent_id' => $options['postId']];
+        if(isset($options['getTotal']) && $options['getTotal']) {
+            return Posts::find('all', ['conditions' => $conditions])->count();
+        } else {
+            $posts = Posts::find('all', [ 'conditions' => $conditions, 'order' => ['created'=>'desc'], 'limit' => $options['limit'], 'page' => $options['page']])->to('array');
+            $userModel = new Users();
+            foreach($posts as $key => $post) {
+                $posts[$key]['user'] = $userModel->profile($post['user_id']);
+            }
+
+            return $posts;
+        }
+
     }
 
     /**
@@ -405,7 +430,7 @@ class Posts extends \lithium\data\Model {
     public static function add($data) {
 
         switch ($data['type_id']) {
-            case '1':
+            case self::IS_SHARE:
                 $rs = self::_addShare($data);
                 break;
 
@@ -426,9 +451,12 @@ class Posts extends \lithium\data\Model {
      */
     public static function _addShare($data) {
 
+        $info = new User;
+        $userId = $info->id();
+
         $data['status']    = 0;
         $data['parent_id'] = 0;
-        $data['from_id']   = USER_ID;
+        $data['from_id']   = $userId;
         $data['good']      = 0;
         $data['hits']      = 0;
         $data['comment']   = 0;
@@ -438,6 +466,32 @@ class Posts extends \lithium\data\Model {
         $share = Posts::create($data);
 
         return $share->save();
+    }
+
+    /**
+     * 获取公告
+     *
+     */
+    public function notice() {
+
+        $posts = Posts::find('all', ['conditions' => ['type_id' => self::IS_NOTICE], 'limit' => 5]);
+        $notices = [];
+        if($posts != null) {
+            $notices = $posts->to('array');
+        }
+
+        return $notices;
+    }
+
+    public function noticeDetails($postId) {
+        $post = Posts::find('first', ['conditions' => ['_id' => $postId, 'type_id' => self::IS_NOTICE]]);
+
+        $details = [];
+        if($post != null) {
+            $details = $post->to('array');
+        }
+
+        return $details;
     }
 
 

@@ -363,12 +363,12 @@ $(function(){
     },function(){
         scrtime = setInterval(function(){
                 var ul = $("#buyList");
+                ul.find("li:last").prependTo(ul)
                 var liHeight = ul.find("li:last").height();
-                ul.animate({marginTop : liHeight + "px"}, 1000,function(){
-                    ul.find("li:last").prependTo(ul)
-                    // ul.find("li:first").hide();
+                ul.animate({marginTop : (liHeight + 24) + "px"}, 1000,function(){
+                    ul.find("li:first").hide();
                     ul.css({marginTop:0});
-                    // ul.find("li:first").show();
+                    ul.find("li:first").fadeIn();
                 });        
         },3000);
      }).trigger("mouseleave");

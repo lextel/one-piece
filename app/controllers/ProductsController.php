@@ -61,8 +61,18 @@ class ProductsController extends \lithium\action\Controller {
         return compact('products', 'limit', 'page', 'total', 'cats', 'sortList', 'catId', 'brandId', 'brands', 'crumbs', 'navCurr');
     }
 
+    public function my() {
+        echo '编写中。。';
+        die;
+    }
+
     // 商品管理
     public function dashboard() {
+
+        $user = new Users;
+        if(!$user->auth()) {
+            return $this->redirect('Users::login');
+        }
         
         $limit = Page::$page;
         $page  = $this->request->page ? $this->request->page : 1;
@@ -90,8 +100,7 @@ class ProductsController extends \lithium\action\Controller {
         $model = new Products();
         $product = $model->view($productId, $periodId);
 
-        $userModel = new Users;
-        $user = $userModel->profile($product['periods'][0]['user_id']);
+        $user = Users::profile($product['periods'][0]['user_id']);
 
         $result = ['status' => $product['periods'][0]['status'] == 2];
         if(
@@ -119,7 +128,6 @@ class ProductsController extends \lithium\action\Controller {
     // 开奖脚本
     public function crontab() {
 
-        $award = new awards();
         set_time_limit(0);
         while (true) {
 
@@ -137,19 +145,17 @@ class ProductsController extends \lithium\action\Controller {
 
                         $idx = $period['id'] - 1;
                         $query = [
-                                'results' => $info['results'],
-                                'total'   => $info['total'],
-                                'code'    => $info['code'],
-                                'user_id' => $userId,
-                                'status'  => 2,
-                                'pid' =>$product[_id],
-                            
+                        '$set' => [
+                                'periods.'.$idx.'.results' => $info['results'],
+                                'periods.'.$idx.'.total'   => $info['total'],
+                                'periods.'.$idx.'.code'    => $info['code'],
+                                'periods.'.$idx.'.user_id' => $userId,
+                                'periods.'.$idx.'.status'  => 2,
+                               ]
                         ];
 
-                        $award->insert($query);
-
-                        //$conditions = ['_id' => $id];
-                        //Products::update($query, $conditions, ['atomic' => false]);
+                        $conditions = ['_id' => $id];
+                        Products::update($query, $conditions, ['atomic' => false]);
                     }
                 }
             }

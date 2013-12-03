@@ -10,9 +10,9 @@ $this->styles($this->resLoader->css('product_list.css'));
         <div id="posterTopNav" class="yg-flow"> <a href="/help" target="_blank"><img src="/img/20130716101908506.gif" alt="什么是1元云购，如何1元云购，30秒了解"></a> </div>
         <div class="banner">
             <div id="slideImg">
-                <a href="javascript:void(0);" target="_blank"> <img src="http://img.1yyg.com/Poster/20130827155002578.jpg" alt="小米（MIUI） 小米3 智能手机(16G)" width="740" height="333"></a>
-                <a href="javascript:void(0);" target="_blank"> <img src="http://img.1yyg.com/Poster/20130827155002578.jpg" alt="小米（MIUI） 小米3 智能手机(16G)" width="740" height="333"></a>
-                <a href="javascript:void(0);" target="_blank"> <img src="http://img.1yyg.com/Poster/20130827155002578.jpg" alt="小米（MIUI） 小米3 智能手机(16G)" width="740" height="333"></a>
+                <a href="javascript:void(0);" target="_blank"> <img src="/img/1.jpg" alt="商品A" width="740" height="333"></a>
+                <a href="javascript:void(0);" target="_blank"> <img src="/img/2.jpg" alt="商品B" width="740" height="333"></a>
+                <a href="javascript:void(0);" target="_blank"> <img src="/img/3.jpg" alt="商品C" width="740" height="333"></a>
             </div>
         </div>
     </div>
@@ -78,13 +78,13 @@ $this->styles($this->resLoader->css('product_list.css'));
                 ?>
                 <li class="list-block">
                     <div class="pic"> 
-                        <a rel="nofollow" href="/prodcuts/view/<?php echo $hot['id']; ?>/<?php echo $hot['periodId'];?>" target="_blank" title="<?php echo $hot['title'];?>">
-                            <i class="goods_xp"></i>
+                        <a rel="nofollow" href="/products/view/<?php echo $hot['id']; ?>/<?php echo $hot['periodId'];?>" target="_blank" title="<?php echo $hot['title'];?>">
+                            <i class="<?php echo $hot['tagClass'];?>"></i>
                             <img alt="<?php echo $hot['title'];?>_积分云购" src="<?php echo $hot['images'][0];?>" style="">
                         </a> 
                         </div>
-                    <p class="name"> <a href="/prodcuts/view/<?php echo $hot['id']; ?>/<?php echo $hot['periodId'];?>" target="_blank" title="<?php echo $hot['title'];?>"><?php echo $hot['title'];?></a> </p>
-                    <p class="money"> 价值：<span class="rmb">5599.00</span></p>
+                    <p class="name"> <a href="/products/view/<?php echo $hot['id']; ?>/<?php echo $hot['periodId'];?>" target="_blank" title="<?php echo $hot['title'];?>"><?php echo $hot['title'];?></a> </p>
+                    <p class="money"> 价值：<span class="rmb"><?php echo $hot['price'];?></span></p>
                     <div class="Progress-bar" style="">
                         <p title="已完成<?php echo $hot['percent'];?>%"><span style="width: <?php echo $hot['width'];?>px; "></span></p>
                         <ul class="Pro-bar-li">
@@ -93,7 +93,7 @@ $this->styles($this->resLoader->css('product_list.css'));
                             <li class="P-bar03"><em><?php echo $hot['remain'];?></em>剩余人次</li>
                         </ul>
                     </div>
-                    <div class="shop_buttom"><a rel="nofollow" href="/prodcuts/view/<?php echo $hot['id']; ?>/<?php echo $hot['periodId'];?>" target="_blank" class="shop_but" title="立即1元云购"></a></div>
+                    <div class="shop_buttom"><a rel="nofollow" href="/products/view/<?php echo $hot['id']; ?>/<?php echo $hot['periodId'];?>" target="_blank" class="shop_but" title="立即1元云购"></a></div>
                 </li>
                 <?php endforeach; ?>
             </ul>
@@ -103,11 +103,13 @@ $this->styles($this->resLoader->css('product_list.css'));
         <div class="news">
             <h3> 云购动态</h3>
             <ul>
-                <li><a href="javascript:void(0);" target="_blank">11月6日网络故障公告</a></li>
-                <li><a href="javascript:void(0);" target="_blank">关于近期通过邮件和QQ索要密码的紧急公告</a></li>
-                <li><a href="javascript:void(0);" target="_blank">2013年1元云购中秋国庆放假通知</a></li>
-                <li><a href="javascript:void(0);" target="_blank">1元云购服务器升级维护公告</a></li>
-                <li><a href="javascript:void(0);" target="_blank">1元云购网成功挂牌前海股权交易中心</a></li>
+                <?php
+                    foreach($notices as $notice) :
+                ?>
+                <li><a href="/posts/notice/<?php echo $notice['_id']; ?>" target="_blank"><?php echo $notice['title']; ?></a></li>
+                <?php
+                    endforeach;
+                ?>
             </ul>
         </div>
         <div class="wait_lottery" id="divLottery"><a href="javascript:void(0);" target="_blank"><img src="#" alt="苹果（Apple）iPad Air平板电脑 16GB WiFi版" width="230" height="200"></a></div>
@@ -139,48 +141,28 @@ $this->styles($this->resLoader->css('product_list.css'));
         <div class="show">
             <?php
             foreach($shares as $share) {
-                // print_r($share);
             ?>
             <dl>
-                <dt><a rel="nofollow" href="/shares/view/<?php echo $share[0]['productId'];?>/<?php echo $share[0]['periodId'];?>" target="_blank"><img alt="" src="<?php echo $share[0]['image'];?>" style=""></a></dt>
+                <dt>
+                    <a rel="nofollow" href="/shares/view/<?php echo $share[0]['productId'];?>/<?php echo $share[0]['periodId'];?>" target="_blank">
+                        <img alt="" src="<?php echo $share[0]['image'];?>" style="">
+                    </a>
+                </dt>
                 <dd class="bg">
                     <ul>
-                        <li class="name"><span><a href="javascript:void(0);" target="_blank"><?php echo $share[0]['user_id'];?></a></li>
+                        <li class="name">
+                            <span>
+                                <a href="/shares/view/<?php echo $share[0]['productId'];?>/<?php echo $share[0]['periodId'];?>" target="_blank"><?php echo $share[0]['title'];?></a>
+                            </span> 
+                            获得者：<a rel="nofollow" class="blue" href="/users/info/<?php echo $share[0]['userId'];?>" target="_blank"><?php echo $share[0]['nickname'];?></a>
+                        </li>
                         <li class="content"><?php echo $share[0]['content'];?></li>
-                    </ul>
-                </dd>
-            </dl>
-            <dl>
-                <dt><a rel="nofollow" href="javascript:void(0);" target="_blank"><img alt="" src="#" style=""></a></dt>
-                <dd class="bg">
-                    <ul>
-                        <li class="name"><span><a href="javascript:void(0);" target="_blank">低调丶</a></li>
-                        <li class="content">上周末抱着试试看的态度云购的，结果真中了，只花了25块钱收获了5S。开心的一米，本以为要等上一个月才能收到货，结果一周就到了，发货真是给力哇。。。。能赶在双十一之前到货，正好送给老婆当礼物。开心。这东西没…</li>
                     </ul>
                 </dd>
             </dl>
             <?php
             }
             ?>
-            <dl>
-                <dt><a rel="nofollow" href="javascript:void(0);" target="_blank"><img alt="" src="#" style=""></a></dt>
-                <dd class="bg">
-                    <ul>
-                        <li class="name"><span><a href="javascript:void(0);" target="_blank">钱姜江</a></li>
-                        <li class="content">花十块钱抽红米没中，然后花两块钱中了个米三，这哪说理去。中奖之后我看晒单，还以为要一个月才能到，结果没想到三天就发货了，五天就到了，哈哈哈，太爽了。今天拿着米三来公司装个逼。
-另外貌似很多人说一元云购是…</li>
-                    </ul>
-                </dd>
-            </dl>
-            <dl>
-                <dt><a rel="nofollow" href="javascript:void(0);" target="_blank"><img alt="" src="#" style=""></a></dt>
-                <dd class="bg">
-                    <ul>
-                        <li class="name"><span><a href="javascript:void(0);" target="_blank">低调丶</a></li>
-                        <li class="content">上周末抱着试试看的态度云购的，结果真中了，只花了25块钱收获了5S。开心的一米，本以为要等上一个月才能收到货，结果一周就到了，发货真是给力哇。。。。能赶在双十一之前到货，正好送给老婆当礼物。开心。这东西没…</li>
-                    </ul>
-                </dd>
-            </dl>
         </div>
     </div>
 </div>

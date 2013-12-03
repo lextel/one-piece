@@ -4,18 +4,33 @@ namespace app\controllers;
 
 use app\models\Posts;
 use app\extensions\helper\Page;
+use app\extensions\helper\User;
 use lithium\action\DispatchException;
 
 class PostsController extends \lithium\action\Controller {
+
+    const IS_FEED = 2;
+    const IS_NOTICE = 3;
+    const GET_TOTAL = true;
+
+    public function notice() {
+        $postId = $this->request->postId;
+
+        $postModel = new Posts;
+        $details = $postModel->noticeDetails($postId);
+
+        return compact('details');
+    }
 
     public function feed() {
         $request  = $this->request;
         $limit    = Page::$page;
         $page     = $request->page ? : 1;
         
-        $userId = USER_ID;
+        $info = new User;
+        $userId = $info->id();
 
-        $conditions = ['from_id' => $userId, 'type_id' => 2];
+        $conditions = ['from_id' => $userId, 'type_id' => self::IS_FEED];
         $order = ['created' => 'desc'];
         $total = Posts::find('all', compact('conditions'))->count();
         $posts = Posts::find('all', compact('conditions', 'order', 'limit', 'page'))->to('array');
@@ -33,11 +48,26 @@ class PostsController extends \lithium\action\Controller {
 
         $content  = $this->request->data['content'];
 
+        $info = new User;
+        $userId = $info->id();
+
+        $title = '';
+        $type_id = self::IS_FEED;
+        if($info->role() == 100) {
+            $contents = explode("#", $content);
+            if(isset($contents[1])) {
+                $title = $contents[0];
+                $content = $contents[1];
+                $type_id = self::IS_NOTICE;
+            } 
+        }
+
         $data = [
-            'from_id'   => USER_ID,
-            'type_id'   => 2,
-            'parent_id' => 0,
+            'from_id'   => $userId,
+            'type_id'   => $type_id,
+            'title'     => $title,
             'content'   => $content,
+            'parent_id' => 0,
             'status'    => 1,
             'comment'   => 0,
             'created'   => time()
@@ -61,18 +91,12 @@ class PostsController extends \lithium\action\Controller {
         $limit    = Page::$page;
         $page     = $request->page ? : 1;
         $postId   = $request->postId;
+        $getTotal = self::GET_TOTAL;
 
-        $total = Posts::find('all', ['conditions' => ['parent_id' => $postId]])->count();
-        $posts = Posts::find(
-        	'all', [
-        	'conditions' => ['parent_id' => $postId], 
-        	'order' => ['created'=>'desc'], 
-        	'limit' => $limit, 
-        	'page' => $page]
-        	)->to('array');
+        $total = Posts::comment(compact('postId', 'getTotal'));
+        $comments = Posts::comment(compact('postId', 'page', 'limit'));
 
-
-        return $this->render(['data' => compact('page', 'limit', 'total', 'posts'), 'template' => 'comment', 'layout' => false]);
+        return $this->render(['data' => compact('page', 'limit', 'total', 'comments'), 'template' => 'comment', 'layout' => false]);
 	}
 
 	public function addComment() {

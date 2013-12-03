@@ -2,7 +2,9 @@
 
 namespace app\controllers;
 
+use app\models\Orders;
 use app\models\Posts;
+use app\models\Users;
 use app\models\Products;
 use app\extensions\helper\User;
 use app\extensions\helper\Sort;
@@ -11,6 +13,9 @@ use app\extensions\helper\Uploader;
 use lithium\storage\Session;
 
 class SharesController extends \lithium\action\Controller {
+
+    const IS_PASS = 1;
+    const GET_TOTAL = true;
 
     private $_navCurr = 'share';
 
@@ -24,10 +29,10 @@ class SharesController extends \lithium\action\Controller {
         $sort    = isset($request->query['sort']) ? $request->query['sort'] : '';
         $sortBy  = isset($request->query['sortBy']) ? $request->query['sortBy'] : '';
 
-        $status = 1;
-        $getTotal = true;
-        $total = Posts::indexShare(compact('status', 'getTotal'));
-        $shares = Posts::indexShare(compact('limit', 'page', 'status', 'sort', 'sortBy'));
+        $status = self::IS_PASS;
+        $getTotal = self::GET_TOTAL;
+        $total = Posts::shareIndex(compact('status', 'getTotal'));
+        $shares = Posts::shareIndex(compact('limit', 'page', 'status', 'sort', 'sortBy'));
 
         // 排序标签
         $sortList = Sort::sort('shares', compact('sort', 'sortBy'));
@@ -91,7 +96,12 @@ class SharesController extends \lithium\action\Controller {
         $post->save();
 
         // 获取本期获奖者
+        $userModel = new Users();
+        $orderModel = new Orders();
         $winner = Products::view($productId, $periodId);
+        $winner['user'] = $userModel->profile($winner['periods'][0]['user_id']);
+        $winner['orderTotal'] = $orderModel->countByPeriod($productId, $periodId, $winner['periods'][0]['user_id']);
+
 
         // 正在进行
         $active = Products::view($productId, 0);
@@ -104,6 +114,11 @@ class SharesController extends \lithium\action\Controller {
 
     // 晒单管理
     public function dashboard() {
+
+        $user = new Users;
+        if(!$user->auth()) {
+            return $this->redirect('Users::login');
+        }
 
         $request = $this->request;
         $typeId  = $request->typeId ? : 1;

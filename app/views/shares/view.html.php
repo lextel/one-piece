@@ -14,12 +14,12 @@ $this->styles($this->resLoader->css('product_list.css'));
                 <div class="share_time"> 晒单时间：<span><?php echo $this->times->friendlyDate($share['created']); ?></span></div>
             </div>
             <div class="share_goods">
-                <div class="share-get"> <i></i> <a class="fl-img" href="<?php echo $winner['periods'][0]['user_id']; ?>" target="_blank"><img src="<?php echo $winner['periods'][0]['user_id']; ?>"></a>
+                <div class="share-get"> <i></i> <a class="fl-img" href="/users/info/<?php echo $winner['user']['_id']; ?>" target="_blank"><img src="<?php echo $winner['user']['avatar']; ?>"></a>
                     <div class="share-getinfo">
-                        <p class="getinfo-name">幸运获得者：<a class="blue Fb" href="<?php echo $winner['periods'][0]['user_id']; ?>" target="_blank"><?php echo $winner['periods'][0]['user_id']; ?></a></p>
-                        <p>总共云购：<b class="orange"><?php echo count($winner['periods'][0]['orders']); ?></b>人次</p>
+                        <p class="getinfo-name">幸运获得者：<a class="blue Fb" href="/users/info/<?php echo $winner['user']['_id']; ?>" target="_blank"><?php echo $winner['user']['nickname']; ?></a></p>
+                        <p>总共云购：<b class="orange"><?php echo count($winner['orderTotal']); ?></b>人次</p>
                         <p>幸运云购码：<?php echo $winner['periods'][0]['code']; ?></p>
-                        <p>揭晓时间：<?php echo $winner['periods'][0]['ordered']; ?></p>
+                        <p>揭晓时间：<?php echo $this->times->friendlyDate($winner['periods'][0]['showed']); ?></p>
                     </div>
                 </div>
                 <div class="share-Conduct">
@@ -53,24 +53,24 @@ $this->styles($this->resLoader->css('product_list.css'));
                 </div>
             </div>
         </div>
-        <input name="hidReplyCount" type="hidden" id="hidReplyCount" value="7">
-        <input name="hidUserFace" type="hidden" id="hidUserFace" value="00000000000000000.jpg">
-        <!--div id="bottomComment" class="qcomment_bottom_reply clearfix">
+        <?php if(!$this->user->id()) : ?>
+        <div id="bottomComment" class="qcomment_bottom_reply clearfix">
             <div class="Comment_Reply clearfix">
-                <div class="Comment-pic"><img name="imgUserPhoto" src="#"></div>
+                <div class="Comment-pic"><img name="imgUserPhoto" src="/images/avatar/5/d/529af03b7572a79415000029.jpg"></div>
                 <div class="Comment_form">
                     <div id="divCommTo" class="Comment-name" style="display:none;"></div>
                     <div class="Comment_textbox">
                         <textarea id="replyTAM0" name="replyTA" class="hidden Comment-txt"></textarea>
-                        <div id="notLogin" name="replyLogin" class="Comment_login" runat="server">请您<a href="javascript:;" class="blue" name="replyLoginBtn">登录</a>或<a href="http://passport.1yyg.com/register.html?forward=rego" class="blue">注册</a>后再回复评论</div>
+                        <div id="notLogin" name="replyLogin" class="Comment_login" runat="server">请您<a href="/users/login" class="blue" name="replyLoginBtn">登录</a>或<a href="/users/register" class="blue">注册</a>后再回复评论</div>
                         <input type="button" id="btnReplyMsgM0" name="btnReplyMsg" class="hidden">
                     </div>
                 </div>
             </div>
-        </div-->
+        </div>
+        <?php else : ?>
         <div id="bottomComment" class="Comment_Reply clearfix">
             <div class="Comment-pic" name="userFace">
-                <img name="imgUserPhoto" src="<?php echo $share['from_id'];?>">
+                <img name="imgUserPhoto" src="<?php echo $this->user->avatar()?>">
             </div>
             <div class="Comment_form">
                 <div id="divCommTo" class="Comment-name" style="display:none;"></div>
@@ -83,6 +83,7 @@ $this->styles($this->resLoader->css('product_list.css'));
                 </div>
             </div>
         </div>
+        <?php endif; ?>
         <script type="text/javascript">
             $(function() {
                 $('#comment').keydown(function(){
@@ -170,6 +171,7 @@ $this->styles($this->resLoader->css('product_list.css'));
                 });
             }
         </script>
+        
         <!--用户评论列表开始-->
         <div class="Comment_main clearfix" id="CommentMain"></div>
         <!--用户评论部分结束--> 

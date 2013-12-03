@@ -34,6 +34,11 @@ class OrdersController extends \lithium\action\Controller {
 
         $this->render(['data' => compact('orders', 'total', 'page', 'limit'),'layout' => false]);
 	}
+
+    public function user() {
+        echo '编写中。。';
+        die;
+    }
 }
 
 ?>

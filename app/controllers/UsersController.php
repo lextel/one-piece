@@ -102,6 +102,11 @@ class UsersController extends \lithium\action\Controller {
         die;
     }
 
+    public function message() {
+        echo '编写中...';
+        die;
+    }
+
     // 上传商品图片
     public function upload() {
 
@@ -167,8 +172,6 @@ class UsersController extends \lithium\action\Controller {
         die('充值成功');
 
     }
-
-
 }
 
 ?>

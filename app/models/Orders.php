@@ -212,13 +212,13 @@ class Orders extends \lithium\data\Model {
 
             $total += date('His', $times[0]) . $times[1];
 
-            $user = new Users;
-            $userInfo = $user->profile($order['user_id']);
+            $userModel = new Users;
+            $user = $userModel->profile($order['user_id']);
             $product = Products::find('first', ['conditions' => ['_id' => $order['product_id']]]);
 
             $results[] = [
                 'user_id'    => $order['user_id'],
-                'name'       => $product->name,
+                'title'       => $product->title,
                 'nickname'   => $user['nickname'],
                 'avatar'     => $user['avatar'],
                 'ordered'    => $order['ordered'],
@@ -268,7 +268,7 @@ class Orders extends \lithium\data\Model {
      * @param $userId    mongoid  会员ID
      *
      */
-    public function codeTotalByPeriod($productId, $periodId, $userId) {
+    public function countByPeriod($productId, $periodId, $userId) {
         $mo = new MongoClient('orders');
         $rs = $mo->getConn()->find(['product_id' => $productId, 'period_id' => $periodId, 'user_id' => $userId ]);
 
