@@ -1,1 +1,1 @@
-{ "options" : { "create" : "orders" }, "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "products.orders", "name" : "_id_" } ] }
+{ "options" : { "create" : "orders" }, "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "products.orders", "name" : "_id_" }, { "v" : 1, "key" : { "product_id" : 1 }, "ns" : "products.orders", "background" : 1, "name" : "product_id_idx" }, { "v" : 1, "key" : { "period_id" : 1 }, "ns" : "products.orders", "background" : 1, "name" : "period_id_idx" } ] }
